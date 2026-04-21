@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlloCare — Smart Volunteer Deployment for Social Impact</title>
+    <meta name="description" content="AlloCare: AI-powered platform that transforms scattered community needs data into urgency-scored heatmaps and instantly matches the right volunteers. Paper to action in 60 seconds.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- Leaflet.js (FREE, no API key) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Leaflet Heat plugin -->
+    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+
+    <!-- Chart.js (FREE) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/design-system.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- AUTH SCREEN -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div id="auth-screen" class="auth-screen">
+        <div class="auth-container">
+            <div class="auth-branding">
+                <div class="auth-logo">
+                    <span class="material-icons-outlined logo-icon">hub</span>
+                    <h1>AlloCare</h1>
+                </div>
+                <p class="auth-tagline">Smart Volunteer Deployment for Social Impact</p>
+                <p class="auth-subtitle">Paper to matched volunteer in 60 seconds</p>
+
+                <div class="auth-stats">
+                    <div class="auth-stat">
+                        <span class="stat-number" id="stat-needs">-</span>
+                        <span class="stat-label">Active Needs</span>
+                    </div>
+                    <div class="auth-stat">
+                        <span class="stat-number" id="stat-volunteers">-</span>
+                        <span class="stat-label">Volunteers</span>
+                    </div>
+                    <div class="auth-stat">
+                        <span class="stat-number" id="stat-resolved">-</span>
+                        <span class="stat-label">Resolved</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="auth-card glass-card">
+                <h2>Welcome Back</h2>
+                <p>Sign in to access the coordinator dashboard.</p>
+                <button id="demo-signin-btn" class="btn-google" onclick="signInDemo()">
+                    <span class="material-icons-outlined" style="font-size:20px">science</span>
+                    Enter Dashboard (Demo Mode)
+                </button>
+                <p class="auth-note">
+                    <span class="material-icons-outlined" style="font-size:14px">lock</span>
+                    No sign-up required • Free APIs • No cloud billing
+                </p>
+            </div>
+
+            <div class="auth-sdg">
+                <span>Aligned with UN SDGs:</span>
+                <span class="sdg-badge sdg-1">SDG 1</span>
+                <span class="sdg-badge sdg-10">SDG 10</span>
+                <span class="sdg-badge sdg-17">SDG 17</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- MAIN DASHBOARD -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div id="dashboard" class="dashboard" style="display:none;">
+        <!-- ── Top Bar ────────────────────────────────────────── -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <span class="material-icons-outlined logo-icon-sm">hub</span>
+                <span class="topbar-brand">AlloCare</span>
+                <span class="topbar-divider">|</span>
+                <span class="topbar-org" id="topbar-org">Demo Organization</span>
+            </div>
+            <div class="topbar-center">
+                <div class="search-box">
+                    <span class="material-icons-outlined">search</span>
+                    <input type="text" id="search-input" placeholder="Search needs, zones, volunteers..." oninput="filterNeeds(this.value)">
+                </div>
+            </div>
+            <div class="topbar-right">
+                <button class="btn-primary btn-sm" id="upload-btn" onclick="openUploadModal()">
+                    <span class="material-icons-outlined">add_circle</span>
+                    Upload Report
+                </button>
+                <button class="topbar-icon-btn" id="notification-btn" onclick="toggleNotifications()">
+                    <span class="material-icons-outlined">notifications</span>
+                    <span class="notification-badge" id="notif-badge">3</span>
+                </button>
+                <div class="user-avatar" id="user-avatar" onclick="toggleUserMenu()">
+                    <img src="" alt="" id="user-photo">
+                    <span id="user-initial">D</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ── Main Content ───────────────────────────────────── -->
+        <div class="dashboard-body">
+            <!-- LEFT: Sidebar Navigation -->
+            <nav class="sidebar" id="sidebar">
+                <div class="sidebar-nav">
+                    <a href="#" class="nav-item active" data-view="dashboard" onclick="switchView('dashboard')">
+                        <span class="material-icons-outlined">dashboard</span>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="#" class="nav-item" data-view="reports" onclick="switchView('reports')">
+                        <span class="material-icons-outlined">description</span>
+                        <span>Reports</span>
+                    </a>
+                    <a href="#" class="nav-item" data-view="volunteers" onclick="switchView('volunteers')">
+                        <span class="material-icons-outlined">group</span>
+                        <span>Volunteers</span>
+                    </a>
+                    <a href="#" class="nav-item" data-view="analytics" onclick="switchView('analytics')">
+                        <span class="material-icons-outlined">insights</span>
+                        <span>Analytics</span>
+                    </a>
+                    <a href="#" class="nav-item" data-view="settings" onclick="switchView('settings')">
+                        <span class="material-icons-outlined">settings</span>
+                        <span>Settings</span>
+                    </a>
+                </div>
+                <div class="sidebar-footer">
+                <div class="sidebar-stats">
+                        <div class="mini-stat">
+                            <span class="mini-stat-value" id="sidebar-open">0</span>
+                            <span class="mini-stat-label">Open</span>
+                        </div>
+                        <div class="mini-stat">
+                            <span class="mini-stat-value assigned-val" id="sidebar-assigned">0</span>
+                            <span class="mini-stat-label">Assigned</span>
+                        </div>
+                        <div class="mini-stat">
+                            <span class="mini-stat-value resolved-val" id="sidebar-resolved">0</span>
+                            <span class="mini-stat-label">Resolved</span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Dashboard View -->
+            <div id="view-dashboard" class="view-section active" style="display: flex; width: 100%;">
+                <!-- CENTER: Map + Need Feed -->
+                <main class="main-content">
+                <!-- Map Section -->
+                <div class="map-section">
+                    <div class="map-header">
+                        <h2><span class="material-icons-outlined">map</span> Urgency Heatmap</h2>
+                        <div class="map-controls">
+                            <select id="filter-type" onchange="applyFilters()">
+                                <option value="all">All Types</option>
+                                <option value="food">🍚 Food</option>
+                                <option value="water">💧 Water</option>
+                                <option value="health">🏥 Health</option>
+                                <option value="housing">🏠 Housing</option>
+                                <option value="education">📚 Education</option>
+                                <option value="safety">🛡️ Safety</option>
+                            </select>
+                            <select id="filter-urgency" onchange="applyFilters()">
+                                <option value="all">All Urgency</option>
+                                <option value="critical">🔴 Critical (86-100)</option>
+                                <option value="high">🟠 High (61-85)</option>
+                                <option value="medium">🟡 Medium (31-60)</option>
+                                <option value="low">🟢 Low (0-30)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="map-container" class="map-container">
+                        <div id="map" style="width:100%;height:100%;"></div>
+                        <div class="map-legend">
+                            <span class="legend-item"><span class="legend-dot critical"></span>Critical</span>
+                            <span class="legend-item"><span class="legend-dot high"></span>High</span>
+                            <span class="legend-item"><span class="legend-dot medium"></span>Medium</span>
+                            <span class="legend-item"><span class="legend-dot low"></span>Low</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Needs Feed -->
+                <div class="needs-section">
+                    <div class="needs-header">
+                        <h2><span class="material-icons-outlined">priority_high</span> Active Needs</h2>
+                        <div class="needs-summary">
+                            <span class="summary-chip critical" id="count-critical">0 Critical</span>
+                            <span class="summary-chip high" id="count-high">0 High</span>
+                            <span class="summary-chip medium" id="count-medium">0 Medium</span>
+                            <span class="summary-chip low" id="count-low">0 Low</span>
+                        </div>
+                    </div>
+                    <div id="needs-feed" class="needs-feed">
+                        <!-- Cards populated by JS -->
+                        <div class="loading-state">
+                            <div class="loading-spinner"></div>
+                            <p>Loading community needs...</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- RIGHT: Volunteer Panel -->
+            <aside class="volunteer-panel" id="volunteer-panel">
+                <div class="panel-header">
+                    <h2><span class="material-icons-outlined">group</span> Volunteer Pool</h2>
+                    <span class="panel-count" id="volunteer-count">0 available</span>
+                </div>
+
+                <!-- Matched Volunteers (shown when a need is selected) -->
+                <div id="match-section" class="match-section" style="display:none;">
+                    <div class="match-header">
+                        <h3><span class="material-icons-outlined">auto_awesome</span> AI-Matched Volunteers</h3>
+                        <span class="ai-badge">Gemini 2.0</span>
+                    </div>
+                    <div id="match-results" class="match-results">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Volunteer List -->
+                <div id="volunteer-list" class="volunteer-list">
+                    <!-- Populated by JS -->
+                </div>
+
+                <!-- Impact Stats -->
+                <div class="impact-summary">
+                    <h3><span class="material-icons-outlined">emoji_events</span> Community Impact</h3>
+                    <div class="impact-grid">
+                        <div class="impact-card">
+                            <span class="impact-value" id="impact-resolved">0</span>
+                            <span class="impact-label">Needs Resolved</span>
+                        </div>
+                        <div class="impact-card">
+                            <span class="impact-value" id="impact-people">0</span>
+                            <span class="impact-label">People Helped</span>
+                        </div>
+                        <div class="impact-card">
+                            <span class="impact-value" id="impact-hours">0</span>
+                            <span class="impact-label">Hours Donated</span>
+                        </div>
+                        <div class="impact-card">
+                            <span class="impact-value" id="impact-volunteers">0</span>
+                            <span class="impact-label">Active Volunteers</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            </div> <!-- End view-dashboard -->
+
+            <!-- Reports View -->
+            <div id="view-reports" class="view-section" style="display:none; width: 100%; flex-direction: column; padding: var(--space-xl);">
+                <div class="needs-header" style="margin-bottom: var(--space-md);">
+                    <h2><span class="material-icons-outlined">description</span> All Needs Reports</h2>
+                </div>
+                <div class="glass-card" style="flex: 1; overflow-y: auto;">
+                    <table style="width: 100%; border-collapse: collapse; text-align: left; color: var(--text-primary);">
+                        <thead style="border-bottom: 1px solid var(--border); color: var(--text-muted); font-size: var(--font-sm);">
+                            <tr>
+                                <th style="padding: var(--space-md);">ID</th>
+                                <th style="padding: var(--space-md);">Type</th>
+                                <th style="padding: var(--space-md);">Zone</th>
+                                <th style="padding: var(--space-md);">Urgency</th>
+                                <th style="padding: var(--space-md);">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reports-table-body" style="font-size: var(--font-sm);">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Volunteers View -->
+            <div id="view-volunteers" class="view-section" style="display:none; width: 100%; flex-direction: column; padding: var(--space-xl);">
+                <div class="needs-header" style="margin-bottom: var(--space-md);">
+                    <h2><span class="material-icons-outlined">group</span> Volunteer Roster</h2>
+                </div>
+                <div id="volunteers-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: var(--space-md);">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Analytics View -->
+            <div id="view-analytics" class="view-section" style="display:none; width: 100%; flex-direction: column; padding: var(--space-xl); overflow-y: auto;">
+                <div class="needs-header" style="margin-bottom: var(--space-md);">
+                    <h2><span class="material-icons-outlined">insights</span> System Analytics</h2>
+                </div>
+                <div class="analytics-grid">
+                    <div class="glass-card analytics-card">
+                        <h3><span class="material-icons-outlined">donut_large</span> Urgency Distribution</h3>
+                        <div style="position:relative; height:260px;"><canvas id="chart-urgency"></canvas></div>
+                    </div>
+                    <div class="glass-card analytics-card">
+                        <h3><span class="material-icons-outlined">category</span> Issue Types</h3>
+                        <div style="position:relative; height:260px;"><canvas id="chart-issues"></canvas></div>
+                    </div>
+                    <div class="glass-card analytics-card">
+                        <h3><span class="material-icons-outlined">location_on</span> Top Zones</h3>
+                        <div style="position:relative; height:260px;"><canvas id="chart-zones"></canvas></div>
+                    </div>
+                    <div class="glass-card analytics-card">
+                        <h3><span class="material-icons-outlined">source</span> Data Sources</h3>
+                        <div style="position:relative; height:260px;"><canvas id="chart-sources"></canvas></div>
+                    </div>
+                    <div class="glass-card analytics-card analytics-card-wide">
+                        <h3><span class="material-icons-outlined">group</span> Volunteer Overview</h3>
+                        <div style="position:relative; height:260px;"><canvas id="chart-volunteers"></canvas></div>
+                    </div>
+                    <div class="glass-card analytics-card analytics-card-wide">
+                        <h3><span class="material-icons-outlined">assessment</span> Status Summary</h3>
+                        <div style="position:relative; height:260px;"><canvas id="chart-status"></canvas></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings View -->
+            <div id="view-settings" class="view-section" style="display:none; width: 100%; flex-direction: column; padding: var(--space-xl);">
+                <div class="needs-header" style="margin-bottom: var(--space-md);">
+                    <h2><span class="material-icons-outlined">settings</span> Organization Settings</h2>
+                </div>
+                <div class="glass-card" style="max-width: 600px; padding: var(--space-xl);">
+                    <div class="detail-section" style="margin-bottom: var(--space-lg);">
+                        <h3>Organization Profile</h3>
+                        <label style="display:block; margin: var(--space-sm) 0 var(--space-xs); color: var(--text-muted);">Organization Name</label>
+                        <input type="text" class="text-input" value="Demo Organization">
+                    </div>
+                    <div class="detail-section" style="margin-bottom: var(--space-lg);">
+                        <h3>API Configuration</h3>
+                        <label style="display:block; margin: var(--space-sm) 0 var(--space-xs); color: var(--text-muted);">Gemini API Key (Free from AI Studio)</label>
+                        <input type="password" class="text-input" id="settings-gemini-key" placeholder="Configured via backend .env">
+                        <p style="font-size: var(--font-xs); color: var(--text-muted); margin-top: var(--space-xs);">
+                            Get free key: <a href="https://aistudio.google.com/" target="_blank" style="color: var(--primary);">aistudio.google.com</a> • 15 RPM • 1.5M tokens/day
+                        </p>
+                    </div>
+                    <div class="detail-section" style="margin-bottom: var(--space-lg);">
+                        <h3>System Info</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md);">
+                            <div class="impact-card">
+                                <span class="impact-value" style="font-size: var(--font-md);">Free</span>
+                                <span class="impact-label">Cloud Cost</span>
+                            </div>
+                            <div class="impact-card">
+                                <span class="impact-value" style="font-size: var(--font-md);" id="settings-api-status">—</span>
+                                <span class="impact-label">API Status</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn-primary" onclick="checkApiHealth()">
+                        <span class="material-icons-outlined">health_and_safety</span>
+                        Check API Health
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- UPLOAD MODAL -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div id="upload-modal" class="modal" style="display:none;">
+        <div class="modal-backdrop" onclick="closeUploadModal()"></div>
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2><span class="material-icons-outlined">upload_file</span> Upload Need Report</h2>
+                <button class="modal-close" onclick="closeUploadModal()">
+                    <span class="material-icons-outlined">close</span>
+                </button>
+            </div>
+
+            <div class="upload-tabs">
+                <button class="upload-tab active" data-tab="photo" onclick="switchUploadTab('photo')">
+                    <span class="material-icons-outlined">photo_camera</span> Paper Survey
+                </button>
+                <button class="upload-tab" data-tab="text" onclick="switchUploadTab('text')">
+                    <span class="material-icons-outlined">edit_note</span> Text Entry
+                </button>
+                <button class="upload-tab" data-tab="csv" onclick="switchUploadTab('csv')">
+                    <span class="material-icons-outlined">table_chart</span> CSV Import
+                </button>
+            </div>
+
+            <!-- Photo Upload -->
+            <div id="tab-photo" class="upload-tab-content active">
+                <div class="dropzone" id="photo-dropzone" onclick="document.getElementById('photo-input').click()">
+                    <span class="material-icons-outlined dropzone-icon">add_a_photo</span>
+                    <p class="dropzone-text">Drop paper survey photo here or click to upload</p>
+                    <p class="dropzone-hint">Supports JPG, PNG • Max 10MB • Hindi & English supported</p>
+                    <input type="file" id="photo-input" accept="image/jpeg,image/png" style="display:none" onchange="handlePhotoUpload(this)">
+                </div>
+                <div id="photo-preview" class="photo-preview" style="display:none;">
+                    <img id="preview-img" src="" alt="Survey preview">
+                    <div class="ocr-result" id="ocr-result" style="display:none;">
+                        <h4><span class="material-icons-outlined">auto_fix_high</span> OCR Extracted Text</h4>
+                        <pre id="ocr-text"></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text Entry -->
+            <div id="tab-text" class="upload-tab-content" style="display:none;">
+                <textarea id="manual-text" class="text-input" rows="6" placeholder="Describe the community need. Include location, severity, and affected population. You can write in Hindi, Marathi, Tamil, or English..."></textarea>
+                <div class="text-helpers">
+                    <span class="helper-chip" onclick="insertTemplate('food')">🍚 Food</span>
+                    <span class="helper-chip" onclick="insertTemplate('water')">💧 Water</span>
+                    <span class="helper-chip" onclick="insertTemplate('health')">🏥 Health</span>
+                    <span class="helper-chip" onclick="insertTemplate('housing')">🏠 Housing</span>
+                    <span class="helper-chip" onclick="insertTemplate('education')">📚 Education</span>
+                    <span class="helper-chip" onclick="insertTemplate('safety')">🛡️ Safety</span>
+                </div>
+            </div>
+
+            <!-- CSV Import -->
+            <div id="tab-csv" class="upload-tab-content" style="display:none;">
+                <div class="dropzone" onclick="document.getElementById('csv-input').click()">
+                    <span class="material-icons-outlined dropzone-icon">upload_file</span>
+                    <p class="dropzone-text">Drop CSV file here</p>
+                    <p class="dropzone-hint">Columns: zone, description, severity_score, affected_count</p>
+                    <input type="file" id="csv-input" accept=".csv" style="display:none" onchange="handleCSVUpload(this)">
+                </div>
+                <div id="csv-result" style="display:none;" class="csv-result"></div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn-secondary" onclick="closeUploadModal()">Cancel</button>
+                <button class="btn-primary" id="submit-report-btn" onclick="submitReport()">
+                    <span class="material-icons-outlined">send</span> Process & Submit
+                </button>
+            </div>
+
+            <!-- Processing indicator -->
+            <div id="processing-indicator" class="processing" style="display:none;">
+                <div class="processing-steps">
+                    <div class="step" id="step-ocr"><span class="material-icons-outlined">visibility</span> OCR Extraction</div>
+                    <div class="step" id="step-translate"><span class="material-icons-outlined">translate</span> Language Detection</div>
+                    <div class="step" id="step-gemini"><span class="material-icons-outlined">auto_awesome</span> Gemini Analysis</div>
+                    <div class="step" id="step-geocode"><span class="material-icons-outlined">location_on</span> Geocoding</div>
+                    <div class="step" id="step-score"><span class="material-icons-outlined">score</span> Urgency Scoring</div>
+                    <div class="step" id="step-save"><span class="material-icons-outlined">save</span> Saving Report</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- NEED DETAIL MODAL -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div id="need-detail-modal" class="modal" style="display:none;">
+        <div class="modal-backdrop" onclick="closeNeedDetail()"></div>
+        <div class="modal-content glass-card modal-wide">
+            <div class="modal-header">
+                <h2 id="detail-title">Need Details</h2>
+                <button class="modal-close" onclick="closeNeedDetail()">
+                    <span class="material-icons-outlined">close</span>
+                </button>
+            </div>
+            <div id="need-detail-body" class="need-detail-body">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- TOAST NOTIFICATION -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/api-service.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/upload.js"></script>
+    <script src="js/matching.js"></script>
+</body>
+</html>

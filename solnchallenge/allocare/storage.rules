@@ -1,0 +1,23 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Reports folder: org coordinators can upload, all authenticated can read
+    match /reports/{orgId}/{timestamp}/{filename} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null
+                   && request.auth.token.role == 'coordinator'
+                   && request.auth.token.org_id == orgId
+                   && request.resource.size < 10 * 1024 * 1024
+                   && request.resource.contentType.matches('image/.*|text/csv|application/vnd.ms-excel|application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    }
+
+    // Completion proof photos: volunteers can upload their own
+    match /completions/{volunteerId}/{timestamp}/{filename} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null
+                   && request.auth.uid == volunteerId
+                   && request.resource.size < 10 * 1024 * 1024
+                   && request.resource.contentType.matches('image/.*');
+    }
+  }
+}
