@@ -1,0 +1,835 @@
+{
+  "need_reports": {
+    "n1": {
+      "zone": "Dharavi",
+      "lat": 19.0441,
+      "lng": 72.8557,
+      "issue_type": "food",
+      "severity_score": 9,
+      "urgency_score": 95,
+      "urgency_label": "critical",
+      "affected_count": 200,
+      "summary": "Severe food shortage affecting over 200 families. Children and elderly most affected.",
+      "required_skills": [
+        "food distribution",
+        "hindi speaking"
+      ],
+      "recommended_volunteer_count": 5,
+      "status": "open",
+      "source": "photo",
+      "report_frequency_30d": 8,
+      "trend_direction": "rising",
+      "coordinator_explanation": "In Dharavi's sector 5, a severe food crisis is unfolding. Over 200 families, including many with young children and elderly members, have reported running out of food supplies. The community's usual distribution networks have broken down due to access road flooding. This needs immediate attention as children have reportedly gone without meals for over 48 hours.",
+      "_id": "n1",
+      "created_at": "2026-04-21T13:20:56.497337+00:00",
+      "id": "n1"
+    },
+    "n2": {
+      "zone": "Dharavi",
+      "lat": 19.0438,
+      "lng": 72.856,
+      "issue_type": "water",
+      "severity_score": 8,
+      "urgency_score": 88,
+      "urgency_label": "critical",
+      "affected_count": 150,
+      "summary": "Water supply contaminated in sector 5. Residents with stomach illness.",
+      "required_skills": [
+        "water purification",
+        "plumbing"
+      ],
+      "recommended_volunteer_count": 3,
+      "status": "open",
+      "source": "manual",
+      "report_frequency_30d": 5,
+      "trend_direction": "rising",
+      "coordinator_explanation": "The main water pipeline serving sector 5 has been compromised, likely due to sewage infiltration. At least 150 residents are affected and several have reported gastrointestinal symptoms. The local municipal office has been notified but response time is typically 3-5 days. We need volunteer plumbers on-site immediately.",
+      "_id": "n2",
+      "created_at": "2026-04-21T13:20:56.499561+00:00",
+      "id": "n2"
+    },
+    "n3": {
+      "zone": "Dharavi",
+      "lat": 19.043,
+      "lng": 72.855,
+      "issue_type": "health",
+      "severity_score": 9,
+      "urgency_score": 92,
+      "urgency_label": "critical",
+      "affected_count": 175,
+      "summary": "Medical camp urgently needed \u2014 increasing dengue cases. 3 children hospitalized.",
+      "required_skills": [
+        "medical first aid",
+        "nursing"
+      ],
+      "recommended_volunteer_count": 4,
+      "status": "open",
+      "source": "whatsapp",
+      "report_frequency_30d": 6,
+      "trend_direction": "rising",
+      "_id": "n3",
+      "created_at": "2026-04-21T13:20:56.499561+00:00",
+      "id": "n3"
+    },
+    "n4": {
+      "zone": "Kurla",
+      "lat": 19.0724,
+      "lng": 72.8787,
+      "issue_type": "health",
+      "severity_score": 7,
+      "urgency_score": 72,
+      "urgency_label": "high",
+      "affected_count": 80,
+      "summary": "Healthcare facility severely understaffed. Patients waiting 6+ hours.",
+      "required_skills": [
+        "medical doctor",
+        "patient care"
+      ],
+      "recommended_volunteer_count": 2,
+      "status": "assigned",
+      "source": "csv",
+      "report_frequency_30d": 3,
+      "trend_direction": "stable",
+      "_id": "n4",
+      "created_at": "2026-04-21T13:20:56.499561+00:00",
+      "id": "n4",
+      "updated_at": "2026-04-21T15:19:18.746678+00:00"
+    },
+    "n5": {
+      "zone": "Govandi",
+      "lat": 19.0537,
+      "lng": 72.9148,
+      "issue_type": "housing",
+      "severity_score": 8,
+      "urgency_score": 85,
+      "urgency_label": "high",
+      "affected_count": 60,
+      "summary": "Multiple families in structurally damaged housing. Monsoon risk.",
+      "required_skills": [
+        "construction",
+        "civil engineering"
+      ],
+      "recommended_volunteer_count": 3,
+      "status": "open",
+      "source": "manual",
+      "report_frequency_30d": 4,
+      "trend_direction": "rising",
+      "_id": "n5",
+      "created_at": "2026-04-21T13:20:56.499561+00:00",
+      "id": "n5"
+    },
+    "n6": {
+      "zone": "Malad",
+      "lat": 19.186,
+      "lng": 72.8485,
+      "issue_type": "education",
+      "severity_score": 6,
+      "urgency_score": 62,
+      "urgency_label": "high",
+      "affected_count": 120,
+      "summary": "School closed due to structural issues. 120 students need temporary facility.",
+      "required_skills": [
+        "teaching",
+        "event coordination"
+      ],
+      "recommended_volunteer_count": 3,
+      "status": "open",
+      "source": "csv",
+      "report_frequency_30d": 2,
+      "trend_direction": "stable",
+      "_id": "n6",
+      "created_at": "2026-04-21T13:20:56.504535+00:00",
+      "id": "n6"
+    },
+    "n7": {
+      "zone": "Bandra East",
+      "lat": 19.0596,
+      "lng": 72.8413,
+      "issue_type": "safety",
+      "severity_score": 5,
+      "urgency_score": 42,
+      "urgency_label": "medium",
+      "affected_count": 300,
+      "summary": "Broken street lights creating dangerous conditions at night.",
+      "required_skills": [
+        "electrical"
+      ],
+      "recommended_volunteer_count": 2,
+      "status": "open",
+      "source": "manual",
+      "report_frequency_30d": 2,
+      "trend_direction": "stable",
+      "_id": "n7",
+      "created_at": "2026-04-21T13:20:56.504535+00:00",
+      "id": "n7"
+    },
+    "n8": {
+      "zone": "Kurla",
+      "lat": 19.074,
+      "lng": 72.88,
+      "issue_type": "water",
+      "severity_score": 8,
+      "urgency_score": 90,
+      "urgency_label": "critical",
+      "affected_count": 200,
+      "summary": "Clean drinking water crisis. Municipal water tanker absent 5 days.",
+      "required_skills": [
+        "water purification",
+        "logistics"
+      ],
+      "recommended_volunteer_count": 3,
+      "status": "open",
+      "source": "photo",
+      "report_frequency_30d": 7,
+      "trend_direction": "rising",
+      "_id": "n8",
+      "created_at": "2026-04-21T13:20:56.508237+00:00",
+      "id": "n8"
+    },
+    "n9": {
+      "zone": "Andheri West",
+      "lat": 19.136,
+      "lng": 72.8264,
+      "issue_type": "health",
+      "severity_score": 8,
+      "urgency_score": 82,
+      "urgency_label": "high",
+      "affected_count": 200,
+      "summary": "Community health clinic lost its doctor. 200 patients/week without medical access.",
+      "required_skills": [
+        "medical doctor",
+        "nursing"
+      ],
+      "recommended_volunteer_count": 2,
+      "status": "open",
+      "source": "manual",
+      "report_frequency_30d": 4,
+      "trend_direction": "rising",
+      "_id": "n9",
+      "created_at": "2026-04-21T13:20:56.508761+00:00",
+      "id": "n9"
+    },
+    "n10": {
+      "zone": "Sion",
+      "lat": 19.0404,
+      "lng": 72.862,
+      "issue_type": "food",
+      "severity_score": 8,
+      "urgency_score": 87,
+      "urgency_label": "critical",
+      "affected_count": 100,
+      "summary": "Food bank running low \u2014 only 3 days of supply remaining. Serves 100 families daily.",
+      "required_skills": [
+        "food distribution",
+        "cooking"
+      ],
+      "recommended_volunteer_count": 4,
+      "status": "open",
+      "source": "csv",
+      "report_frequency_30d": 5,
+      "trend_direction": "rising",
+      "_id": "n10",
+      "created_at": "2026-04-21T13:20:56.508761+00:00",
+      "id": "n10"
+    },
+    "n11": {
+      "zone": "Vikhroli",
+      "lat": 19.098,
+      "lng": 72.9167,
+      "issue_type": "water",
+      "severity_score": 8,
+      "urgency_score": 86,
+      "urgency_label": "critical",
+      "affected_count": 350,
+      "summary": "Water pipeline burst \u2014 entire neighborhood without water for 3 days.",
+      "required_skills": [
+        "plumbing",
+        "construction"
+      ],
+      "recommended_volunteer_count": 4,
+      "status": "open",
+      "source": "whatsapp",
+      "report_frequency_30d": 3,
+      "trend_direction": "rising",
+      "_id": "n11",
+      "created_at": "2026-04-21T13:20:56.511902+00:00",
+      "id": "n11"
+    },
+    "n12": {
+      "zone": "Worli",
+      "lat": 19.0088,
+      "lng": 72.817,
+      "issue_type": "housing",
+      "severity_score": 8,
+      "urgency_score": 78,
+      "urgency_label": "high",
+      "affected_count": 60,
+      "summary": "Unsafe building with cracks in walls. 12 families at risk.",
+      "required_skills": [
+        "structural assessment",
+        "civil engineering"
+      ],
+      "recommended_volunteer_count": 2,
+      "status": "open",
+      "source": "manual",
+      "report_frequency_30d": 2,
+      "trend_direction": "stable",
+      "_id": "n12",
+      "created_at": "2026-04-21T13:20:56.513436+00:00",
+      "id": "n12"
+    },
+    "n13": {
+      "zone": "Kurla West",
+      "lat": 19.073,
+      "lng": 72.877,
+      "issue_type": "safety",
+      "severity_score": 9,
+      "urgency_score": 91,
+      "urgency_label": "critical",
+      "affected_count": 15,
+      "summary": "Street children sleeping under bridge near railway station. Need shelter and food.",
+      "required_skills": [
+        "social work",
+        "child care"
+      ],
+      "recommended_volunteer_count": 3,
+      "status": "open",
+      "source": "manual",
+      "report_frequency_30d": 6,
+      "trend_direction": "rising",
+      "_id": "n13",
+      "created_at": "2026-04-21T13:20:56.516336+00:00",
+      "id": "n13"
+    },
+    "n14": {
+      "zone": "Mankhurd",
+      "lat": 19.0635,
+      "lng": 72.9277,
+      "issue_type": "education",
+      "severity_score": 5,
+      "urgency_score": 35,
+      "urgency_label": "medium",
+      "affected_count": 45,
+      "summary": "Children not attending school \u2014 nearest school is 4km away. Need transport.",
+      "required_skills": [
+        "driving",
+        "teaching"
+      ],
+      "recommended_volunteer_count": 2,
+      "status": "open",
+      "source": "csv",
+      "report_frequency_30d": 1,
+      "trend_direction": "stable",
+      "_id": "n14",
+      "created_at": "2026-04-21T13:20:56.518434+00:00",
+      "id": "n14"
+    },
+    "n15": {
+      "zone": "Dharavi",
+      "lat": 19.0445,
+      "lng": 72.854,
+      "issue_type": "housing",
+      "severity_score": 9,
+      "urgency_score": 93,
+      "urgency_label": "critical",
+      "affected_count": 40,
+      "summary": "8 families displaced after fire in 13th compound. Currently sleeping on streets.",
+      "required_skills": [
+        "construction",
+        "carpentry",
+        "logistics"
+      ],
+      "recommended_volunteer_count": 5,
+      "status": "assigned",
+      "source": "photo",
+      "report_frequency_30d": 9,
+      "trend_direction": "rising",
+      "_id": "n15",
+      "created_at": "2026-04-21T13:20:56.520480+00:00",
+      "id": "n15",
+      "updated_at": "2026-04-21T15:18:01.394126+00:00"
+    },
+    "n16": {
+      "zone": "Kandivali",
+      "lat": 19.2045,
+      "lng": 72.8403,
+      "issue_type": "food",
+      "severity_score": 7,
+      "urgency_score": 68,
+      "urgency_label": "high",
+      "affected_count": 150,
+      "summary": "Community kitchen running out of funds. Feeds 150 people daily.",
+      "required_skills": [
+        "cooking",
+        "food distribution",
+        "event coordination"
+      ],
+      "recommended_volunteer_count": 3,
+      "status": "open",
+      "source": "manual",
+      "report_frequency_30d": 3,
+      "trend_direction": "stable",
+      "_id": "n16",
+      "created_at": "2026-04-21T13:20:56.523009+00:00",
+      "id": "n16"
+    },
+    "n17": {
+      "zone": "Dharavi",
+      "lat": 19.0446,
+      "lng": 72.8541,
+      "issue_type": "safety",
+      "severity_score": 9,
+      "urgency_score": 94,
+      "urgency_label": "critical",
+      "affected_count": 8,
+      "summary": "Child labor reported in leather workshop. 8 children aged 10-14 found working.",
+      "required_skills": [
+        "social work",
+        "legal aid"
+      ],
+      "recommended_volunteer_count": 2,
+      "status": "open",
+      "source": "manual",
+      "report_frequency_30d": 4,
+      "trend_direction": "rising",
+      "_id": "n17",
+      "created_at": "2026-04-21T13:20:56.524540+00:00",
+      "id": "n17"
+    },
+    "n18": {
+      "zone": "Chembur",
+      "lat": 19.062,
+      "lng": 72.8978,
+      "issue_type": "health",
+      "severity_score": 8,
+      "urgency_score": 75,
+      "urgency_label": "high",
+      "affected_count": 25,
+      "summary": "Elderly in Old Age Home running out of medications. Diabetes and BP medicines finished.",
+      "required_skills": [
+        "pharmacy",
+        "medical first aid"
+      ],
+      "recommended_volunteer_count": 1,
+      "status": "open",
+      "source": "csv",
+      "report_frequency_30d": 2,
+      "trend_direction": "stable",
+      "_id": "n18",
+      "created_at": "2026-04-21T13:20:56.526537+00:00",
+      "id": "n18"
+    },
+    "n19": {
+      "zone": "Dharavi",
+      "lat": 19.0435,
+      "lng": 72.8545,
+      "issue_type": "education",
+      "severity_score": 4,
+      "urgency_score": 22,
+      "urgency_label": "low",
+      "affected_count": 60,
+      "summary": "Educational materials needed for community learning center. 60 students need textbooks.",
+      "required_skills": [
+        "teaching"
+      ],
+      "recommended_volunteer_count": 1,
+      "status": "open",
+      "source": "csv",
+      "report_frequency_30d": 1,
+      "trend_direction": "stable",
+      "_id": "n19",
+      "created_at": "2026-04-21T13:20:56.528535+00:00",
+      "id": "n19"
+    },
+    "n20": {
+      "zone": "Jogeshwari",
+      "lat": 19.1371,
+      "lng": 72.857,
+      "issue_type": "safety",
+      "severity_score": 7,
+      "urgency_score": 65,
+      "urgency_label": "high",
+      "affected_count": 100,
+      "summary": "Women's safety patrol needed \u2014 multiple eve-teasing incidents near public toilet.",
+      "required_skills": [
+        "women safety",
+        "social work"
+      ],
+      "recommended_volunteer_count": 3,
+      "status": "open",
+      "source": "whatsapp",
+      "report_frequency_30d": 3,
+      "trend_direction": "rising",
+      "_id": "n20",
+      "created_at": "2026-04-21T13:20:56.530588+00:00",
+      "id": "n20"
+    },
+    "feebf5ec-dd42-4852-a": {
+      "raw_text": "Survey Report - Dharavi Sector 5\nDate: April 2026\nIssue: Severe food shortage\nFamilies affected: approximately 47\nSeverity: CRITICAL\nNote: Children not eating for 2 days. Elderly unable to access ration shop. Need immediate food distribution volunteers.",
+      "source": "photo",
+      "status": "flagged",
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "org_id": "demo_org",
+      "_id": "feebf5ec-dd42-4852-a",
+      "created_at": "2026-04-21T15:22:34.761526+00:00",
+      "flag_reason": "Gemini extraction failed",
+      "updated_at": "2026-04-21T15:22:38.265863+00:00",
+      "id": "feebf5ec-dd42-4852-a"
+    },
+    "e05701f5-78db-4bc5-9": {
+      "raw_text": "Survey Report - Dharavi Sector 5\nDate: April 2026\nIssue: Severe food shortage\nFamilies affected: approximately 47\nSeverity: CRITICAL\nNote: Children not eating for 2 days. Elderly unable to access ration shop. Need immediate food distribution volunteers.",
+      "source": "photo",
+      "status": "flagged",
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "org_id": "demo_org",
+      "_id": "e05701f5-78db-4bc5-9",
+      "created_at": "2026-04-21T15:22:38.276865+00:00",
+      "flag_reason": "Gemini extraction failed",
+      "updated_at": "2026-04-21T15:22:41.422637+00:00",
+      "id": "e05701f5-78db-4bc5-9"
+    },
+    "730ccaed-4684-4ab7-b": {
+      "raw_text": "AIzaSyCc8PUvO4IQ-tnlbxG9RrjdFPcVzjpbmW0",
+      "source": "manual",
+      "status": "flagged",
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "org_id": "demo_org",
+      "_id": "730ccaed-4684-4ab7-b",
+      "created_at": "2026-04-21T15:22:56.390928+00:00",
+      "flag_reason": "Gemini extraction failed",
+      "updated_at": "2026-04-21T15:22:59.510096+00:00",
+      "id": "730ccaed-4684-4ab7-b"
+    },
+    "58a37a08-7741-4d3a-a": {
+      "raw_text": "Housing issue in [location]. [X] families affected by [damage/eviction]. Need construction volunteers and temporary shelter arrangements.",
+      "source": "manual",
+      "status": "flagged",
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "org_id": "demo_org",
+      "_id": "58a37a08-7741-4d3a-a",
+      "created_at": "2026-04-21T15:24:53.826710+00:00",
+      "flag_reason": "Gemini extraction failed",
+      "updated_at": "2026-04-21T15:24:56.843637+00:00",
+      "id": "58a37a08-7741-4d3a-a"
+    },
+    "2b41a0bb-eaa7-4712-b": {
+      "raw_text": "Education gap in [location]. [X] students unable to attend school due to [reason]. Need teaching volunteers and educational materials.",
+      "source": "manual",
+      "status": "flagged",
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "org_id": "demo_org",
+      "_id": "2b41a0bb-eaa7-4712-b",
+      "created_at": "2026-04-21T17:32:14.252429+00:00",
+      "flag_reason": "Gemini extraction failed",
+      "updated_at": "2026-04-21T17:32:19.383460+00:00",
+      "id": "2b41a0bb-eaa7-4712-b"
+    },
+    "f6be52e6-1e9d-44fa-b": {
+      "raw_text": "Safety concern in amedabad. food shortage. Approximately 89 people at risk. Need social workers and safety patrol volunteers.",
+      "source": "manual",
+      "status": "flagged",
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "org_id": "demo_org",
+      "_id": "f6be52e6-1e9d-44fa-b",
+      "created_at": "2026-04-21T17:34:13.254445+00:00",
+      "flag_reason": "Gemini extraction failed",
+      "updated_at": "2026-04-21T17:34:13.399855+00:00"
+    }
+  },
+  "volunteers": {
+    "v1": {
+      "display_name": "Priya Sharma",
+      "email": "priya@example.com",
+      "lat": 19.045,
+      "lng": 72.857,
+      "zone": "Dharavi",
+      "skills": [
+        "food distribution",
+        "medical first aid",
+        "hindi speaking"
+      ],
+      "status": "available",
+      "impact_points": 580,
+      "impact_stats": {
+        "total_tasks_completed": 23,
+        "total_people_helped": 456
+      },
+      "max_distance_km": 10,
+      "_id": "v1",
+      "created_at": "2026-04-21T13:20:56.484226+00:00",
+      "id": "v1"
+    },
+    "v2": {
+      "display_name": "Rahul Deshmukh",
+      "email": "rahul@example.com",
+      "lat": 19.073,
+      "lng": 72.879,
+      "zone": "Kurla",
+      "skills": [
+        "construction",
+        "plumbing",
+        "electrical"
+      ],
+      "status": "available",
+      "impact_points": 320,
+      "impact_stats": {
+        "total_tasks_completed": 12,
+        "total_people_helped": 180
+      },
+      "max_distance_km": 10,
+      "_id": "v2",
+      "created_at": "2026-04-21T13:20:56.484226+00:00",
+      "id": "v2"
+    },
+    "v3": {
+      "display_name": "Anita Patel",
+      "email": "anita@example.com",
+      "lat": 19.054,
+      "lng": 72.915,
+      "zone": "Govandi",
+      "skills": [
+        "teaching",
+        "counseling"
+      ],
+      "status": "available",
+      "impact_points": 680,
+      "impact_stats": {
+        "total_tasks_completed": 18,
+        "total_people_helped": 540
+      },
+      "max_distance_km": 15,
+      "_id": "v3",
+      "created_at": "2026-04-21T13:20:56.484226+00:00",
+      "id": "v3"
+    },
+    "v4": {
+      "display_name": "Mohammed Shaikh",
+      "email": "mohammed@example.com",
+      "lat": 19.044,
+      "lng": 72.8555,
+      "zone": "Dharavi",
+      "skills": [
+        "cooking",
+        "food distribution",
+        "driving"
+      ],
+      "status": "available",
+      "impact_points": 1450,
+      "impact_stats": {
+        "total_tasks_completed": 45,
+        "total_people_helped": 1200
+      },
+      "max_distance_km": 12,
+      "_id": "v4",
+      "created_at": "2026-04-21T13:20:56.484226+00:00",
+      "id": "v4"
+    },
+    "v5": {
+      "display_name": "Sneha Nair",
+      "email": "sneha@example.com",
+      "lat": 19.12,
+      "lng": 72.847,
+      "zone": "Andheri East",
+      "skills": [
+        "nursing",
+        "medical first aid",
+        "patient care"
+      ],
+      "status": "available",
+      "impact_points": 890,
+      "impact_stats": {
+        "total_tasks_completed": 31,
+        "total_people_helped": 620
+      },
+      "max_distance_km": 15,
+      "_id": "v5",
+      "created_at": "2026-04-21T13:20:56.484226+00:00",
+      "id": "v5"
+    },
+    "v6": {
+      "display_name": "Vikram Singh",
+      "email": "vikram@example.com",
+      "lat": 19.187,
+      "lng": 72.849,
+      "zone": "Malad East",
+      "skills": [
+        "construction",
+        "carpentry",
+        "heavy lifting"
+      ],
+      "status": "assigned",
+      "impact_points": 210,
+      "impact_stats": {
+        "total_tasks_completed": 8,
+        "total_people_helped": 85
+      },
+      "max_distance_km": 10,
+      "_id": "v6",
+      "created_at": "2026-04-21T13:20:56.484226+00:00",
+      "id": "v6"
+    },
+    "v7": {
+      "display_name": "Fatima Khan",
+      "email": "fatima@example.com",
+      "lat": 19.0596,
+      "lng": 72.8413,
+      "zone": "Bandra East",
+      "skills": [
+        "social work",
+        "counseling",
+        "legal aid"
+      ],
+      "status": "available",
+      "impact_points": 420,
+      "impact_stats": {
+        "total_tasks_completed": 15,
+        "total_people_helped": 275
+      },
+      "max_distance_km": 12,
+      "_id": "v7",
+      "created_at": "2026-04-21T13:20:56.484226+00:00",
+      "id": "v7"
+    },
+    "v8": {
+      "display_name": "Arjun Mehta",
+      "email": "arjun@example.com",
+      "lat": 19.062,
+      "lng": 72.898,
+      "zone": "Chembur",
+      "skills": [
+        "pharmacy",
+        "medical first aid",
+        "data entry"
+      ],
+      "status": "available",
+      "impact_points": 250,
+      "impact_stats": {
+        "total_tasks_completed": 10,
+        "total_people_helped": 150
+      },
+      "max_distance_km": 10,
+      "_id": "v8",
+      "created_at": "2026-04-21T13:20:56.491443+00:00",
+      "id": "v8"
+    },
+    "v9": {
+      "display_name": "Ravi Kumar",
+      "email": "ravi@example.com",
+      "lat": 19.0404,
+      "lng": 72.8625,
+      "zone": "Sion",
+      "skills": [
+        "driving",
+        "food distribution",
+        "logistics"
+      ],
+      "status": "assigned",
+      "impact_points": 1100,
+      "impact_stats": {
+        "total_tasks_completed": 35,
+        "total_people_helped": 900
+      },
+      "max_distance_km": 20,
+      "_id": "v9",
+      "created_at": "2026-04-21T13:20:56.493621+00:00",
+      "id": "v9",
+      "updated_at": "2026-04-21T15:18:01.387293+00:00"
+    },
+    "v10": {
+      "display_name": "Kavitha Reddy",
+      "email": "kavitha@example.com",
+      "lat": 19.0197,
+      "lng": 72.844,
+      "zone": "Dadar",
+      "skills": [
+        "medical doctor",
+        "patient care"
+      ],
+      "status": "assigned",
+      "impact_points": 340,
+      "impact_stats": {
+        "total_tasks_completed": 8,
+        "total_people_helped": 160
+      },
+      "max_distance_km": 15,
+      "_id": "v10",
+      "created_at": "2026-04-21T13:20:56.494723+00:00",
+      "id": "v10",
+      "updated_at": "2026-04-21T15:19:18.742731+00:00"
+    },
+    "v11": {
+      "display_name": "Tushar Patil",
+      "email": "tushar@example.com",
+      "lat": 19.0088,
+      "lng": 72.8175,
+      "zone": "Worli",
+      "skills": [
+        "civil engineering",
+        "structural assessment"
+      ],
+      "status": "available",
+      "impact_points": 190,
+      "impact_stats": {
+        "total_tasks_completed": 6,
+        "total_people_helped": 120
+      },
+      "max_distance_km": 10,
+      "_id": "v11",
+      "created_at": "2026-04-21T13:20:56.494723+00:00",
+      "id": "v11"
+    },
+    "v12": {
+      "display_name": "Hassan Ali",
+      "email": "hassan@example.com",
+      "lat": 19.2045,
+      "lng": 72.84,
+      "zone": "Kandivali",
+      "skills": [
+        "cooking",
+        "food distribution",
+        "event coordination"
+      ],
+      "status": "available",
+      "impact_points": 820,
+      "impact_stats": {
+        "total_tasks_completed": 28,
+        "total_people_helped": 700
+      },
+      "max_distance_km": 15,
+      "_id": "v12",
+      "created_at": "2026-04-21T13:20:56.496254+00:00",
+      "id": "v12"
+    }
+  },
+  "assignments": {
+    "7a911f88-2dc4-436b-a": {
+      "need_report_id": "n15",
+      "volunteer_id": "v9",
+      "org_id": "demo_org",
+      "status": "pending",
+      "match_score": 0.1165,
+      "match_explanation": "Matched because: logistics skill \u2713 \u00b7 1.0km away \u2713 \u00b7 Availability unconfirmed",
+      "_id": "7a911f88-2dc4-436b-a",
+      "created_at": "2026-04-21T15:18:01.383835+00:00"
+    },
+    "e24c627e-3fe9-4c80-9": {
+      "need_report_id": "n4",
+      "volunteer_id": "v10",
+      "org_id": "demo_org",
+      "status": "pending",
+      "match_score": 0.0886,
+      "match_explanation": "Matched because: medical doctor, patient care skills \u2713 \u00b7 6.9km away \u2713 \u00b7 Availability unconfirmed",
+      "_id": "e24c627e-3fe9-4c80-9",
+      "created_at": "2026-04-21T15:19:18.741203+00:00"
+    }
+  },
+  "urgency_corrections": {},
+  "zone_stats": {},
+  "organizations": {}
+}

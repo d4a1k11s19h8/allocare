@@ -1,0 +1,655 @@
+"""
+AlloCare API — FastAPI Backend
+Fully functional with free APIs only. No cloud billing required.
+Only needs: GEMINI_API_KEY (free from AI Studio)
+"""
+import os
+import io
+import json
+import base64
+import logging
+from datetime import datetime, timezone, timedelta
+from pathlib import Path
+
+from fastapi import FastAPI, Request, HTTPException, Form, UploadFile, File, Query
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse, JSONResponse
+from pydantic import BaseModel
+from typing import Optional, List, Dict, Any
+
+from dotenv import load_dotenv
+load_dotenv()
+
+# ── initialise ─────────────────────────────────────────────────────────────────
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+from data_store import store
+from urgency_scorer import calculate_urgency_score, detect_trend
+
+# Seed demo data on first run
+store.seed_demo_data()
+
+app = FastAPI(
+    title="AlloCare API",
+    description="AI-powered volunteer deployment platform. Free APIs only.",
+    version="2.0.0",
+)
+
+# CORS Setup
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# HEALTH & SYSTEM ENDPOINTS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+@app.get("/api/health", tags=["system"])
+async def health_check():
+    """Health check endpoint."""
+    gemini_key = bool(os.environ.get("GEMINI_API_KEY"))
+    need_count = store.count("need_reports")
+    vol_count = store.count("volunteers")
+    return {
+        "status": "healthy",
+        "version": "2.0.0",
+        "gemini_api_key_configured": gemini_key,
+        "data": {"needs": need_count, "volunteers": vol_count},
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    }
+
+
+@app.post("/api/demo/seed", tags=["system"])
+async def seed_demo_data():
+    """Force re-seed demo data (clears existing data)."""
+    store.clear_collection("need_reports")
+    store.clear_collection("volunteers")
+    store.clear_collection("assignments")
+    store.seed_demo_data()
+    return {"status": "success", "message": "Demo data seeded"}
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# NEED REPORTS — CRUD
+# ═══════════════════════════════════════════════════════════════════════════════
+
+@app.get("/api/needs", tags=["needs"])
+async def list_needs(
+    status: Optional[str] = None,
+    issue_type: Optional[str] = None,
+    urgency_label: Optional[str] = None,
+    limit: int = Query(100, le=500),
+):
+    """List need reports with optional filters."""
+    filters = {}
+    if status:
+        filters["status"] = status.split(",")
+    if issue_type and issue_type != "all":
+        filters["issue_type"] = issue_type
+    if urgency_label and urgency_label != "all":
+        filters["urgency_label"] = urgency_label
+
+    needs = store.query("need_reports", filters=filters, order_by="urgency_score", descending=True, limit=limit)
+    # Add id field from _id
+    for n in needs:
+        n["id"] = n.get("_id", "")
+    return {"needs": needs, "total": len(needs)}
+
+
+@app.get("/api/needs/{need_id}", tags=["needs"])
+async def get_need(need_id: str):
+    """Get a single need report."""
+    need = store.get("need_reports", need_id)
+    if not need:
+        raise HTTPException(status_code=404, detail="Need not found")
+    need["id"] = need.get("_id", need_id)
+    return need
+
+
+class CreateNeedRequest(BaseModel):
+    raw_text: str
+    source: str = "manual"
+    zone: Optional[str] = ""
+    issue_type: Optional[str] = "other"
+    severity_score: Optional[int] = 5
+    affected_count: Optional[int] = None
+
+@app.post("/api/needs", tags=["needs"])
+async def create_need(payload: CreateNeedRequest):
+    """Create a new need report and optionally process with AI."""
+    doc_id = store.add("need_reports", {
+        "raw_text": payload.raw_text,
+        "source": payload.source,
+        "zone": payload.zone or "Unknown",
+        "issue_type": payload.issue_type,
+        "severity_score": payload.severity_score,
+        "affected_count": payload.affected_count,
+        "status": "open",
+        "urgency_score": 0,
+        "urgency_label": "low",
+        "org_id": "demo_org",
+    })
+    return {"id": doc_id, "status": "created"}
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# AI PROCESSING PIPELINE
+# ═══════════════════════════════════════════════════════════════════════════════
+
+class ProcessReportRequest(BaseModel):
+    report_id: Optional[str] = None
+    raw_text: Optional[str] = None
+    source: str = "manual"
+
+@app.post("/api/process_report", tags=["ai"])
+async def process_report(payload: ProcessReportRequest):
+    """
+    Full AI processing pipeline:
+    1. Language detection + translation (free via deep-translator)
+    2. Gemini extraction (free via AI Studio)
+    3. Geocoding (free via Nominatim)
+    4. Urgency scoring (local algorithm)
+    5. Coordinator explanation (free via Gemini)
+    """
+    report_id = payload.report_id
+    raw_text = payload.raw_text
+
+    # If report_id provided, fetch from store
+    if report_id:
+        data = store.get("need_reports", report_id)
+        if not data:
+            raise HTTPException(status_code=404, detail="Report not found")
+        raw_text = data.get("raw_text", raw_text)
+    elif raw_text:
+        # Create new report
+        report_id = store.add("need_reports", {
+            "raw_text": raw_text,
+            "source": payload.source,
+            "status": "open",
+            "urgency_score": 0,
+            "urgency_label": "low",
+            "org_id": "demo_org",
+        })
+    else:
+        raise HTTPException(status_code=400, detail="Either report_id or raw_text required")
+
+    logger.info(f"[processReport] Processing report {report_id}")
+
+    try:
+        # Step 1 — Language detection + translation (FREE)
+        from translate_client import detect_and_translate
+        english_text, detected_lang = detect_and_translate(raw_text)
+
+        # Step 2 — Gemini extraction (FREE via AI Studio)
+        from gemini_client import extract_urgency, generate_coordinator_explanation
+        extracted = extract_urgency(english_text)
+
+        if not extracted:
+            store.update("need_reports", report_id, {
+                "status": "flagged",
+                "flag_reason": "Gemini extraction failed",
+            })
+            return {"status": "error", "message": "Gemini extraction failed", "report_id": report_id}
+
+        # Step 3 — Geocoding (FREE via Nominatim)
+        from maps_client import geocode_location
+        location_text = extracted.get("location_text", "Mumbai")
+        geo = geocode_location(location_text)
+
+        # Step 4 — Frequency count
+        frequency = store.count("need_reports", filters={
+            "zone": extracted.get("location_text", ""),
+            "issue_type": extracted.get("issue_type", "other"),
+        })
+        frequency = max(1, frequency)
+
+        # Step 5 — Urgency scoring (LOCAL algorithm)
+        score_data = calculate_urgency_score(
+            severity=extracted.get("severity_score", 5),
+            frequency=frequency,
+            days_since_first_report=1,
+        )
+
+        # Step 6 — Coordinator explanation (FREE via Gemini)
+        explanation = generate_coordinator_explanation(
+            issue_type=extracted.get("issue_type", "other"),
+            severity=extracted.get("severity_score", 5),
+            affected_count=extracted.get("affected_count"),
+            location=extracted.get("location_text", ""),
+            frequency=frequency,
+            days=1,
+        )
+
+        # Step 7 — Update report in store
+        update_payload = {
+            "raw_text": raw_text,
+            "language_detected": detected_lang,
+            "issue_type": extracted.get("issue_type", "other"),
+            "zone": extracted.get("location_text", "Unknown"),
+            "severity_score": extracted.get("severity_score", 5),
+            "affected_count": extracted.get("affected_count"),
+            "summary": extracted.get("summary", ""),
+            "required_skills": extracted.get("required_skills", []),
+            "recommended_volunteer_count": extracted.get("recommended_volunteer_count", 2),
+            "urgency_score": score_data["score"],
+            "urgency_label": score_data["label"],
+            "report_frequency_30d": frequency,
+            "coordinator_explanation": explanation,
+            "processed_at": datetime.now(timezone.utc).isoformat(),
+            "status": "open",
+            "trend_direction": "stable",
+        }
+
+        if geo:
+            update_payload["lat"] = geo["lat"]
+            update_payload["lng"] = geo["lng"]
+
+        store.update("need_reports", report_id, update_payload)
+
+        return {
+            "status": "success",
+            "report_id": report_id,
+            "score": score_data["score"],
+            "label": score_data["label"],
+            "summary": extracted.get("summary", ""),
+            "zone": extracted.get("location_text", ""),
+            "issue_type": extracted.get("issue_type", ""),
+        }
+
+    except Exception as e:
+        logger.error(f"[processReport] Failed: {e}", exc_info=True)
+        store.update("need_reports", report_id, {
+            "status": "flagged",
+            "flag_reason": f"Processing error: {str(e)[:200]}",
+        })
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# OCR ENDPOINT
+# ═══════════════════════════════════════════════════════════════════════════════
+
+class OCRRequest(BaseModel):
+    image_data: str  # base64 encoded image
+
+@app.post("/api/ocr", tags=["ai"])
+async def ocr_extract(payload: OCRRequest):
+    """Extract text from image using Gemini Vision (free)."""
+    from vision_client import extract_text_from_base64
+
+    text = extract_text_from_base64(payload.image_data)
+    if not text:
+        return {"text": "", "error": "Could not extract text from image"}
+
+    return {"text": text, "characters": len(text)}
+
+
+@app.post("/api/ocr/upload", tags=["ai"])
+async def ocr_upload(file: UploadFile = File(...)):
+    """Extract text from uploaded image file using Gemini Vision."""
+    from vision_client import extract_text_from_image_bytes
+
+    content = await file.read()
+    mime_type = file.content_type or "image/jpeg"
+    text = extract_text_from_image_bytes(content, mime_type)
+
+    if not text:
+        return {"text": "", "error": "Could not extract text from image"}
+
+    return {"text": text, "characters": len(text)}
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# CSV UPLOAD
+# ═══════════════════════════════════════════════════════════════════════════════
+
+@app.post("/api/process_csv", tags=["ai"])
+async def process_csv_upload(file: UploadFile = File(...)):
+    """Import needs from CSV file."""
+    try:
+        import pandas as pd
+
+        content = await file.read()
+        df = pd.read_csv(io.BytesIO(content))
+
+        column_map = {
+            "location": "zone", "area": "zone", "place": "zone",
+            "problem": "raw_text", "description": "raw_text", "issue": "raw_text",
+            "people": "affected_count", "households": "affected_count",
+            "severity": "severity_score", "priority": "severity_score",
+        }
+        df.rename(columns={k: v for k, v in column_map.items() if k in df.columns}, inplace=True)
+
+        imported = 0
+        errors = []
+
+        for idx, row in df.iterrows():
+            try:
+                raw_text = str(row.get("raw_text", row.get("zone", "Unknown issue")))
+                zone = str(row.get("zone", "Unknown"))
+
+                severity = 5
+                try:
+                    severity = int(row.get("severity_score", 5))
+                except (ValueError, TypeError):
+                    pass
+
+                affected = None
+                try:
+                    val = row.get("affected_count")
+                    if pd.notna(val):
+                        affected = int(val)
+                except (ValueError, TypeError):
+                    pass
+
+                store.add("need_reports", {
+                    "org_id": "demo_org",
+                    "raw_text": raw_text,
+                    "zone": zone,
+                    "source": "csv",
+                    "status": "open",
+                    "severity_score": severity,
+                    "affected_count": affected,
+                    "urgency_score": 0,
+                    "urgency_label": "low",
+                })
+                imported += 1
+
+            except Exception as row_err:
+                errors.append({"row": idx + 2, "reason": str(row_err)})
+
+        return {"imported": imported, "errors": errors}
+
+    except Exception as e:
+        logger.error(f"[processCSVUpload] {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# VOLUNTEER MATCHING
+# ═══════════════════════════════════════════════════════════════════════════════
+
+@app.get("/api/match_volunteers", tags=["matching"])
+async def get_matched_volunteers(need_id: str):
+    """Find top-3 matched volunteers for a need."""
+    from matching_engine import match_volunteers
+
+    need = store.get("need_reports", need_id)
+    if not need:
+        raise HTTPException(status_code=404, detail="Need not found")
+    need["id"] = need_id
+
+    volunteers = store.query("volunteers", filters={"status": "available"}, limit=50)
+    for v in volunteers:
+        v["id"] = v.get("_id", "")
+
+    if not volunteers:
+        return {"matches": [], "message": "No available volunteers"}
+
+    top3 = match_volunteers(need, volunteers)
+    return {"matches": top3, "need_id": need_id}
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# VOLUNTEERS — CRUD
+# ═══════════════════════════════════════════════════════════════════════════════
+
+@app.get("/api/volunteers", tags=["volunteers"])
+async def list_volunteers(limit: int = 50):
+    """List all volunteers."""
+    volunteers = store.query("volunteers", order_by="impact_points", descending=True, limit=limit)
+    for v in volunteers:
+        v["id"] = v.get("_id", "")
+    return {"volunteers": volunteers, "total": len(volunteers)}
+
+
+@app.get("/api/volunteers/{vol_id}", tags=["volunteers"])
+async def get_volunteer(vol_id: str):
+    vol = store.get("volunteers", vol_id)
+    if not vol:
+        raise HTTPException(status_code=404, detail="Volunteer not found")
+    vol["id"] = vol.get("_id", vol_id)
+    return vol
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# ASSIGNMENTS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+class AssignmentRequest(BaseModel):
+    need_id: str
+    volunteer_id: str
+    org_id: str = "demo_org"
+    match_score: Optional[float] = 0
+    match_explanation: Optional[str] = ""
+
+@app.post("/api/assignments", tags=["tasks"])
+async def create_assignment(payload: AssignmentRequest):
+    """Assign a volunteer to a need."""
+    try:
+        doc_id = store.add("assignments", {
+            "need_report_id": payload.need_id,
+            "volunteer_id": payload.volunteer_id,
+            "org_id": payload.org_id,
+            "status": "pending",
+            "match_score": payload.match_score,
+            "match_explanation": payload.match_explanation,
+        })
+
+        store.update("volunteers", payload.volunteer_id, {"status": "assigned"})
+        store.update("need_reports", payload.need_id, {"status": "assigned"})
+
+        return {"success": True, "assignment_id": doc_id}
+    except Exception as e:
+        logger.error(f"[createAssignment] {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+class CompleteTaskRequest(BaseModel):
+    assignment_id: str
+    proof_photo_url: Optional[str] = ""
+
+@app.post("/api/complete_task", tags=["tasks"])
+async def complete_task(payload: CompleteTaskRequest):
+    """Mark an assignment as completed and award impact points."""
+    try:
+        assignment = store.get("assignments", payload.assignment_id)
+        if not assignment:
+            raise HTTPException(status_code=404, detail="Assignment not found")
+
+        volunteer_id = assignment.get("volunteer_id")
+        need_id = assignment.get("need_report_id")
+        points_awarded = 20
+
+        store.update("assignments", payload.assignment_id, {
+            "status": "completed",
+            "proof_photo_url": payload.proof_photo_url,
+            "volunteer_impact_points_awarded": points_awarded,
+        })
+
+        store.update("volunteers", volunteer_id, {"status": "available"})
+        store.increment("volunteers", volunteer_id, "impact_points", points_awarded)
+        store.set_nested("volunteers", volunteer_id, "impact_stats.total_tasks_completed", 1)
+
+        if need_id:
+            need = store.get("need_reports", need_id)
+            if need:
+                affected = need.get("affected_count", 0) or 0
+                store.set_nested("volunteers", volunteer_id, "impact_stats.total_people_helped", affected)
+                store.update("need_reports", need_id, {"status": "resolved"})
+
+        vol = store.get("volunteers", volunteer_id) or {}
+
+        # Generate impact framing
+        from gemini_client import generate_impact_framing
+        impact_framing = generate_impact_framing(
+            issue_type=assignment.get("issue_type", "general"),
+            affected_count=assignment.get("affected_count", 0),
+            location=assignment.get("zone", "your area"),
+            required_skills=assignment.get("required_skills", []),
+        )
+
+        scorecard = {
+            "points_earned": points_awarded,
+            "total_points": vol.get("impact_points", 0),
+            "total_tasks": vol.get("impact_stats", {}).get("total_tasks_completed", 0),
+            "total_people_helped": vol.get("impact_stats", {}).get("total_people_helped", 0),
+            "impact_message": impact_framing,
+        }
+
+        return {"success": True, "scorecard": scorecard}
+
+    except Exception as e:
+        logger.error(f"[completeTask] {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# URGENCY FLAGGING
+# ═══════════════════════════════════════════════════════════════════════════════
+
+class FlagScoreRequest(BaseModel):
+    need_id: str
+    correct_score: int
+    reason: Optional[str] = ""
+    flagged_by: Optional[str] = "coordinator"
+
+@app.post("/api/flag_urgency_score", tags=["needs"])
+async def flag_urgency_score(payload: FlagScoreRequest):
+    """Human-in-the-loop: coordinator overrides AI urgency score."""
+    try:
+        store.add("urgency_corrections", {
+            "need_id": payload.need_id,
+            "corrected_score": payload.correct_score,
+            "reason": payload.reason,
+            "flagged_by": payload.flagged_by,
+        })
+
+        score = payload.correct_score
+        label = "critical" if score >= 86 else ("high" if score >= 61 else ("medium" if score >= 31 else "low"))
+
+        store.update("need_reports", payload.need_id, {
+            "urgency_score": score,
+            "urgency_label": label,
+            "status": "flagged",
+            "flagged_by": payload.flagged_by,
+            "flag_reason": payload.reason,
+        })
+
+        return {"success": True, "new_score": score, "new_label": label}
+
+    except Exception as e:
+        logger.error(f"[flagUrgencyScore] {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# ANALYTICS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+@app.get("/api/analytics", tags=["analytics"])
+async def get_analytics():
+    """Dashboard analytics data for Chart.js."""
+    needs = store.list_all("need_reports")
+    volunteers = store.list_all("volunteers")
+
+    # Urgency distribution
+    urgency_dist = {"critical": 0, "high": 0, "medium": 0, "low": 0}
+    for n in needs:
+        label = n.get("urgency_label", "low")
+        if label in urgency_dist:
+            urgency_dist[label] += 1
+
+    # Issue type distribution
+    issue_dist = {}
+    for n in needs:
+        itype = n.get("issue_type", "other")
+        issue_dist[itype] = issue_dist.get(itype, 0) + 1
+
+    # Zone distribution
+    zone_dist = {}
+    for n in needs:
+        zone = n.get("zone", "Unknown")
+        zone_dist[zone] = zone_dist.get(zone, 0) + 1
+
+    # Status distribution
+    status_dist = {}
+    for n in needs:
+        status = n.get("status", "open")
+        status_dist[status] = status_dist.get(status, 0) + 1
+
+    # Volunteer stats
+    vol_available = len([v for v in volunteers if v.get("status") == "available"])
+    vol_assigned = len([v for v in volunteers if v.get("status") == "assigned"])
+    total_people_helped = sum(v.get("impact_stats", {}).get("total_people_helped", 0) for v in volunteers)
+    total_tasks_completed = sum(v.get("impact_stats", {}).get("total_tasks_completed", 0) for v in volunteers)
+
+    # Source distribution
+    source_dist = {}
+    for n in needs:
+        src = n.get("source", "unknown")
+        source_dist[src] = source_dist.get(src, 0) + 1
+
+    return {
+        "urgency_distribution": urgency_dist,
+        "issue_type_distribution": issue_dist,
+        "zone_distribution": zone_dist,
+        "status_distribution": status_dist,
+        "source_distribution": source_dist,
+        "volunteer_stats": {
+            "total": len(volunteers),
+            "available": vol_available,
+            "assigned": vol_assigned,
+            "total_people_helped": total_people_helped,
+            "total_tasks_completed": total_tasks_completed,
+        },
+        "totals": {
+            "needs": len(needs),
+            "volunteers": len(volunteers),
+        },
+    }
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# STATIC FILE SERVING (Frontend)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+FRONTEND_DIR = Path(__file__).parent.parent / "public"
+
+@app.get("/", tags=["frontend"])
+async def serve_index():
+    """Serve the main dashboard."""
+    index_file = FRONTEND_DIR / "index.html"
+    if index_file.exists():
+        return FileResponse(index_file)
+    return {"message": "AlloCare API is running. Frontend not found at /public/"}
+
+
+# Mount static file directories
+if FRONTEND_DIR.exists():
+    app.mount("/css", StaticFiles(directory=str(FRONTEND_DIR / "css")), name="css")
+    app.mount("/js", StaticFiles(directory=str(FRONTEND_DIR / "js")), name="js")
+    if (FRONTEND_DIR / "assets").exists():
+        app.mount("/assets", StaticFiles(directory=str(FRONTEND_DIR / "assets")), name="assets")
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# STARTUP
+# ═══════════════════════════════════════════════════════════════════════════════
+
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("PORT", 8000))
+    print(f"\n>>> AlloCare API starting on http://localhost:{port}")
+    print(f"    Swagger docs: http://localhost:{port}/docs")
+    print(f"    Dashboard:    http://localhost:{port}/")
+    gemini_configured = "YES" if os.environ.get("GEMINI_API_KEY") else "NO (add GEMINI_API_KEY to .env)"
+    print(f"    Gemini API Key: {gemini_configured}\n")
+    uvicorn.run(app, host="0.0.0.0", port=port)

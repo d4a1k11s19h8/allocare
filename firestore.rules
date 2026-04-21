@@ -1,0 +1,94 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isCoordinator() {
+      return isAuthenticated() && request.auth.token.role == 'coordinator';
+    }
+
+    function isVolunteer() {
+      return isAuthenticated() && request.auth.token.role == 'volunteer';
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && request.auth.token.role == 'admin';
+    }
+
+    function belongsToOrg(orgId) {
+      return isAuthenticated() && request.auth.token.org_id == orgId;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // ── need_reports ────────────────────────────────────────────────────────────
+    match /need_reports/{reportId} {
+      // Any authenticated user can read open need reports
+      allow read: if isAuthenticated();
+
+      // Coordinators can create reports for their org
+      allow create: if isCoordinator() && belongsToOrg(request.resource.data.org_id);
+
+      // Coordinators can update their org's reports (e.g., flag score, assign)
+      allow update: if isCoordinator() && belongsToOrg(resource.data.org_id)
+                    || isAdmin();
+
+      // Only admin can delete
+      allow delete: if isAdmin();
+    }
+
+    // ── volunteers ───────────────────────────────────────────────────────────────
+    match /volunteers/{volunteerId} {
+      // Any authenticated user can read volunteer profiles (for matching)
+      allow read: if isAuthenticated();
+
+      // Volunteer can only write their own profile
+      allow create, update: if isOwner(volunteerId) || isAdmin();
+      allow delete: if isOwner(volunteerId) || isAdmin();
+    }
+
+    // ── assignments ──────────────────────────────────────────────────────────────
+    match /assignments/{assignmentId} {
+      // Coordinators can read all assignments in their org
+      allow read: if isAuthenticated();
+
+      // Coordinators create assignments
+      allow create: if isCoordinator();
+
+      // Volunteers can update their own assignment (accept, check-in, complete)
+      allow update: if isOwner(resource.data.volunteer_id)
+                    || isCoordinator() && belongsToOrg(resource.data.org_id)
+                    || isAdmin();
+
+      allow delete: if isAdmin();
+    }
+
+    // ── organizations ─────────────────────────────────────────────────────────────
+    match /organizations/{orgId} {
+      // Coordinators can read their own org
+      allow read: if isAuthenticated() && (belongsToOrg(orgId) || isAdmin());
+
+      // Only admin can create/update org records
+      allow write: if isAdmin();
+    }
+
+    // ── urgency_corrections ───────────────────────────────────────────────────────
+    match /urgency_corrections/{correctionId} {
+      allow read: if isCoordinator() || isAdmin();
+      allow create: if isCoordinator();
+      allow update, delete: if isAdmin();
+    }
+
+    // ── zone_stats ────────────────────────────────────────────────────────────────
+    match /zone_stats/{zoneId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+  }
+}
