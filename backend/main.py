@@ -704,7 +704,9 @@ async def get_analytics():
 # STATIC FILE SERVING (Frontend)
 # ═══════════════════════════════════════════════════════════════════════════════
 
-FRONTEND_DIR = Path(__file__).parent.parent / "public"
+FRONTEND_DIR = Path(__file__).parent / "public"
+if not FRONTEND_DIR.exists():
+    FRONTEND_DIR = Path(__file__).parent.parent / "public"
 
 @app.get("/", tags=["frontend"])
 async def serve_index():

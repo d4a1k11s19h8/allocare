@@ -1,0 +1,136 @@
+/* ═══════════════════════════════════════════════════════════
+   AlloCare — Micro Animations
+   ═════════════════════════════════════════════════════════ */
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(26, 86, 219, 0.4)); }
+  50% { filter: drop-shadow(0 0 20px rgba(26, 86, 219, 0.7)); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.7; }
+}
+
+@keyframes ripple {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ── Card Entrance ───────────────────────────────────────── */
+.need-card {
+  animation: fadeSlideUp 0.3s ease;
+}
+.need-card:nth-child(1) { animation-delay: 0.0s; }
+.need-card:nth-child(2) { animation-delay: 0.05s; }
+.need-card:nth-child(3) { animation-delay: 0.1s; }
+.need-card:nth-child(4) { animation-delay: 0.15s; }
+.need-card:nth-child(5) { animation-delay: 0.2s; }
+
+/* ── Critical Pulse ──────────────────────────────────────── */
+.need-card.border-critical {
+  animation: fadeSlideUp 0.3s ease, critical-glow 3s ease-in-out infinite;
+}
+@keyframes critical-glow {
+  0%, 100% { box-shadow: none; }
+  50% { box-shadow: inset 0 0 0 1px rgba(224, 36, 36, 0.15), 0 0 12px rgba(224, 36, 36, 0.08); }
+}
+
+/* ── Map Marker Pulse ────────────────────────────────────── */
+.map-marker-pulse {
+  position: relative;
+}
+.map-marker-pulse::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  animation: ripple 2s ease-out infinite;
+}
+
+/* ── Loading Shimmer ─────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-card) 25%,
+    var(--bg-card-hover) 37%,
+    var(--bg-card) 63%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--radius-md);
+}
+
+/* ── Notification badge bounce ───────────────────────────── */
+.notification-badge {
+  animation: bounceIn 0.3s ease;
+}
+@keyframes bounceIn {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* ── Score Counter Animation ─────────────────────────────── */
+.score-counter {
+  display: inline-block;
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── Hover Lift ──────────────────────────────────────────── */
+.hover-lift {
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+.hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ── Staggered List ──────────────────────────────────────── */
+.stagger-list > * {
+  animation: fadeSlideUp 0.4s ease both;
+}
+.stagger-list > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-list > *:nth-child(2) { animation-delay: 60ms; }
+.stagger-list > *:nth-child(3) { animation-delay: 120ms; }
+.stagger-list > *:nth-child(4) { animation-delay: 180ms; }
+.stagger-list > *:nth-child(5) { animation-delay: 240ms; }
+.stagger-list > *:nth-child(6) { animation-delay: 300ms; }
+.stagger-list > *:nth-child(7) { animation-delay: 360ms; }
+.stagger-list > *:nth-child(8) { animation-delay: 420ms; }
+
+/* ── Match Line Draw Animation ───────────────────────────── */
+.match-card:nth-child(1) { animation-delay: 0.1s; }
+.match-card:nth-child(2) { animation-delay: 0.25s; }
+.match-card:nth-child(3) { animation-delay: 0.4s; }
+
+/* ── Upload success flash ────────────────────────────────── */
+@keyframes successFlash {
+  0% { background: var(--bg-card); }
+  30% { background: var(--green-light); }
+  100% { background: var(--bg-card); }
+}
+.upload-success {
+  animation: successFlash 1s ease;
+}
