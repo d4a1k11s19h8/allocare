@@ -4,12 +4,20 @@ Auto-detects language and translates to English before NLP processing.
 Supports Hindi, Marathi, Tamil, Bengali, Telugu, Kannada, Malayalam + more.
 """
 import logging
-from deep_translator import GoogleTranslator, single_detection
+import re
 
 logger = logging.getLogger(__name__)
 
+# Try to import deep_translator, fallback gracefully
+_translator_available = False
+try:
+    from deep_translator import GoogleTranslator
+    _translator_available = True
+except ImportError:
+    logger.warning("[Translate] deep-translator not installed — translation disabled")
 
-def detect_and_translate(text: str) -> tuple[str, str]:
+
+def detect_and_translate(text: str) -> tuple:
     """
     Detects language and translates to English if needed.
 
@@ -23,23 +31,26 @@ def detect_and_translate(text: str) -> tuple[str, str]:
     if not text or not text.strip():
         return text, "en"
 
+    if not _translator_available:
+        return text, "en"
+
     try:
-        # Step 1: Detect language using Google Translate
-        detected_lang = GoogleTranslator(source="auto", target="en").detect(text)
-        if not detected_lang:
-            detected_lang = "en"
+        # Quick heuristic: check if text contains non-ASCII characters
+        # (indicates non-English text like Hindi, Marathi, etc.)
+        non_ascii_ratio = sum(1 for c in text if ord(c) > 127) / max(len(text), 1)
 
-        logger.info(f"[Translate] Detected language: {detected_lang}")
-
-        # Step 2: Skip translation if already English
-        if detected_lang == "en":
+        if non_ascii_ratio < 0.1:
+            # Likely English — skip translation
             return text, "en"
 
-        # Step 3: Translate to English
-        translated = GoogleTranslator(source=detected_lang, target="en").translate(text)
+        # Translate to English using auto-detection
+        translated = GoogleTranslator(source="auto", target="en").translate(text)
 
         if not translated:
-            return text, detected_lang
+            return text, "auto"
+
+        # Infer the source language from the presence of specific scripts
+        detected_lang = _detect_language_heuristic(text)
 
         logger.info(f"[Translate] Translated from {detected_lang}: '{text[:50]}...' -> '{translated[:50]}...'")
         return translated, detected_lang
@@ -50,10 +61,42 @@ def detect_and_translate(text: str) -> tuple[str, str]:
         return text, "en"
 
 
+def _detect_language_heuristic(text: str) -> str:
+    """Simple script-based language detection."""
+    # Devanagari (Hindi, Marathi)
+    if re.search(r'[\u0900-\u097F]', text):
+        return "hi"
+    # Tamil
+    if re.search(r'[\u0B80-\u0BFF]', text):
+        return "ta"
+    # Bengali
+    if re.search(r'[\u0980-\u09FF]', text):
+        return "bn"
+    # Telugu
+    if re.search(r'[\u0C00-\u0C7F]', text):
+        return "te"
+    # Kannada
+    if re.search(r'[\u0C80-\u0CFF]', text):
+        return "kn"
+    # Malayalam
+    if re.search(r'[\u0D00-\u0D7F]', text):
+        return "ml"
+    # Gujarati
+    if re.search(r'[\u0A80-\u0AFF]', text):
+        return "gu"
+    # Arabic/Urdu
+    if re.search(r'[\u0600-\u06FF]', text):
+        return "ur"
+    return "auto"
+
+
 def translate_text(text: str, target_language: str = "en", source_language: str = None) -> str:
     """
     Simple translate helper for any direction.
     """
+    if not _translator_available:
+        return text
+
     try:
         source = source_language or "auto"
         result = GoogleTranslator(source=source, target=target_language).translate(text)

@@ -2,6 +2,10 @@
 AlloCare API — FastAPI Backend
 Fully functional with free APIs only. No cloud billing required.
 Only needs: GEMINI_API_KEY (free from AI Studio)
+
+Supports two deployment modes (set via DEPLOYMENT env var):
+  - "firebase" (default): Uses Firebase/Firestore
+  - "render": Uses local JSON file store, no Firebase deps needed
 """
 import os
 import io
@@ -21,11 +25,25 @@ from typing import Optional, List, Dict, Any
 from dotenv import load_dotenv
 load_dotenv()
 
+# ── Deployment mode ────────────────────────────────────────────────────────────
+DEPLOYMENT = os.environ.get("DEPLOYMENT", "render").lower()
+
+if DEPLOYMENT == "firebase":
+    from firebase_functions import https_fn
+    from firebase_admin import initialize_app
+    from a2wsgi import ASGIMiddleware
+    initialize_app()
+
 # ── initialise ─────────────────────────────────────────────────────────────────
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-from data_store import store
+# Choose data store based on deployment mode
+if DEPLOYMENT == "firebase":
+    from data_store import store
+else:
+    from data_store_local import store
+
 from urgency_scorer import calculate_urgency_score, detect_trend
 
 # Seed demo data on first run
@@ -45,6 +63,71 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# AUTHENTICATION ENDPOINTS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+class UserCreate(BaseModel):
+    email: str
+    password: str
+    display_name: str
+    role: str # "organization" or "volunteer"
+    skills: Optional[List[str]] = []
+    zone: Optional[str] = None
+
+class UserLogin(BaseModel):
+    email: str
+    password: str
+
+@app.post("/api/auth/register", tags=["auth"])
+async def register(user: UserCreate):
+    # Check if email exists
+    existing = store.query("users", filters={"email": user.email}, limit=1)
+    if existing:
+        raise HTTPException(status_code=400, detail="Email already registered")
+        
+    password_hash = store.hash_password(user.password)
+    new_user = {
+        "email": user.email,
+        "password_hash": password_hash,
+        "display_name": user.display_name,
+        "role": user.role
+    }
+    user_id = store.add("users", new_user)
+    
+    # If volunteer, also create a volunteer profile
+    if user.role == "volunteer":
+        vol_profile = {
+            "user_id": user_id,
+            "display_name": user.display_name,
+            "email": user.email,
+            "skills": user.skills,
+            "zone": user.zone or "Unknown",
+            "status": "available",
+            "impact_points": 0,
+            "impact_stats": {"total_tasks_completed": 0, "total_people_helped": 0},
+            "lat": 0.0, # Would need real geocoding ideally
+            "lng": 0.0
+        }
+        store.add("volunteers", vol_profile)
+        
+    return {"message": "Registration successful", "user": {"id": user_id, "email": user.email, "role": user.role, "display_name": user.display_name}}
+
+@app.post("/api/auth/login", tags=["auth"])
+async def login(credentials: UserLogin):
+    users = store.query("users", filters={"email": credentials.email}, limit=1)
+    if not users:
+        raise HTTPException(status_code=401, detail="Invalid email or password")
+        
+    user = users[0]
+    if user.get("password_hash") != store.hash_password(credentials.password):
+        raise HTTPException(status_code=401, detail="Invalid email or password")
+        
+    # Return user without password_hash
+    safe_user = {k: v for k, v in user.items() if k != "password_hash"}
+    return {"message": "Login successful", "user": safe_user}
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -641,7 +724,19 @@ if FRONTEND_DIR.exists():
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# STARTUP
+# FIREBASE EXPORT (only when deployed to Firebase)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+if DEPLOYMENT == "firebase":
+    wsgi_app = ASGIMiddleware(app)
+
+    @https_fn.on_request(max_instances=1)
+    def api(req: https_fn.Request) -> https_fn.Response:
+        return https_fn.Response.from_wsgi(wsgi_app, req.environ)
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# STARTUP (Local)
 # ═══════════════════════════════════════════════════════════════════════════════
 
 if __name__ == "__main__":

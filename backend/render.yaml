@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: allocare-backend
+    env: docker
+    region: singapore
+    plan: free
+    branch: main
+    envVars:
+      - key: DEPLOYMENT
+        value: render
+      - key: GEMINI_API_KEY
+        sync: false # Needs to be set manually in Render dashboard
+      - key: ALLOCARE_DASHBOARD_URL
+        value: https://allocare-77.web.app # URL of the Lovable frontend

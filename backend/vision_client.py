@@ -2,26 +2,45 @@
 vision_client.py — OCR using Gemini Vision (multimodal), no extra API key needed.
 Replaces Google Cloud Vision API (paid) with Gemini 2.0 Flash vision capabilities.
 Uses the same free GEMINI_API_KEY from AI Studio.
+Gracefully degrades when API key is not set.
 """
 import os
 import base64
 import logging
-import google.generativeai as genai
 
 logger = logging.getLogger(__name__)
 
-_API_KEY = os.environ.get("GEMINI_API_KEY", "")
+_vision_model = None
+_init_attempted = False
 
 
 def _get_vision_model():
-    genai.configure(api_key=_API_KEY)
-    return genai.GenerativeModel(
-        model_name="gemini-2.0-flash",
-        generation_config=genai.GenerationConfig(
-            temperature=0.1,
-            max_output_tokens=2048,
-        ),
-    )
+    """Lazy init: only create model when first called."""
+    global _vision_model, _init_attempted
+    if _init_attempted:
+        return _vision_model
+    _init_attempted = True
+
+    api_key = os.environ.get("GEMINI_API_KEY", "")
+    if not api_key:
+        logger.warning("[Vision] No GEMINI_API_KEY — OCR will return empty text")
+        return None
+
+    try:
+        import google.generativeai as genai
+        genai.configure(api_key=api_key)
+        _vision_model = genai.GenerativeModel(
+            model_name="gemini-2.0-flash",
+            generation_config=genai.GenerationConfig(
+                temperature=0.1,
+                max_output_tokens=2048,
+            ),
+        )
+        logger.info("[Vision] Gemini Vision model initialized successfully.")
+        return _vision_model
+    except Exception as e:
+        logger.error(f"[Vision] Failed to init Gemini Vision: {e}")
+        return None
 
 
 def extract_text_from_image_bytes(image_bytes: bytes, mime_type: str = "image/jpeg") -> str:
@@ -36,13 +55,12 @@ def extract_text_from_image_bytes(image_bytes: bytes, mime_type: str = "image/jp
     Returns:
         Extracted text string, or empty string on failure.
     """
-    if not _API_KEY:
-        logger.error("[Vision] No GEMINI_API_KEY — cannot extract text")
+    model = _get_vision_model()
+    if not model:
+        logger.error("[Vision] Model not available — returning empty text")
         return ""
 
     try:
-        model = _get_vision_model()
-
         # Use Gemini's multimodal capability
         response = model.generate_content([
             "You are an OCR assistant. Extract ALL text visible in this image exactly as written. "

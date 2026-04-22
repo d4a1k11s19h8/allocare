@@ -9,8 +9,8 @@ ENV PYTHONUNBUFFERED True
 WORKDIR /app
 
 # Install dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements-render.txt .
+RUN pip install --no-cache-dir -r requirements-render.txt
 
 # Copy the rest of the application code
 COPY . .

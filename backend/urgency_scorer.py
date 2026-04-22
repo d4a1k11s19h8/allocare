@@ -67,39 +67,51 @@ def calculate_urgency_score(severity: int, frequency: int, days_since_first_repo
     }
 
 
-def recalculate_all_scores(db) -> int:
+def recalculate_all_scores(store) -> int:
     """
     Recalculates urgency scores for all open need reports.
-    Used after bulk CSV import. Returns count of updated docs.
+    Uses local DataStore instead of Firestore.
+    Returns count of updated docs.
     """
     updated = 0
-    reports = db.collection("need_reports").where("status", "==", "open").stream()
+    reports = store.query("need_reports", filters={"status": "open"}, limit=10000)
 
     for report in reports:
-        data = report.to_dict()
+        doc_id = report.get("_id")
+        if not doc_id:
+            continue
         try:
+            created_str = report.get("created_at", "")
+            if created_str:
+                try:
+                    created = datetime.fromisoformat(created_str.replace("Z", "+00:00"))
+                except Exception:
+                    created = datetime.now(timezone.utc)
+            else:
+                created = datetime.now(timezone.utc)
+
+            days_diff = max(1, (datetime.now(timezone.utc) - created).days)
+
             score_data = calculate_urgency_score(
-                severity=data.get("severity_score", 5),
-                frequency=data.get("report_frequency_30d", 1),
-                days_since_first_report=max(1, (
-                    datetime.now(timezone.utc) - data.get("created_at", datetime.now(timezone.utc))
-                ).days)
+                severity=report.get("severity_score", 5),
+                frequency=report.get("report_frequency_30d", 1),
+                days_since_first_report=days_diff,
             )
-            db.collection("need_reports").document(report.id).update({
+            store.update("need_reports", doc_id, {
                 "urgency_score": score_data["score"],
                 "urgency_label": score_data["label"],
             })
             updated += 1
         except Exception as e:
-            logger.warning(f"[recalculate_all_scores] Skipping {report.id}: {e}")
+            logger.warning(f"[recalculate_all_scores] Skipping {doc_id}: {e}")
 
     return updated
 
 
-def detect_trend(db, zone: str, issue_type: str, lookback_days: int = 30) -> tuple[str, str]:
+def detect_trend(store, zone: str, issue_type: str, lookback_days: int = 30) -> tuple:
     """
     Detects trend direction for a zone/issue_type pair using linear regression
-    over 4 weekly buckets.
+    over 4 weekly buckets. Works with local DataStore.
 
     Returns: (trend_direction, trend_label)
     trend_direction: 'rising' | 'stable' | 'falling'
@@ -107,22 +119,24 @@ def detect_trend(db, zone: str, issue_type: str, lookback_days: int = 30) -> tup
     now = datetime.now(timezone.utc)
     weeks = []
 
+    all_reports = store.query("need_reports", filters={
+        "zone": zone,
+        "issue_type": issue_type,
+    }, limit=10000)
+
     for week_start_days, week_end_days in [(22, 30), (15, 21), (8, 14), (1, 7)]:
         start = now - timedelta(days=week_end_days)
         end = now - timedelta(days=week_start_days)
-        try:
-            count_result = (
-                db.collection("need_reports")
-                .where("zone", "==", zone)
-                .where("issue_type", "==", issue_type)
-                .where("created_at", ">=", start)
-                .where("created_at", "<", end)
-                .count()
-                .get()
-            )
-            count = count_result[0][0].value if count_result else 0
-        except Exception:
-            count = 0
+        count = 0
+        for r in all_reports:
+            try:
+                created_str = r.get("created_at", "")
+                if created_str:
+                    created = datetime.fromisoformat(created_str.replace("Z", "+00:00"))
+                    if start <= created < end:
+                        count += 1
+            except Exception:
+                pass
         weeks.append(count)
 
     # Simple linear regression slope
