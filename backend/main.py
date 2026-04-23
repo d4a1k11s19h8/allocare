@@ -127,6 +127,7 @@ async def login(credentials: UserLogin):
         
     # Return user without password_hash
     safe_user = {k: v for k, v in user.items() if k != "password_hash"}
+    safe_user["id"] = safe_user.get("_id", "")  # Ensure 'id' is always present
     return {"message": "Login successful", "user": safe_user}
 
 
@@ -502,6 +503,45 @@ async def get_volunteer(vol_id: str):
         raise HTTPException(status_code=404, detail="Volunteer not found")
     vol["id"] = vol.get("_id", vol_id)
     return vol
+
+
+@app.get("/api/volunteers/{vol_id}/assignments", tags=["volunteers"])
+async def get_volunteer_assignments(vol_id: str):
+    """Get all assignments for a specific volunteer, enriched with need details."""
+    vol = store.get("volunteers", vol_id)
+    if not vol:
+        raise HTTPException(status_code=404, detail="Volunteer not found")
+
+    all_assignments = store.query("assignments")
+    vol_assignments = [a for a in all_assignments if a.get("volunteer_id") == vol_id]
+
+    # Enrich each assignment with need report data
+    enriched = []
+    for a in vol_assignments:
+        need_id = a.get("need_report_id")
+        need = store.get("need_reports", need_id) if need_id else None
+        enriched.append({
+            "assignment_id": a.get("_id", ""),
+            "status": a.get("status", "pending"),
+            "match_score": a.get("match_score", 0),
+            "match_explanation": a.get("match_explanation", ""),
+            "created_at": a.get("created_at", ""),
+            "need": {
+                "id": need_id or "",
+                "summary": (need or {}).get("summary", "No details"),
+                "zone": (need or {}).get("zone", "Unknown"),
+                "issue_type": (need or {}).get("issue_type", "other"),
+                "urgency_score": (need or {}).get("urgency_score", 0),
+                "urgency_label": (need or {}).get("urgency_label", "low"),
+                "affected_count": (need or {}).get("affected_count", 0),
+                "required_skills": (need or {}).get("required_skills", []),
+                "lat": (need or {}).get("lat"),
+                "lng": (need or {}).get("lng"),
+                "status": (need or {}).get("status", "open"),
+            } if need else None,
+        })
+
+    return {"assignments": enriched, "total": len(enriched)}
 
 
 # ═══════════════════════════════════════════════════════════════════════════════

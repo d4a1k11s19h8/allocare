@@ -19,7 +19,7 @@
       },
       "max_distance_km": 15,
       "_id": "v1",
-      "created_at": "2026-04-23T19:00:47.540797+00:00",
+      "created_at": "2026-04-23T19:33:06.394716+00:00",
       "id": "v1"
     },
     "v2": {
@@ -41,7 +41,7 @@
       },
       "max_distance_km": 15,
       "_id": "v2",
-      "created_at": "2026-04-23T19:00:47.542449+00:00",
+      "created_at": "2026-04-23T19:33:06.395844+00:00",
       "id": "v2"
     },
     "v3": {
@@ -62,7 +62,7 @@
       },
       "max_distance_km": 20,
       "_id": "v3",
-      "created_at": "2026-04-23T19:00:47.543790+00:00",
+      "created_at": "2026-04-23T19:33:06.398046+00:00",
       "id": "v3"
     },
     "v4": {
@@ -76,17 +76,17 @@
         "food distribution",
         "driving"
       ],
-      "status": "assigned",
-      "impact_points": 1450,
+      "status": "available",
+      "impact_points": 1470,
       "impact_stats": {
-        "total_tasks_completed": 45,
-        "total_people_helped": 1200
+        "total_tasks_completed": 46,
+        "total_people_helped": 1400
       },
       "max_distance_km": 15,
       "_id": "v4",
-      "created_at": "2026-04-23T19:00:47.544323+00:00",
+      "created_at": "2026-04-23T19:33:06.399739+00:00",
       "id": "v4",
-      "updated_at": "2026-04-23T19:00:47.934062+00:00"
+      "updated_at": "2026-04-23T19:38:38.100434+00:00"
     },
     "v5": {
       "display_name": "Sneha Nair",
@@ -107,7 +107,7 @@
       },
       "max_distance_km": 20,
       "_id": "v5",
-      "created_at": "2026-04-23T19:00:47.546541+00:00",
+      "created_at": "2026-04-23T19:33:06.401417+00:00",
       "id": "v5"
     },
     "v6": {
@@ -129,7 +129,8 @@
       },
       "max_distance_km": 15,
       "_id": "v6",
-      "created_at": "2026-04-23T19:00:47.548571+00:00"
+      "created_at": "2026-04-23T19:33:06.403649+00:00",
+      "id": "v6"
     },
     "v7": {
       "display_name": "Fatima Khan",
@@ -150,7 +151,7 @@
       },
       "max_distance_km": 15,
       "_id": "v7",
-      "created_at": "2026-04-23T19:00:47.549705+00:00",
+      "created_at": "2026-04-23T19:33:06.406369+00:00",
       "id": "v7"
     },
     "v8": {
@@ -172,7 +173,7 @@
       },
       "max_distance_km": 15,
       "_id": "v8",
-      "created_at": "2026-04-23T19:00:47.551864+00:00",
+      "created_at": "2026-04-23T19:33:06.408170+00:00",
       "id": "v8"
     },
     "v9": {
@@ -194,7 +195,7 @@
       },
       "max_distance_km": 25,
       "_id": "v9",
-      "created_at": "2026-04-23T19:00:47.552889+00:00",
+      "created_at": "2026-04-23T19:33:06.410954+00:00",
       "id": "v9"
     },
     "v10": {
@@ -215,7 +216,7 @@
       },
       "max_distance_km": 20,
       "_id": "v10",
-      "created_at": "2026-04-23T19:00:47.554955+00:00",
+      "created_at": "2026-04-23T19:33:06.413474+00:00",
       "id": "v10"
     },
     "v11": {
@@ -236,7 +237,7 @@
       },
       "max_distance_km": 15,
       "_id": "v11",
-      "created_at": "2026-04-23T19:00:47.555957+00:00",
+      "created_at": "2026-04-23T19:33:06.416003+00:00",
       "id": "v11"
     },
     "v12": {
@@ -258,7 +259,7 @@
       },
       "max_distance_km": 20,
       "_id": "v12",
-      "created_at": "2026-04-23T19:00:47.558651+00:00",
+      "created_at": "2026-04-23T19:33:06.418014+00:00",
       "id": "v12"
     },
     "v13": {
@@ -280,7 +281,7 @@
       },
       "max_distance_km": 30,
       "_id": "v13",
-      "created_at": "2026-04-23T19:00:47.561316+00:00",
+      "created_at": "2026-04-23T19:33:06.420595+00:00",
       "id": "v13"
     },
     "v14": {
@@ -302,7 +303,7 @@
       },
       "max_distance_km": 25,
       "_id": "v14",
-      "created_at": "2026-04-23T19:00:47.562319+00:00",
+      "created_at": "2026-04-23T19:33:06.422796+00:00",
       "id": "v14"
     },
     "v15": {
@@ -324,7 +325,7 @@
       },
       "max_distance_km": 30,
       "_id": "v15",
-      "created_at": "2026-04-23T19:00:47.564841+00:00",
+      "created_at": "2026-04-23T19:33:06.425940+00:00",
       "id": "v15"
     },
     "v16": {
@@ -346,7 +347,7 @@
       },
       "max_distance_km": 25,
       "_id": "v16",
-      "created_at": "2026-04-23T19:00:47.567423+00:00",
+      "created_at": "2026-04-23T19:33:06.427558+00:00",
       "id": "v16"
     },
     "v17": {
@@ -368,7 +369,7 @@
       },
       "max_distance_km": 30,
       "_id": "v17",
-      "created_at": "2026-04-23T19:00:47.569943+00:00",
+      "created_at": "2026-04-23T19:33:06.430085+00:00",
       "id": "v17"
     },
     "v18": {
@@ -390,7 +391,7 @@
       },
       "max_distance_km": 25,
       "_id": "v18",
-      "created_at": "2026-04-23T19:00:47.571953+00:00",
+      "created_at": "2026-04-23T19:33:06.432158+00:00",
       "id": "v18"
     },
     "v19": {
@@ -412,7 +413,7 @@
       },
       "max_distance_km": 30,
       "_id": "v19",
-      "created_at": "2026-04-23T19:00:47.575080+00:00",
+      "created_at": "2026-04-23T19:33:06.435358+00:00",
       "id": "v19"
     },
     "v20": {
@@ -434,7 +435,7 @@
       },
       "max_distance_km": 25,
       "_id": "v20",
-      "created_at": "2026-04-23T19:00:47.577145+00:00",
+      "created_at": "2026-04-23T19:33:06.438558+00:00",
       "id": "v20"
     },
     "v21": {
@@ -456,7 +457,7 @@
       },
       "max_distance_km": 30,
       "_id": "v21",
-      "created_at": "2026-04-23T19:00:47.579158+00:00",
+      "created_at": "2026-04-23T19:33:06.441102+00:00",
       "id": "v21"
     },
     "v22": {
@@ -478,7 +479,7 @@
       },
       "max_distance_km": 25,
       "_id": "v22",
-      "created_at": "2026-04-23T19:00:47.581690+00:00",
+      "created_at": "2026-04-23T19:33:06.442942+00:00",
       "id": "v22"
     },
     "v23": {
@@ -500,7 +501,7 @@
       },
       "max_distance_km": 30,
       "_id": "v23",
-      "created_at": "2026-04-23T19:00:47.584823+00:00",
+      "created_at": "2026-04-23T19:33:06.446676+00:00",
       "id": "v23"
     },
     "v24": {
@@ -522,7 +523,7 @@
       },
       "max_distance_km": 25,
       "_id": "v24",
-      "created_at": "2026-04-23T19:00:47.586898+00:00",
+      "created_at": "2026-04-23T19:33:06.448686+00:00",
       "id": "v24"
     },
     "v25": {
@@ -544,7 +545,7 @@
       },
       "max_distance_km": 25,
       "_id": "v25",
-      "created_at": "2026-04-23T19:00:47.588957+00:00",
+      "created_at": "2026-04-23T19:33:06.451459+00:00",
       "id": "v25"
     },
     "v26": {
@@ -566,7 +567,7 @@
       },
       "max_distance_km": 30,
       "_id": "v26",
-      "created_at": "2026-04-23T19:00:47.591502+00:00",
+      "created_at": "2026-04-23T19:33:06.455166+00:00",
       "id": "v26"
     },
     "v27": {
@@ -588,7 +589,7 @@
       },
       "max_distance_km": 25,
       "_id": "v27",
-      "created_at": "2026-04-23T19:00:47.594594+00:00",
+      "created_at": "2026-04-23T19:33:06.458189+00:00",
       "id": "v27"
     },
     "v28": {
@@ -610,7 +611,7 @@
       },
       "max_distance_km": 30,
       "_id": "v28",
-      "created_at": "2026-04-23T19:00:47.597707+00:00",
+      "created_at": "2026-04-23T19:33:06.461357+00:00",
       "id": "v28"
     },
     "v29": {
@@ -632,7 +633,7 @@
       },
       "max_distance_km": 30,
       "_id": "v29",
-      "created_at": "2026-04-23T19:00:47.600258+00:00",
+      "created_at": "2026-04-23T19:33:06.464864+00:00",
       "id": "v29"
     },
     "v30": {
@@ -654,7 +655,7 @@
       },
       "max_distance_km": 30,
       "_id": "v30",
-      "created_at": "2026-04-23T19:00:47.603298+00:00",
+      "created_at": "2026-04-23T19:33:06.467471+00:00",
       "id": "v30"
     },
     "v31": {
@@ -676,7 +677,7 @@
       },
       "max_distance_km": 30,
       "_id": "v31",
-      "created_at": "2026-04-23T19:00:47.606317+00:00",
+      "created_at": "2026-04-23T19:33:06.470466+00:00",
       "id": "v31"
     },
     "v32": {
@@ -698,7 +699,7 @@
       },
       "max_distance_km": 30,
       "_id": "v32",
-      "created_at": "2026-04-23T19:00:47.609372+00:00",
+      "created_at": "2026-04-23T19:33:06.474342+00:00",
       "id": "v32"
     },
     "v33": {
@@ -720,7 +721,7 @@
       },
       "max_distance_km": 30,
       "_id": "v33",
-      "created_at": "2026-04-23T19:00:47.612132+00:00",
+      "created_at": "2026-04-23T19:33:06.477425+00:00",
       "id": "v33"
     },
     "v34": {
@@ -742,7 +743,7 @@
       },
       "max_distance_km": 25,
       "_id": "v34",
-      "created_at": "2026-04-23T19:00:47.615656+00:00",
+      "created_at": "2026-04-23T19:33:06.481523+00:00",
       "id": "v34"
     },
     "v35": {
@@ -764,7 +765,7 @@
       },
       "max_distance_km": 30,
       "_id": "v35",
-      "created_at": "2026-04-23T19:00:47.618662+00:00",
+      "created_at": "2026-04-23T19:33:06.484203+00:00",
       "id": "v35"
     },
     "v36": {
@@ -786,7 +787,7 @@
       },
       "max_distance_km": 30,
       "_id": "v36",
-      "created_at": "2026-04-23T19:00:47.621184+00:00",
+      "created_at": "2026-04-23T19:33:06.488984+00:00",
       "id": "v36"
     },
     "v37": {
@@ -808,7 +809,7 @@
       },
       "max_distance_km": 25,
       "_id": "v37",
-      "created_at": "2026-04-23T19:00:47.627184+00:00",
+      "created_at": "2026-04-23T19:33:06.492346+00:00",
       "id": "v37"
     },
     "v38": {
@@ -830,7 +831,7 @@
       },
       "max_distance_km": 30,
       "_id": "v38",
-      "created_at": "2026-04-23T19:00:47.630689+00:00",
+      "created_at": "2026-04-23T19:33:06.495583+00:00",
       "id": "v38"
     },
     "v39": {
@@ -852,7 +853,7 @@
       },
       "max_distance_km": 25,
       "_id": "v39",
-      "created_at": "2026-04-23T19:00:47.634720+00:00",
+      "created_at": "2026-04-23T19:33:06.499096+00:00",
       "id": "v39"
     },
     "v40": {
@@ -874,7 +875,7 @@
       },
       "max_distance_km": 30,
       "_id": "v40",
-      "created_at": "2026-04-23T19:00:47.637918+00:00",
+      "created_at": "2026-04-23T19:33:06.502663+00:00",
       "id": "v40"
     },
     "v41": {
@@ -895,7 +896,7 @@
       },
       "max_distance_km": 25,
       "_id": "v41",
-      "created_at": "2026-04-23T19:00:47.641464+00:00",
+      "created_at": "2026-04-23T19:33:06.507229+00:00",
       "id": "v41"
     },
     "v42": {
@@ -917,7 +918,7 @@
       },
       "max_distance_km": 30,
       "_id": "v42",
-      "created_at": "2026-04-23T19:00:47.645537+00:00",
+      "created_at": "2026-04-23T19:33:06.510354+00:00",
       "id": "v42"
     },
     "v43": {
@@ -939,7 +940,7 @@
       },
       "max_distance_km": 30,
       "_id": "v43",
-      "created_at": "2026-04-23T19:00:47.649088+00:00",
+      "created_at": "2026-04-23T19:33:06.513907+00:00",
       "id": "v43"
     },
     "v44": {
@@ -961,7 +962,7 @@
       },
       "max_distance_km": 25,
       "_id": "v44",
-      "created_at": "2026-04-23T19:00:47.652627+00:00",
+      "created_at": "2026-04-23T19:33:06.517474+00:00",
       "id": "v44"
     },
     "v45": {
@@ -983,7 +984,7 @@
       },
       "max_distance_km": 25,
       "_id": "v45",
-      "created_at": "2026-04-23T19:00:47.655669+00:00",
+      "created_at": "2026-04-23T19:33:06.522345+00:00",
       "id": "v45"
     },
     "v46": {
@@ -1005,7 +1006,7 @@
       },
       "max_distance_km": 30,
       "_id": "v46",
-      "created_at": "2026-04-23T19:00:47.661383+00:00",
+      "created_at": "2026-04-23T19:33:06.526894+00:00",
       "id": "v46"
     },
     "v47": {
@@ -1027,7 +1028,7 @@
       },
       "max_distance_km": 30,
       "_id": "v47",
-      "created_at": "2026-04-23T19:00:47.664895+00:00",
+      "created_at": "2026-04-23T19:33:06.530917+00:00",
       "id": "v47"
     },
     "v48": {
@@ -1049,7 +1050,7 @@
       },
       "max_distance_km": 30,
       "_id": "v48",
-      "created_at": "2026-04-23T19:00:47.669071+00:00",
+      "created_at": "2026-04-23T19:33:06.534433+00:00",
       "id": "v48"
     },
     "v49": {
@@ -1071,7 +1072,7 @@
       },
       "max_distance_km": 35,
       "_id": "v49",
-      "created_at": "2026-04-23T19:00:47.672715+00:00",
+      "created_at": "2026-04-23T19:33:06.542930+00:00",
       "id": "v49"
     },
     "v50": {
@@ -1093,7 +1094,7 @@
       },
       "max_distance_km": 30,
       "_id": "v50",
-      "created_at": "2026-04-23T19:00:47.677151+00:00",
+      "created_at": "2026-04-23T19:33:06.547757+00:00",
       "id": "v50"
     },
     "v51": {
@@ -1115,7 +1116,7 @@
       },
       "max_distance_km": 30,
       "_id": "v51",
-      "created_at": "2026-04-23T19:00:47.681154+00:00",
+      "created_at": "2026-04-23T19:33:06.554948+00:00",
       "id": "v51"
     },
     "v52": {
@@ -1137,7 +1138,8 @@
       },
       "max_distance_km": 30,
       "_id": "v52",
-      "created_at": "2026-04-23T19:00:47.685778+00:00"
+      "created_at": "2026-04-23T19:33:06.561297+00:00",
+      "id": "v52"
     },
     "v53": {
       "display_name": "Mahendra Rathore",
@@ -1158,7 +1160,8 @@
       },
       "max_distance_km": 35,
       "_id": "v53",
-      "created_at": "2026-04-23T19:00:47.689400+00:00"
+      "created_at": "2026-04-23T19:33:06.566900+00:00",
+      "id": "v53"
     },
     "v54": {
       "display_name": "Girish Hegde",
@@ -1179,7 +1182,29 @@
       },
       "max_distance_km": 25,
       "_id": "v54",
-      "created_at": "2026-04-23T19:00:47.695592+00:00"
+      "created_at": "2026-04-23T19:33:06.573003+00:00",
+      "id": "v54"
+    },
+    "e187f0d0-c8d3-440b-a": {
+      "user_id": "f26d2860-15c2-43ff-a",
+      "display_name": "Role Test Vol",
+      "email": "testvol_role_1776972787@test.com",
+      "skills": [
+        "cooking",
+        "driving"
+      ],
+      "zone": "Mumbai",
+      "status": "available",
+      "impact_points": 0,
+      "impact_stats": {
+        "total_tasks_completed": 0,
+        "total_people_helped": 0
+      },
+      "lat": 0.0,
+      "lng": 0.0,
+      "_id": "e187f0d0-c8d3-440b-a",
+      "created_at": "2026-04-23T19:33:07.108727+00:00",
+      "id": "e187f0d0-c8d3-440b-a"
     }
   },
   "need_reports": {
@@ -1204,9 +1229,9 @@
       "trend_direction": "rising",
       "coordinator_explanation": "Severe food crisis in sector 5.",
       "_id": "n1",
-      "created_at": "2026-04-23T19:00:47.699720+00:00",
+      "created_at": "2026-04-23T19:33:06.577439+00:00",
       "id": "n1",
-      "updated_at": "2026-04-23T19:00:47.870204+00:00"
+      "updated_at": "2026-04-23T19:33:06.748790+00:00"
     },
     "n2": {
       "zone": "Dharavi",
@@ -1223,14 +1248,15 @@
         "plumbing"
       ],
       "recommended_volunteer_count": 3,
-      "status": "open",
+      "status": "assigned",
       "source": "manual",
       "report_frequency_30d": 5,
       "trend_direction": "rising",
       "coordinator_explanation": "The main water pipeline serving sector 5 has been compromised.",
       "_id": "n2",
-      "created_at": "2026-04-23T19:00:47.703858+00:00",
-      "id": "n2"
+      "created_at": "2026-04-23T19:33:06.582049+00:00",
+      "id": "n2",
+      "updated_at": "2026-04-23T19:33:07.233000+00:00"
     },
     "n3": {
       "zone": "Dharavi",
@@ -1252,9 +1278,9 @@
       "report_frequency_30d": 6,
       "trend_direction": "rising",
       "_id": "n3",
-      "created_at": "2026-04-23T19:00:47.708857+00:00",
+      "created_at": "2026-04-23T19:33:06.586570+00:00",
       "id": "n3",
-      "updated_at": "2026-04-23T19:00:47.903793+00:00"
+      "updated_at": "2026-04-23T19:33:06.774890+00:00"
     },
     "n4": {
       "zone": "Kurla",
@@ -1276,7 +1302,7 @@
       "report_frequency_30d": 3,
       "trend_direction": "stable",
       "_id": "n4",
-      "created_at": "2026-04-23T19:00:47.712405+00:00",
+      "created_at": "2026-04-23T19:33:06.591335+00:00",
       "id": "n4"
     },
     "n5": {
@@ -1299,7 +1325,7 @@
       "report_frequency_30d": 4,
       "trend_direction": "rising",
       "_id": "n5",
-      "created_at": "2026-04-23T19:00:47.717759+00:00",
+      "created_at": "2026-04-23T19:33:06.596037+00:00",
       "id": "n5"
     },
     "n6": {
@@ -1322,7 +1348,7 @@
       "report_frequency_30d": 2,
       "trend_direction": "stable",
       "_id": "n6",
-      "created_at": "2026-04-23T19:00:47.722645+00:00",
+      "created_at": "2026-04-23T19:33:06.600605+00:00",
       "id": "n6"
     },
     "n7": {
@@ -1345,7 +1371,7 @@
       "report_frequency_30d": 3,
       "trend_direction": "stable",
       "_id": "n7",
-      "created_at": "2026-04-23T19:00:47.727847+00:00",
+      "created_at": "2026-04-23T19:33:06.606325+00:00",
       "id": "n7"
     },
     "n8": {
@@ -1368,7 +1394,7 @@
       "report_frequency_30d": 2,
       "trend_direction": "stable",
       "_id": "n8",
-      "created_at": "2026-04-23T19:00:47.732378+00:00",
+      "created_at": "2026-04-23T19:33:06.610499+00:00",
       "id": "n8"
     },
     "n9": {
@@ -1391,7 +1417,7 @@
       "report_frequency_30d": 2,
       "trend_direction": "stable",
       "_id": "n9",
-      "created_at": "2026-04-23T19:00:47.737115+00:00",
+      "created_at": "2026-04-23T19:33:06.614701+00:00",
       "id": "n9"
     },
     "n10": {
@@ -1414,7 +1440,7 @@
       "report_frequency_30d": 1,
       "trend_direction": "stable",
       "_id": "n10",
-      "created_at": "2026-04-23T19:00:47.741290+00:00",
+      "created_at": "2026-04-23T19:33:06.620252+00:00",
       "id": "n10"
     },
     "n11": {
@@ -1437,7 +1463,7 @@
       "report_frequency_30d": 5,
       "trend_direction": "rising",
       "_id": "n11",
-      "created_at": "2026-04-23T19:00:47.746647+00:00",
+      "created_at": "2026-04-23T19:33:06.625278+00:00",
       "id": "n11"
     },
     "n12": {
@@ -1459,10 +1485,10 @@
       "report_frequency_30d": 1,
       "trend_direction": "stable",
       "_id": "n12",
-      "created_at": "2026-04-23T19:00:47.751252+00:00",
+      "created_at": "2026-04-23T19:33:06.630393+00:00",
       "id": "n12"
     },
-    "875ee219-3ebe-441a-a": {
+    "bb869f77-8dfc-4521-9": {
       "raw_text": "200 families need emergency food packets in Dharavi",
       "source": "manual",
       "zone": "Dharavi, Mumbai",
@@ -1473,11 +1499,11 @@
       "urgency_score": 0,
       "urgency_label": "low",
       "org_id": "demo_org",
-      "_id": "875ee219-3ebe-441a-a",
-      "created_at": "2026-04-23T19:00:47.819239+00:00",
-      "id": "875ee219-3ebe-441a-a"
+      "_id": "bb869f77-8dfc-4521-9",
+      "created_at": "2026-04-23T19:33:06.702372+00:00",
+      "id": "bb869f77-8dfc-4521-9"
     },
-    "da1199db-95b4-4bc2-9": {
+    "bc759fe7-a7ee-4405-a": {
       "raw_text": "Water crisis in Churu, 500 people affected",
       "source": "manual",
       "zone": "Churu, Rajasthan",
@@ -1488,11 +1514,11 @@
       "urgency_score": 0,
       "urgency_label": "low",
       "org_id": "demo_org",
-      "_id": "da1199db-95b4-4bc2-9",
-      "created_at": "2026-04-23T19:00:47.835433+00:00",
-      "id": "da1199db-95b4-4bc2-9"
+      "_id": "bc759fe7-a7ee-4405-a",
+      "created_at": "2026-04-23T19:33:06.718592+00:00",
+      "id": "bc759fe7-a7ee-4405-a"
     },
-    "a6c3bd45-a5ae-4c22-a": {
+    "0267e500-a82d-4f45-8": {
       "raw_text": "Test need for assignment status check",
       "source": "manual",
       "zone": "Unknown",
@@ -1503,12 +1529,12 @@
       "urgency_score": 0,
       "urgency_label": "low",
       "org_id": "demo_org",
-      "_id": "a6c3bd45-a5ae-4c22-a",
-      "created_at": "2026-04-23T19:00:47.919995+00:00",
-      "updated_at": "2026-04-23T19:00:47.939793+00:00",
-      "id": "a6c3bd45-a5ae-4c22-a"
+      "_id": "0267e500-a82d-4f45-8",
+      "created_at": "2026-04-23T19:33:06.791888+00:00",
+      "updated_at": "2026-04-23T19:33:06.814767+00:00",
+      "id": "0267e500-a82d-4f45-8"
     },
-    "afeeabcf-609f-49e7-a": {
+    "b2992403-f0fc-4d59-8": {
       "raw_text": "Severe water shortage in Churu, Rajasthan. 500 families affected.",
       "source": "manual",
       "zone": "Churu, Rajasthan",
@@ -1519,10 +1545,11 @@
       "urgency_score": 0,
       "urgency_label": "low",
       "org_id": "demo_org",
-      "_id": "afeeabcf-609f-49e7-a",
-      "created_at": "2026-04-23T19:00:48.064308+00:00"
+      "_id": "b2992403-f0fc-4d59-8",
+      "created_at": "2026-04-23T19:33:06.915241+00:00",
+      "id": "b2992403-f0fc-4d59-8"
     },
-    "06abb2a6-b59e-464c-8": {
+    "ce892b9d-720a-4456-b": {
       "raw_text": "Help needed",
       "source": "manual",
       "zone": "Unknown",
@@ -1533,10 +1560,11 @@
       "urgency_score": 0,
       "urgency_label": "low",
       "org_id": "demo_org",
-      "_id": "06abb2a6-b59e-464c-8",
-      "created_at": "2026-04-23T19:00:48.079808+00:00"
+      "_id": "ce892b9d-720a-4456-b",
+      "created_at": "2026-04-23T19:33:06.926754+00:00",
+      "id": "ce892b9d-720a-4456-b"
     },
-    "3bef5e52-d14f-4e86-9": {
+    "fc4e5a5b-3d02-45c9-8": {
       "raw_text": "Drought in Churu district, Rajasthan. No water for 3 villages.",
       "source": "manual",
       "zone": "Churu, Rajasthan",
@@ -1547,10 +1575,11 @@
       "urgency_score": 0,
       "urgency_label": "low",
       "org_id": "demo_org",
-      "_id": "3bef5e52-d14f-4e86-9",
-      "created_at": "2026-04-23T19:00:48.094068+00:00"
+      "_id": "fc4e5a5b-3d02-45c9-8",
+      "created_at": "2026-04-23T19:33:06.937479+00:00",
+      "id": "fc4e5a5b-3d02-45c9-8"
     },
-    "52f8bb4d-d773-4799-9": {
+    "bb66c1ab-9611-43d3-a": {
       "raw_text": "Extreme heatwave, 45+ degrees. Elderly need shelter.",
       "source": "manual",
       "zone": "Barmer, Rajasthan",
@@ -1561,10 +1590,11 @@
       "urgency_score": 0,
       "urgency_label": "low",
       "org_id": "demo_org",
-      "_id": "52f8bb4d-d773-4799-9",
-      "created_at": "2026-04-23T19:00:48.108314+00:00"
+      "_id": "bb66c1ab-9611-43d3-a",
+      "created_at": "2026-04-23T19:33:06.947732+00:00",
+      "id": "bb66c1ab-9611-43d3-a"
     },
-    "c0b46119-09e5-43fe-8": {
+    "3eaf12b0-a92e-4aa5-b": {
       "raw_text": "Landslide blocked road to Tawang. 200 people stranded.",
       "source": "manual",
       "zone": "Tawang, Arunachal Pradesh",
@@ -1575,10 +1605,11 @@
       "urgency_score": 0,
       "urgency_label": "low",
       "org_id": "demo_org",
-      "_id": "c0b46119-09e5-43fe-8",
-      "created_at": "2026-04-23T19:00:48.126715+00:00"
+      "_id": "3eaf12b0-a92e-4aa5-b",
+      "created_at": "2026-04-23T19:33:06.959474+00:00",
+      "id": "3eaf12b0-a92e-4aa5-b"
     },
-    "dc837938-4487-4585-b": {
+    "ea6cba90-b58b-417c-b": {
       "raw_text": "\u091a\u0941\u0930\u0942 \u092e\u0947\u0902 \u092d\u0940\u0937\u0923 \u0938\u0942\u0916\u093e\u0964 500 \u092a\u0930\u093f\u0935\u093e\u0930 \u092a\u094d\u0930\u092d\u093e\u0935\u093f\u0924\u0964",
       "source": "manual",
       "zone": "Churu, Rajasthan",
@@ -1589,10 +1620,11 @@
       "urgency_score": 0,
       "urgency_label": "low",
       "org_id": "demo_org",
-      "_id": "dc837938-4487-4585-b",
-      "created_at": "2026-04-23T19:00:48.138075+00:00"
+      "_id": "ea6cba90-b58b-417c-b",
+      "created_at": "2026-04-23T19:33:06.970778+00:00",
+      "id": "ea6cba90-b58b-417c-b"
     },
-    "5f268e8b-139e-43c6-8": {
+    "fa47677d-dabc-48f1-a": {
       "raw_text": "Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. ",
       "source": "manual",
       "zone": "Mumbai",
@@ -1603,10 +1635,11 @@
       "urgency_score": 0,
       "urgency_label": "low",
       "org_id": "demo_org",
-      "_id": "5f268e8b-139e-43c6-8",
-      "created_at": "2026-04-23T19:00:48.150057+00:00"
+      "_id": "fa47677d-dabc-48f1-a",
+      "created_at": "2026-04-23T19:33:06.983964+00:00",
+      "id": "fa47677d-dabc-48f1-a"
     },
-    "3e1c8b53-b001-49b2-b": {
+    "2ad801ea-516d-4a02-b": {
       "raw_text": "",
       "source": "manual",
       "zone": "Delhi",
@@ -1617,10 +1650,11 @@
       "urgency_score": 0,
       "urgency_label": "low",
       "org_id": "demo_org",
-      "_id": "3e1c8b53-b001-49b2-b",
-      "created_at": "2026-04-23T19:00:48.166214+00:00"
+      "_id": "2ad801ea-516d-4a02-b",
+      "created_at": "2026-04-23T19:33:06.995941+00:00",
+      "id": "2ad801ea-516d-4a02-b"
     },
-    "9db4e442-11ce-4e7c-9": {
+    "4c28b553-9214-4321-b": {
       "raw_text": "Unique test need XYZ123 for verification",
       "source": "manual",
       "zone": "Jaisalmer, Rajasthan",
@@ -1631,11 +1665,124 @@
       "urgency_score": 0,
       "urgency_label": "low",
       "org_id": "demo_org",
-      "_id": "9db4e442-11ce-4e7c-9",
-      "created_at": "2026-04-23T19:00:48.181246+00:00",
-      "id": "9db4e442-11ce-4e7c-9"
+      "_id": "4c28b553-9214-4321-b",
+      "created_at": "2026-04-23T19:33:07.042841+00:00",
+      "id": "4c28b553-9214-4321-b"
     },
-    "e0567261-f190-4b54-a": {
+    "b6999a23-d21b-4fe1-9": {
+      "raw_text": "Admin created: Flood in Dharavi",
+      "source": "manual",
+      "zone": "Dharavi, Mumbai",
+      "issue_type": "water",
+      "severity_score": 9,
+      "affected_count": null,
+      "status": "open",
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "org_id": "demo_org",
+      "_id": "b6999a23-d21b-4fe1-9",
+      "created_at": "2026-04-23T19:33:07.144573+00:00",
+      "id": "b6999a23-d21b-4fe1-9"
+    },
+    "7235dc63-6790-4c88-8": {
+      "org_id": "demo_org",
+      "raw_text": "Test issue",
+      "zone": "Mumbai",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 5,
+      "affected_count": null,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "7235dc63-6790-4c88-8",
+      "created_at": "2026-04-23T19:33:09.608378+00:00"
+    },
+    "3e194e29-53ba-4928-b": {
+      "raw_text": "Severe drought in Churu, 500 affected",
+      "source": "manual",
+      "status": "open",
+      "urgency_score": 55,
+      "urgency_label": "medium",
+      "org_id": "demo_org",
+      "_id": "3e194e29-53ba-4928-b",
+      "created_at": "2026-04-23T19:33:09.627637+00:00",
+      "language_detected": "en",
+      "issue_type": "other",
+      "zone": "Churu",
+      "severity_score": 8,
+      "affected_count": null,
+      "summary": "Severe drought in Churu, 500 affected",
+      "required_skills": [
+        "general volunteering"
+      ],
+      "recommended_volunteer_count": 1,
+      "report_frequency_30d": 1,
+      "coordinator_explanation": "A other issue in Churu has been reported 1 times with severity 8/10, affecting an unknown number of people. This situation requires immediate coordinator attention.",
+      "processed_at": "2026-04-23T19:38:37.831142+00:00",
+      "trend_direction": "stable",
+      "lat": 28.2047781,
+      "lng": 74.6912996,
+      "updated_at": "2026-04-23T19:38:37.831142+00:00"
+    },
+    "9e3e0413-1b03-450c-b": {
+      "zone": "Mumbai",
+      "issue_type": "food",
+      "summary": "100 families hungry",
+      "severity_score": 5,
+      "urgency_score": 50,
+      "urgency_label": "medium",
+      "status": "open",
+      "source": "sms",
+      "created_at": "2026-04-23T19:38:37.845406+00:00",
+      "_id": "9e3e0413-1b03-450c-b"
+    },
+    "f3cc947c-1390-4b4e-9": {
+      "raw_text": "Test need for assignment flow",
+      "source": "manual",
+      "zone": "Mumbai",
+      "issue_type": "other",
+      "severity_score": 5,
+      "affected_count": null,
+      "status": "assigned",
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "org_id": "demo_org",
+      "_id": "f3cc947c-1390-4b4e-9",
+      "created_at": "2026-04-23T19:38:37.907535+00:00",
+      "updated_at": "2026-04-23T19:38:37.970137+00:00"
+    },
+    "da0092b9-afc0-4c1a-8": {
+      "raw_text": "Flood near gateway of India",
+      "source": "manual",
+      "zone": "Colaba, Mumbai",
+      "issue_type": "water",
+      "severity_score": 9,
+      "affected_count": null,
+      "status": "assigned",
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "org_id": "demo_org",
+      "_id": "da0092b9-afc0-4c1a-8",
+      "created_at": "2026-04-23T19:38:37.993476+00:00",
+      "updated_at": "2026-04-23T19:38:38.019511+00:00"
+    },
+    "14229a99-569f-4c75-8": {
+      "raw_text": "Lifecycle test: water crisis in Churu",
+      "source": "manual",
+      "zone": "Churu, Rajasthan",
+      "issue_type": "water",
+      "severity_score": 8,
+      "affected_count": 200,
+      "status": "resolved",
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "org_id": "demo_org",
+      "_id": "14229a99-569f-4c75-8",
+      "created_at": "2026-04-23T19:38:38.049877+00:00",
+      "updated_at": "2026-04-23T19:38:38.125489+00:00",
+      "id": "14229a99-569f-4c75-8"
+    },
+    "ff439e3a-8248-4f3f-9": {
       "zone": "Churu",
       "issue_type": "food",
       "summary": "200 families without meals for 3 days",
@@ -1644,10 +1791,10 @@
       "urgency_label": "medium",
       "status": "open",
       "source": "sms",
-      "created_at": "2026-04-23T19:00:56.686945+00:00",
-      "_id": "e0567261-f190-4b54-a"
+      "created_at": "2026-04-23T19:39:08.786866+00:00",
+      "_id": "ff439e3a-8248-4f3f-9"
     },
-    "136e10da-ca38-4e97-b": {
+    "da7288e7-50e1-416c-8": {
       "zone": "Barmer",
       "issue_type": "water",
       "summary": "Severe drought affecting 500 people",
@@ -1656,10 +1803,10 @@
       "urgency_label": "medium",
       "status": "open",
       "source": "sms",
-      "created_at": "2026-04-23T19:00:56.699976+00:00",
-      "_id": "136e10da-ca38-4e97-b"
+      "created_at": "2026-04-23T19:39:08.799224+00:00",
+      "_id": "da7288e7-50e1-416c-8"
     },
-    "e10a63c5-130f-42c0-b": {
+    "f9974b20-b281-4b8e-8": {
       "zone": "Delhi",
       "issue_type": "health",
       "summary": "Dengue outbreak 50 cases reported in sector 7",
@@ -1668,10 +1815,10 @@
       "urgency_label": "medium",
       "status": "open",
       "source": "sms",
-      "created_at": "2026-04-23T19:00:56.712090+00:00",
-      "_id": "e10a63c5-130f-42c0-b"
+      "created_at": "2026-04-23T19:39:08.810756+00:00",
+      "_id": "f9974b20-b281-4b8e-8"
     },
-    "ad42d8a7-ab0d-436b-b": {
+    "f5950d8c-04ee-4246-9": {
       "zone": "Unknown",
       "issue_type": "other",
       "summary": "other NEED",
@@ -1680,10 +1827,10 @@
       "urgency_label": "medium",
       "status": "open",
       "source": "sms",
-      "created_at": "2026-04-23T19:00:56.730392+00:00",
-      "_id": "ad42d8a7-ab0d-436b-b"
+      "created_at": "2026-04-23T19:39:08.828973+00:00",
+      "_id": "f5950d8c-04ee-4246-9"
     },
-    "fdaaf8d2-a699-4c12-b": {
+    "8400581e-3d8d-4c3d-a": {
       "zone": "Mumbai",
       "issue_type": "other",
       "summary": "other NEED Mumbai",
@@ -1692,10 +1839,10 @@
       "urgency_label": "medium",
       "status": "open",
       "source": "sms",
-      "created_at": "2026-04-23T19:00:56.743598+00:00",
-      "_id": "fdaaf8d2-a699-4c12-b"
+      "created_at": "2026-04-23T19:39:08.839893+00:00",
+      "_id": "8400581e-3d8d-4c3d-a"
     },
-    "4cbe7597-dd0d-447d-9": {
+    "4b691a4f-300e-49ca-b": {
       "zone": "Jaipur",
       "issue_type": "food",
       "summary": "People are hungry",
@@ -1704,10 +1851,10 @@
       "urgency_label": "medium",
       "status": "open",
       "source": "sms",
-      "created_at": "2026-04-23T19:00:56.757966+00:00",
-      "_id": "4cbe7597-dd0d-447d-9"
+      "created_at": "2026-04-23T19:39:08.851842+00:00",
+      "_id": "4b691a4f-300e-49ca-b"
     },
-    "2542a977-2a31-410d-8": {
+    "9041a1d4-76a5-4647-b": {
       "zone": "Pune",
       "issue_type": "other",
       "summary": "earthquake Buildings collapsed near station",
@@ -1716,10 +1863,10 @@
       "urgency_label": "medium",
       "status": "open",
       "source": "sms",
-      "created_at": "2026-04-23T19:00:56.769929+00:00",
-      "_id": "2542a977-2a31-410d-8"
+      "created_at": "2026-04-23T19:39:08.864251+00:00",
+      "_id": "9041a1d4-76a5-4647-b"
     },
-    "182ec622-f902-4c54-a": {
+    "4092ef4d-f271-408f-8": {
       "zone": "\u091a\u0941\u0930\u0942",
       "issue_type": "water",
       "summary": "\u092a\u093e\u0928\u0940 \u0915\u0940 \u092d\u093e\u0930\u0940 \u0915\u092e\u0940 300 \u0932\u094b\u0917 \u092a\u094d\u0930\u092d\u093e\u0935\u093f\u0924",
@@ -1728,10 +1875,10 @@
       "urgency_label": "medium",
       "status": "open",
       "source": "sms",
-      "created_at": "2026-04-23T19:00:56.790230+00:00",
-      "_id": "182ec622-f902-4c54-a"
+      "created_at": "2026-04-23T19:39:08.880757+00:00",
+      "_id": "4092ef4d-f271-408f-8"
     },
-    "45d3f67f-05b1-4b39-a": {
+    "873bc4a5-250f-4c9c-9": {
       "zone": "Mumbai",
       "issue_type": "food",
       "summary": "Emergency situation. Emergency situation. Emergency situation. Emergency situation. Emergency situation. Emergency situation. Emergency situation. Emergency situation. Emergency situation. Emergency s",
@@ -1740,10 +1887,10 @@
       "urgency_label": "medium",
       "status": "open",
       "source": "sms",
-      "created_at": "2026-04-23T19:00:56.803635+00:00",
-      "_id": "45d3f67f-05b1-4b39-a"
+      "created_at": "2026-04-23T19:39:08.895332+00:00",
+      "_id": "873bc4a5-250f-4c9c-9"
     },
-    "53f41bce-d9b4-4de3-9": {
+    "6a1b79c3-6fff-458a-8": {
       "zone": "Mumbai",
       "issue_type": "food",
       "summary": "People need help! @#$% urgently!!! 200+ affected",
@@ -1752,10 +1899,10 @@
       "urgency_label": "medium",
       "status": "open",
       "source": "sms",
-      "created_at": "2026-04-23T19:00:56.817280+00:00",
-      "_id": "53f41bce-d9b4-4de3-9"
+      "created_at": "2026-04-23T19:39:08.908031+00:00",
+      "_id": "6a1b79c3-6fff-458a-8"
     },
-    "7cecb379-bc07-4a17-b": {
+    "855a77b6-06ca-43e3-9": {
       "org_id": "demo_org",
       "raw_text": "Water shortage",
       "zone": "Churu Rajasthan",
@@ -1765,10 +1912,10 @@
       "affected_count": 500,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "7cecb379-bc07-4a17-b",
-      "created_at": "2026-04-23T19:01:13.251501+00:00"
+      "_id": "855a77b6-06ca-43e3-9",
+      "created_at": "2026-04-23T19:39:23.202565+00:00"
     },
-    "236d9db6-336b-4e8c-a": {
+    "1fd75ab9-f051-47a0-9": {
       "org_id": "demo_org",
       "raw_text": "Food crisis",
       "zone": "Barmer Rajasthan",
@@ -1778,10 +1925,10 @@
       "affected_count": 200,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "236d9db6-336b-4e8c-a",
-      "created_at": "2026-04-23T19:01:13.258740+00:00"
+      "_id": "1fd75ab9-f051-47a0-9",
+      "created_at": "2026-04-23T19:39:23.211239+00:00"
     },
-    "b2652f23-2a39-42fe-8": {
+    "9e25b38e-865c-47de-8": {
       "org_id": "demo_org",
       "raw_text": "Landslide",
       "zone": "Tawang Arunachal Pradesh",
@@ -1791,10 +1938,10 @@
       "affected_count": 100,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "b2652f23-2a39-42fe-8",
-      "created_at": "2026-04-23T19:01:13.267259+00:00"
+      "_id": "9e25b38e-865c-47de-8",
+      "created_at": "2026-04-23T19:39:23.224087+00:00"
     },
-    "bbbd32a8-3e74-4cc5-9": {
+    "1282834d-f902-4d26-b": {
       "org_id": "demo_org",
       "raw_text": "Drought affecting multiple villages",
       "zone": "Churu",
@@ -1804,10 +1951,10 @@
       "affected_count": 300,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "bbbd32a8-3e74-4cc5-9",
-      "created_at": "2026-04-23T19:01:13.285812+00:00"
+      "_id": "1282834d-f902-4d26-b",
+      "created_at": "2026-04-23T19:39:23.242309+00:00"
     },
-    "c47a85f1-db2e-44e9-a": {
+    "54ed0143-6153-490c-b": {
       "org_id": "demo_org",
       "raw_text": "Water shortage",
       "zone": "Unknown",
@@ -1817,10 +1964,10 @@
       "affected_count": null,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "c47a85f1-db2e-44e9-a",
-      "created_at": "2026-04-23T19:01:13.313013+00:00"
+      "_id": "54ed0143-6153-490c-b",
+      "created_at": "2026-04-23T19:39:23.268522+00:00"
     },
-    "57e20dc8-27af-41d1-8": {
+    "ab7503f0-f6ae-4cb5-a": {
       "org_id": "demo_org",
       "raw_text": "Food crisis",
       "zone": "Unknown",
@@ -1830,10 +1977,10 @@
       "affected_count": null,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "57e20dc8-27af-41d1-8",
-      "created_at": "2026-04-23T19:01:13.319122+00:00"
+      "_id": "ab7503f0-f6ae-4cb5-a",
+      "created_at": "2026-04-23T19:39:23.275122+00:00"
     },
-    "7a50e757-eaaa-4af5-a": {
+    "0e0bd4f0-e066-4877-a": {
       "org_id": "demo_org",
       "raw_text": "\u092a\u093e\u0928\u0940 \u0915\u0940 \u0915\u092e\u0940",
       "zone": "\u091a\u0941\u0930\u0942 \u0930\u093e\u091c\u0938\u094d\u0925\u093e\u0928",
@@ -1843,10 +1990,10 @@
       "affected_count": null,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "7a50e757-eaaa-4af5-a",
-      "created_at": "2026-04-23T19:01:13.338191+00:00"
+      "_id": "0e0bd4f0-e066-4877-a",
+      "created_at": "2026-04-23T19:39:23.293374+00:00"
     },
-    "9e032790-4c2e-405e-a": {
+    "7d2a24e7-6afd-4465-b": {
       "org_id": "demo_org",
       "raw_text": "\u0938\u0942\u0916\u093e",
       "zone": "\u092c\u093e\u0921\u093c\u092e\u0947\u0930",
@@ -1856,10 +2003,10 @@
       "affected_count": null,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "9e032790-4c2e-405e-a",
-      "created_at": "2026-04-23T19:01:13.345335+00:00"
+      "_id": "7d2a24e7-6afd-4465-b",
+      "created_at": "2026-04-23T19:39:23.300458+00:00"
     },
-    "18dcec1d-68b6-4ae7-b": {
+    "a628781c-f7ae-40a8-9": {
       "org_id": "demo_org",
       "raw_text": "Issue0",
       "zone": "City0",
@@ -1869,10 +2016,10 @@
       "affected_count": 0,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "18dcec1d-68b6-4ae7-b",
-      "created_at": "2026-04-23T19:01:13.361659+00:00"
+      "_id": "a628781c-f7ae-40a8-9",
+      "created_at": "2026-04-23T19:39:23.315680+00:00"
     },
-    "28b8c6b0-0d88-4e03-a": {
+    "1834ce3d-e545-4f71-9": {
       "org_id": "demo_org",
       "raw_text": "Issue1",
       "zone": "City1",
@@ -1882,10 +2029,10 @@
       "affected_count": 10,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "28b8c6b0-0d88-4e03-a",
-      "created_at": "2026-04-23T19:01:13.367553+00:00"
+      "_id": "1834ce3d-e545-4f71-9",
+      "created_at": "2026-04-23T19:39:23.322782+00:00"
     },
-    "96d18c78-0a47-43b0-8": {
+    "4f5badc9-6744-4d62-8": {
       "org_id": "demo_org",
       "raw_text": "Issue2",
       "zone": "City2",
@@ -1895,10 +2042,10 @@
       "affected_count": 20,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "96d18c78-0a47-43b0-8",
-      "created_at": "2026-04-23T19:01:13.376413+00:00"
+      "_id": "4f5badc9-6744-4d62-8",
+      "created_at": "2026-04-23T19:39:23.330322+00:00"
     },
-    "204bb834-0c8b-4d9e-b": {
+    "e4b00f18-3469-4709-9": {
       "org_id": "demo_org",
       "raw_text": "Issue3",
       "zone": "City3",
@@ -1908,10 +2055,10 @@
       "affected_count": 30,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "204bb834-0c8b-4d9e-b",
-      "created_at": "2026-04-23T19:01:13.384060+00:00"
+      "_id": "e4b00f18-3469-4709-9",
+      "created_at": "2026-04-23T19:39:23.337369+00:00"
     },
-    "d8760ddd-a0c7-46e8-b": {
+    "8d4f7c88-c4e0-457f-8": {
       "org_id": "demo_org",
       "raw_text": "Issue4",
       "zone": "City4",
@@ -1921,10 +2068,10 @@
       "affected_count": 40,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "d8760ddd-a0c7-46e8-b",
-      "created_at": "2026-04-23T19:01:13.391109+00:00"
+      "_id": "8d4f7c88-c4e0-457f-8",
+      "created_at": "2026-04-23T19:39:23.345286+00:00"
     },
-    "7c39bdf2-1b39-4610-9": {
+    "05d8143e-e5bf-4e8e-a": {
       "org_id": "demo_org",
       "raw_text": "Issue5",
       "zone": "City5",
@@ -1934,10 +2081,10 @@
       "affected_count": 50,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "7c39bdf2-1b39-4610-9",
-      "created_at": "2026-04-23T19:01:13.399846+00:00"
+      "_id": "05d8143e-e5bf-4e8e-a",
+      "created_at": "2026-04-23T19:39:23.351329+00:00"
     },
-    "1b8f3cac-9de8-4430-a": {
+    "0d073272-ea54-4869-9": {
       "org_id": "demo_org",
       "raw_text": "Issue6",
       "zone": "City6",
@@ -1947,10 +2094,10 @@
       "affected_count": 60,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "1b8f3cac-9de8-4430-a",
-      "created_at": "2026-04-23T19:01:13.406031+00:00"
+      "_id": "0d073272-ea54-4869-9",
+      "created_at": "2026-04-23T19:39:23.359518+00:00"
     },
-    "cdbf8aa6-7149-4405-b": {
+    "c00e5f67-5959-4039-b": {
       "org_id": "demo_org",
       "raw_text": "Issue7",
       "zone": "City7",
@@ -1960,10 +2107,10 @@
       "affected_count": 70,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "cdbf8aa6-7149-4405-b",
-      "created_at": "2026-04-23T19:01:13.415674+00:00"
+      "_id": "c00e5f67-5959-4039-b",
+      "created_at": "2026-04-23T19:39:23.372556+00:00"
     },
-    "e74da725-8bdf-4dee-8": {
+    "e3a11678-def6-4524-8": {
       "org_id": "demo_org",
       "raw_text": "Issue8",
       "zone": "City8",
@@ -1973,10 +2120,10 @@
       "affected_count": 80,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "e74da725-8bdf-4dee-8",
-      "created_at": "2026-04-23T19:01:13.421237+00:00"
+      "_id": "e3a11678-def6-4524-8",
+      "created_at": "2026-04-23T19:39:23.381036+00:00"
     },
-    "e228f5c1-d264-4c8e-9": {
+    "fb3898f6-7e72-4069-8": {
       "org_id": "demo_org",
       "raw_text": "Issue9",
       "zone": "City9",
@@ -1986,10 +2133,10 @@
       "affected_count": 90,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "e228f5c1-d264-4c8e-9",
-      "created_at": "2026-04-23T19:01:13.431719+00:00"
+      "_id": "fb3898f6-7e72-4069-8",
+      "created_at": "2026-04-23T19:39:23.387561+00:00"
     },
-    "13411c33-58a8-475e-b": {
+    "bc06dcaa-fd9c-45f9-8": {
       "org_id": "demo_org",
       "raw_text": "Issue10",
       "zone": "City10",
@@ -1999,10 +2146,10 @@
       "affected_count": 100,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "13411c33-58a8-475e-b",
-      "created_at": "2026-04-23T19:01:13.438366+00:00"
+      "_id": "bc06dcaa-fd9c-45f9-8",
+      "created_at": "2026-04-23T19:39:23.396169+00:00"
     },
-    "c8069bb1-8ac8-45ce-a": {
+    "8b497ece-fc53-4b41-a": {
       "org_id": "demo_org",
       "raw_text": "Issue11",
       "zone": "City11",
@@ -2012,10 +2159,10 @@
       "affected_count": 110,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "c8069bb1-8ac8-45ce-a",
-      "created_at": "2026-04-23T19:01:13.445828+00:00"
+      "_id": "8b497ece-fc53-4b41-a",
+      "created_at": "2026-04-23T19:39:23.402608+00:00"
     },
-    "3973b291-6753-49c6-9": {
+    "796a49ce-2452-4f38-a": {
       "org_id": "demo_org",
       "raw_text": "Issue12",
       "zone": "City12",
@@ -2025,10 +2172,10 @@
       "affected_count": 120,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "3973b291-6753-49c6-9",
-      "created_at": "2026-04-23T19:01:13.453811+00:00"
+      "_id": "796a49ce-2452-4f38-a",
+      "created_at": "2026-04-23T19:39:23.411012+00:00"
     },
-    "78be3494-3e52-4837-9": {
+    "22038aa8-8b54-44d8-8": {
       "org_id": "demo_org",
       "raw_text": "Issue13",
       "zone": "City13",
@@ -2038,10 +2185,10 @@
       "affected_count": 130,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "78be3494-3e52-4837-9",
-      "created_at": "2026-04-23T19:01:13.462829+00:00"
+      "_id": "22038aa8-8b54-44d8-8",
+      "created_at": "2026-04-23T19:39:23.418872+00:00"
     },
-    "94db8d39-2c76-45ae-b": {
+    "8cebc3d6-895d-4a41-8": {
       "org_id": "demo_org",
       "raw_text": "Issue14",
       "zone": "City14",
@@ -2051,10 +2198,10 @@
       "affected_count": 140,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "94db8d39-2c76-45ae-b",
-      "created_at": "2026-04-23T19:01:13.475699+00:00"
+      "_id": "8cebc3d6-895d-4a41-8",
+      "created_at": "2026-04-23T19:39:23.426435+00:00"
     },
-    "fef3edd9-f7cb-4294-b": {
+    "fcbd0b64-c960-4fed-8": {
       "org_id": "demo_org",
       "raw_text": "Issue15",
       "zone": "City15",
@@ -2064,10 +2211,10 @@
       "affected_count": 150,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "fef3edd9-f7cb-4294-b",
-      "created_at": "2026-04-23T19:01:13.484286+00:00"
+      "_id": "fcbd0b64-c960-4fed-8",
+      "created_at": "2026-04-23T19:39:23.433749+00:00"
     },
-    "c6a631e5-6e09-4de0-8": {
+    "2d3024d5-72de-4b6f-9": {
       "org_id": "demo_org",
       "raw_text": "Issue16",
       "zone": "City16",
@@ -2077,10 +2224,10 @@
       "affected_count": 160,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "c6a631e5-6e09-4de0-8",
-      "created_at": "2026-04-23T19:01:13.495343+00:00"
+      "_id": "2d3024d5-72de-4b6f-9",
+      "created_at": "2026-04-23T19:39:23.441126+00:00"
     },
-    "aa104562-ab07-4029-b": {
+    "30409ff7-055b-4f95-9": {
       "org_id": "demo_org",
       "raw_text": "Issue17",
       "zone": "City17",
@@ -2090,10 +2237,10 @@
       "affected_count": 170,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "aa104562-ab07-4029-b",
-      "created_at": "2026-04-23T19:01:13.504955+00:00"
+      "_id": "30409ff7-055b-4f95-9",
+      "created_at": "2026-04-23T19:39:23.448775+00:00"
     },
-    "2926be63-7378-40f7-9": {
+    "241ab172-8cc7-4773-8": {
       "org_id": "demo_org",
       "raw_text": "Issue18",
       "zone": "City18",
@@ -2103,10 +2250,10 @@
       "affected_count": 180,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "2926be63-7378-40f7-9",
-      "created_at": "2026-04-23T19:01:13.515034+00:00"
+      "_id": "241ab172-8cc7-4773-8",
+      "created_at": "2026-04-23T19:39:23.456638+00:00"
     },
-    "dc6134d2-6668-424d-9": {
+    "770b78d2-7b59-40e9-9": {
       "org_id": "demo_org",
       "raw_text": "Issue19",
       "zone": "City19",
@@ -2116,10 +2263,10 @@
       "affected_count": 190,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "dc6134d2-6668-424d-9",
-      "created_at": "2026-04-23T19:01:13.524095+00:00"
+      "_id": "770b78d2-7b59-40e9-9",
+      "created_at": "2026-04-23T19:39:23.464530+00:00"
     },
-    "3c19ed93-dce2-4053-8": {
+    "694d2c17-4bc1-4e63-b": {
       "org_id": "demo_org",
       "raw_text": "Issue20",
       "zone": "City20",
@@ -2129,10 +2276,10 @@
       "affected_count": 200,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "3c19ed93-dce2-4053-8",
-      "created_at": "2026-04-23T19:01:13.531202+00:00"
+      "_id": "694d2c17-4bc1-4e63-b",
+      "created_at": "2026-04-23T19:39:23.472659+00:00"
     },
-    "2f69f567-a60f-4aca-9": {
+    "b6f748d9-7603-40a9-b": {
       "org_id": "demo_org",
       "raw_text": "Issue21",
       "zone": "City21",
@@ -2142,10 +2289,10 @@
       "affected_count": 210,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "2f69f567-a60f-4aca-9",
-      "created_at": "2026-04-23T19:01:13.540326+00:00"
+      "_id": "b6f748d9-7603-40a9-b",
+      "created_at": "2026-04-23T19:39:23.480093+00:00"
     },
-    "b55692ba-cf15-4545-9": {
+    "4ce93704-da5b-4d18-b": {
       "org_id": "demo_org",
       "raw_text": "Issue22",
       "zone": "City22",
@@ -2155,10 +2302,10 @@
       "affected_count": 220,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "b55692ba-cf15-4545-9",
-      "created_at": "2026-04-23T19:01:13.548782+00:00"
+      "_id": "4ce93704-da5b-4d18-b",
+      "created_at": "2026-04-23T19:39:23.488932+00:00"
     },
-    "9a0da992-c34c-4c25-b": {
+    "c079c7ed-d27b-49a6-a": {
       "org_id": "demo_org",
       "raw_text": "Issue23",
       "zone": "City23",
@@ -2168,10 +2315,10 @@
       "affected_count": 230,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "9a0da992-c34c-4c25-b",
-      "created_at": "2026-04-23T19:01:13.555802+00:00"
+      "_id": "c079c7ed-d27b-49a6-a",
+      "created_at": "2026-04-23T19:39:23.495905+00:00"
     },
-    "72d1484f-7732-48eb-9": {
+    "2ecde6f1-63cf-4b14-8": {
       "org_id": "demo_org",
       "raw_text": "Issue24",
       "zone": "City24",
@@ -2181,10 +2328,10 @@
       "affected_count": 240,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "72d1484f-7732-48eb-9",
-      "created_at": "2026-04-23T19:01:13.567674+00:00"
+      "_id": "2ecde6f1-63cf-4b14-8",
+      "created_at": "2026-04-23T19:39:23.504666+00:00"
     },
-    "a42e5d49-7087-41cb-9": {
+    "9cfacfe2-b474-4e82-9": {
       "org_id": "demo_org",
       "raw_text": "Issue25",
       "zone": "City25",
@@ -2194,10 +2341,10 @@
       "affected_count": 250,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "a42e5d49-7087-41cb-9",
-      "created_at": "2026-04-23T19:01:13.575958+00:00"
+      "_id": "9cfacfe2-b474-4e82-9",
+      "created_at": "2026-04-23T19:39:23.512251+00:00"
     },
-    "dda40f17-f286-4b71-9": {
+    "d444ff94-b675-480a-9": {
       "org_id": "demo_org",
       "raw_text": "Issue26",
       "zone": "City26",
@@ -2207,10 +2354,10 @@
       "affected_count": 260,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "dda40f17-f286-4b71-9",
-      "created_at": "2026-04-23T19:01:13.585549+00:00"
+      "_id": "d444ff94-b675-480a-9",
+      "created_at": "2026-04-23T19:39:23.520598+00:00"
     },
-    "bc79e0b6-a754-4b54-8": {
+    "d373026e-c5f1-4ca8-a": {
       "org_id": "demo_org",
       "raw_text": "Issue27",
       "zone": "City27",
@@ -2220,10 +2367,10 @@
       "affected_count": 270,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "bc79e0b6-a754-4b54-8",
-      "created_at": "2026-04-23T19:01:13.595651+00:00"
+      "_id": "d373026e-c5f1-4ca8-a",
+      "created_at": "2026-04-23T19:39:23.528700+00:00"
     },
-    "6c0bf157-bfa4-447c-b": {
+    "0dab281f-b5e7-4c54-8": {
       "org_id": "demo_org",
       "raw_text": "Issue28",
       "zone": "City28",
@@ -2233,10 +2380,10 @@
       "affected_count": 280,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "6c0bf157-bfa4-447c-b",
-      "created_at": "2026-04-23T19:01:13.604979+00:00"
+      "_id": "0dab281f-b5e7-4c54-8",
+      "created_at": "2026-04-23T19:39:23.537784+00:00"
     },
-    "aa8a70f8-63e2-4a28-a": {
+    "8657b0b5-17dc-4b8c-a": {
       "org_id": "demo_org",
       "raw_text": "Issue29",
       "zone": "City29",
@@ -2246,10 +2393,10 @@
       "affected_count": 290,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "aa8a70f8-63e2-4a28-a",
-      "created_at": "2026-04-23T19:01:13.614277+00:00"
+      "_id": "8657b0b5-17dc-4b8c-a",
+      "created_at": "2026-04-23T19:39:23.547012+00:00"
     },
-    "91f32a90-3515-44a1-8": {
+    "29a9a416-2401-4657-8": {
       "org_id": "demo_org",
       "raw_text": "Issue30",
       "zone": "City30",
@@ -2259,10 +2406,10 @@
       "affected_count": 300,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "91f32a90-3515-44a1-8",
-      "created_at": "2026-04-23T19:01:13.622843+00:00"
+      "_id": "29a9a416-2401-4657-8",
+      "created_at": "2026-04-23T19:39:23.555990+00:00"
     },
-    "2b091a7e-63a5-4f13-a": {
+    "3c6e4e0e-7c53-40ec-a": {
       "org_id": "demo_org",
       "raw_text": "Issue31",
       "zone": "City31",
@@ -2272,10 +2419,10 @@
       "affected_count": 310,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "2b091a7e-63a5-4f13-a",
-      "created_at": "2026-04-23T19:01:13.631807+00:00"
+      "_id": "3c6e4e0e-7c53-40ec-a",
+      "created_at": "2026-04-23T19:39:23.564424+00:00"
     },
-    "b4060750-9c6f-4f92-9": {
+    "1673e430-3a2b-4c2d-8": {
       "org_id": "demo_org",
       "raw_text": "Issue32",
       "zone": "City32",
@@ -2285,10 +2432,10 @@
       "affected_count": 320,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "b4060750-9c6f-4f92-9",
-      "created_at": "2026-04-23T19:01:13.639508+00:00"
+      "_id": "1673e430-3a2b-4c2d-8",
+      "created_at": "2026-04-23T19:39:23.572055+00:00"
     },
-    "bb0a7c82-2abb-48dd-b": {
+    "e42696d7-a9cd-4913-8": {
       "org_id": "demo_org",
       "raw_text": "Issue33",
       "zone": "City33",
@@ -2298,10 +2445,10 @@
       "affected_count": 330,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "bb0a7c82-2abb-48dd-b",
-      "created_at": "2026-04-23T19:01:13.649663+00:00"
+      "_id": "e42696d7-a9cd-4913-8",
+      "created_at": "2026-04-23T19:39:23.580220+00:00"
     },
-    "4c2d0a36-11fe-40df-b": {
+    "634c55ef-9c21-4243-b": {
       "org_id": "demo_org",
       "raw_text": "Issue34",
       "zone": "City34",
@@ -2311,10 +2458,10 @@
       "affected_count": 340,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "4c2d0a36-11fe-40df-b",
-      "created_at": "2026-04-23T19:01:13.660083+00:00"
+      "_id": "634c55ef-9c21-4243-b",
+      "created_at": "2026-04-23T19:39:23.588757+00:00"
     },
-    "e80ad9f3-d548-4456-9": {
+    "e7e689fe-342e-4177-a": {
       "org_id": "demo_org",
       "raw_text": "Issue35",
       "zone": "City35",
@@ -2324,10 +2471,10 @@
       "affected_count": 350,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "e80ad9f3-d548-4456-9",
-      "created_at": "2026-04-23T19:01:13.668655+00:00"
+      "_id": "e7e689fe-342e-4177-a",
+      "created_at": "2026-04-23T19:39:23.596812+00:00"
     },
-    "ae805bf4-62a9-4c44-a": {
+    "ec475d7f-8e47-4ce2-b": {
       "org_id": "demo_org",
       "raw_text": "Issue36",
       "zone": "City36",
@@ -2337,10 +2484,10 @@
       "affected_count": 360,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "ae805bf4-62a9-4c44-a",
-      "created_at": "2026-04-23T19:01:13.679622+00:00"
+      "_id": "ec475d7f-8e47-4ce2-b",
+      "created_at": "2026-04-23T19:39:23.605148+00:00"
     },
-    "1758684c-3148-4507-b": {
+    "82e0ea5e-7461-4ec4-a": {
       "org_id": "demo_org",
       "raw_text": "Issue37",
       "zone": "City37",
@@ -2350,10 +2497,10 @@
       "affected_count": 370,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "1758684c-3148-4507-b",
-      "created_at": "2026-04-23T19:01:13.688214+00:00"
+      "_id": "82e0ea5e-7461-4ec4-a",
+      "created_at": "2026-04-23T19:39:23.613621+00:00"
     },
-    "253de47a-4fbc-4c90-9": {
+    "08671155-03e2-4791-a": {
       "org_id": "demo_org",
       "raw_text": "Issue38",
       "zone": "City38",
@@ -2363,10 +2510,10 @@
       "affected_count": 380,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "253de47a-4fbc-4c90-9",
-      "created_at": "2026-04-23T19:01:13.699115+00:00"
+      "_id": "08671155-03e2-4791-a",
+      "created_at": "2026-04-23T19:39:23.626002+00:00"
     },
-    "029c1eaa-80c1-4f4b-8": {
+    "e5f38840-b8e0-439d-9": {
       "org_id": "demo_org",
       "raw_text": "Issue39",
       "zone": "City39",
@@ -2376,10 +2523,10 @@
       "affected_count": 390,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "029c1eaa-80c1-4f4b-8",
-      "created_at": "2026-04-23T19:01:13.714060+00:00"
+      "_id": "e5f38840-b8e0-439d-9",
+      "created_at": "2026-04-23T19:39:23.633861+00:00"
     },
-    "081f6ee1-9e95-44f3-9": {
+    "609c7c4d-b272-4e09-9": {
       "org_id": "demo_org",
       "raw_text": "Issue40",
       "zone": "City40",
@@ -2389,10 +2536,10 @@
       "affected_count": 400,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "081f6ee1-9e95-44f3-9",
-      "created_at": "2026-04-23T19:01:13.726153+00:00"
+      "_id": "609c7c4d-b272-4e09-9",
+      "created_at": "2026-04-23T19:39:23.641908+00:00"
     },
-    "3654c4b4-fe3d-48db-9": {
+    "971489ef-fff0-499d-9": {
       "org_id": "demo_org",
       "raw_text": "Issue41",
       "zone": "City41",
@@ -2402,10 +2549,10 @@
       "affected_count": 410,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "3654c4b4-fe3d-48db-9",
-      "created_at": "2026-04-23T19:01:13.734972+00:00"
+      "_id": "971489ef-fff0-499d-9",
+      "created_at": "2026-04-23T19:39:23.651508+00:00"
     },
-    "7187495f-472d-4ba2-9": {
+    "18007a76-b673-42e9-a": {
       "org_id": "demo_org",
       "raw_text": "Issue42",
       "zone": "City42",
@@ -2415,10 +2562,10 @@
       "affected_count": 420,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "7187495f-472d-4ba2-9",
-      "created_at": "2026-04-23T19:01:13.744870+00:00"
+      "_id": "18007a76-b673-42e9-a",
+      "created_at": "2026-04-23T19:39:23.660068+00:00"
     },
-    "54ce58d3-ea99-418d-b": {
+    "636076a7-0b3d-4eb1-8": {
       "org_id": "demo_org",
       "raw_text": "Issue43",
       "zone": "City43",
@@ -2428,10 +2575,10 @@
       "affected_count": 430,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "54ce58d3-ea99-418d-b",
-      "created_at": "2026-04-23T19:01:13.753908+00:00"
+      "_id": "636076a7-0b3d-4eb1-8",
+      "created_at": "2026-04-23T19:39:23.669236+00:00"
     },
-    "f2639d93-1834-4374-a": {
+    "bd744873-1eed-4c11-b": {
       "org_id": "demo_org",
       "raw_text": "Issue44",
       "zone": "City44",
@@ -2441,10 +2588,10 @@
       "affected_count": 440,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "f2639d93-1834-4374-a",
-      "created_at": "2026-04-23T19:01:13.760470+00:00"
+      "_id": "bd744873-1eed-4c11-b",
+      "created_at": "2026-04-23T19:39:23.677280+00:00"
     },
-    "15ce6090-4729-4e36-b": {
+    "c414e4ab-4f92-4c98-a": {
       "org_id": "demo_org",
       "raw_text": "Issue45",
       "zone": "City45",
@@ -2454,10 +2601,10 @@
       "affected_count": 450,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "15ce6090-4729-4e36-b",
-      "created_at": "2026-04-23T19:01:13.770914+00:00"
+      "_id": "c414e4ab-4f92-4c98-a",
+      "created_at": "2026-04-23T19:39:23.686776+00:00"
     },
-    "5b74c82c-c6da-4f9b-a": {
+    "2f0f8429-b4c0-47d2-8": {
       "org_id": "demo_org",
       "raw_text": "Issue46",
       "zone": "City46",
@@ -2467,10 +2614,10 @@
       "affected_count": 460,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "5b74c82c-c6da-4f9b-a",
-      "created_at": "2026-04-23T19:01:13.780686+00:00"
+      "_id": "2f0f8429-b4c0-47d2-8",
+      "created_at": "2026-04-23T19:39:23.695637+00:00"
     },
-    "1a2455f3-7020-4757-b": {
+    "90bf8774-54a6-4cac-9": {
       "org_id": "demo_org",
       "raw_text": "Issue47",
       "zone": "City47",
@@ -2480,10 +2627,10 @@
       "affected_count": 470,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "1a2455f3-7020-4757-b",
-      "created_at": "2026-04-23T19:01:13.791260+00:00"
+      "_id": "90bf8774-54a6-4cac-9",
+      "created_at": "2026-04-23T19:39:23.704686+00:00"
     },
-    "0c49fa57-0326-46ca-b": {
+    "93b769f3-c68f-4240-a": {
       "org_id": "demo_org",
       "raw_text": "Issue48",
       "zone": "City48",
@@ -2493,10 +2640,10 @@
       "affected_count": 480,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "0c49fa57-0326-46ca-b",
-      "created_at": "2026-04-23T19:01:13.798571+00:00"
+      "_id": "93b769f3-c68f-4240-a",
+      "created_at": "2026-04-23T19:39:23.716469+00:00"
     },
-    "f806dedd-5554-4f86-9": {
+    "f74385cc-6e5b-4982-9": {
       "org_id": "demo_org",
       "raw_text": "Issue49",
       "zone": "City49",
@@ -2506,10 +2653,10 @@
       "affected_count": 490,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "f806dedd-5554-4f86-9",
-      "created_at": "2026-04-23T19:01:13.807190+00:00"
+      "_id": "f74385cc-6e5b-4982-9",
+      "created_at": "2026-04-23T19:39:23.725057+00:00"
     },
-    "89e4737c-afe7-4c76-8": {
+    "6ae3e0ac-5996-4d15-9": {
       "org_id": "demo_org",
       "raw_text": "Issue50",
       "zone": "City50",
@@ -2519,10 +2666,10 @@
       "affected_count": 500,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "89e4737c-afe7-4c76-8",
-      "created_at": "2026-04-23T19:01:13.813466+00:00"
+      "_id": "6ae3e0ac-5996-4d15-9",
+      "created_at": "2026-04-23T19:39:23.736881+00:00"
     },
-    "97f59a10-7124-4caf-8": {
+    "b697c1a4-15bf-4156-8": {
       "org_id": "demo_org",
       "raw_text": "Issue51",
       "zone": "City51",
@@ -2532,10 +2679,10 @@
       "affected_count": 510,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "97f59a10-7124-4caf-8",
-      "created_at": "2026-04-23T19:01:13.823957+00:00"
+      "_id": "b697c1a4-15bf-4156-8",
+      "created_at": "2026-04-23T19:39:23.745644+00:00"
     },
-    "f1d86f3b-b5eb-44d8-a": {
+    "9b792701-a9d3-400c-b": {
       "org_id": "demo_org",
       "raw_text": "Issue52",
       "zone": "City52",
@@ -2545,10 +2692,10 @@
       "affected_count": 520,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "f1d86f3b-b5eb-44d8-a",
-      "created_at": "2026-04-23T19:01:13.831007+00:00"
+      "_id": "9b792701-a9d3-400c-b",
+      "created_at": "2026-04-23T19:39:23.755204+00:00"
     },
-    "928b0cd1-1ef4-4c4e-8": {
+    "804ac60b-1fb5-4056-a": {
       "org_id": "demo_org",
       "raw_text": "Issue53",
       "zone": "City53",
@@ -2558,10 +2705,10 @@
       "affected_count": 530,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "928b0cd1-1ef4-4c4e-8",
-      "created_at": "2026-04-23T19:01:13.841087+00:00"
+      "_id": "804ac60b-1fb5-4056-a",
+      "created_at": "2026-04-23T19:39:23.763762+00:00"
     },
-    "f694d93f-c2ca-4371-9": {
+    "accdfeb5-479a-4c6f-8": {
       "org_id": "demo_org",
       "raw_text": "Issue54",
       "zone": "City54",
@@ -2571,10 +2718,10 @@
       "affected_count": 540,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "f694d93f-c2ca-4371-9",
-      "created_at": "2026-04-23T19:01:13.852867+00:00"
+      "_id": "accdfeb5-479a-4c6f-8",
+      "created_at": "2026-04-23T19:39:23.773423+00:00"
     },
-    "c93e24c3-797b-4bfa-9": {
+    "263d7349-e52f-444f-8": {
       "org_id": "demo_org",
       "raw_text": "Issue55",
       "zone": "City55",
@@ -2584,10 +2731,10 @@
       "affected_count": 550,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "c93e24c3-797b-4bfa-9",
-      "created_at": "2026-04-23T19:01:13.860887+00:00"
+      "_id": "263d7349-e52f-444f-8",
+      "created_at": "2026-04-23T19:39:23.783317+00:00"
     },
-    "a418ef98-da98-4ed7-8": {
+    "ab838029-b98a-4d3e-9": {
       "org_id": "demo_org",
       "raw_text": "Issue56",
       "zone": "City56",
@@ -2597,10 +2744,10 @@
       "affected_count": 560,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "a418ef98-da98-4ed7-8",
-      "created_at": "2026-04-23T19:01:13.866138+00:00"
+      "_id": "ab838029-b98a-4d3e-9",
+      "created_at": "2026-04-23T19:39:23.793542+00:00"
     },
-    "57852cee-a8fa-42cd-b": {
+    "4df7e32e-08ea-49a6-b": {
       "org_id": "demo_org",
       "raw_text": "Issue57",
       "zone": "City57",
@@ -2610,10 +2757,10 @@
       "affected_count": 570,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "57852cee-a8fa-42cd-b",
-      "created_at": "2026-04-23T19:01:13.876045+00:00"
+      "_id": "4df7e32e-08ea-49a6-b",
+      "created_at": "2026-04-23T19:39:23.803027+00:00"
     },
-    "c75ca7cf-4792-4871-9": {
+    "f79de39b-e63e-45c0-a": {
       "org_id": "demo_org",
       "raw_text": "Issue58",
       "zone": "City58",
@@ -2623,10 +2770,10 @@
       "affected_count": 580,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "c75ca7cf-4792-4871-9",
-      "created_at": "2026-04-23T19:01:13.885823+00:00"
+      "_id": "f79de39b-e63e-45c0-a",
+      "created_at": "2026-04-23T19:39:23.815725+00:00"
     },
-    "67c61a31-1bf7-40bd-a": {
+    "b457daaa-ef06-4e53-8": {
       "org_id": "demo_org",
       "raw_text": "Issue59",
       "zone": "City59",
@@ -2636,10 +2783,10 @@
       "affected_count": 590,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "67c61a31-1bf7-40bd-a",
-      "created_at": "2026-04-23T19:01:13.894315+00:00"
+      "_id": "b457daaa-ef06-4e53-8",
+      "created_at": "2026-04-23T19:39:23.827567+00:00"
     },
-    "a6846cd9-643a-4766-8": {
+    "950b0165-4404-491a-a": {
       "org_id": "demo_org",
       "raw_text": "Issue60",
       "zone": "City60",
@@ -2649,10 +2796,10 @@
       "affected_count": 600,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "a6846cd9-643a-4766-8",
-      "created_at": "2026-04-23T19:01:13.902540+00:00"
+      "_id": "950b0165-4404-491a-a",
+      "created_at": "2026-04-23T19:39:23.836906+00:00"
     },
-    "f61dc16a-1462-47dc-9": {
+    "3f3f7aae-5297-407c-9": {
       "org_id": "demo_org",
       "raw_text": "Issue61",
       "zone": "City61",
@@ -2662,10 +2809,10 @@
       "affected_count": 610,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "f61dc16a-1462-47dc-9",
-      "created_at": "2026-04-23T19:01:13.912071+00:00"
+      "_id": "3f3f7aae-5297-407c-9",
+      "created_at": "2026-04-23T19:39:23.846530+00:00"
     },
-    "05bdda8c-2615-4e7c-8": {
+    "2b7bc385-99cc-42cc-9": {
       "org_id": "demo_org",
       "raw_text": "Issue62",
       "zone": "City62",
@@ -2675,10 +2822,10 @@
       "affected_count": 620,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "05bdda8c-2615-4e7c-8",
-      "created_at": "2026-04-23T19:01:13.921026+00:00"
+      "_id": "2b7bc385-99cc-42cc-9",
+      "created_at": "2026-04-23T19:39:23.856397+00:00"
     },
-    "ad4dbaf6-4066-4426-8": {
+    "54ba151f-a4cd-44fc-b": {
       "org_id": "demo_org",
       "raw_text": "Issue63",
       "zone": "City63",
@@ -2688,10 +2835,10 @@
       "affected_count": 630,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "ad4dbaf6-4066-4426-8",
-      "created_at": "2026-04-23T19:01:13.930624+00:00"
+      "_id": "54ba151f-a4cd-44fc-b",
+      "created_at": "2026-04-23T19:39:23.871218+00:00"
     },
-    "38315d5b-e65a-4e63-b": {
+    "14cc3bce-1653-4194-a": {
       "org_id": "demo_org",
       "raw_text": "Issue64",
       "zone": "City64",
@@ -2701,10 +2848,10 @@
       "affected_count": 640,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "38315d5b-e65a-4e63-b",
-      "created_at": "2026-04-23T19:01:14.063788+00:00"
+      "_id": "14cc3bce-1653-4194-a",
+      "created_at": "2026-04-23T19:39:23.883926+00:00"
     },
-    "1aa182f3-7d32-4f1b-a": {
+    "57780888-e73c-406a-a": {
       "org_id": "demo_org",
       "raw_text": "Issue65",
       "zone": "City65",
@@ -2714,10 +2861,10 @@
       "affected_count": 650,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "1aa182f3-7d32-4f1b-a",
-      "created_at": "2026-04-23T19:01:14.070013+00:00"
+      "_id": "57780888-e73c-406a-a",
+      "created_at": "2026-04-23T19:39:23.895366+00:00"
     },
-    "a81c9747-126f-46c4-9": {
+    "b1693c22-ce08-45c0-a": {
       "org_id": "demo_org",
       "raw_text": "Issue66",
       "zone": "City66",
@@ -2727,10 +2874,10 @@
       "affected_count": 660,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "a81c9747-126f-46c4-9",
-      "created_at": "2026-04-23T19:01:14.081239+00:00"
+      "_id": "b1693c22-ce08-45c0-a",
+      "created_at": "2026-04-23T19:39:23.906566+00:00"
     },
-    "27225568-41d2-41c3-b": {
+    "37ac144a-37fe-408d-9": {
       "org_id": "demo_org",
       "raw_text": "Issue67",
       "zone": "City67",
@@ -2740,10 +2887,10 @@
       "affected_count": 670,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "27225568-41d2-41c3-b",
-      "created_at": "2026-04-23T19:01:14.089727+00:00"
+      "_id": "37ac144a-37fe-408d-9",
+      "created_at": "2026-04-23T19:39:23.916326+00:00"
     },
-    "7aa36d15-55d5-4692-8": {
+    "843a0884-059b-4463-8": {
       "org_id": "demo_org",
       "raw_text": "Issue68",
       "zone": "City68",
@@ -2753,10 +2900,10 @@
       "affected_count": 680,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "7aa36d15-55d5-4692-8",
-      "created_at": "2026-04-23T19:01:14.098594+00:00"
+      "_id": "843a0884-059b-4463-8",
+      "created_at": "2026-04-23T19:39:23.924959+00:00"
     },
-    "012173d7-0872-478d-b": {
+    "1e6cf7e6-2cb0-4b27-a": {
       "org_id": "demo_org",
       "raw_text": "Issue69",
       "zone": "City69",
@@ -2766,10 +2913,10 @@
       "affected_count": 690,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "012173d7-0872-478d-b",
-      "created_at": "2026-04-23T19:01:14.106987+00:00"
+      "_id": "1e6cf7e6-2cb0-4b27-a",
+      "created_at": "2026-04-23T19:39:23.934455+00:00"
     },
-    "45c16015-c23f-448e-a": {
+    "9f910f40-973c-4486-a": {
       "org_id": "demo_org",
       "raw_text": "Issue70",
       "zone": "City70",
@@ -2779,10 +2926,10 @@
       "affected_count": 700,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "45c16015-c23f-448e-a",
-      "created_at": "2026-04-23T19:01:14.113797+00:00"
+      "_id": "9f910f40-973c-4486-a",
+      "created_at": "2026-04-23T19:39:23.944083+00:00"
     },
-    "2f0d03ca-073f-4a82-8": {
+    "0b85a6a7-5a58-4eae-8": {
       "org_id": "demo_org",
       "raw_text": "Issue71",
       "zone": "City71",
@@ -2792,10 +2939,10 @@
       "affected_count": 710,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "2f0d03ca-073f-4a82-8",
-      "created_at": "2026-04-23T19:01:14.124354+00:00"
+      "_id": "0b85a6a7-5a58-4eae-8",
+      "created_at": "2026-04-23T19:39:23.953054+00:00"
     },
-    "ecf00910-9690-42a5-8": {
+    "ff5b119c-f1a9-4214-9": {
       "org_id": "demo_org",
       "raw_text": "Issue72",
       "zone": "City72",
@@ -2805,10 +2952,10 @@
       "affected_count": 720,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "ecf00910-9690-42a5-8",
-      "created_at": "2026-04-23T19:01:14.130976+00:00"
+      "_id": "ff5b119c-f1a9-4214-9",
+      "created_at": "2026-04-23T19:39:23.962769+00:00"
     },
-    "f850ccaf-5bfe-4f56-9": {
+    "ab26801c-e560-45af-b": {
       "org_id": "demo_org",
       "raw_text": "Issue73",
       "zone": "City73",
@@ -2818,10 +2965,10 @@
       "affected_count": 730,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "f850ccaf-5bfe-4f56-9",
-      "created_at": "2026-04-23T19:01:14.140906+00:00"
+      "_id": "ab26801c-e560-45af-b",
+      "created_at": "2026-04-23T19:39:23.972416+00:00"
     },
-    "6d4f17d8-f849-4899-b": {
+    "ba4e19ed-b821-433c-a": {
       "org_id": "demo_org",
       "raw_text": "Issue74",
       "zone": "City74",
@@ -2831,10 +2978,10 @@
       "affected_count": 740,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "6d4f17d8-f849-4899-b",
-      "created_at": "2026-04-23T19:01:14.148575+00:00"
+      "_id": "ba4e19ed-b821-433c-a",
+      "created_at": "2026-04-23T19:39:23.981680+00:00"
     },
-    "20c66485-d70e-4057-8": {
+    "e9ae47b6-d0bd-4f3c-9": {
       "org_id": "demo_org",
       "raw_text": "Issue75",
       "zone": "City75",
@@ -2844,10 +2991,10 @@
       "affected_count": 750,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "20c66485-d70e-4057-8",
-      "created_at": "2026-04-23T19:01:14.159066+00:00"
+      "_id": "e9ae47b6-d0bd-4f3c-9",
+      "created_at": "2026-04-23T19:39:23.989387+00:00"
     },
-    "cd02968d-af73-4b39-8": {
+    "02415717-044e-4ffa-9": {
       "org_id": "demo_org",
       "raw_text": "Issue76",
       "zone": "City76",
@@ -2857,10 +3004,10 @@
       "affected_count": 760,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "cd02968d-af73-4b39-8",
-      "created_at": "2026-04-23T19:01:14.163999+00:00"
+      "_id": "02415717-044e-4ffa-9",
+      "created_at": "2026-04-23T19:39:24.000125+00:00"
     },
-    "9a2d06af-e96b-4397-8": {
+    "26f98e5e-24cd-4896-b": {
       "org_id": "demo_org",
       "raw_text": "Issue77",
       "zone": "City77",
@@ -2870,10 +3017,10 @@
       "affected_count": 770,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "9a2d06af-e96b-4397-8",
-      "created_at": "2026-04-23T19:01:14.177427+00:00"
+      "_id": "26f98e5e-24cd-4896-b",
+      "created_at": "2026-04-23T19:39:24.010199+00:00"
     },
-    "3505e3af-c3be-4937-8": {
+    "7650034d-47d0-415c-9": {
       "org_id": "demo_org",
       "raw_text": "Issue78",
       "zone": "City78",
@@ -2883,10 +3030,10 @@
       "affected_count": 780,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "3505e3af-c3be-4937-8",
-      "created_at": "2026-04-23T19:01:14.183679+00:00"
+      "_id": "7650034d-47d0-415c-9",
+      "created_at": "2026-04-23T19:39:24.019337+00:00"
     },
-    "9abfd017-3de9-4f3f-b": {
+    "85a60248-d278-44b9-a": {
       "org_id": "demo_org",
       "raw_text": "Issue79",
       "zone": "City79",
@@ -2896,10 +3043,10 @@
       "affected_count": 790,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "9abfd017-3de9-4f3f-b",
-      "created_at": "2026-04-23T19:01:14.194708+00:00"
+      "_id": "85a60248-d278-44b9-a",
+      "created_at": "2026-04-23T19:39:24.028715+00:00"
     },
-    "8eef18c1-04de-4fec-9": {
+    "b15ac4db-67cb-4889-8": {
       "org_id": "demo_org",
       "raw_text": "Issue80",
       "zone": "City80",
@@ -2909,10 +3056,10 @@
       "affected_count": 800,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "8eef18c1-04de-4fec-9",
-      "created_at": "2026-04-23T19:01:14.202791+00:00"
+      "_id": "b15ac4db-67cb-4889-8",
+      "created_at": "2026-04-23T19:39:24.037542+00:00"
     },
-    "cf22bd2a-3736-426a-8": {
+    "75d606fd-bddf-45ec-9": {
       "org_id": "demo_org",
       "raw_text": "Issue81",
       "zone": "City81",
@@ -2922,10 +3069,10 @@
       "affected_count": 810,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "cf22bd2a-3736-426a-8",
-      "created_at": "2026-04-23T19:01:14.210625+00:00"
+      "_id": "75d606fd-bddf-45ec-9",
+      "created_at": "2026-04-23T19:39:24.048591+00:00"
     },
-    "2cac6f32-e375-4473-b": {
+    "87e9fa00-b32e-4f75-a": {
       "org_id": "demo_org",
       "raw_text": "Issue82",
       "zone": "City82",
@@ -2935,10 +3082,10 @@
       "affected_count": 820,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "2cac6f32-e375-4473-b",
-      "created_at": "2026-04-23T19:01:14.219838+00:00"
+      "_id": "87e9fa00-b32e-4f75-a",
+      "created_at": "2026-04-23T19:39:24.058090+00:00"
     },
-    "40629fe8-eed8-4b54-9": {
+    "fea5ad9b-8f71-423b-9": {
       "org_id": "demo_org",
       "raw_text": "Issue83",
       "zone": "City83",
@@ -2948,10 +3095,10 @@
       "affected_count": 830,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "40629fe8-eed8-4b54-9",
-      "created_at": "2026-04-23T19:01:14.224046+00:00"
+      "_id": "fea5ad9b-8f71-423b-9",
+      "created_at": "2026-04-23T19:39:24.069081+00:00"
     },
-    "40945128-c131-425d-8": {
+    "5d735e6e-150e-4cc0-9": {
       "org_id": "demo_org",
       "raw_text": "Issue84",
       "zone": "City84",
@@ -2961,10 +3108,10 @@
       "affected_count": 840,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "40945128-c131-425d-8",
-      "created_at": "2026-04-23T19:01:14.235960+00:00"
+      "_id": "5d735e6e-150e-4cc0-9",
+      "created_at": "2026-04-23T19:39:24.077643+00:00"
     },
-    "1baa6434-140c-4797-a": {
+    "b2aa6d4e-19d7-426d-a": {
       "org_id": "demo_org",
       "raw_text": "Issue85",
       "zone": "City85",
@@ -2974,10 +3121,10 @@
       "affected_count": 850,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "1baa6434-140c-4797-a",
-      "created_at": "2026-04-23T19:01:14.245889+00:00"
+      "_id": "b2aa6d4e-19d7-426d-a",
+      "created_at": "2026-04-23T19:39:24.087234+00:00"
     },
-    "3c1efdde-8344-448c-8": {
+    "0f0f3025-93a3-49bc-8": {
       "org_id": "demo_org",
       "raw_text": "Issue86",
       "zone": "City86",
@@ -2987,10 +3134,10 @@
       "affected_count": 860,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "3c1efdde-8344-448c-8",
-      "created_at": "2026-04-23T19:01:14.254675+00:00"
+      "_id": "0f0f3025-93a3-49bc-8",
+      "created_at": "2026-04-23T19:39:24.096757+00:00"
     },
-    "85da950b-af54-4afd-8": {
+    "9a44f70c-4eae-478d-8": {
       "org_id": "demo_org",
       "raw_text": "Issue87",
       "zone": "City87",
@@ -3000,10 +3147,10 @@
       "affected_count": 870,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "85da950b-af54-4afd-8",
-      "created_at": "2026-04-23T19:01:14.263540+00:00"
+      "_id": "9a44f70c-4eae-478d-8",
+      "created_at": "2026-04-23T19:39:24.106186+00:00"
     },
-    "dd8dcc94-e659-4ce1-9": {
+    "3e600265-84c9-485a-b": {
       "org_id": "demo_org",
       "raw_text": "Issue88",
       "zone": "City88",
@@ -3013,10 +3160,10 @@
       "affected_count": 880,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "dd8dcc94-e659-4ce1-9",
-      "created_at": "2026-04-23T19:01:14.273963+00:00"
+      "_id": "3e600265-84c9-485a-b",
+      "created_at": "2026-04-23T19:39:24.115978+00:00"
     },
-    "914b89f8-b751-4866-a": {
+    "496dae09-a4f3-48d7-8": {
       "org_id": "demo_org",
       "raw_text": "Issue89",
       "zone": "City89",
@@ -3026,10 +3173,10 @@
       "affected_count": 890,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "914b89f8-b751-4866-a",
-      "created_at": "2026-04-23T19:01:14.283248+00:00"
+      "_id": "496dae09-a4f3-48d7-8",
+      "created_at": "2026-04-23T19:39:24.126426+00:00"
     },
-    "86e854c6-7389-4e10-b": {
+    "2ca3656a-103c-4548-8": {
       "org_id": "demo_org",
       "raw_text": "Issue90",
       "zone": "City90",
@@ -3039,10 +3186,10 @@
       "affected_count": 900,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "86e854c6-7389-4e10-b",
-      "created_at": "2026-04-23T19:01:14.292933+00:00"
+      "_id": "2ca3656a-103c-4548-8",
+      "created_at": "2026-04-23T19:39:24.135231+00:00"
     },
-    "5051b1a9-f678-4da4-b": {
+    "e830eca1-2536-464c-8": {
       "org_id": "demo_org",
       "raw_text": "Issue91",
       "zone": "City91",
@@ -3052,10 +3199,10 @@
       "affected_count": 910,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "5051b1a9-f678-4da4-b",
-      "created_at": "2026-04-23T19:01:14.302352+00:00"
+      "_id": "e830eca1-2536-464c-8",
+      "created_at": "2026-04-23T19:39:24.145942+00:00"
     },
-    "6c82eb5e-4881-4b22-b": {
+    "d91c2930-9993-4d43-a": {
       "org_id": "demo_org",
       "raw_text": "Issue92",
       "zone": "City92",
@@ -3065,10 +3212,10 @@
       "affected_count": 920,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "6c82eb5e-4881-4b22-b",
-      "created_at": "2026-04-23T19:01:14.310655+00:00"
+      "_id": "d91c2930-9993-4d43-a",
+      "created_at": "2026-04-23T19:39:24.155299+00:00"
     },
-    "2fda5bb7-fc74-4e36-b": {
+    "dad23454-9d76-4a7a-8": {
       "org_id": "demo_org",
       "raw_text": "Issue93",
       "zone": "City93",
@@ -3078,10 +3225,10 @@
       "affected_count": 930,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "2fda5bb7-fc74-4e36-b",
-      "created_at": "2026-04-23T19:01:14.320227+00:00"
+      "_id": "dad23454-9d76-4a7a-8",
+      "created_at": "2026-04-23T19:39:24.163816+00:00"
     },
-    "b5cc7945-2311-4cdc-9": {
+    "2811ee59-25e6-4187-9": {
       "org_id": "demo_org",
       "raw_text": "Issue94",
       "zone": "City94",
@@ -3091,10 +3238,10 @@
       "affected_count": 940,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "b5cc7945-2311-4cdc-9",
-      "created_at": "2026-04-23T19:01:14.324401+00:00"
+      "_id": "2811ee59-25e6-4187-9",
+      "created_at": "2026-04-23T19:39:24.174403+00:00"
     },
-    "b64fbba7-dca1-469c-8": {
+    "5d1ef2d9-4252-4e80-9": {
       "org_id": "demo_org",
       "raw_text": "Issue95",
       "zone": "City95",
@@ -3104,10 +3251,10 @@
       "affected_count": 950,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "b64fbba7-dca1-469c-8",
-      "created_at": "2026-04-23T19:01:14.341280+00:00"
+      "_id": "5d1ef2d9-4252-4e80-9",
+      "created_at": "2026-04-23T19:39:24.182878+00:00"
     },
-    "a3f5cb88-3b55-44d4-b": {
+    "5c8b7418-015a-479b-a": {
       "org_id": "demo_org",
       "raw_text": "Issue96",
       "zone": "City96",
@@ -3117,10 +3264,10 @@
       "affected_count": 960,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "a3f5cb88-3b55-44d4-b",
-      "created_at": "2026-04-23T19:01:14.351483+00:00"
+      "_id": "5c8b7418-015a-479b-a",
+      "created_at": "2026-04-23T19:39:24.193198+00:00"
     },
-    "1390c9c1-e3ca-4c0c-a": {
+    "acb9ac2f-a6d8-40b4-a": {
       "org_id": "demo_org",
       "raw_text": "Issue97",
       "zone": "City97",
@@ -3130,10 +3277,10 @@
       "affected_count": 970,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "1390c9c1-e3ca-4c0c-a",
-      "created_at": "2026-04-23T19:01:14.360388+00:00"
+      "_id": "acb9ac2f-a6d8-40b4-a",
+      "created_at": "2026-04-23T19:39:24.203722+00:00"
     },
-    "c2774265-8a97-4eed-b": {
+    "e9ef01f0-f6d4-4e2b-a": {
       "org_id": "demo_org",
       "raw_text": "Issue98",
       "zone": "City98",
@@ -3143,10 +3290,10 @@
       "affected_count": 980,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "c2774265-8a97-4eed-b",
-      "created_at": "2026-04-23T19:01:14.370166+00:00"
+      "_id": "e9ef01f0-f6d4-4e2b-a",
+      "created_at": "2026-04-23T19:39:24.214565+00:00"
     },
-    "f215eec1-d628-4630-9": {
+    "38c98444-693d-4952-a": {
       "org_id": "demo_org",
       "raw_text": "Issue99",
       "zone": "City99",
@@ -3156,18 +3303,18 @@
       "affected_count": 990,
       "urgency_score": 0,
       "urgency_label": "low",
-      "_id": "f215eec1-d628-4630-9",
-      "created_at": "2026-04-23T19:01:14.381223+00:00"
+      "_id": "38c98444-693d-4952-a",
+      "created_at": "2026-04-23T19:39:24.225774+00:00"
     },
-    "ea8514f4-839d-4383-b": {
+    "ba5fff7f-ac99-47df-8": {
       "raw_text": "Severe flooding in Dharavi area. 500 families displaced. Need food and shelter urgently.",
       "source": "manual",
       "status": "open",
       "urgency_score": 99,
       "urgency_label": "critical",
       "org_id": "demo_org",
-      "_id": "ea8514f4-839d-4383-b",
-      "created_at": "2026-04-23T19:01:14.397902+00:00",
+      "_id": "ba5fff7f-ac99-47df-8",
+      "created_at": "2026-04-23T19:39:24.239754+00:00",
       "language_detected": "en",
       "issue_type": "food",
       "zone": "Dharavi",
@@ -3182,21 +3329,21 @@
       "recommended_volunteer_count": 5,
       "report_frequency_30d": 2,
       "coordinator_explanation": "A food issue in Dharavi has been reported 2 times with severity 9/10, affecting approximately 500 people. This situation requires immediate coordinator attention.",
-      "processed_at": "2026-04-23T19:01:15.035491+00:00",
+      "processed_at": "2026-04-23T19:39:24.731916+00:00",
       "trend_direction": "stable",
       "lat": 19.044463,
       "lng": 72.8586177,
-      "updated_at": "2026-04-23T19:01:15.036055+00:00"
+      "updated_at": "2026-04-23T19:39:24.731916+00:00"
     },
-    "b0f31ad8-0fcf-4648-b": {
+    "0d8c011d-8308-4f09-b": {
       "raw_text": "Water crisis in Mumbai, Maharashtra. 200 families affected.",
       "source": "manual",
       "status": "open",
       "urgency_score": 35,
       "urgency_label": "medium",
       "org_id": "demo_org",
-      "_id": "b0f31ad8-0fcf-4648-b",
-      "created_at": "2026-04-23T19:01:15.050677+00:00",
+      "_id": "0d8c011d-8308-4f09-b",
+      "created_at": "2026-04-23T19:39:24.746357+00:00",
       "language_detected": "en",
       "issue_type": "water",
       "zone": "Mumbai",
@@ -3211,21 +3358,21 @@
       "recommended_volunteer_count": 5,
       "report_frequency_30d": 1,
       "coordinator_explanation": "A water issue in Mumbai has been reported 1 times with severity 5/10, affecting approximately 200 people. This situation requires immediate coordinator attention.",
-      "processed_at": "2026-04-23T19:01:15.451662+00:00",
+      "processed_at": "2026-04-23T19:39:25.139560+00:00",
       "trend_direction": "stable",
       "lat": 19.054999,
       "lng": 72.8692035,
-      "updated_at": "2026-04-23T19:01:15.451662+00:00"
+      "updated_at": "2026-04-23T19:39:25.139560+00:00"
     },
-    "64b046d4-683b-49f0-a": {
+    "d666e971-e3b4-4899-b": {
       "raw_text": "Drought in Churu district, Rajasthan. 500 people without water for 5 days. Urgent help needed.",
       "source": "manual",
       "status": "open",
       "urgency_score": 62,
       "urgency_label": "high",
       "org_id": "demo_org",
-      "_id": "64b046d4-683b-49f0-a",
-      "created_at": "2026-04-23T19:01:15.467601+00:00",
+      "_id": "d666e971-e3b4-4899-b",
+      "created_at": "2026-04-23T19:39:25.155895+00:00",
       "language_detected": "en",
       "issue_type": "water",
       "zone": "Churu",
@@ -3240,21 +3387,21 @@
       "recommended_volunteer_count": 5,
       "report_frequency_30d": 1,
       "coordinator_explanation": "A water issue in Churu has been reported 1 times with severity 9/10, affecting approximately 500 people. This situation requires immediate coordinator attention.",
-      "processed_at": "2026-04-23T19:01:15.863874+00:00",
+      "processed_at": "2026-04-23T19:39:25.651471+00:00",
       "trend_direction": "stable",
       "lat": 28.2047781,
       "lng": 74.6912996,
-      "updated_at": "2026-04-23T19:01:15.863874+00:00"
+      "updated_at": "2026-04-23T19:39:25.651471+00:00"
     },
-    "c865b2a9-1828-4f96-a": {
+    "360e983c-49d7-4091-9": {
       "raw_text": "\u092e\u0941\u0902\u092c\u0908 \u0915\u0947 \u0927\u093e\u0930\u093e\u0935\u0940 \u0907\u0932\u093e\u0915\u0947 \u092e\u0947\u0902 \u092c\u093e\u0922\u093c\u0964 500 \u092a\u0930\u093f\u0935\u093e\u0930 \u092c\u0947\u0918\u0930\u0964 \u0916\u093e\u0928\u093e \u0914\u0930 \u092a\u093e\u0928\u0940 \u0915\u0940 \u091c\u0930\u0942\u0930\u0924\u0964",
       "source": "manual",
       "status": "open",
       "urgency_score": 100,
       "urgency_label": "critical",
       "org_id": "demo_org",
-      "_id": "c865b2a9-1828-4f96-a",
-      "created_at": "2026-04-23T19:01:15.882300+00:00",
+      "_id": "360e983c-49d7-4091-9",
+      "created_at": "2026-04-23T19:39:25.668799+00:00",
       "language_detected": "hi",
       "issue_type": "food",
       "zone": "Dharavi",
@@ -3269,11 +3416,11 @@
       "recommended_volunteer_count": 5,
       "report_frequency_30d": 3,
       "coordinator_explanation": "A food issue in Dharavi has been reported 3 times with severity 8/10, affecting approximately 500 people. This situation requires immediate coordinator attention.",
-      "processed_at": "2026-04-23T19:01:16.436461+00:00",
+      "processed_at": "2026-04-23T19:39:27.494112+00:00",
       "trend_direction": "stable",
       "lat": 19.044463,
       "lng": 72.8586177,
-      "updated_at": "2026-04-23T19:01:16.436461+00:00"
+      "updated_at": "2026-04-23T19:39:27.494112+00:00"
     }
   },
   "users": {
@@ -3283,7 +3430,7 @@
       "display_name": "Demo Organization",
       "role": "organization",
       "_id": "u1",
-      "created_at": "2026-04-23T19:00:47.757639+00:00"
+      "created_at": "2026-04-23T19:33:06.636131+00:00"
     },
     "u2": {
       "email": "volunteer@allocare.org",
@@ -3291,7 +3438,7 @@
       "display_name": "Demo Volunteer",
       "role": "volunteer",
       "_id": "u2",
-      "created_at": "2026-04-23T19:00:47.762559+00:00"
+      "created_at": "2026-04-23T19:33:06.641036+00:00"
     },
     "c6c9e649-1826-4ebb-a": {
       "email": "testorg@test.com",
@@ -3332,38 +3479,185 @@
       "role": "volunteer",
       "_id": "19c62a57-6018-4478-b",
       "created_at": "2026-04-23T19:00:47.193032+00:00"
+    },
+    "7d06d49b-784c-40d9-8": {
+      "email": "testorg_1776972103@test.com",
+      "password_hash": "ecd71870d1963316a97e3ac3408c9835ad8cf0f3c1bc703527c30265534f75ae",
+      "display_name": "Test NGO",
+      "role": "organization",
+      "_id": "7d06d49b-784c-40d9-8",
+      "created_at": "2026-04-23T19:21:43.629379+00:00"
+    },
+    "5f2d6493-4507-4297-9": {
+      "email": "testvol_1776972103@test.com",
+      "password_hash": "b6a1283385dd04a8a5724dfd3fc1779ef1c08d752c65db1bdd634a3034a3ca00",
+      "display_name": "Test Volunteer",
+      "role": "volunteer",
+      "_id": "5f2d6493-4507-4297-9",
+      "created_at": "2026-04-23T19:21:43.639571+00:00"
+    },
+    "ed40347a-f5e0-486a-9": {
+      "email": "testvol_role_1776972104@test.com",
+      "password_hash": "ecd71870d1963316a97e3ac3408c9835ad8cf0f3c1bc703527c30265534f75ae",
+      "display_name": "Role Test Vol",
+      "role": "volunteer",
+      "_id": "ed40347a-f5e0-486a-9",
+      "created_at": "2026-04-23T19:21:44.800735+00:00"
+    },
+    "d0ba847c-7b3d-4e99-a": {
+      "email": "testorg_role_1776972104@test.com",
+      "password_hash": "ecd71870d1963316a97e3ac3408c9835ad8cf0f3c1bc703527c30265534f75ae",
+      "display_name": "Role Test NGO",
+      "role": "organization",
+      "_id": "d0ba847c-7b3d-4e99-a",
+      "created_at": "2026-04-23T19:21:44.818033+00:00"
+    },
+    "13c4da59-0fab-4ef7-9": {
+      "email": "newvol_1776972112@test.com",
+      "password_hash": "ecd71870d1963316a97e3ac3408c9835ad8cf0f3c1bc703527c30265534f75ae",
+      "display_name": "New Vol",
+      "role": "volunteer",
+      "_id": "13c4da59-0fab-4ef7-9",
+      "created_at": "2026-04-23T19:21:52.646132+00:00"
+    },
+    "a3f03669-10fa-4385-a": {
+      "email": "testorg_1776972682@test.com",
+      "password_hash": "ecd71870d1963316a97e3ac3408c9835ad8cf0f3c1bc703527c30265534f75ae",
+      "display_name": "Test NGO",
+      "role": "organization",
+      "_id": "a3f03669-10fa-4385-a",
+      "created_at": "2026-04-23T19:31:22.036353+00:00"
+    },
+    "43854aae-c58d-4b3a-a": {
+      "email": "testvol_1776972682@test.com",
+      "password_hash": "b6a1283385dd04a8a5724dfd3fc1779ef1c08d752c65db1bdd634a3034a3ca00",
+      "display_name": "Test Volunteer",
+      "role": "volunteer",
+      "_id": "43854aae-c58d-4b3a-a",
+      "created_at": "2026-04-23T19:31:22.046320+00:00"
+    },
+    "3fea7ab3-d998-4d81-8": {
+      "email": "testvol_role_1776972683@test.com",
+      "password_hash": "ecd71870d1963316a97e3ac3408c9835ad8cf0f3c1bc703527c30265534f75ae",
+      "display_name": "Role Test Vol",
+      "role": "volunteer",
+      "_id": "3fea7ab3-d998-4d81-8",
+      "created_at": "2026-04-23T19:31:23.058358+00:00"
+    },
+    "79276137-3256-4925-8": {
+      "email": "testorg_role_1776972683@test.com",
+      "password_hash": "ecd71870d1963316a97e3ac3408c9835ad8cf0f3c1bc703527c30265534f75ae",
+      "display_name": "Role Test NGO",
+      "role": "organization",
+      "_id": "79276137-3256-4925-8",
+      "created_at": "2026-04-23T19:31:23.075505+00:00"
+    },
+    "d4e1fda0-6a28-4d5f-a": {
+      "email": "testorg_1776972786@test.com",
+      "password_hash": "ecd71870d1963316a97e3ac3408c9835ad8cf0f3c1bc703527c30265534f75ae",
+      "display_name": "Test NGO",
+      "role": "organization",
+      "_id": "d4e1fda0-6a28-4d5f-a",
+      "created_at": "2026-04-23T19:33:06.065736+00:00"
+    },
+    "acc895fc-15bf-493d-b": {
+      "email": "testvol_1776972786@test.com",
+      "password_hash": "b6a1283385dd04a8a5724dfd3fc1779ef1c08d752c65db1bdd634a3034a3ca00",
+      "display_name": "Test Volunteer",
+      "role": "volunteer",
+      "_id": "acc895fc-15bf-493d-b",
+      "created_at": "2026-04-23T19:33:06.075253+00:00"
+    },
+    "f26d2860-15c2-43ff-a": {
+      "email": "testvol_role_1776972787@test.com",
+      "password_hash": "ecd71870d1963316a97e3ac3408c9835ad8cf0f3c1bc703527c30265534f75ae",
+      "display_name": "Role Test Vol",
+      "role": "volunteer",
+      "_id": "f26d2860-15c2-43ff-a",
+      "created_at": "2026-04-23T19:33:07.099192+00:00"
+    },
+    "12ac5ce1-c031-4267-8": {
+      "email": "testorg_role_1776972787@test.com",
+      "password_hash": "ecd71870d1963316a97e3ac3408c9835ad8cf0f3c1bc703527c30265534f75ae",
+      "display_name": "Role Test NGO",
+      "role": "organization",
+      "_id": "12ac5ce1-c031-4267-8",
+      "created_at": "2026-04-23T19:33:07.125375+00:00"
     }
   },
   "assignments": {
-    "7a0c22dc-2f20-4e61-8": {
+    "e82da439-9bdb-484c-a": {
       "need_report_id": "n1",
       "volunteer_id": "v4",
       "org_id": "demo_org",
       "status": "pending",
       "match_score": 0.85,
       "match_explanation": "Top match by skill and proximity",
-      "_id": "7a0c22dc-2f20-4e61-8",
-      "created_at": "2026-04-23T19:00:47.858768+00:00"
+      "_id": "e82da439-9bdb-484c-a",
+      "created_at": "2026-04-23T19:33:06.737148+00:00"
     },
-    "8f4c20fd-287b-460b-a": {
+    "c9444d27-6cc5-44af-9": {
       "need_report_id": "n3",
       "volunteer_id": "v4",
       "org_id": "demo_org",
       "status": "pending",
       "match_score": 0,
       "match_explanation": "",
-      "_id": "8f4c20fd-287b-460b-a",
-      "created_at": "2026-04-23T19:00:47.889872+00:00"
+      "_id": "c9444d27-6cc5-44af-9",
+      "created_at": "2026-04-23T19:33:06.764378+00:00"
     },
-    "5a8f4756-15a6-4950-8": {
-      "need_report_id": "a6c3bd45-a5ae-4c22-a",
+    "e890d1cb-44cb-4e5a-9": {
+      "need_report_id": "0267e500-a82d-4f45-8",
       "volunteer_id": "v4",
       "org_id": "demo_org",
       "status": "pending",
       "match_score": 0,
       "match_explanation": "",
-      "_id": "5a8f4756-15a6-4950-8",
-      "created_at": "2026-04-23T19:00:47.928667+00:00"
+      "_id": "e890d1cb-44cb-4e5a-9",
+      "created_at": "2026-04-23T19:33:06.799716+00:00"
+    },
+    "a59ba64e-ec7a-452a-8": {
+      "need_report_id": "n2",
+      "volunteer_id": "v4",
+      "org_id": "demo_org",
+      "status": "pending",
+      "match_score": 0,
+      "match_explanation": "",
+      "_id": "a59ba64e-ec7a-452a-8",
+      "created_at": "2026-04-23T19:33:07.216017+00:00"
+    },
+    "edf4396b-c21a-4366-a": {
+      "need_report_id": "f3cc947c-1390-4b4e-9",
+      "volunteer_id": "v4",
+      "org_id": "demo_org",
+      "status": "pending",
+      "match_score": 0,
+      "match_explanation": "",
+      "_id": "edf4396b-c21a-4366-a",
+      "created_at": "2026-04-23T19:38:37.952367+00:00"
+    },
+    "9cea74a0-d8c2-473b-a": {
+      "need_report_id": "da0092b9-afc0-4c1a-8",
+      "volunteer_id": "v4",
+      "org_id": "demo_org",
+      "status": "pending",
+      "match_score": 0,
+      "match_explanation": "",
+      "_id": "9cea74a0-d8c2-473b-a",
+      "created_at": "2026-04-23T19:38:38.005907+00:00"
+    },
+    "b3c15d58-b68b-4f0a-9": {
+      "need_report_id": "14229a99-569f-4c75-8",
+      "volunteer_id": "v4",
+      "org_id": "demo_org",
+      "status": "completed",
+      "match_score": 0.92,
+      "match_explanation": "Top match for water crisis skills",
+      "_id": "b3c15d58-b68b-4f0a-9",
+      "created_at": "2026-04-23T19:38:38.068015+00:00",
+      "proof_photo_url": "",
+      "volunteer_impact_points_awarded": 20,
+      "updated_at": "2026-04-23T19:38:38.093069+00:00"
     }
   }
 }

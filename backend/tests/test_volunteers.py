@@ -23,13 +23,17 @@ class TestListVolunteers:
     def test_volunteers_have_coordinates(self, client):
         """Every seeded volunteer must have lat/lng."""
         vols = client.get("/api/volunteers?limit=100").json()["volunteers"]
-        no_coords = [v["display_name"] for v in vols if not v.get("lat") or not v.get("lng")]
+        # Exclude dynamically registered test volunteers (no lat/lng)
+        seeded = [v for v in vols if not v["display_name"].startswith(("Role Test", "New Vol", "Test "))]
+        no_coords = [v["display_name"] for v in seeded if not v.get("lat") or not v.get("lng")]
         assert len(no_coords) == 0, f"Volunteers missing coordinates: {no_coords}"
 
     def test_volunteers_have_skills(self, client):
-        """Every volunteer must have at least one skill."""
+        """Every seeded volunteer must have at least one skill."""
         vols = client.get("/api/volunteers?limit=100").json()["volunteers"]
-        no_skills = [v["display_name"] for v in vols if not v.get("skills")]
+        # Exclude dynamically registered test volunteers
+        seeded = [v for v in vols if not v["display_name"].startswith(("Role Test", "New Vol", "Test "))]
+        no_skills = [v["display_name"] for v in seeded if not v.get("skills")]
         assert len(no_skills) == 0, f"Volunteers missing skills: {no_skills}"
 
 

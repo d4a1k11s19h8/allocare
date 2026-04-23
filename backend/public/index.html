@@ -85,6 +85,10 @@
                     <span class="material-icons-outlined" style="font-size:14px">lock</span>
                     Secure Demo (admin@allocare.org / admin123)
                 </p>
+                <p class="auth-note" style="margin-top: 4px;">
+                    <span class="material-icons-outlined" style="font-size:14px">volunteer_activism</span>
+                    Volunteer Demo (volunteer@allocare.org / vol123)
+                </p>
             </div>
 
             <div class="auth-card glass-card" id="register-card" style="display: none;">
@@ -175,19 +179,25 @@
                         <span class="material-icons-outlined">dashboard</span>
                         <span>Dashboard</span>
                     </a>
-                    <a href="#" class="nav-item" data-view="reports" onclick="switchView('reports')">
+                    <!-- Volunteer-only: My Tasks -->
+                    <a href="#" class="nav-item nav-volunteer-only" data-view="my-tasks" onclick="switchView('my-tasks')" style="display:none;">
+                        <span class="material-icons-outlined">assignment</span>
+                        <span>My Tasks</span>
+                    </a>
+                    <!-- Admin/Org-only nav items -->
+                    <a href="#" class="nav-item nav-admin-only" data-view="reports" onclick="switchView('reports')">
                         <span class="material-icons-outlined">description</span>
                         <span>Reports</span>
                     </a>
-                    <a href="#" class="nav-item" data-view="volunteers" onclick="switchView('volunteers')">
+                    <a href="#" class="nav-item nav-admin-only" data-view="volunteers" onclick="switchView('volunteers')">
                         <span class="material-icons-outlined">group</span>
                         <span>Volunteers</span>
                     </a>
-                    <a href="#" class="nav-item" data-view="analytics" onclick="switchView('analytics')">
+                    <a href="#" class="nav-item nav-admin-only" data-view="analytics" onclick="switchView('analytics')">
                         <span class="material-icons-outlined">insights</span>
                         <span>Analytics</span>
                     </a>
-                    <a href="#" class="nav-item" data-view="settings" onclick="switchView('settings')">
+                    <a href="#" class="nav-item nav-admin-only" data-view="settings" onclick="switchView('settings')">
                         <span class="material-icons-outlined">settings</span>
                         <span>Settings</span>
                     </a>
@@ -427,6 +437,56 @@
                         <span class="material-icons-outlined">health_and_safety</span>
                         Check API Health
                     </button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════ -->
+            <!-- MY TASKS VIEW (Volunteer-only) -->
+            <!-- ═══════════════════════════════════════════════════ -->
+            <div id="view-my-tasks" class="view-section" style="display:none; width: 100%; flex-direction: column; padding: var(--space-xl); overflow-y: auto;">
+                <div class="needs-header" style="margin-bottom: var(--space-md);">
+                    <h2><span class="material-icons-outlined">assignment</span> My Assigned Tasks</h2>
+                    <span class="panel-count" id="my-tasks-count">0 tasks</span>
+                </div>
+
+                <!-- Volunteer Profile Summary -->
+                <div class="glass-card" style="padding: var(--space-lg); margin-bottom: var(--space-lg);">
+                    <div style="display: flex; align-items: center; gap: var(--space-lg); flex-wrap: wrap;">
+                        <div class="user-avatar" style="width:56px;height:56px;font-size:22px;" id="vol-profile-avatar">V</div>
+                        <div style="flex:1;">
+                            <h3 style="margin:0; color: var(--text-primary);" id="vol-profile-name">Volunteer</h3>
+                            <p style="margin:4px 0 0; color: var(--text-muted); font-size: var(--font-sm);" id="vol-profile-skills">-</p>
+                        </div>
+                        <div style="display: flex; gap: var(--space-md);">
+                            <div class="impact-card" style="min-width:80px;">
+                                <span class="impact-value" id="vol-impact-points">0</span>
+                                <span class="impact-label">Points</span>
+                            </div>
+                            <div class="impact-card" style="min-width:80px;">
+                                <span class="impact-value" id="vol-impact-tasks">0</span>
+                                <span class="impact-label">Completed</span>
+                            </div>
+                            <div class="impact-card" style="min-width:80px;">
+                                <span class="impact-value" id="vol-impact-people">0</span>
+                                <span class="impact-label">Helped</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Task Cards Grid -->
+                <div id="my-tasks-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: var(--space-md);">
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <p>Loading your assignments...</p>
+                    </div>
+                </div>
+
+                <!-- Empty state -->
+                <div id="my-tasks-empty" style="display:none; text-align:center; padding: var(--space-xxl);">
+                    <span class="material-icons-outlined" style="font-size:64px; color: var(--text-muted);">task_alt</span>
+                    <h3 style="color: var(--text-secondary); margin-top: var(--space-md);">No Tasks Assigned Yet</h3>
+                    <p style="color: var(--text-muted);">When a coordinator matches you to a need, your tasks will appear here.</p>
                 </div>
             </div>
         </div>

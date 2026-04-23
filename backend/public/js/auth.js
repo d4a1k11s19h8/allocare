@@ -70,8 +70,15 @@ function signOut() {
   localStorage.removeItem("allocare_user");
   document.getElementById("dashboard").style.display = "none";
   document.getElementById("auth-screen").style.display = "flex";
-  // Reset UI
-  document.querySelectorAll(".nav-item").forEach(el => el.style.display = "flex");
+
+  // Reset role-based UI
+  const volStyle = document.getElementById("volunteer-restrictions");
+  if (volStyle) volStyle.remove();
+  document.querySelectorAll(".nav-volunteer-only").forEach(el => el.style.display = "none");
+  document.querySelectorAll(".nav-admin-only").forEach(el => el.style.display = "flex");
+  document.querySelectorAll(".nav-item").forEach(el => el.classList.remove("active"));
+  const dashNav = document.querySelector('[data-view="dashboard"]');
+  if (dashNav) dashNav.classList.add("active");
 }
 
 function showDashboard() {
@@ -85,28 +92,38 @@ function showDashboard() {
     document.getElementById("topbar-org").textContent = AppState.user.display_name || AppState.user.displayName || "User";
   }
 
-  // Role-based restrictions
-  if (AppState.user && AppState.user.role === "volunteer") {
-    // Hide coordinator-only tabs
-    document.querySelector('[data-view="reports"]').style.display = "none";
-    document.querySelector('[data-view="volunteers"]').style.display = "none";
-    document.querySelector('[data-view="analytics"]').style.display = "none";
-    document.querySelector('[data-view="settings"]').style.display = "none";
-    
-    // Hide matching and flag buttons on cards
+  const isVolunteer = AppState.user && AppState.user.role === "volunteer";
+
+  // ── Role-based sidebar visibility ──
+  document.querySelectorAll(".nav-volunteer-only").forEach(el => {
+    el.style.display = isVolunteer ? "flex" : "none";
+  });
+  document.querySelectorAll(".nav-admin-only").forEach(el => {
+    el.style.display = isVolunteer ? "none" : "flex";
+  });
+
+  // ── Role-based restrictions ──
+  // Remove any previous restriction style
+  const oldStyle = document.getElementById("volunteer-restrictions");
+  if (oldStyle) oldStyle.remove();
+
+  if (isVolunteer) {
     const style = document.createElement("style");
     style.id = "volunteer-restrictions";
     style.innerHTML = `
-      .card-action-btn { display: none !important; }
-      .upload-btn-container { display: none !important; }
+      /* Hide admin-only action buttons on need cards */
+      .card-action-btn.flag { display: none !important; }
+      /* Hide upload button in topbar */
+      #upload-btn { display: none !important; }
+      /* Hide volunteer panel on dashboard (right side) */
       .volunteer-panel { display: none !important; }
+      /* Hide matching/assign buttons in need detail modal */
+      .need-detail-body .btn-primary:has(.material-icons-outlined:contains('person_search')) { display: none !important; }
     `;
     document.head.appendChild(style);
-  } else {
-    const style = document.getElementById("volunteer-restrictions");
-    if (style) style.remove();
   }
 }
+
 
 // Auto-login check
 document.addEventListener("DOMContentLoaded", () => {
