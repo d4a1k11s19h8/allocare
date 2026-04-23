@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "allocare-prod",
+    "staging": "allocare-staging"
+  }
+}

@@ -35,6 +35,7 @@ async function fetchVolunteers() {
     const data = await resp.json();
     AppState.volunteers = data.volunteers || [];
     renderVolunteerList();
+    updateVolunteerMarkers();
   } catch (e) {
     console.error("Fetch volunteers error:", e);
   }

@@ -17,15 +17,18 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <!-- Leaflet Heat plugin -->
     <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+    <!-- Leaflet Control Geocoder — FREE Places API alternative (uses Nominatim) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.js"></script>
 
     <!-- Chart.js (FREE) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="css/design-system.css">
-    <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/design-system.css?v=2">
+    <link rel="stylesheet" href="css/dashboard.css?v=2">
+    <link rel="stylesheet" href="css/components.css?v=2">
+    <link rel="stylesheet" href="css/animations.css?v=2">
 </head>
 <body>
     <!-- ═══════════════════════════════════════════════════════════ -->
@@ -57,16 +60,44 @@
                 </div>
             </div>
 
-            <div class="auth-card glass-card">
+            <div class="auth-card glass-card" id="login-card">
                 <h2>Welcome Back</h2>
-                <p>Sign in to access the coordinator dashboard.</p>
-                <button id="demo-signin-btn" class="btn-google" onclick="signInDemo()">
-                    <span class="material-icons-outlined" style="font-size:20px">science</span>
-                    Enter Dashboard (Demo Mode)
-                </button>
-                <p class="auth-note">
+                <p>Sign in to access the dashboard.</p>
+                <form id="login-form" onsubmit="event.preventDefault(); handleLogin();" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px;">
+                    <input type="email" id="login-email" placeholder="Email" required class="form-input" style="padding: 12px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: white;">
+                    <input type="password" id="login-password" placeholder="Password" required class="form-input" style="padding: 12px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: white;">
+                    <button type="submit" class="btn-google" style="background: var(--primary); color: white; margin-top: 8px;">
+                        <span class="material-icons-outlined" style="font-size:20px">login</span>
+                        Sign In
+                    </button>
+                </form>
+                <p class="auth-note" style="cursor: pointer; color: var(--primary) !important;" onclick="toggleAuthForms()">
+                    Don't have an account? Register here.
+                </p>
+                <p class="auth-note" style="margin-top: 8px;">
                     <span class="material-icons-outlined" style="font-size:14px">lock</span>
-                    No sign-up required • Free APIs • No cloud billing
+                    Secure Demo (admin@allocare.org / admin123)
+                </p>
+            </div>
+
+            <div class="auth-card glass-card" id="register-card" style="display: none;">
+                <h2>Create Account</h2>
+                <p>Join the AlloCare network.</p>
+                <form id="register-form" onsubmit="event.preventDefault(); handleRegister();" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px;">
+                    <input type="text" id="reg-name" placeholder="Full Name / Org Name" required class="form-input" style="padding: 12px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: white;">
+                    <input type="email" id="reg-email" placeholder="Email" required class="form-input" style="padding: 12px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: white;">
+                    <input type="password" id="reg-password" placeholder="Password" required class="form-input" style="padding: 12px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: white;">
+                    <select id="reg-role" required class="form-input" style="padding: 12px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: white;">
+                        <option value="organization">Organization (Coordinator)</option>
+                        <option value="volunteer">Volunteer</option>
+                    </select>
+                    <button type="submit" class="btn-google" style="background: var(--primary); color: white; margin-top: 8px;">
+                        <span class="material-icons-outlined" style="font-size:20px">person_add</span>
+                        Register
+                    </button>
+                </form>
+                <p class="auth-note" style="cursor: pointer; color: var(--primary) !important;" onclick="toggleAuthForms()">
+                    Already have an account? Sign In.
                 </p>
             </div>
 
@@ -191,6 +222,8 @@
                             <span class="legend-item"><span class="legend-dot high"></span>High</span>
                             <span class="legend-item"><span class="legend-dot medium"></span>Medium</span>
                             <span class="legend-item"><span class="legend-dot low"></span>Low</span>
+                            <span class="legend-divider">|</span>
+                            <span class="legend-item"><span class="legend-dot volunteer"></span>Volunteer</span>
                         </div>
                     </div>
                 </div>
@@ -481,13 +514,13 @@
     <!-- ═══════════════════════════════════════════════════════════ -->
     <div id="toast-container" class="toast-container"></div>
 
-    <!-- Scripts -->
-    <script src="js/config.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/api-service.js"></script>
-    <script src="js/map.js"></script>
-    <script src="js/dashboard.js"></script>
-    <script src="js/upload.js"></script>
-    <script src="js/matching.js"></script>
+    <!-- Scripts (v3 = auth login rewrite) -->
+    <script src="js/config.js?v=3"></script>
+    <script src="js/auth.js?v=3"></script>
+    <script src="js/api-service.js?v=3"></script>
+    <script src="js/map.js?v=3"></script>
+    <script src="js/dashboard.js?v=3"></script>
+    <script src="js/upload.js?v=3"></script>
+    <script src="js/matching.js?v=3"></script>
 </body>
 </html>

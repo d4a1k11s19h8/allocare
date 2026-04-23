@@ -654,3 +654,91 @@
 .source-badge.csv { background: rgba(6, 182, 212, 0.15); color: #22D3EE; }
 .source-badge.manual { background: rgba(14, 159, 110, 0.15); color: #34D399; }
 .source-badge.whatsapp { background: rgba(37, 211, 102, 0.15); color: #25D366; }
+
+/* ── Map Legend: Volunteer Marker ────────────────────────── */
+.legend-dot.volunteer {
+  background: #3B82F6;
+  box-shadow: 0 0 6px rgba(59, 130, 246, 0.7);
+  border: 1.5px solid #93C5FD;
+}
+.legend-divider {
+  color: var(--text-muted);
+  opacity: 0.4;
+  font-size: 11px;
+  margin: 0 2px;
+}
+
+/* ── Geocoder Search Control (Places API alternative) ──── */
+.leaflet-control-geocoder {
+  background: rgba(15, 17, 23, 0.92) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+.leaflet-control-geocoder-form input {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+  font-family: var(--font-family) !important;
+  font-size: var(--font-sm) !important;
+  border: none !important;
+  outline: none !important;
+}
+.leaflet-control-geocoder-form input::placeholder {
+  color: var(--text-muted) !important;
+}
+.leaflet-control-geocoder-icon {
+  background-color: transparent !important;
+  filter: invert(0.7);
+}
+.leaflet-control-geocoder-alternatives {
+  background: rgba(15, 17, 23, 0.95) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border) !important;
+  border-radius: 0 0 var(--radius-md) var(--radius-md) !important;
+}
+.leaflet-control-geocoder-alternatives li {
+  color: var(--text-secondary) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+  padding: 8px 12px !important;
+  font-family: var(--font-family) !important;
+  font-size: var(--font-sm) !important;
+}
+.leaflet-control-geocoder-alternatives li:hover,
+.leaflet-control-geocoder-alternatives li.leaflet-control-geocoder-selected {
+  background: rgba(59, 130, 246, 0.15) !important;
+  color: var(--text-primary) !important;
+}
+
+/* ── Volunteer Map Marker Tooltip ────────────────────────── */
+.volunteer-popup {
+  font-family: Inter, sans-serif;
+  padding: 4px;
+}
+.volunteer-popup .vol-name {
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 3px;
+  color: #3B82F6;
+}
+.volunteer-popup .vol-skills {
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 2px;
+}
+.volunteer-popup .vol-status {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 10px;
+}
+.volunteer-popup .vol-status.available {
+  background: rgba(14, 159, 110, 0.2);
+  color: #0e9f6e;
+}
+.volunteer-popup .vol-status.assigned {
+  background: rgba(227, 160, 8, 0.2);
+  color: #e3a008;
+}
+

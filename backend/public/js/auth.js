@@ -123,8 +123,29 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function toggleUserMenu() {
-  if (confirm("Sign out?")) {
-    signOut();
+  const dropdown = document.getElementById("user-dropdown");
+  if (!dropdown) return;
+  const isVisible = dropdown.style.display !== "none";
+  dropdown.style.display = isVisible ? "none" : "block";
+
+  // Update dropdown content
+  if (!isVisible && AppState.user) {
+    const nameEl = document.getElementById("dropdown-name");
+    const roleEl = document.getElementById("dropdown-role");
+    if (nameEl) nameEl.textContent = AppState.user.display_name || AppState.user.displayName || "User";
+    if (roleEl) roleEl.textContent = (AppState.user.role || "organization").charAt(0).toUpperCase() + (AppState.user.role || "organization").slice(1);
+  }
+
+  // Close on outside click
+  if (!isVisible) {
+    setTimeout(() => {
+      document.addEventListener("click", function closeDropdown(e) {
+        if (!e.target.closest(".user-menu-wrapper")) {
+          dropdown.style.display = "none";
+          document.removeEventListener("click", closeDropdown);
+        }
+      });
+    }, 10);
   }
 }
 

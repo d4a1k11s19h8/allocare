@@ -8,6 +8,7 @@
 let mapInstance = null;
 let mapMarkers = [];          // need markers
 let volunteerMarkers = [];    // volunteer markers
+let routePolylines = [];      // route lines
 let heatmapLayer = null;
 let geocoderControl = null;
 let showVolunteers = true;    // toggle state
@@ -332,3 +333,81 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(dashboard, { attributes: true, attributeFilter: ["style"] });
   }
 });
+
+// ── Fly To Location (auto-redirect after report) ────────────
+function flyToLocation(lat, lng, zoom = 13) {
+  if (!mapInstance) {
+    initMap();
+    if (!mapInstance) return;
+  }
+  mapInstance.flyTo([lat, lng], zoom, { animate: true, duration: 1.5 });
+
+  // Add a pulsing marker to highlight the area
+  const pulseMarker = L.circleMarker([lat, lng], {
+    radius: 20, fillColor: "#8B5CF6", fillOpacity: 0.4,
+    color: "#8B5CF6", weight: 2, opacity: 0.8,
+    className: "pulse-marker",
+  }).addTo(mapInstance);
+
+  // Animate pulse and remove
+  let r = 20;
+  const pulse = setInterval(() => {
+    r += 2;
+    pulseMarker.setRadius(r);
+    pulseMarker.setStyle({ fillOpacity: Math.max(0, 0.4 - (r - 20) * 0.02) });
+    if (r > 50) { clearInterval(pulse); mapInstance.removeLayer(pulseMarker); }
+  }, 50);
+}
+
+// ── Draw Routes from Volunteers to Need ─────────────────────
+function drawVolunteerRoutes(matches, needLat, needLng) {
+  if (!mapInstance) return;
+  clearRoutePolylines();
+
+  const colors = ["#3B82F6", "#8B5CF6", "#EC4899", "#F59E0B", "#10B981"];
+
+  matches.forEach((match, i) => {
+    if (!match.lat || !match.lng) return;
+    const color = colors[i % colors.length];
+
+    // Try to get real route from backend
+    fetch(`${FUNCTIONS_BASE}/api/route?from_lat=${match.lat}&from_lng=${match.lng}&to_lat=${needLat}&to_lng=${needLng}`)
+      .then(r => r.json())
+      .then(route => {
+        if (route.polyline && route.polyline.length > 1) {
+          const line = L.polyline(route.polyline, {
+            color: color, weight: 3, opacity: 0.7,
+            dashArray: "8, 6", className: "route-line",
+          }).addTo(mapInstance);
+
+          // Add distance label at midpoint
+          const mid = route.polyline[Math.floor(route.polyline.length / 2)];
+          const label = L.marker(mid, {
+            icon: L.divIcon({
+              className: "route-label",
+              html: `<div style="background:${color};color:#fff;padding:2px 6px;border-radius:10px;font-size:10px;font-weight:600;white-space:nowrap;">${route.distance_km}km · ${route.duration_min}min</div>`,
+              iconSize: [80, 20], iconAnchor: [40, 10],
+            })
+          }).addTo(mapInstance);
+
+          routePolylines.push(line, label);
+        } else {
+          drawFallbackLine(match, needLat, needLng, color);
+        }
+      })
+      .catch(() => drawFallbackLine(match, needLat, needLng, color));
+  });
+}
+
+function drawFallbackLine(match, needLat, needLng, color) {
+  const line = L.polyline(
+    [[match.lat, match.lng], [needLat, needLng]],
+    { color: color, weight: 2, opacity: 0.5, dashArray: "6, 8" }
+  ).addTo(mapInstance);
+  routePolylines.push(line);
+}
+
+function clearRoutePolylines() {
+  routePolylines.forEach(p => mapInstance.removeLayer(p));
+  routePolylines = [];
+}

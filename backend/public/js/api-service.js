@@ -76,9 +76,16 @@ async function processReport(rawText, source = "manual") {
     const result = await resp.json();
     // Refresh data to get processed report
     await fetchNeeds();
+    // Cache data for offline use
+    if (typeof cacheDataForOffline === "function") cacheDataForOffline();
     return result;
   } catch (error) {
     console.error("Process report error:", error);
+    // Queue for offline sync if network is down
+    if (!navigator.onLine && typeof OfflineStore !== "undefined") {
+      await OfflineStore.queueReport({ raw_text: rawText, source: source });
+      return { status: "queued", message: "Saved offline — will sync when connected" };
+    }
     throw error;
   }
 }

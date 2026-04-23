@@ -1,53 +1,141 @@
 /* ═══════════════════════════════════════════════════════════
-   AlloCare — Map (Leaflet.js + OpenStreetMap — FREE, no API key)
-   Replaces Google Maps JavaScript API + deck.gl
+   AlloCare — Map Module
+   • Leaflet.js + OpenStreetMap (FREE, no API key)
+   • Leaflet Control Geocoder (FREE Places API alternative)
+   • Shows both Need markers + Volunteer markers
    ═════════════════════════════════════════════════════════ */
 
 let mapInstance = null;
-let mapMarkers = [];
+let mapMarkers = [];          // need markers
+let volunteerMarkers = [];    // volunteer markers
 let heatmapLayer = null;
+let geocoderControl = null;
+let showVolunteers = true;    // toggle state
 
+// ── Custom Volunteer Icon ───────────────────────────────────
+function createVolunteerIcon(status) {
+  const color = status === "available" ? "#3B82F6" : "#F59E0B";
+  const borderColor = status === "available" ? "#93C5FD" : "#FCD34D";
+
+  return L.divIcon({
+    className: "volunteer-marker-icon",
+    html: `<div style="
+      width: 28px; height: 28px;
+      background: ${color};
+      border: 2.5px solid ${borderColor};
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 10px ${color}60, 0 2px 8px rgba(0,0,0,0.4);
+      transition: transform 0.2s;
+      cursor: pointer;
+    ">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
+        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+      </svg>
+    </div>`,
+    iconSize: [28, 28],
+    iconAnchor: [14, 14],
+    popupAnchor: [0, -16],
+  });
+}
+
+// ── Initialize Map ──────────────────────────────────────────
 function initMap() {
-  if (mapInstance) return; // Already initialized
+  if (mapInstance) return;
 
-  const mumbaiCenter = [19.0760, 72.8777];
+  const indiaCenter = [21.0, 78.0];
 
   mapInstance = L.map("map", {
-    center: mumbaiCenter,
-    zoom: 12,
-    zoomControl: true,
+    center: indiaCenter,
+    zoom: 5,
+    zoomControl: false,
     attributionControl: false,
   });
 
-  // CartoDB Dark Matter tiles (free, matches dark theme)
+  // Zoom control — top-left
+  L.control.zoom({ position: "topleft" }).addTo(mapInstance);
+
+  // ── Tile Layer: CartoDB Dark Matter (free, no API key) ────
   L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
     maxZoom: 19,
     subdomains: "abcd",
   }).addTo(mapInstance);
 
-  // Attribution (required by CartoDB)
+  // Attribution
   L.control.attribution({
     position: "bottomright",
     prefix: false,
   }).addAttribution('© <a href="https://www.openstreetmap.org/copyright">OSM</a> © <a href="https://carto.com/">CARTO</a>').addTo(mapInstance);
 
-  // If data is already loaded, render markers
+  // ── Geocoder: FREE Places API Alternative (Nominatim) ─────
+  if (typeof L.Control.Geocoder !== "undefined") {
+    geocoderControl = L.Control.Geocoder.nominatim({
+      geocodingQueryParams: {
+        countrycodes: "in",   // Bias results to India
+        limit: 6,
+      }
+    });
+
+    const searchControl = L.Control.geocoder({
+      geocoder: geocoderControl,
+      position: "topright",
+      placeholder: "Search places (Nagpur, Delhi, Mumbai...)",
+      defaultMarkGeocode: false,
+      collapsed: true,
+      showUniqueResult: true,
+      suggestMinLength: 3,
+      errorMessage: "No results found",
+    }).on("markgeocode", function(e) {
+      // When user selects a search result, fly to that location
+      const bbox = e.geocode.bbox;
+      if (bbox) {
+        mapInstance.fitBounds(bbox, { maxZoom: 14, animate: true });
+      } else {
+        mapInstance.setView(e.geocode.center, 13, { animate: true });
+      }
+      // Add a temporary marker
+      const marker = L.marker(e.geocode.center, {
+        icon: L.divIcon({
+          className: "search-result-marker",
+          html: `<div style="
+            width: 20px; height: 20px;
+            background: #8B5CF6;
+            border: 3px solid #C4B5FD;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #8B5CF680;
+          "></div>`,
+          iconSize: [20, 20],
+          iconAnchor: [10, 10],
+        })
+      }).addTo(mapInstance)
+        .bindPopup(`<div style="font-family:Inter,sans-serif;font-size:13px;">
+          <strong>📍 ${e.geocode.name}</strong>
+        </div>`)
+        .openPopup();
+
+      // Remove after 10 seconds
+      setTimeout(() => mapInstance.removeLayer(marker), 10000);
+    }).addTo(mapInstance);
+  }
+
+  // Render markers if data is already loaded
   if (AppState.needs.length > 0) {
     updateMapMarkers();
   }
+  if (AppState.volunteers && AppState.volunteers.length > 0) {
+    updateVolunteerMarkers();
+  }
 }
 
+// ── Update Need Markers (urgency heatmap) ───────────────────
 function updateMapMarkers() {
   if (!mapInstance) {
-    // Try to init map if container exists
     const mapEl = document.getElementById("map");
-    if (mapEl && mapEl.offsetHeight > 0) {
-      initMap();
-    }
+    if (mapEl && mapEl.offsetHeight > 0) initMap();
     if (!mapInstance) return;
   }
 
-  // Clear existing markers
+  // Clear existing need markers
   mapMarkers.forEach(m => mapInstance.removeLayer(m));
   mapMarkers = [];
 
@@ -67,7 +155,7 @@ function updateMapMarkers() {
     const issueType = ISSUE_TYPES[need.issue_type] || ISSUE_TYPES.other;
     const markerSize = getMarkerSize(need.urgency_score);
 
-    // Create circle marker
+    // Create circle marker for need
     const marker = L.circleMarker([need.lat, need.lng], {
       radius: markerSize,
       fillColor: urgency.color,
@@ -92,22 +180,12 @@ function updateMapMarkers() {
         </div>
       </div>`;
 
-    marker.bindPopup(popupContent, {
-      closeButton: false,
-      className: "custom-popup",
-    });
-
+    marker.bindPopup(popupContent, { closeButton: false, className: "custom-popup" });
     marker.on("mouseover", function() { this.openPopup(); });
     marker.on("mouseout", function() { this.closePopup(); });
-
-    // Click to select need
-    marker.on("click", function() {
-      selectNeed(need.id);
-    });
+    marker.on("click", function() { selectNeed(need.id); });
 
     mapMarkers.push(marker);
-
-    // Add to heatmap data [lat, lng, intensity]
     heatData.push([need.lat, need.lng, (need.urgency_score || 10) / 100]);
   });
 
@@ -129,10 +207,86 @@ function updateMapMarkers() {
     }).addTo(mapInstance);
   }
 
-  // Invalidate size to fix rendering
+  // Auto-fit to show ALL markers (needs + volunteers)
+  fitMapToAllMarkers();
+
   setTimeout(() => mapInstance.invalidateSize(), 100);
 }
 
+// ── Update Volunteer Markers ────────────────────────────────
+function updateVolunteerMarkers() {
+  if (!mapInstance) return;
+
+  // Clear existing volunteer markers
+  volunteerMarkers.forEach(m => mapInstance.removeLayer(m));
+  volunteerMarkers = [];
+
+  if (!showVolunteers) return;
+
+  const volunteers = AppState.volunteers || [];
+
+  volunteers.forEach(vol => {
+    if (!vol.lat || !vol.lng) return;
+
+    const icon = createVolunteerIcon(vol.status || "available");
+
+    const marker = L.marker([vol.lat, vol.lng], { icon: icon }).addTo(mapInstance);
+
+    // Volunteer popup
+    const skills = (vol.skills || []).slice(0, 3).join(", ");
+    const statusClass = vol.status === "available" ? "available" : "assigned";
+    const statusLabel = vol.status === "available" ? "✓ Available" : "⏳ Assigned";
+
+    const popupContent = `
+      <div class="volunteer-popup" style="max-width:240px;">
+        <div class="vol-name">👤 ${vol.display_name || "Volunteer"}</div>
+        <div class="vol-skills">${skills || "General support"}</div>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+          <span class="vol-status ${statusClass}">${statusLabel}</span>
+          <span style="font-size:10px;color:#888;">📍 ${vol.zone || "—"}</span>
+        </div>
+        ${vol.impact_points ? `<div style="font-size:10px;color:#F59E0B;margin-top:3px;">⭐ ${vol.impact_points} pts</div>` : ""}
+      </div>`;
+
+    marker.bindPopup(popupContent, { closeButton: false });
+    marker.on("mouseover", function() { this.openPopup(); });
+    marker.on("mouseout", function() { this.closePopup(); });
+
+    volunteerMarkers.push(marker);
+  });
+
+  // Re-fit bounds to include volunteers
+  fitMapToAllMarkers();
+}
+
+// ── Toggle Volunteer Visibility ─────────────────────────────
+function toggleVolunteerMarkers() {
+  showVolunteers = !showVolunteers;
+  updateVolunteerMarkers();
+
+  // Update toggle button visual
+  const btn = document.getElementById("toggle-volunteers-btn");
+  if (btn) {
+    btn.classList.toggle("active", showVolunteers);
+    btn.title = showVolunteers ? "Hide Volunteers on Map" : "Show Volunteers on Map";
+  }
+}
+
+// ── Fit Map to All Markers ──────────────────────────────────
+function fitMapToAllMarkers() {
+  if (!mapInstance) return;
+
+  const allMarkers = [...mapMarkers, ...volunteerMarkers];
+  if (allMarkers.length > 0) {
+    const group = L.featureGroup(allMarkers);
+    mapInstance.fitBounds(group.getBounds().pad(0.15), {
+      maxZoom: 14,
+      animate: true,
+    });
+  }
+}
+
+// ── Helper Functions ────────────────────────────────────────
 function getMarkerSize(urgencyScore) {
   if (urgencyScore >= 86) return 14;
   if (urgencyScore >= 61) return 11;
@@ -161,9 +315,8 @@ function centerMapOnNeed(need) {
   mapInstance.setView([need.lat, need.lng], 15, { animate: true });
 }
 
-// Initialize map when the dashboard becomes visible
+// ── Init on Dashboard Show ──────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
-  // Use MutationObserver to detect when dashboard is shown
   const observer = new MutationObserver(() => {
     const dashboard = document.getElementById("dashboard");
     if (dashboard && dashboard.style.display !== "none") {

@@ -344,6 +344,8 @@ async def process_report(payload: ProcessReportRequest):
             "summary": extracted.get("summary", ""),
             "zone": extracted.get("location_text", ""),
             "issue_type": extracted.get("issue_type", ""),
+            "lat": geo["lat"] if geo else None,
+            "lng": geo["lng"] if geo else None,
         }
 
     except Exception as e:
@@ -728,6 +730,109 @@ if FRONTEND_DIR.exists():
 # ═══════════════════════════════════════════════════════════════════════════════
 # FIREBASE EXPORT (only when deployed to Firebase)
 # ═══════════════════════════════════════════════════════════════════════════════
+# ROUTING & NEARBY VOLUNTEERS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+@app.get("/api/route")
+async def get_route_api(
+    from_lat: float = Query(...), from_lng: float = Query(...),
+    to_lat: float = Query(...), to_lng: float = Query(...),
+    profile: str = Query("driving")
+):
+    """Get route between two points using OSRM (free, no API key)."""
+    try:
+        from routing_client import get_route
+        route = get_route(from_lat, from_lng, to_lat, to_lng, profile)
+        return route
+    except Exception as e:
+        logger.error(f"Route error: {e}")
+        return {"distance_km": 0, "duration_min": 0, "polyline": [], "source": "error"}
+
+
+@app.get("/api/nearby_volunteers")
+async def nearby_volunteers_api(
+    lat: float = Query(...), lng: float = Query(...),
+    radius_km: float = Query(50)
+):
+    """Find all volunteers near a location, sorted by distance."""
+    import math
+    volunteers = store.list_all("volunteers")
+    results = []
+    for v in volunteers:
+        if not v.get("lat") or not v.get("lng"):
+            continue
+        # Haversine distance
+        R = 6371.0
+        phi1, phi2 = math.radians(lat), math.radians(v["lat"])
+        dphi = math.radians(v["lat"] - lat)
+        dlam = math.radians(v["lng"] - lng)
+        a = math.sin(dphi/2)**2 + math.cos(phi1)*math.cos(phi2)*math.sin(dlam/2)**2
+        dist = R * 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
+        if dist <= radius_km:
+            road_dist = round(dist * 1.4, 1)
+            results.append({
+                "id": v.get("id") or v.get("_id", ""),
+                "display_name": v.get("display_name", ""),
+                "lat": v["lat"], "lng": v["lng"],
+                "zone": v.get("zone", ""),
+                "skills": v.get("skills", []),
+                "status": v.get("status", "available"),
+                "distance_km": round(dist, 1),
+                "road_distance_km": road_dist,
+                "impact_points": v.get("impact_points", 0),
+            })
+    results.sort(key=lambda x: x["distance_km"])
+    return {"volunteers": results, "total": len(results)}
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# SMS GATEWAY (Offline fallback)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+class SMSReport(BaseModel):
+    sender: str
+    message: str
+
+@app.post("/api/sms/receive")
+async def receive_sms(report: SMSReport):
+    """Parse an incoming SMS into a need report. Format: NEED <location> <type> <description>"""
+    msg = report.message.strip()
+    if not msg.upper().startswith("NEED"):
+        return {"status": "ignored", "message": "SMS must start with NEED keyword"}
+    
+    parts = msg.split(None, 3)  # NEED <location> <type> <description>
+    location = parts[1] if len(parts) > 1 else "Unknown"
+    issue_type = parts[2].lower() if len(parts) > 2 else "other"
+    description = parts[3] if len(parts) > 3 else msg
+    
+    valid_types = ["food", "water", "health", "housing", "education", "safety"]
+    if issue_type not in valid_types:
+        description = (issue_type + " " + description).strip()
+        issue_type = "other"
+    
+    # Process as a regular report
+    report_data = {
+        "raw_text": description,
+        "source": "sms",
+        "sender": report.sender,
+        "zone": location,
+    }
+    
+    try:
+        result = process_report(report_data["raw_text"], "sms")
+        return {"status": "processed", "need_id": result.get("id", ""), "message": f"Report from {location} logged"}
+    except Exception as e:
+        # Fallback: save raw
+        need = {
+            "zone": location, "issue_type": issue_type,
+            "summary": description[:200], "severity_score": 5,
+            "urgency_score": 50, "urgency_label": "medium",
+            "status": "open", "source": "sms",
+            "created_at": datetime.now(timezone.utc).isoformat(),
+        }
+        store.add("need_reports", need)
+        return {"status": "saved_raw", "message": f"Saved SMS report from {report.sender}"}
+
 
 if DEPLOYMENT == "firebase":
     wsgi_app = ASGIMiddleware(app)

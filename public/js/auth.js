@@ -3,22 +3,75 @@
    Direct demo mode access
    ═════════════════════════════════════════════════════════ */
 
-function signInDemo() {
-  AppState.user = {
-    uid: "demo-user-001",
-    displayName: "Demo Coordinator",
-    email: "demo@allocare.org",
-    photoURL: null,
-  };
-  showDashboard();
-  initializeData();
-  showToast("Welcome to AlloCare Demo!", "success");
+function toggleAuthForms() {
+  const loginCard = document.getElementById("login-card");
+  const registerCard = document.getElementById("register-card");
+  if (loginCard.style.display === "none") {
+    loginCard.style.display = "block";
+    registerCard.style.display = "none";
+  } else {
+    loginCard.style.display = "none";
+    registerCard.style.display = "block";
+  }
+}
+
+async function handleLogin() {
+  const email = document.getElementById("login-email").value;
+  const password = document.getElementById("login-password").value;
+  
+  try {
+    const res = await fetch(`${FUNCTIONS_BASE}/api/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password })
+    });
+    
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.detail || "Login failed");
+    
+    AppState.user = data.user;
+    localStorage.setItem("allocare_user", JSON.stringify(data.user));
+    showToast("Login successful!", "success");
+    showDashboard();
+    initializeData();
+  } catch (e) {
+    showToast(e.message, "error");
+  }
+}
+
+async function handleRegister() {
+  const name = document.getElementById("reg-name").value;
+  const email = document.getElementById("reg-email").value;
+  const password = document.getElementById("reg-password").value;
+  const role = document.getElementById("reg-role").value;
+  
+  try {
+    const res = await fetch(`${FUNCTIONS_BASE}/api/auth/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password, display_name: name, role })
+    });
+    
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.detail || "Registration failed");
+    
+    AppState.user = data.user;
+    localStorage.setItem("allocare_user", JSON.stringify(data.user));
+    showToast("Registration successful!", "success");
+    showDashboard();
+    initializeData();
+  } catch (e) {
+    showToast(e.message, "error");
+  }
 }
 
 function signOut() {
   AppState.user = null;
+  localStorage.removeItem("allocare_user");
   document.getElementById("dashboard").style.display = "none";
   document.getElementById("auth-screen").style.display = "flex";
+  // Reset UI
+  document.querySelectorAll(".nav-item").forEach(el => el.style.display = "flex");
 }
 
 function showDashboard() {
@@ -28,9 +81,46 @@ function showDashboard() {
   // Update user info in topbar
   const initialEl = document.getElementById("user-initial");
   if (AppState.user) {
-    initialEl.textContent = getInitials(AppState.user.displayName);
+    initialEl.textContent = getInitials(AppState.user.display_name || AppState.user.displayName || "User");
+    document.getElementById("topbar-org").textContent = AppState.user.display_name || AppState.user.displayName || "User";
+  }
+
+  // Role-based restrictions
+  if (AppState.user && AppState.user.role === "volunteer") {
+    // Hide coordinator-only tabs
+    document.querySelector('[data-view="reports"]').style.display = "none";
+    document.querySelector('[data-view="volunteers"]').style.display = "none";
+    document.querySelector('[data-view="analytics"]').style.display = "none";
+    document.querySelector('[data-view="settings"]').style.display = "none";
+    
+    // Hide matching and flag buttons on cards
+    const style = document.createElement("style");
+    style.id = "volunteer-restrictions";
+    style.innerHTML = `
+      .card-action-btn { display: none !important; }
+      .upload-btn-container { display: none !important; }
+      .volunteer-panel { display: none !important; }
+    `;
+    document.head.appendChild(style);
+  } else {
+    const style = document.getElementById("volunteer-restrictions");
+    if (style) style.remove();
   }
 }
+
+// Auto-login check
+document.addEventListener("DOMContentLoaded", () => {
+  const savedUser = localStorage.getItem("allocare_user");
+  if (savedUser) {
+    try {
+      AppState.user = JSON.parse(savedUser);
+      showDashboard();
+      initializeData();
+    } catch (e) {
+      localStorage.removeItem("allocare_user");
+    }
+  }
+});
 
 function toggleUserMenu() {
   if (confirm("Sign out?")) {

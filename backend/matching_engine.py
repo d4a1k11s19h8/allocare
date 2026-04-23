@@ -35,7 +35,7 @@ def match_volunteers(need: dict, volunteers: list[dict]) -> list[dict]:
 
     for v in volunteers:
         vol_id = v.get("id") or v.get("_id", "")
-        max_dist = v.get("max_distance_km", 10)
+        max_dist = v.get("max_distance_km", 30)
 
         # Calculate Haversine distance
         dist_km = None
@@ -44,11 +44,10 @@ def match_volunteers(need: dict, volunteers: list[dict]) -> list[dict]:
         
         # If no location data, use zone matching
         if dist_km is None:
-            dist_km = 1.0 if v.get("zone", "").lower() == need.get("zone", "").lower() else 5.0
+            dist_km = 1.0 if v.get("zone", "").lower() == need.get("zone", "").lower() else 50.0
 
-        # Hard cutoff: volunteer's max travel distance
-        if dist_km > max_dist:
-            continue
+        # Soft cutoff: penalize but don't exclude beyond max_dist
+        beyond_range = dist_km > max_dist
 
         # 1. Skill overlap score [0, 1]
         vol_skills = [s.lower() for s in v.get("skills", [])]
@@ -59,27 +58,38 @@ def match_volunteers(need: dict, volunteers: list[dict]) -> list[dict]:
             skill_score = len(matched_skills) / len(req_skills)
         else:
             matched_skills = []
-            skill_score = 0.5  # No specific skills required — partial credit
+            skill_score = 0.5
 
         # 2. Proximity score [0, 1] — decays with distance
-        proximity_score = 1.0 / (1.0 + dist_km)
+        proximity_score = 1.0 / (1.0 + dist_km * 0.1)
 
         # 3. Availability score [0, 1]
         avail_score = _calculate_availability_score(v, now)
 
+        # 4. Range penalty if beyond max distance
+        range_factor = 0.5 if beyond_range else 1.0
+
         # Composite match score
-        match_score = skill_score * proximity_score * avail_score
+        match_score = skill_score * proximity_score * avail_score * range_factor
 
         # Build explainability string
         explanation = _build_explanation(v, need, matched_skills, req_skills, dist_km, avail_score)
+        if beyond_range:
+            explanation += f" ⚠️ Beyond usual range ({max_dist}km)"
+
+        # Estimate road distance (Haversine * 1.4)
+        road_dist = round(dist_km * 1.4, 1) if dist_km else 0
 
         candidates.append({
             "volunteer_id": vol_id,
             "volunteer_name": v.get("display_name", "Volunteer"),
             "email": v.get("email", ""),
+            "lat": v.get("lat", 0),
+            "lng": v.get("lng", 0),
             "skills": v.get("skills", []),
             "skills_matched": matched_skills,
             "distance_km": round(dist_km, 1),
+            "road_distance_km": road_dist,
             "match_score": round(match_score, 4),
             "skill_score": round(skill_score, 2),
             "proximity_score": round(proximity_score, 2),
@@ -87,11 +97,12 @@ def match_volunteers(need: dict, volunteers: list[dict]) -> list[dict]:
             "explanation": explanation,
             "status": v.get("status", "available"),
             "impact_points": v.get("impact_points", 0),
+            "beyond_range": beyond_range,
         })
 
-    # Sort by match_score descending, return top 3
+    # Sort by match_score descending, return top 5 (expanded from 3)
     candidates.sort(key=lambda x: x["match_score"], reverse=True)
-    return candidates[:3]
+    return candidates[:5]
 
 
 def _calculate_availability_score(volunteer: dict, now: datetime) -> float:

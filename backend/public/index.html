@@ -20,9 +20,16 @@
     <!-- Leaflet Control Geocoder — FREE Places API alternative (uses Nominatim) -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.css" />
     <script src="https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.js"></script>
+    <!-- Leaflet Routing Machine for route polylines (FREE) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.min.js"></script>
 
     <!-- Chart.js (FREE) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0f0f23">
 
     <!-- Styles -->
     <link rel="stylesheet" href="css/design-system.css?v=2">
@@ -137,9 +144,24 @@
                     <span class="material-icons-outlined">notifications</span>
                     <span class="notification-badge" id="notif-badge">3</span>
                 </button>
-                <div class="user-avatar" id="user-avatar" onclick="toggleUserMenu()">
-                    <img src="" alt="" id="user-photo">
-                    <span id="user-initial">D</span>
+                <!-- Offline indicator -->
+                <span id="offline-badge" class="offline-badge" style="display:none;">⚡ Offline</span>
+                <div class="user-menu-wrapper">
+                    <div class="user-avatar" id="user-avatar" onclick="toggleUserMenu()">
+                        <img src="" alt="" id="user-photo">
+                        <span id="user-initial">D</span>
+                    </div>
+                    <div class="user-dropdown" id="user-dropdown" style="display:none;">
+                        <div class="user-dropdown-header">
+                            <div class="user-dropdown-name" id="dropdown-name">User</div>
+                            <div class="user-dropdown-role" id="dropdown-role">Organization</div>
+                        </div>
+                        <div class="user-dropdown-divider"></div>
+                        <button class="user-dropdown-item" onclick="signOut()">
+                            <span class="material-icons-outlined">logout</span>
+                            Sign Out
+                        </button>
+                    </div>
                 </div>
             </div>
         </header>
@@ -168,6 +190,12 @@
                     <a href="#" class="nav-item" data-view="settings" onclick="switchView('settings')">
                         <span class="material-icons-outlined">settings</span>
                         <span>Settings</span>
+                    </a>
+                </div>
+                <div class="sidebar-signout">
+                    <a href="#" class="nav-item signout-btn" onclick="event.preventDefault(); signOut()">
+                        <span class="material-icons-outlined">logout</span>
+                        <span>Sign Out</span>
                     </a>
                 </div>
                 <div class="sidebar-footer">
@@ -514,13 +542,25 @@
     <!-- ═══════════════════════════════════════════════════════════ -->
     <div id="toast-container" class="toast-container"></div>
 
-    <!-- Scripts (v3 = auth login rewrite) -->
-    <script src="js/config.js?v=3"></script>
-    <script src="js/auth.js?v=3"></script>
-    <script src="js/api-service.js?v=3"></script>
-    <script src="js/map.js?v=3"></script>
-    <script src="js/dashboard.js?v=3"></script>
-    <script src="js/upload.js?v=3"></script>
-    <script src="js/matching.js?v=3"></script>
+    <!-- Scripts (v4 = pan-India + offline + routing) -->
+    <script src="js/config.js?v=4"></script>
+    <script src="js/auth.js?v=4"></script>
+    <script src="js/api-service.js?v=4"></script>
+    <script src="js/offline.js?v=4"></script>
+    <script src="js/map.js?v=4"></script>
+    <script src="js/dashboard.js?v=4"></script>
+    <script src="js/upload.js?v=4"></script>
+    <script src="js/matching.js?v=4"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('[SW] Registered:', reg.scope))
+            .catch(err => console.log('[SW] Registration failed:', err));
+        });
+      }
+    </script>
 </body>
 </html>
