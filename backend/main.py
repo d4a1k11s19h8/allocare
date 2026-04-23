@@ -726,6 +726,21 @@ if FRONTEND_DIR.exists():
     if (FRONTEND_DIR / "assets").exists():
         app.mount("/assets", StaticFiles(directory=str(FRONTEND_DIR / "assets")), name="assets")
 
+# Serve root-level static files (sw.js, manifest.json)
+@app.get("/sw.js", tags=["frontend"])
+async def serve_sw():
+    sw_file = FRONTEND_DIR / "sw.js"
+    if sw_file.exists():
+        return FileResponse(sw_file, media_type="application/javascript")
+    return JSONResponse(status_code=404, content={"error": "sw.js not found"})
+
+@app.get("/manifest.json", tags=["frontend"])
+async def serve_manifest():
+    mf = FRONTEND_DIR / "manifest.json"
+    if mf.exists():
+        return FileResponse(mf, media_type="application/json")
+    return JSONResponse(status_code=404, content={"error": "manifest.json not found"})
+
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # FIREBASE EXPORT (only when deployed to Firebase)

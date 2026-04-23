@@ -19,7 +19,8 @@
       },
       "max_distance_km": 15,
       "_id": "v1",
-      "created_at": "2026-04-23T17:53:03.932617+00:00"
+      "created_at": "2026-04-23T19:00:47.540797+00:00",
+      "id": "v1"
     },
     "v2": {
       "display_name": "Rahul Deshmukh",
@@ -40,7 +41,8 @@
       },
       "max_distance_km": 15,
       "_id": "v2",
-      "created_at": "2026-04-23T17:53:03.932617+00:00"
+      "created_at": "2026-04-23T19:00:47.542449+00:00",
+      "id": "v2"
     },
     "v3": {
       "display_name": "Anita Patel",
@@ -60,7 +62,8 @@
       },
       "max_distance_km": 20,
       "_id": "v3",
-      "created_at": "2026-04-23T17:53:03.932617+00:00"
+      "created_at": "2026-04-23T19:00:47.543790+00:00",
+      "id": "v3"
     },
     "v4": {
       "display_name": "Mohammed Shaikh",
@@ -73,7 +76,7 @@
         "food distribution",
         "driving"
       ],
-      "status": "available",
+      "status": "assigned",
       "impact_points": 1450,
       "impact_stats": {
         "total_tasks_completed": 45,
@@ -81,7 +84,9 @@
       },
       "max_distance_km": 15,
       "_id": "v4",
-      "created_at": "2026-04-23T17:53:03.938763+00:00"
+      "created_at": "2026-04-23T19:00:47.544323+00:00",
+      "id": "v4",
+      "updated_at": "2026-04-23T19:00:47.934062+00:00"
     },
     "v5": {
       "display_name": "Sneha Nair",
@@ -102,7 +107,8 @@
       },
       "max_distance_km": 20,
       "_id": "v5",
-      "created_at": "2026-04-23T17:53:03.939697+00:00"
+      "created_at": "2026-04-23T19:00:47.546541+00:00",
+      "id": "v5"
     },
     "v6": {
       "display_name": "Vikram Singh",
@@ -123,7 +129,7 @@
       },
       "max_distance_km": 15,
       "_id": "v6",
-      "created_at": "2026-04-23T17:53:03.939697+00:00"
+      "created_at": "2026-04-23T19:00:47.548571+00:00"
     },
     "v7": {
       "display_name": "Fatima Khan",
@@ -144,7 +150,8 @@
       },
       "max_distance_km": 15,
       "_id": "v7",
-      "created_at": "2026-04-23T17:53:03.942748+00:00"
+      "created_at": "2026-04-23T19:00:47.549705+00:00",
+      "id": "v7"
     },
     "v8": {
       "display_name": "Arjun Mehta",
@@ -165,7 +172,8 @@
       },
       "max_distance_km": 15,
       "_id": "v8",
-      "created_at": "2026-04-23T17:53:03.943273+00:00"
+      "created_at": "2026-04-23T19:00:47.551864+00:00",
+      "id": "v8"
     },
     "v9": {
       "display_name": "Ravi Kumar",
@@ -186,7 +194,8 @@
       },
       "max_distance_km": 25,
       "_id": "v9",
-      "created_at": "2026-04-23T17:53:03.943273+00:00"
+      "created_at": "2026-04-23T19:00:47.552889+00:00",
+      "id": "v9"
     },
     "v10": {
       "display_name": "Kavitha Reddy",
@@ -206,7 +215,8 @@
       },
       "max_distance_km": 20,
       "_id": "v10",
-      "created_at": "2026-04-23T17:53:03.943273+00:00"
+      "created_at": "2026-04-23T19:00:47.554955+00:00",
+      "id": "v10"
     },
     "v11": {
       "display_name": "Tushar Patil",
@@ -226,7 +236,8 @@
       },
       "max_distance_km": 15,
       "_id": "v11",
-      "created_at": "2026-04-23T17:53:03.943273+00:00"
+      "created_at": "2026-04-23T19:00:47.555957+00:00",
+      "id": "v11"
     },
     "v12": {
       "display_name": "Hassan Ali",
@@ -247,7 +258,8 @@
       },
       "max_distance_km": 20,
       "_id": "v12",
-      "created_at": "2026-04-23T17:53:03.943273+00:00"
+      "created_at": "2026-04-23T19:00:47.558651+00:00",
+      "id": "v12"
     },
     "v13": {
       "display_name": "Sanjay Kulkarni",
@@ -268,7 +280,8 @@
       },
       "max_distance_km": 30,
       "_id": "v13",
-      "created_at": "2026-04-23T17:53:03.951577+00:00"
+      "created_at": "2026-04-23T19:00:47.561316+00:00",
+      "id": "v13"
     },
     "v14": {
       "display_name": "Deepa Joshi",
@@ -289,7 +302,8 @@
       },
       "max_distance_km": 25,
       "_id": "v14",
-      "created_at": "2026-04-23T17:53:03.953095+00:00"
+      "created_at": "2026-04-23T19:00:47.562319+00:00",
+      "id": "v14"
     },
     "v15": {
       "display_name": "Kiran Patel",
@@ -310,7 +324,8 @@
       },
       "max_distance_km": 30,
       "_id": "v15",
-      "created_at": "2026-04-23T17:53:03.953656+00:00"
+      "created_at": "2026-04-23T19:00:47.564841+00:00",
+      "id": "v15"
     },
     "v16": {
       "display_name": "Hetal Shah",
@@ -331,7 +346,8 @@
       },
       "max_distance_km": 25,
       "_id": "v16",
-      "created_at": "2026-04-23T17:53:03.956418+00:00"
+      "created_at": "2026-04-23T19:00:47.567423+00:00",
+      "id": "v16"
     },
     "v17": {
       "display_name": "Amit Deshmukh",
@@ -352,7 +368,8 @@
       },
       "max_distance_km": 30,
       "_id": "v17",
-      "created_at": "2026-04-23T17:53:03.956418+00:00"
+      "created_at": "2026-04-23T19:00:47.569943+00:00",
+      "id": "v17"
     },
     "v18": {
       "display_name": "Sunita Wankhede",
@@ -373,7 +390,8 @@
       },
       "max_distance_km": 25,
       "_id": "v18",
-      "created_at": "2026-04-23T17:53:03.962201+00:00"
+      "created_at": "2026-04-23T19:00:47.571953+00:00",
+      "id": "v18"
     },
     "v19": {
       "display_name": "Rajesh Thakur",
@@ -394,7 +412,8 @@
       },
       "max_distance_km": 30,
       "_id": "v19",
-      "created_at": "2026-04-23T17:53:03.963386+00:00"
+      "created_at": "2026-04-23T19:00:47.575080+00:00",
+      "id": "v19"
     },
     "v20": {
       "display_name": "Meena Bhonsle",
@@ -415,7 +434,8 @@
       },
       "max_distance_km": 25,
       "_id": "v20",
-      "created_at": "2026-04-23T17:53:03.964910+00:00"
+      "created_at": "2026-04-23T19:00:47.577145+00:00",
+      "id": "v20"
     },
     "v21": {
       "display_name": "Pooja Mishra",
@@ -436,7 +456,8 @@
       },
       "max_distance_km": 30,
       "_id": "v21",
-      "created_at": "2026-04-23T17:53:03.967831+00:00"
+      "created_at": "2026-04-23T19:00:47.579158+00:00",
+      "id": "v21"
     },
     "v22": {
       "display_name": "Rahul Jain",
@@ -457,7 +478,8 @@
       },
       "max_distance_km": 25,
       "_id": "v22",
-      "created_at": "2026-04-23T17:53:03.970484+00:00"
+      "created_at": "2026-04-23T19:00:47.581690+00:00",
+      "id": "v22"
     },
     "v23": {
       "display_name": "Lakshmi Sahu",
@@ -478,7 +500,8 @@
       },
       "max_distance_km": 30,
       "_id": "v23",
-      "created_at": "2026-04-23T17:53:03.972564+00:00"
+      "created_at": "2026-04-23T19:00:47.584823+00:00",
+      "id": "v23"
     },
     "v24": {
       "display_name": "Arun Gupta",
@@ -499,7 +522,8 @@
       },
       "max_distance_km": 25,
       "_id": "v24",
-      "created_at": "2026-04-23T17:53:03.975434+00:00"
+      "created_at": "2026-04-23T19:00:47.586898+00:00",
+      "id": "v24"
     },
     "v25": {
       "display_name": "Neha Saxena",
@@ -520,7 +544,8 @@
       },
       "max_distance_km": 25,
       "_id": "v25",
-      "created_at": "2026-04-23T17:53:03.978504+00:00"
+      "created_at": "2026-04-23T19:00:47.588957+00:00",
+      "id": "v25"
     },
     "v26": {
       "display_name": "Manish Tiwari",
@@ -541,7 +566,8 @@
       },
       "max_distance_km": 30,
       "_id": "v26",
-      "created_at": "2026-04-23T17:53:03.979524+00:00"
+      "created_at": "2026-04-23T19:00:47.591502+00:00",
+      "id": "v26"
     },
     "v27": {
       "display_name": "Simran Kaur",
@@ -562,7 +588,8 @@
       },
       "max_distance_km": 25,
       "_id": "v27",
-      "created_at": "2026-04-23T17:53:03.982594+00:00"
+      "created_at": "2026-04-23T19:00:47.594594+00:00",
+      "id": "v27"
     },
     "v28": {
       "display_name": "Akhil Verma",
@@ -583,7 +610,8 @@
       },
       "max_distance_km": 30,
       "_id": "v28",
-      "created_at": "2026-04-23T17:53:03.982594+00:00"
+      "created_at": "2026-04-23T19:00:47.597707+00:00",
+      "id": "v28"
     },
     "v29": {
       "display_name": "Sunaina Rajput",
@@ -604,7 +632,8 @@
       },
       "max_distance_km": 30,
       "_id": "v29",
-      "created_at": "2026-04-23T17:53:03.988079+00:00"
+      "created_at": "2026-04-23T19:00:47.600258+00:00",
+      "id": "v29"
     },
     "v30": {
       "display_name": "Harpreet Singh",
@@ -625,7 +654,8 @@
       },
       "max_distance_km": 30,
       "_id": "v30",
-      "created_at": "2026-04-23T17:53:03.991137+00:00"
+      "created_at": "2026-04-23T19:00:47.603298+00:00",
+      "id": "v30"
     },
     "v31": {
       "display_name": "Deepak Sharma",
@@ -646,7 +676,8 @@
       },
       "max_distance_km": 30,
       "_id": "v31",
-      "created_at": "2026-04-23T17:53:03.993693+00:00"
+      "created_at": "2026-04-23T19:00:47.606317+00:00",
+      "id": "v31"
     },
     "v32": {
       "display_name": "Gurdeep Kaur",
@@ -667,7 +698,8 @@
       },
       "max_distance_km": 30,
       "_id": "v32",
-      "created_at": "2026-04-23T17:53:03.994212+00:00"
+      "created_at": "2026-04-23T19:00:47.609372+00:00",
+      "id": "v32"
     },
     "v33": {
       "display_name": "Ramesh Gowda",
@@ -688,7 +720,8 @@
       },
       "max_distance_km": 30,
       "_id": "v33",
-      "created_at": "2026-04-23T17:53:03.994212+00:00"
+      "created_at": "2026-04-23T19:00:47.612132+00:00",
+      "id": "v33"
     },
     "v34": {
       "display_name": "Lakshmi Iyer",
@@ -709,7 +742,8 @@
       },
       "max_distance_km": 25,
       "_id": "v34",
-      "created_at": "2026-04-23T17:53:04.000974+00:00"
+      "created_at": "2026-04-23T19:00:47.615656+00:00",
+      "id": "v34"
     },
     "v35": {
       "display_name": "Naveen Kumar",
@@ -730,7 +764,8 @@
       },
       "max_distance_km": 30,
       "_id": "v35",
-      "created_at": "2026-04-23T17:53:04.001567+00:00"
+      "created_at": "2026-04-23T19:00:47.618662+00:00",
+      "id": "v35"
     },
     "v36": {
       "display_name": "Murugan S",
@@ -751,7 +786,8 @@
       },
       "max_distance_km": 30,
       "_id": "v36",
-      "created_at": "2026-04-23T17:53:04.006325+00:00"
+      "created_at": "2026-04-23T19:00:47.621184+00:00",
+      "id": "v36"
     },
     "v37": {
       "display_name": "Priya Venkat",
@@ -772,7 +808,8 @@
       },
       "max_distance_km": 25,
       "_id": "v37",
-      "created_at": "2026-04-23T17:53:04.010362+00:00"
+      "created_at": "2026-04-23T19:00:47.627184+00:00",
+      "id": "v37"
     },
     "v38": {
       "display_name": "Srinivas Reddy",
@@ -793,7 +830,8 @@
       },
       "max_distance_km": 30,
       "_id": "v38",
-      "created_at": "2026-04-23T17:53:04.011883+00:00"
+      "created_at": "2026-04-23T19:00:47.630689+00:00",
+      "id": "v38"
     },
     "v39": {
       "display_name": "Ayesha Begum",
@@ -814,7 +852,8 @@
       },
       "max_distance_km": 25,
       "_id": "v39",
-      "created_at": "2026-04-23T17:53:04.015027+00:00"
+      "created_at": "2026-04-23T19:00:47.634720+00:00",
+      "id": "v39"
     },
     "v40": {
       "display_name": "Thomas Mathew",
@@ -835,7 +874,8 @@
       },
       "max_distance_km": 30,
       "_id": "v40",
-      "created_at": "2026-04-23T17:53:04.017637+00:00"
+      "created_at": "2026-04-23T19:00:47.637918+00:00",
+      "id": "v40"
     },
     "v41": {
       "display_name": "Meera Nair",
@@ -855,7 +895,8 @@
       },
       "max_distance_km": 25,
       "_id": "v41",
-      "created_at": "2026-04-23T17:53:04.022614+00:00"
+      "created_at": "2026-04-23T19:00:47.641464+00:00",
+      "id": "v41"
     },
     "v42": {
       "display_name": "Anoop Kumar",
@@ -876,7 +917,8 @@
       },
       "max_distance_km": 30,
       "_id": "v42",
-      "created_at": "2026-04-23T17:53:04.022614+00:00"
+      "created_at": "2026-04-23T19:00:47.645537+00:00",
+      "id": "v42"
     },
     "v43": {
       "display_name": "Sourav Das",
@@ -897,7 +939,8 @@
       },
       "max_distance_km": 30,
       "_id": "v43",
-      "created_at": "2026-04-23T17:53:04.028577+00:00"
+      "created_at": "2026-04-23T19:00:47.649088+00:00",
+      "id": "v43"
     },
     "v44": {
       "display_name": "Ritika Sen",
@@ -918,7 +961,8 @@
       },
       "max_distance_km": 25,
       "_id": "v44",
-      "created_at": "2026-04-23T17:53:04.031645+00:00"
+      "created_at": "2026-04-23T19:00:47.652627+00:00",
+      "id": "v44"
     },
     "v45": {
       "display_name": "Arijit Banerjee",
@@ -939,7 +983,8 @@
       },
       "max_distance_km": 25,
       "_id": "v45",
-      "created_at": "2026-04-23T17:53:04.032671+00:00"
+      "created_at": "2026-04-23T19:00:47.655669+00:00",
+      "id": "v45"
     },
     "v46": {
       "display_name": "Rajiv Prasad",
@@ -960,7 +1005,8 @@
       },
       "max_distance_km": 30,
       "_id": "v46",
-      "created_at": "2026-04-23T17:53:04.032671+00:00"
+      "created_at": "2026-04-23T19:00:47.661383+00:00",
+      "id": "v46"
     },
     "v47": {
       "display_name": "Anjali Kumari",
@@ -981,7 +1027,8 @@
       },
       "max_distance_km": 30,
       "_id": "v47",
-      "created_at": "2026-04-23T17:53:04.041997+00:00"
+      "created_at": "2026-04-23T19:00:47.664895+00:00",
+      "id": "v47"
     },
     "v48": {
       "display_name": "Subhash Mohanty",
@@ -1002,7 +1049,8 @@
       },
       "max_distance_km": 30,
       "_id": "v48",
-      "created_at": "2026-04-23T17:53:04.043548+00:00"
+      "created_at": "2026-04-23T19:00:47.669071+00:00",
+      "id": "v48"
     },
     "v49": {
       "display_name": "Bhaskar Deka",
@@ -1023,7 +1071,8 @@
       },
       "max_distance_km": 35,
       "_id": "v49",
-      "created_at": "2026-04-23T17:53:04.043548+00:00"
+      "created_at": "2026-04-23T19:00:47.672715+00:00",
+      "id": "v49"
     },
     "v50": {
       "display_name": "Priyanka Bora",
@@ -1044,7 +1093,8 @@
       },
       "max_distance_km": 30,
       "_id": "v50",
-      "created_at": "2026-04-23T17:53:04.051960+00:00"
+      "created_at": "2026-04-23T19:00:47.677151+00:00",
+      "id": "v50"
     },
     "v51": {
       "display_name": "Om Prakash",
@@ -1065,7 +1115,8 @@
       },
       "max_distance_km": 30,
       "_id": "v51",
-      "created_at": "2026-04-23T17:53:04.055602+00:00"
+      "created_at": "2026-04-23T19:00:47.681154+00:00",
+      "id": "v51"
     },
     "v52": {
       "display_name": "Alok Mishra",
@@ -1086,7 +1137,7 @@
       },
       "max_distance_km": 30,
       "_id": "v52",
-      "created_at": "2026-04-23T17:53:04.056445+00:00"
+      "created_at": "2026-04-23T19:00:47.685778+00:00"
     },
     "v53": {
       "display_name": "Mahendra Rathore",
@@ -1107,7 +1158,7 @@
       },
       "max_distance_km": 35,
       "_id": "v53",
-      "created_at": "2026-04-23T17:53:04.061854+00:00"
+      "created_at": "2026-04-23T19:00:47.689400+00:00"
     },
     "v54": {
       "display_name": "Girish Hegde",
@@ -1128,7 +1179,7 @@
       },
       "max_distance_km": 25,
       "_id": "v54",
-      "created_at": "2026-04-23T17:53:04.064990+00:00"
+      "created_at": "2026-04-23T19:00:47.695592+00:00"
     }
   },
   "need_reports": {
@@ -1147,13 +1198,15 @@
         "hindi speaking"
       ],
       "recommended_volunteer_count": 5,
-      "status": "open",
+      "status": "assigned",
       "source": "photo",
       "report_frequency_30d": 8,
       "trend_direction": "rising",
       "coordinator_explanation": "Severe food crisis in sector 5.",
       "_id": "n1",
-      "created_at": "2026-04-23T17:53:04.068037+00:00"
+      "created_at": "2026-04-23T19:00:47.699720+00:00",
+      "id": "n1",
+      "updated_at": "2026-04-23T19:00:47.870204+00:00"
     },
     "n2": {
       "zone": "Dharavi",
@@ -1176,7 +1229,8 @@
       "trend_direction": "rising",
       "coordinator_explanation": "The main water pipeline serving sector 5 has been compromised.",
       "_id": "n2",
-      "created_at": "2026-04-23T17:53:04.073520+00:00"
+      "created_at": "2026-04-23T19:00:47.703858+00:00",
+      "id": "n2"
     },
     "n3": {
       "zone": "Dharavi",
@@ -1193,12 +1247,14 @@
         "nursing"
       ],
       "recommended_volunteer_count": 4,
-      "status": "open",
+      "status": "assigned",
       "source": "whatsapp",
       "report_frequency_30d": 6,
       "trend_direction": "rising",
       "_id": "n3",
-      "created_at": "2026-04-23T17:53:04.077960+00:00"
+      "created_at": "2026-04-23T19:00:47.708857+00:00",
+      "id": "n3",
+      "updated_at": "2026-04-23T19:00:47.903793+00:00"
     },
     "n4": {
       "zone": "Kurla",
@@ -1220,7 +1276,8 @@
       "report_frequency_30d": 3,
       "trend_direction": "stable",
       "_id": "n4",
-      "created_at": "2026-04-23T17:53:04.082066+00:00"
+      "created_at": "2026-04-23T19:00:47.712405+00:00",
+      "id": "n4"
     },
     "n5": {
       "zone": "Govandi",
@@ -1242,7 +1299,8 @@
       "report_frequency_30d": 4,
       "trend_direction": "rising",
       "_id": "n5",
-      "created_at": "2026-04-23T17:53:04.084805+00:00"
+      "created_at": "2026-04-23T19:00:47.717759+00:00",
+      "id": "n5"
     },
     "n6": {
       "zone": "Bandra East",
@@ -1264,7 +1322,8 @@
       "report_frequency_30d": 2,
       "trend_direction": "stable",
       "_id": "n6",
-      "created_at": "2026-04-23T17:53:04.089756+00:00"
+      "created_at": "2026-04-23T19:00:47.722645+00:00",
+      "id": "n6"
     },
     "n7": {
       "zone": "Andheri East",
@@ -1286,7 +1345,8 @@
       "report_frequency_30d": 3,
       "trend_direction": "stable",
       "_id": "n7",
-      "created_at": "2026-04-23T17:53:04.094416+00:00"
+      "created_at": "2026-04-23T19:00:47.727847+00:00",
+      "id": "n7"
     },
     "n8": {
       "zone": "Worli",
@@ -1308,7 +1368,8 @@
       "report_frequency_30d": 2,
       "trend_direction": "stable",
       "_id": "n8",
-      "created_at": "2026-04-23T17:53:04.094416+00:00"
+      "created_at": "2026-04-23T19:00:47.732378+00:00",
+      "id": "n8"
     },
     "n9": {
       "zone": "Malad East",
@@ -1330,7 +1391,8 @@
       "report_frequency_30d": 2,
       "trend_direction": "stable",
       "_id": "n9",
-      "created_at": "2026-04-23T17:53:04.101688+00:00"
+      "created_at": "2026-04-23T19:00:47.737115+00:00",
+      "id": "n9"
     },
     "n10": {
       "zone": "Chembur",
@@ -1352,7 +1414,8 @@
       "report_frequency_30d": 1,
       "trend_direction": "stable",
       "_id": "n10",
-      "created_at": "2026-04-23T17:53:04.106561+00:00"
+      "created_at": "2026-04-23T19:00:47.741290+00:00",
+      "id": "n10"
     },
     "n11": {
       "zone": "Dharavi",
@@ -1374,7 +1437,8 @@
       "report_frequency_30d": 5,
       "trend_direction": "rising",
       "_id": "n11",
-      "created_at": "2026-04-23T17:53:04.110257+00:00"
+      "created_at": "2026-04-23T19:00:47.746647+00:00",
+      "id": "n11"
     },
     "n12": {
       "zone": "Kurla",
@@ -1395,7 +1459,1821 @@
       "report_frequency_30d": 1,
       "trend_direction": "stable",
       "_id": "n12",
-      "created_at": "2026-04-23T17:53:04.114953+00:00"
+      "created_at": "2026-04-23T19:00:47.751252+00:00",
+      "id": "n12"
+    },
+    "875ee219-3ebe-441a-a": {
+      "raw_text": "200 families need emergency food packets in Dharavi",
+      "source": "manual",
+      "zone": "Dharavi, Mumbai",
+      "issue_type": "food",
+      "severity_score": 9,
+      "affected_count": null,
+      "status": "open",
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "org_id": "demo_org",
+      "_id": "875ee219-3ebe-441a-a",
+      "created_at": "2026-04-23T19:00:47.819239+00:00",
+      "id": "875ee219-3ebe-441a-a"
+    },
+    "da1199db-95b4-4bc2-9": {
+      "raw_text": "Water crisis in Churu, 500 people affected",
+      "source": "manual",
+      "zone": "Churu, Rajasthan",
+      "issue_type": "water",
+      "severity_score": 8,
+      "affected_count": null,
+      "status": "open",
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "org_id": "demo_org",
+      "_id": "da1199db-95b4-4bc2-9",
+      "created_at": "2026-04-23T19:00:47.835433+00:00",
+      "id": "da1199db-95b4-4bc2-9"
+    },
+    "a6c3bd45-a5ae-4c22-a": {
+      "raw_text": "Test need for assignment status check",
+      "source": "manual",
+      "zone": "Unknown",
+      "issue_type": "other",
+      "severity_score": 5,
+      "affected_count": null,
+      "status": "assigned",
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "org_id": "demo_org",
+      "_id": "a6c3bd45-a5ae-4c22-a",
+      "created_at": "2026-04-23T19:00:47.919995+00:00",
+      "updated_at": "2026-04-23T19:00:47.939793+00:00",
+      "id": "a6c3bd45-a5ae-4c22-a"
+    },
+    "afeeabcf-609f-49e7-a": {
+      "raw_text": "Severe water shortage in Churu, Rajasthan. 500 families affected.",
+      "source": "manual",
+      "zone": "Churu, Rajasthan",
+      "issue_type": "water",
+      "severity_score": 8,
+      "affected_count": 500,
+      "status": "open",
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "org_id": "demo_org",
+      "_id": "afeeabcf-609f-49e7-a",
+      "created_at": "2026-04-23T19:00:48.064308+00:00"
+    },
+    "06abb2a6-b59e-464c-8": {
+      "raw_text": "Help needed",
+      "source": "manual",
+      "zone": "Unknown",
+      "issue_type": "other",
+      "severity_score": 5,
+      "affected_count": null,
+      "status": "open",
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "org_id": "demo_org",
+      "_id": "06abb2a6-b59e-464c-8",
+      "created_at": "2026-04-23T19:00:48.079808+00:00"
+    },
+    "3bef5e52-d14f-4e86-9": {
+      "raw_text": "Drought in Churu district, Rajasthan. No water for 3 villages.",
+      "source": "manual",
+      "zone": "Churu, Rajasthan",
+      "issue_type": "water",
+      "severity_score": 9,
+      "affected_count": 1200,
+      "status": "open",
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "org_id": "demo_org",
+      "_id": "3bef5e52-d14f-4e86-9",
+      "created_at": "2026-04-23T19:00:48.094068+00:00"
+    },
+    "52f8bb4d-d773-4799-9": {
+      "raw_text": "Extreme heatwave, 45+ degrees. Elderly need shelter.",
+      "source": "manual",
+      "zone": "Barmer, Rajasthan",
+      "issue_type": "health",
+      "severity_score": 9,
+      "affected_count": null,
+      "status": "open",
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "org_id": "demo_org",
+      "_id": "52f8bb4d-d773-4799-9",
+      "created_at": "2026-04-23T19:00:48.108314+00:00"
+    },
+    "c0b46119-09e5-43fe-8": {
+      "raw_text": "Landslide blocked road to Tawang. 200 people stranded.",
+      "source": "manual",
+      "zone": "Tawang, Arunachal Pradesh",
+      "issue_type": "safety",
+      "severity_score": 10,
+      "affected_count": null,
+      "status": "open",
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "org_id": "demo_org",
+      "_id": "c0b46119-09e5-43fe-8",
+      "created_at": "2026-04-23T19:00:48.126715+00:00"
+    },
+    "dc837938-4487-4585-b": {
+      "raw_text": "\u091a\u0941\u0930\u0942 \u092e\u0947\u0902 \u092d\u0940\u0937\u0923 \u0938\u0942\u0916\u093e\u0964 500 \u092a\u0930\u093f\u0935\u093e\u0930 \u092a\u094d\u0930\u092d\u093e\u0935\u093f\u0924\u0964",
+      "source": "manual",
+      "zone": "Churu, Rajasthan",
+      "issue_type": "water",
+      "severity_score": 5,
+      "affected_count": null,
+      "status": "open",
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "org_id": "demo_org",
+      "_id": "dc837938-4487-4585-b",
+      "created_at": "2026-04-23T19:00:48.138075+00:00"
+    },
+    "5f268e8b-139e-43c6-8": {
+      "raw_text": "Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. Water crisis. ",
+      "source": "manual",
+      "zone": "Mumbai",
+      "issue_type": "other",
+      "severity_score": 5,
+      "affected_count": null,
+      "status": "open",
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "org_id": "demo_org",
+      "_id": "5f268e8b-139e-43c6-8",
+      "created_at": "2026-04-23T19:00:48.150057+00:00"
+    },
+    "3e1c8b53-b001-49b2-b": {
+      "raw_text": "",
+      "source": "manual",
+      "zone": "Delhi",
+      "issue_type": "other",
+      "severity_score": 5,
+      "affected_count": null,
+      "status": "open",
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "org_id": "demo_org",
+      "_id": "3e1c8b53-b001-49b2-b",
+      "created_at": "2026-04-23T19:00:48.166214+00:00"
+    },
+    "9db4e442-11ce-4e7c-9": {
+      "raw_text": "Unique test need XYZ123 for verification",
+      "source": "manual",
+      "zone": "Jaisalmer, Rajasthan",
+      "issue_type": "other",
+      "severity_score": 5,
+      "affected_count": null,
+      "status": "open",
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "org_id": "demo_org",
+      "_id": "9db4e442-11ce-4e7c-9",
+      "created_at": "2026-04-23T19:00:48.181246+00:00",
+      "id": "9db4e442-11ce-4e7c-9"
+    },
+    "e0567261-f190-4b54-a": {
+      "zone": "Churu",
+      "issue_type": "food",
+      "summary": "200 families without meals for 3 days",
+      "severity_score": 5,
+      "urgency_score": 50,
+      "urgency_label": "medium",
+      "status": "open",
+      "source": "sms",
+      "created_at": "2026-04-23T19:00:56.686945+00:00",
+      "_id": "e0567261-f190-4b54-a"
+    },
+    "136e10da-ca38-4e97-b": {
+      "zone": "Barmer",
+      "issue_type": "water",
+      "summary": "Severe drought affecting 500 people",
+      "severity_score": 5,
+      "urgency_score": 50,
+      "urgency_label": "medium",
+      "status": "open",
+      "source": "sms",
+      "created_at": "2026-04-23T19:00:56.699976+00:00",
+      "_id": "136e10da-ca38-4e97-b"
+    },
+    "e10a63c5-130f-42c0-b": {
+      "zone": "Delhi",
+      "issue_type": "health",
+      "summary": "Dengue outbreak 50 cases reported in sector 7",
+      "severity_score": 5,
+      "urgency_score": 50,
+      "urgency_label": "medium",
+      "status": "open",
+      "source": "sms",
+      "created_at": "2026-04-23T19:00:56.712090+00:00",
+      "_id": "e10a63c5-130f-42c0-b"
+    },
+    "ad42d8a7-ab0d-436b-b": {
+      "zone": "Unknown",
+      "issue_type": "other",
+      "summary": "other NEED",
+      "severity_score": 5,
+      "urgency_score": 50,
+      "urgency_label": "medium",
+      "status": "open",
+      "source": "sms",
+      "created_at": "2026-04-23T19:00:56.730392+00:00",
+      "_id": "ad42d8a7-ab0d-436b-b"
+    },
+    "fdaaf8d2-a699-4c12-b": {
+      "zone": "Mumbai",
+      "issue_type": "other",
+      "summary": "other NEED Mumbai",
+      "severity_score": 5,
+      "urgency_score": 50,
+      "urgency_label": "medium",
+      "status": "open",
+      "source": "sms",
+      "created_at": "2026-04-23T19:00:56.743598+00:00",
+      "_id": "fdaaf8d2-a699-4c12-b"
+    },
+    "4cbe7597-dd0d-447d-9": {
+      "zone": "Jaipur",
+      "issue_type": "food",
+      "summary": "People are hungry",
+      "severity_score": 5,
+      "urgency_score": 50,
+      "urgency_label": "medium",
+      "status": "open",
+      "source": "sms",
+      "created_at": "2026-04-23T19:00:56.757966+00:00",
+      "_id": "4cbe7597-dd0d-447d-9"
+    },
+    "2542a977-2a31-410d-8": {
+      "zone": "Pune",
+      "issue_type": "other",
+      "summary": "earthquake Buildings collapsed near station",
+      "severity_score": 5,
+      "urgency_score": 50,
+      "urgency_label": "medium",
+      "status": "open",
+      "source": "sms",
+      "created_at": "2026-04-23T19:00:56.769929+00:00",
+      "_id": "2542a977-2a31-410d-8"
+    },
+    "182ec622-f902-4c54-a": {
+      "zone": "\u091a\u0941\u0930\u0942",
+      "issue_type": "water",
+      "summary": "\u092a\u093e\u0928\u0940 \u0915\u0940 \u092d\u093e\u0930\u0940 \u0915\u092e\u0940 300 \u0932\u094b\u0917 \u092a\u094d\u0930\u092d\u093e\u0935\u093f\u0924",
+      "severity_score": 5,
+      "urgency_score": 50,
+      "urgency_label": "medium",
+      "status": "open",
+      "source": "sms",
+      "created_at": "2026-04-23T19:00:56.790230+00:00",
+      "_id": "182ec622-f902-4c54-a"
+    },
+    "45d3f67f-05b1-4b39-a": {
+      "zone": "Mumbai",
+      "issue_type": "food",
+      "summary": "Emergency situation. Emergency situation. Emergency situation. Emergency situation. Emergency situation. Emergency situation. Emergency situation. Emergency situation. Emergency situation. Emergency s",
+      "severity_score": 5,
+      "urgency_score": 50,
+      "urgency_label": "medium",
+      "status": "open",
+      "source": "sms",
+      "created_at": "2026-04-23T19:00:56.803635+00:00",
+      "_id": "45d3f67f-05b1-4b39-a"
+    },
+    "53f41bce-d9b4-4de3-9": {
+      "zone": "Mumbai",
+      "issue_type": "food",
+      "summary": "People need help! @#$% urgently!!! 200+ affected",
+      "severity_score": 5,
+      "urgency_score": 50,
+      "urgency_label": "medium",
+      "status": "open",
+      "source": "sms",
+      "created_at": "2026-04-23T19:00:56.817280+00:00",
+      "_id": "53f41bce-d9b4-4de3-9"
+    },
+    "7cecb379-bc07-4a17-b": {
+      "org_id": "demo_org",
+      "raw_text": "Water shortage",
+      "zone": "Churu Rajasthan",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 9,
+      "affected_count": 500,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "7cecb379-bc07-4a17-b",
+      "created_at": "2026-04-23T19:01:13.251501+00:00"
+    },
+    "236d9db6-336b-4e8c-a": {
+      "org_id": "demo_org",
+      "raw_text": "Food crisis",
+      "zone": "Barmer Rajasthan",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 8,
+      "affected_count": 200,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "236d9db6-336b-4e8c-a",
+      "created_at": "2026-04-23T19:01:13.258740+00:00"
+    },
+    "b2652f23-2a39-42fe-8": {
+      "org_id": "demo_org",
+      "raw_text": "Landslide",
+      "zone": "Tawang Arunachal Pradesh",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 10,
+      "affected_count": 100,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "b2652f23-2a39-42fe-8",
+      "created_at": "2026-04-23T19:01:13.267259+00:00"
+    },
+    "bbbd32a8-3e74-4cc5-9": {
+      "org_id": "demo_org",
+      "raw_text": "Drought affecting multiple villages",
+      "zone": "Churu",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 5,
+      "affected_count": 300,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "bbbd32a8-3e74-4cc5-9",
+      "created_at": "2026-04-23T19:01:13.285812+00:00"
+    },
+    "c47a85f1-db2e-44e9-a": {
+      "org_id": "demo_org",
+      "raw_text": "Water shortage",
+      "zone": "Unknown",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 5,
+      "affected_count": null,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "c47a85f1-db2e-44e9-a",
+      "created_at": "2026-04-23T19:01:13.313013+00:00"
+    },
+    "57e20dc8-27af-41d1-8": {
+      "org_id": "demo_org",
+      "raw_text": "Food crisis",
+      "zone": "Unknown",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 5,
+      "affected_count": null,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "57e20dc8-27af-41d1-8",
+      "created_at": "2026-04-23T19:01:13.319122+00:00"
+    },
+    "7a50e757-eaaa-4af5-a": {
+      "org_id": "demo_org",
+      "raw_text": "\u092a\u093e\u0928\u0940 \u0915\u0940 \u0915\u092e\u0940",
+      "zone": "\u091a\u0941\u0930\u0942 \u0930\u093e\u091c\u0938\u094d\u0925\u093e\u0928",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 9,
+      "affected_count": null,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "7a50e757-eaaa-4af5-a",
+      "created_at": "2026-04-23T19:01:13.338191+00:00"
+    },
+    "9e032790-4c2e-405e-a": {
+      "org_id": "demo_org",
+      "raw_text": "\u0938\u0942\u0916\u093e",
+      "zone": "\u092c\u093e\u0921\u093c\u092e\u0947\u0930",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 8,
+      "affected_count": null,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "9e032790-4c2e-405e-a",
+      "created_at": "2026-04-23T19:01:13.345335+00:00"
+    },
+    "18dcec1d-68b6-4ae7-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue0",
+      "zone": "City0",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 1,
+      "affected_count": 0,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "18dcec1d-68b6-4ae7-b",
+      "created_at": "2026-04-23T19:01:13.361659+00:00"
+    },
+    "28b8c6b0-0d88-4e03-a": {
+      "org_id": "demo_org",
+      "raw_text": "Issue1",
+      "zone": "City1",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 2,
+      "affected_count": 10,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "28b8c6b0-0d88-4e03-a",
+      "created_at": "2026-04-23T19:01:13.367553+00:00"
+    },
+    "96d18c78-0a47-43b0-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue2",
+      "zone": "City2",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 3,
+      "affected_count": 20,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "96d18c78-0a47-43b0-8",
+      "created_at": "2026-04-23T19:01:13.376413+00:00"
+    },
+    "204bb834-0c8b-4d9e-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue3",
+      "zone": "City3",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 4,
+      "affected_count": 30,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "204bb834-0c8b-4d9e-b",
+      "created_at": "2026-04-23T19:01:13.384060+00:00"
+    },
+    "d8760ddd-a0c7-46e8-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue4",
+      "zone": "City4",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 5,
+      "affected_count": 40,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "d8760ddd-a0c7-46e8-b",
+      "created_at": "2026-04-23T19:01:13.391109+00:00"
+    },
+    "7c39bdf2-1b39-4610-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue5",
+      "zone": "City5",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 6,
+      "affected_count": 50,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "7c39bdf2-1b39-4610-9",
+      "created_at": "2026-04-23T19:01:13.399846+00:00"
+    },
+    "1b8f3cac-9de8-4430-a": {
+      "org_id": "demo_org",
+      "raw_text": "Issue6",
+      "zone": "City6",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 7,
+      "affected_count": 60,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "1b8f3cac-9de8-4430-a",
+      "created_at": "2026-04-23T19:01:13.406031+00:00"
+    },
+    "cdbf8aa6-7149-4405-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue7",
+      "zone": "City7",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 8,
+      "affected_count": 70,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "cdbf8aa6-7149-4405-b",
+      "created_at": "2026-04-23T19:01:13.415674+00:00"
+    },
+    "e74da725-8bdf-4dee-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue8",
+      "zone": "City8",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 9,
+      "affected_count": 80,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "e74da725-8bdf-4dee-8",
+      "created_at": "2026-04-23T19:01:13.421237+00:00"
+    },
+    "e228f5c1-d264-4c8e-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue9",
+      "zone": "City9",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 10,
+      "affected_count": 90,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "e228f5c1-d264-4c8e-9",
+      "created_at": "2026-04-23T19:01:13.431719+00:00"
+    },
+    "13411c33-58a8-475e-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue10",
+      "zone": "City10",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 1,
+      "affected_count": 100,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "13411c33-58a8-475e-b",
+      "created_at": "2026-04-23T19:01:13.438366+00:00"
+    },
+    "c8069bb1-8ac8-45ce-a": {
+      "org_id": "demo_org",
+      "raw_text": "Issue11",
+      "zone": "City11",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 2,
+      "affected_count": 110,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "c8069bb1-8ac8-45ce-a",
+      "created_at": "2026-04-23T19:01:13.445828+00:00"
+    },
+    "3973b291-6753-49c6-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue12",
+      "zone": "City12",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 3,
+      "affected_count": 120,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "3973b291-6753-49c6-9",
+      "created_at": "2026-04-23T19:01:13.453811+00:00"
+    },
+    "78be3494-3e52-4837-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue13",
+      "zone": "City13",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 4,
+      "affected_count": 130,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "78be3494-3e52-4837-9",
+      "created_at": "2026-04-23T19:01:13.462829+00:00"
+    },
+    "94db8d39-2c76-45ae-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue14",
+      "zone": "City14",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 5,
+      "affected_count": 140,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "94db8d39-2c76-45ae-b",
+      "created_at": "2026-04-23T19:01:13.475699+00:00"
+    },
+    "fef3edd9-f7cb-4294-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue15",
+      "zone": "City15",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 6,
+      "affected_count": 150,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "fef3edd9-f7cb-4294-b",
+      "created_at": "2026-04-23T19:01:13.484286+00:00"
+    },
+    "c6a631e5-6e09-4de0-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue16",
+      "zone": "City16",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 7,
+      "affected_count": 160,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "c6a631e5-6e09-4de0-8",
+      "created_at": "2026-04-23T19:01:13.495343+00:00"
+    },
+    "aa104562-ab07-4029-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue17",
+      "zone": "City17",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 8,
+      "affected_count": 170,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "aa104562-ab07-4029-b",
+      "created_at": "2026-04-23T19:01:13.504955+00:00"
+    },
+    "2926be63-7378-40f7-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue18",
+      "zone": "City18",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 9,
+      "affected_count": 180,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "2926be63-7378-40f7-9",
+      "created_at": "2026-04-23T19:01:13.515034+00:00"
+    },
+    "dc6134d2-6668-424d-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue19",
+      "zone": "City19",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 10,
+      "affected_count": 190,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "dc6134d2-6668-424d-9",
+      "created_at": "2026-04-23T19:01:13.524095+00:00"
+    },
+    "3c19ed93-dce2-4053-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue20",
+      "zone": "City20",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 1,
+      "affected_count": 200,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "3c19ed93-dce2-4053-8",
+      "created_at": "2026-04-23T19:01:13.531202+00:00"
+    },
+    "2f69f567-a60f-4aca-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue21",
+      "zone": "City21",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 2,
+      "affected_count": 210,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "2f69f567-a60f-4aca-9",
+      "created_at": "2026-04-23T19:01:13.540326+00:00"
+    },
+    "b55692ba-cf15-4545-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue22",
+      "zone": "City22",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 3,
+      "affected_count": 220,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "b55692ba-cf15-4545-9",
+      "created_at": "2026-04-23T19:01:13.548782+00:00"
+    },
+    "9a0da992-c34c-4c25-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue23",
+      "zone": "City23",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 4,
+      "affected_count": 230,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "9a0da992-c34c-4c25-b",
+      "created_at": "2026-04-23T19:01:13.555802+00:00"
+    },
+    "72d1484f-7732-48eb-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue24",
+      "zone": "City24",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 5,
+      "affected_count": 240,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "72d1484f-7732-48eb-9",
+      "created_at": "2026-04-23T19:01:13.567674+00:00"
+    },
+    "a42e5d49-7087-41cb-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue25",
+      "zone": "City25",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 6,
+      "affected_count": 250,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "a42e5d49-7087-41cb-9",
+      "created_at": "2026-04-23T19:01:13.575958+00:00"
+    },
+    "dda40f17-f286-4b71-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue26",
+      "zone": "City26",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 7,
+      "affected_count": 260,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "dda40f17-f286-4b71-9",
+      "created_at": "2026-04-23T19:01:13.585549+00:00"
+    },
+    "bc79e0b6-a754-4b54-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue27",
+      "zone": "City27",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 8,
+      "affected_count": 270,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "bc79e0b6-a754-4b54-8",
+      "created_at": "2026-04-23T19:01:13.595651+00:00"
+    },
+    "6c0bf157-bfa4-447c-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue28",
+      "zone": "City28",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 9,
+      "affected_count": 280,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "6c0bf157-bfa4-447c-b",
+      "created_at": "2026-04-23T19:01:13.604979+00:00"
+    },
+    "aa8a70f8-63e2-4a28-a": {
+      "org_id": "demo_org",
+      "raw_text": "Issue29",
+      "zone": "City29",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 10,
+      "affected_count": 290,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "aa8a70f8-63e2-4a28-a",
+      "created_at": "2026-04-23T19:01:13.614277+00:00"
+    },
+    "91f32a90-3515-44a1-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue30",
+      "zone": "City30",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 1,
+      "affected_count": 300,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "91f32a90-3515-44a1-8",
+      "created_at": "2026-04-23T19:01:13.622843+00:00"
+    },
+    "2b091a7e-63a5-4f13-a": {
+      "org_id": "demo_org",
+      "raw_text": "Issue31",
+      "zone": "City31",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 2,
+      "affected_count": 310,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "2b091a7e-63a5-4f13-a",
+      "created_at": "2026-04-23T19:01:13.631807+00:00"
+    },
+    "b4060750-9c6f-4f92-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue32",
+      "zone": "City32",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 3,
+      "affected_count": 320,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "b4060750-9c6f-4f92-9",
+      "created_at": "2026-04-23T19:01:13.639508+00:00"
+    },
+    "bb0a7c82-2abb-48dd-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue33",
+      "zone": "City33",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 4,
+      "affected_count": 330,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "bb0a7c82-2abb-48dd-b",
+      "created_at": "2026-04-23T19:01:13.649663+00:00"
+    },
+    "4c2d0a36-11fe-40df-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue34",
+      "zone": "City34",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 5,
+      "affected_count": 340,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "4c2d0a36-11fe-40df-b",
+      "created_at": "2026-04-23T19:01:13.660083+00:00"
+    },
+    "e80ad9f3-d548-4456-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue35",
+      "zone": "City35",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 6,
+      "affected_count": 350,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "e80ad9f3-d548-4456-9",
+      "created_at": "2026-04-23T19:01:13.668655+00:00"
+    },
+    "ae805bf4-62a9-4c44-a": {
+      "org_id": "demo_org",
+      "raw_text": "Issue36",
+      "zone": "City36",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 7,
+      "affected_count": 360,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "ae805bf4-62a9-4c44-a",
+      "created_at": "2026-04-23T19:01:13.679622+00:00"
+    },
+    "1758684c-3148-4507-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue37",
+      "zone": "City37",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 8,
+      "affected_count": 370,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "1758684c-3148-4507-b",
+      "created_at": "2026-04-23T19:01:13.688214+00:00"
+    },
+    "253de47a-4fbc-4c90-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue38",
+      "zone": "City38",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 9,
+      "affected_count": 380,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "253de47a-4fbc-4c90-9",
+      "created_at": "2026-04-23T19:01:13.699115+00:00"
+    },
+    "029c1eaa-80c1-4f4b-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue39",
+      "zone": "City39",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 10,
+      "affected_count": 390,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "029c1eaa-80c1-4f4b-8",
+      "created_at": "2026-04-23T19:01:13.714060+00:00"
+    },
+    "081f6ee1-9e95-44f3-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue40",
+      "zone": "City40",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 1,
+      "affected_count": 400,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "081f6ee1-9e95-44f3-9",
+      "created_at": "2026-04-23T19:01:13.726153+00:00"
+    },
+    "3654c4b4-fe3d-48db-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue41",
+      "zone": "City41",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 2,
+      "affected_count": 410,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "3654c4b4-fe3d-48db-9",
+      "created_at": "2026-04-23T19:01:13.734972+00:00"
+    },
+    "7187495f-472d-4ba2-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue42",
+      "zone": "City42",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 3,
+      "affected_count": 420,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "7187495f-472d-4ba2-9",
+      "created_at": "2026-04-23T19:01:13.744870+00:00"
+    },
+    "54ce58d3-ea99-418d-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue43",
+      "zone": "City43",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 4,
+      "affected_count": 430,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "54ce58d3-ea99-418d-b",
+      "created_at": "2026-04-23T19:01:13.753908+00:00"
+    },
+    "f2639d93-1834-4374-a": {
+      "org_id": "demo_org",
+      "raw_text": "Issue44",
+      "zone": "City44",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 5,
+      "affected_count": 440,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "f2639d93-1834-4374-a",
+      "created_at": "2026-04-23T19:01:13.760470+00:00"
+    },
+    "15ce6090-4729-4e36-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue45",
+      "zone": "City45",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 6,
+      "affected_count": 450,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "15ce6090-4729-4e36-b",
+      "created_at": "2026-04-23T19:01:13.770914+00:00"
+    },
+    "5b74c82c-c6da-4f9b-a": {
+      "org_id": "demo_org",
+      "raw_text": "Issue46",
+      "zone": "City46",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 7,
+      "affected_count": 460,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "5b74c82c-c6da-4f9b-a",
+      "created_at": "2026-04-23T19:01:13.780686+00:00"
+    },
+    "1a2455f3-7020-4757-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue47",
+      "zone": "City47",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 8,
+      "affected_count": 470,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "1a2455f3-7020-4757-b",
+      "created_at": "2026-04-23T19:01:13.791260+00:00"
+    },
+    "0c49fa57-0326-46ca-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue48",
+      "zone": "City48",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 9,
+      "affected_count": 480,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "0c49fa57-0326-46ca-b",
+      "created_at": "2026-04-23T19:01:13.798571+00:00"
+    },
+    "f806dedd-5554-4f86-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue49",
+      "zone": "City49",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 10,
+      "affected_count": 490,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "f806dedd-5554-4f86-9",
+      "created_at": "2026-04-23T19:01:13.807190+00:00"
+    },
+    "89e4737c-afe7-4c76-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue50",
+      "zone": "City50",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 1,
+      "affected_count": 500,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "89e4737c-afe7-4c76-8",
+      "created_at": "2026-04-23T19:01:13.813466+00:00"
+    },
+    "97f59a10-7124-4caf-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue51",
+      "zone": "City51",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 2,
+      "affected_count": 510,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "97f59a10-7124-4caf-8",
+      "created_at": "2026-04-23T19:01:13.823957+00:00"
+    },
+    "f1d86f3b-b5eb-44d8-a": {
+      "org_id": "demo_org",
+      "raw_text": "Issue52",
+      "zone": "City52",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 3,
+      "affected_count": 520,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "f1d86f3b-b5eb-44d8-a",
+      "created_at": "2026-04-23T19:01:13.831007+00:00"
+    },
+    "928b0cd1-1ef4-4c4e-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue53",
+      "zone": "City53",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 4,
+      "affected_count": 530,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "928b0cd1-1ef4-4c4e-8",
+      "created_at": "2026-04-23T19:01:13.841087+00:00"
+    },
+    "f694d93f-c2ca-4371-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue54",
+      "zone": "City54",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 5,
+      "affected_count": 540,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "f694d93f-c2ca-4371-9",
+      "created_at": "2026-04-23T19:01:13.852867+00:00"
+    },
+    "c93e24c3-797b-4bfa-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue55",
+      "zone": "City55",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 6,
+      "affected_count": 550,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "c93e24c3-797b-4bfa-9",
+      "created_at": "2026-04-23T19:01:13.860887+00:00"
+    },
+    "a418ef98-da98-4ed7-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue56",
+      "zone": "City56",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 7,
+      "affected_count": 560,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "a418ef98-da98-4ed7-8",
+      "created_at": "2026-04-23T19:01:13.866138+00:00"
+    },
+    "57852cee-a8fa-42cd-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue57",
+      "zone": "City57",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 8,
+      "affected_count": 570,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "57852cee-a8fa-42cd-b",
+      "created_at": "2026-04-23T19:01:13.876045+00:00"
+    },
+    "c75ca7cf-4792-4871-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue58",
+      "zone": "City58",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 9,
+      "affected_count": 580,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "c75ca7cf-4792-4871-9",
+      "created_at": "2026-04-23T19:01:13.885823+00:00"
+    },
+    "67c61a31-1bf7-40bd-a": {
+      "org_id": "demo_org",
+      "raw_text": "Issue59",
+      "zone": "City59",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 10,
+      "affected_count": 590,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "67c61a31-1bf7-40bd-a",
+      "created_at": "2026-04-23T19:01:13.894315+00:00"
+    },
+    "a6846cd9-643a-4766-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue60",
+      "zone": "City60",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 1,
+      "affected_count": 600,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "a6846cd9-643a-4766-8",
+      "created_at": "2026-04-23T19:01:13.902540+00:00"
+    },
+    "f61dc16a-1462-47dc-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue61",
+      "zone": "City61",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 2,
+      "affected_count": 610,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "f61dc16a-1462-47dc-9",
+      "created_at": "2026-04-23T19:01:13.912071+00:00"
+    },
+    "05bdda8c-2615-4e7c-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue62",
+      "zone": "City62",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 3,
+      "affected_count": 620,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "05bdda8c-2615-4e7c-8",
+      "created_at": "2026-04-23T19:01:13.921026+00:00"
+    },
+    "ad4dbaf6-4066-4426-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue63",
+      "zone": "City63",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 4,
+      "affected_count": 630,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "ad4dbaf6-4066-4426-8",
+      "created_at": "2026-04-23T19:01:13.930624+00:00"
+    },
+    "38315d5b-e65a-4e63-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue64",
+      "zone": "City64",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 5,
+      "affected_count": 640,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "38315d5b-e65a-4e63-b",
+      "created_at": "2026-04-23T19:01:14.063788+00:00"
+    },
+    "1aa182f3-7d32-4f1b-a": {
+      "org_id": "demo_org",
+      "raw_text": "Issue65",
+      "zone": "City65",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 6,
+      "affected_count": 650,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "1aa182f3-7d32-4f1b-a",
+      "created_at": "2026-04-23T19:01:14.070013+00:00"
+    },
+    "a81c9747-126f-46c4-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue66",
+      "zone": "City66",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 7,
+      "affected_count": 660,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "a81c9747-126f-46c4-9",
+      "created_at": "2026-04-23T19:01:14.081239+00:00"
+    },
+    "27225568-41d2-41c3-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue67",
+      "zone": "City67",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 8,
+      "affected_count": 670,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "27225568-41d2-41c3-b",
+      "created_at": "2026-04-23T19:01:14.089727+00:00"
+    },
+    "7aa36d15-55d5-4692-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue68",
+      "zone": "City68",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 9,
+      "affected_count": 680,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "7aa36d15-55d5-4692-8",
+      "created_at": "2026-04-23T19:01:14.098594+00:00"
+    },
+    "012173d7-0872-478d-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue69",
+      "zone": "City69",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 10,
+      "affected_count": 690,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "012173d7-0872-478d-b",
+      "created_at": "2026-04-23T19:01:14.106987+00:00"
+    },
+    "45c16015-c23f-448e-a": {
+      "org_id": "demo_org",
+      "raw_text": "Issue70",
+      "zone": "City70",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 1,
+      "affected_count": 700,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "45c16015-c23f-448e-a",
+      "created_at": "2026-04-23T19:01:14.113797+00:00"
+    },
+    "2f0d03ca-073f-4a82-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue71",
+      "zone": "City71",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 2,
+      "affected_count": 710,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "2f0d03ca-073f-4a82-8",
+      "created_at": "2026-04-23T19:01:14.124354+00:00"
+    },
+    "ecf00910-9690-42a5-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue72",
+      "zone": "City72",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 3,
+      "affected_count": 720,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "ecf00910-9690-42a5-8",
+      "created_at": "2026-04-23T19:01:14.130976+00:00"
+    },
+    "f850ccaf-5bfe-4f56-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue73",
+      "zone": "City73",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 4,
+      "affected_count": 730,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "f850ccaf-5bfe-4f56-9",
+      "created_at": "2026-04-23T19:01:14.140906+00:00"
+    },
+    "6d4f17d8-f849-4899-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue74",
+      "zone": "City74",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 5,
+      "affected_count": 740,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "6d4f17d8-f849-4899-b",
+      "created_at": "2026-04-23T19:01:14.148575+00:00"
+    },
+    "20c66485-d70e-4057-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue75",
+      "zone": "City75",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 6,
+      "affected_count": 750,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "20c66485-d70e-4057-8",
+      "created_at": "2026-04-23T19:01:14.159066+00:00"
+    },
+    "cd02968d-af73-4b39-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue76",
+      "zone": "City76",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 7,
+      "affected_count": 760,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "cd02968d-af73-4b39-8",
+      "created_at": "2026-04-23T19:01:14.163999+00:00"
+    },
+    "9a2d06af-e96b-4397-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue77",
+      "zone": "City77",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 8,
+      "affected_count": 770,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "9a2d06af-e96b-4397-8",
+      "created_at": "2026-04-23T19:01:14.177427+00:00"
+    },
+    "3505e3af-c3be-4937-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue78",
+      "zone": "City78",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 9,
+      "affected_count": 780,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "3505e3af-c3be-4937-8",
+      "created_at": "2026-04-23T19:01:14.183679+00:00"
+    },
+    "9abfd017-3de9-4f3f-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue79",
+      "zone": "City79",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 10,
+      "affected_count": 790,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "9abfd017-3de9-4f3f-b",
+      "created_at": "2026-04-23T19:01:14.194708+00:00"
+    },
+    "8eef18c1-04de-4fec-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue80",
+      "zone": "City80",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 1,
+      "affected_count": 800,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "8eef18c1-04de-4fec-9",
+      "created_at": "2026-04-23T19:01:14.202791+00:00"
+    },
+    "cf22bd2a-3736-426a-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue81",
+      "zone": "City81",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 2,
+      "affected_count": 810,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "cf22bd2a-3736-426a-8",
+      "created_at": "2026-04-23T19:01:14.210625+00:00"
+    },
+    "2cac6f32-e375-4473-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue82",
+      "zone": "City82",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 3,
+      "affected_count": 820,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "2cac6f32-e375-4473-b",
+      "created_at": "2026-04-23T19:01:14.219838+00:00"
+    },
+    "40629fe8-eed8-4b54-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue83",
+      "zone": "City83",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 4,
+      "affected_count": 830,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "40629fe8-eed8-4b54-9",
+      "created_at": "2026-04-23T19:01:14.224046+00:00"
+    },
+    "40945128-c131-425d-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue84",
+      "zone": "City84",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 5,
+      "affected_count": 840,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "40945128-c131-425d-8",
+      "created_at": "2026-04-23T19:01:14.235960+00:00"
+    },
+    "1baa6434-140c-4797-a": {
+      "org_id": "demo_org",
+      "raw_text": "Issue85",
+      "zone": "City85",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 6,
+      "affected_count": 850,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "1baa6434-140c-4797-a",
+      "created_at": "2026-04-23T19:01:14.245889+00:00"
+    },
+    "3c1efdde-8344-448c-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue86",
+      "zone": "City86",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 7,
+      "affected_count": 860,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "3c1efdde-8344-448c-8",
+      "created_at": "2026-04-23T19:01:14.254675+00:00"
+    },
+    "85da950b-af54-4afd-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue87",
+      "zone": "City87",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 8,
+      "affected_count": 870,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "85da950b-af54-4afd-8",
+      "created_at": "2026-04-23T19:01:14.263540+00:00"
+    },
+    "dd8dcc94-e659-4ce1-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue88",
+      "zone": "City88",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 9,
+      "affected_count": 880,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "dd8dcc94-e659-4ce1-9",
+      "created_at": "2026-04-23T19:01:14.273963+00:00"
+    },
+    "914b89f8-b751-4866-a": {
+      "org_id": "demo_org",
+      "raw_text": "Issue89",
+      "zone": "City89",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 10,
+      "affected_count": 890,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "914b89f8-b751-4866-a",
+      "created_at": "2026-04-23T19:01:14.283248+00:00"
+    },
+    "86e854c6-7389-4e10-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue90",
+      "zone": "City90",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 1,
+      "affected_count": 900,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "86e854c6-7389-4e10-b",
+      "created_at": "2026-04-23T19:01:14.292933+00:00"
+    },
+    "5051b1a9-f678-4da4-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue91",
+      "zone": "City91",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 2,
+      "affected_count": 910,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "5051b1a9-f678-4da4-b",
+      "created_at": "2026-04-23T19:01:14.302352+00:00"
+    },
+    "6c82eb5e-4881-4b22-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue92",
+      "zone": "City92",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 3,
+      "affected_count": 920,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "6c82eb5e-4881-4b22-b",
+      "created_at": "2026-04-23T19:01:14.310655+00:00"
+    },
+    "2fda5bb7-fc74-4e36-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue93",
+      "zone": "City93",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 4,
+      "affected_count": 930,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "2fda5bb7-fc74-4e36-b",
+      "created_at": "2026-04-23T19:01:14.320227+00:00"
+    },
+    "b5cc7945-2311-4cdc-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue94",
+      "zone": "City94",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 5,
+      "affected_count": 940,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "b5cc7945-2311-4cdc-9",
+      "created_at": "2026-04-23T19:01:14.324401+00:00"
+    },
+    "b64fbba7-dca1-469c-8": {
+      "org_id": "demo_org",
+      "raw_text": "Issue95",
+      "zone": "City95",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 6,
+      "affected_count": 950,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "b64fbba7-dca1-469c-8",
+      "created_at": "2026-04-23T19:01:14.341280+00:00"
+    },
+    "a3f5cb88-3b55-44d4-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue96",
+      "zone": "City96",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 7,
+      "affected_count": 960,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "a3f5cb88-3b55-44d4-b",
+      "created_at": "2026-04-23T19:01:14.351483+00:00"
+    },
+    "1390c9c1-e3ca-4c0c-a": {
+      "org_id": "demo_org",
+      "raw_text": "Issue97",
+      "zone": "City97",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 8,
+      "affected_count": 970,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "1390c9c1-e3ca-4c0c-a",
+      "created_at": "2026-04-23T19:01:14.360388+00:00"
+    },
+    "c2774265-8a97-4eed-b": {
+      "org_id": "demo_org",
+      "raw_text": "Issue98",
+      "zone": "City98",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 9,
+      "affected_count": 980,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "c2774265-8a97-4eed-b",
+      "created_at": "2026-04-23T19:01:14.370166+00:00"
+    },
+    "f215eec1-d628-4630-9": {
+      "org_id": "demo_org",
+      "raw_text": "Issue99",
+      "zone": "City99",
+      "source": "csv",
+      "status": "open",
+      "severity_score": 10,
+      "affected_count": 990,
+      "urgency_score": 0,
+      "urgency_label": "low",
+      "_id": "f215eec1-d628-4630-9",
+      "created_at": "2026-04-23T19:01:14.381223+00:00"
+    },
+    "ea8514f4-839d-4383-b": {
+      "raw_text": "Severe flooding in Dharavi area. 500 families displaced. Need food and shelter urgently.",
+      "source": "manual",
+      "status": "open",
+      "urgency_score": 99,
+      "urgency_label": "critical",
+      "org_id": "demo_org",
+      "_id": "ea8514f4-839d-4383-b",
+      "created_at": "2026-04-23T19:01:14.397902+00:00",
+      "language_detected": "en",
+      "issue_type": "food",
+      "zone": "Dharavi",
+      "severity_score": 9,
+      "affected_count": 500,
+      "summary": "Severe flooding in Dharavi area. 500 families displaced. Need food and shelter urgently.",
+      "required_skills": [
+        "food distribution",
+        "cooking",
+        "logistics"
+      ],
+      "recommended_volunteer_count": 5,
+      "report_frequency_30d": 2,
+      "coordinator_explanation": "A food issue in Dharavi has been reported 2 times with severity 9/10, affecting approximately 500 people. This situation requires immediate coordinator attention.",
+      "processed_at": "2026-04-23T19:01:15.035491+00:00",
+      "trend_direction": "stable",
+      "lat": 19.044463,
+      "lng": 72.8586177,
+      "updated_at": "2026-04-23T19:01:15.036055+00:00"
+    },
+    "b0f31ad8-0fcf-4648-b": {
+      "raw_text": "Water crisis in Mumbai, Maharashtra. 200 families affected.",
+      "source": "manual",
+      "status": "open",
+      "urgency_score": 35,
+      "urgency_label": "medium",
+      "org_id": "demo_org",
+      "_id": "b0f31ad8-0fcf-4648-b",
+      "created_at": "2026-04-23T19:01:15.050677+00:00",
+      "language_detected": "en",
+      "issue_type": "water",
+      "zone": "Mumbai",
+      "severity_score": 5,
+      "affected_count": 200,
+      "summary": "Water crisis in Mumbai, Maharashtra. 200 families affected.",
+      "required_skills": [
+        "plumbing",
+        "water purification",
+        "logistics"
+      ],
+      "recommended_volunteer_count": 5,
+      "report_frequency_30d": 1,
+      "coordinator_explanation": "A water issue in Mumbai has been reported 1 times with severity 5/10, affecting approximately 200 people. This situation requires immediate coordinator attention.",
+      "processed_at": "2026-04-23T19:01:15.451662+00:00",
+      "trend_direction": "stable",
+      "lat": 19.054999,
+      "lng": 72.8692035,
+      "updated_at": "2026-04-23T19:01:15.451662+00:00"
+    },
+    "64b046d4-683b-49f0-a": {
+      "raw_text": "Drought in Churu district, Rajasthan. 500 people without water for 5 days. Urgent help needed.",
+      "source": "manual",
+      "status": "open",
+      "urgency_score": 62,
+      "urgency_label": "high",
+      "org_id": "demo_org",
+      "_id": "64b046d4-683b-49f0-a",
+      "created_at": "2026-04-23T19:01:15.467601+00:00",
+      "language_detected": "en",
+      "issue_type": "water",
+      "zone": "Churu",
+      "severity_score": 9,
+      "affected_count": 500,
+      "summary": "Drought in Churu district, Rajasthan. 500 people without water for 5 days. Urgent help needed.",
+      "required_skills": [
+        "plumbing",
+        "water purification",
+        "logistics"
+      ],
+      "recommended_volunteer_count": 5,
+      "report_frequency_30d": 1,
+      "coordinator_explanation": "A water issue in Churu has been reported 1 times with severity 9/10, affecting approximately 500 people. This situation requires immediate coordinator attention.",
+      "processed_at": "2026-04-23T19:01:15.863874+00:00",
+      "trend_direction": "stable",
+      "lat": 28.2047781,
+      "lng": 74.6912996,
+      "updated_at": "2026-04-23T19:01:15.863874+00:00"
+    },
+    "c865b2a9-1828-4f96-a": {
+      "raw_text": "\u092e\u0941\u0902\u092c\u0908 \u0915\u0947 \u0927\u093e\u0930\u093e\u0935\u0940 \u0907\u0932\u093e\u0915\u0947 \u092e\u0947\u0902 \u092c\u093e\u0922\u093c\u0964 500 \u092a\u0930\u093f\u0935\u093e\u0930 \u092c\u0947\u0918\u0930\u0964 \u0916\u093e\u0928\u093e \u0914\u0930 \u092a\u093e\u0928\u0940 \u0915\u0940 \u091c\u0930\u0942\u0930\u0924\u0964",
+      "source": "manual",
+      "status": "open",
+      "urgency_score": 100,
+      "urgency_label": "critical",
+      "org_id": "demo_org",
+      "_id": "c865b2a9-1828-4f96-a",
+      "created_at": "2026-04-23T19:01:15.882300+00:00",
+      "language_detected": "hi",
+      "issue_type": "food",
+      "zone": "Dharavi",
+      "severity_score": 8,
+      "affected_count": 500,
+      "summary": "Flood in Dharavi area of \u200b\u200bMumbai. 500 families homeless. Need for food and water.",
+      "required_skills": [
+        "food distribution",
+        "cooking",
+        "logistics"
+      ],
+      "recommended_volunteer_count": 5,
+      "report_frequency_30d": 3,
+      "coordinator_explanation": "A food issue in Dharavi has been reported 3 times with severity 8/10, affecting approximately 500 people. This situation requires immediate coordinator attention.",
+      "processed_at": "2026-04-23T19:01:16.436461+00:00",
+      "trend_direction": "stable",
+      "lat": 19.044463,
+      "lng": 72.8586177,
+      "updated_at": "2026-04-23T19:01:16.436461+00:00"
     }
   },
   "users": {
@@ -1405,7 +3283,7 @@
       "display_name": "Demo Organization",
       "role": "organization",
       "_id": "u1",
-      "created_at": "2026-04-23T17:53:04.117998+00:00"
+      "created_at": "2026-04-23T19:00:47.757639+00:00"
     },
     "u2": {
       "email": "volunteer@allocare.org",
@@ -1413,7 +3291,79 @@
       "display_name": "Demo Volunteer",
       "role": "volunteer",
       "_id": "u2",
-      "created_at": "2026-04-23T17:53:04.123253+00:00"
+      "created_at": "2026-04-23T19:00:47.762559+00:00"
+    },
+    "c6c9e649-1826-4ebb-a": {
+      "email": "testorg@test.com",
+      "password_hash": "ecd71870d1963316a97e3ac3408c9835ad8cf0f3c1bc703527c30265534f75ae",
+      "display_name": "Test NGO",
+      "role": "organization",
+      "_id": "c6c9e649-1826-4ebb-a",
+      "created_at": "2026-04-23T18:57:30.054586+00:00"
+    },
+    "75bc87ff-0ecf-4af6-a": {
+      "email": "testvol@test.com",
+      "password_hash": "b6a1283385dd04a8a5724dfd3fc1779ef1c08d752c65db1bdd634a3034a3ca00",
+      "display_name": "Test Volunteer",
+      "role": "volunteer",
+      "_id": "75bc87ff-0ecf-4af6-a",
+      "created_at": "2026-04-23T18:57:30.068645+00:00"
+    },
+    "9c891db1-54a8-4c55-a": {
+      "email": "dup@test.com",
+      "password_hash": "ecd71870d1963316a97e3ac3408c9835ad8cf0f3c1bc703527c30265534f75ae",
+      "display_name": "Dup User",
+      "role": "organization",
+      "_id": "9c891db1-54a8-4c55-a",
+      "created_at": "2026-04-23T18:57:30.087977+00:00"
+    },
+    "e68e0f28-7cbb-4931-9": {
+      "email": "testorg_1776970847@test.com",
+      "password_hash": "ecd71870d1963316a97e3ac3408c9835ad8cf0f3c1bc703527c30265534f75ae",
+      "display_name": "Test NGO",
+      "role": "organization",
+      "_id": "e68e0f28-7cbb-4931-9",
+      "created_at": "2026-04-23T19:00:47.183319+00:00"
+    },
+    "19c62a57-6018-4478-b": {
+      "email": "testvol_1776970847@test.com",
+      "password_hash": "b6a1283385dd04a8a5724dfd3fc1779ef1c08d752c65db1bdd634a3034a3ca00",
+      "display_name": "Test Volunteer",
+      "role": "volunteer",
+      "_id": "19c62a57-6018-4478-b",
+      "created_at": "2026-04-23T19:00:47.193032+00:00"
+    }
+  },
+  "assignments": {
+    "7a0c22dc-2f20-4e61-8": {
+      "need_report_id": "n1",
+      "volunteer_id": "v4",
+      "org_id": "demo_org",
+      "status": "pending",
+      "match_score": 0.85,
+      "match_explanation": "Top match by skill and proximity",
+      "_id": "7a0c22dc-2f20-4e61-8",
+      "created_at": "2026-04-23T19:00:47.858768+00:00"
+    },
+    "8f4c20fd-287b-460b-a": {
+      "need_report_id": "n3",
+      "volunteer_id": "v4",
+      "org_id": "demo_org",
+      "status": "pending",
+      "match_score": 0,
+      "match_explanation": "",
+      "_id": "8f4c20fd-287b-460b-a",
+      "created_at": "2026-04-23T19:00:47.889872+00:00"
+    },
+    "5a8f4756-15a6-4950-8": {
+      "need_report_id": "a6c3bd45-a5ae-4c22-a",
+      "volunteer_id": "v4",
+      "org_id": "demo_org",
+      "status": "pending",
+      "match_score": 0,
+      "match_explanation": "",
+      "_id": "5a8f4756-15a6-4950-8",
+      "created_at": "2026-04-23T19:00:47.928667+00:00"
     }
   }
 }
