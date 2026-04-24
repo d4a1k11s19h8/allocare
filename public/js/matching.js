@@ -137,19 +137,19 @@ function renderMatchResults(matches, needId) {
   matchResults.innerHTML = matches.map((match, i) => {
     const color = getAvatarColor(match.volunteer_name);
     const initials = getInitials(match.volunteer_name);
-    const scorePercent = Math.max(1, Math.round(match.match_score * 100));\r
-    const scoreColor = scorePercent >= 50 ? "var(--green)" : scorePercent >= 20 ? "var(--amber)" : "var(--cyan)";\r
-\r
-    // Component scores from backend\r
-    const skillPct = match.skill_score != null ? Math.round(match.skill_score * 100) : null;\r
-    const proxPct = match.proximity_score != null ? Math.round(match.proximity_score * 100) : null;\r
-    const availPct = match.availability_score != null ? Math.round(match.availability_score * 100) : null;\r
-\r
-    const componentBars = (skillPct != null) ? `\r
-      <div style="display:flex;gap:var(--space-xs);margin:var(--space-xs) 0 var(--space-sm);flex-wrap:wrap;">\r
-        <span style="font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(14,159,110,0.15);color:#0E9F6E;">Skill ${skillPct}%</span>\r
-        <span style="font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(26,86,219,0.15);color:#1A56DB;">Proximity ${proxPct}%</span>\r
-        <span style="font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(234,179,8,0.15);color:#E3A008;">Avail ${availPct}%</span>\r
+    const scorePercent = Math.max(1, Math.round(match.match_score * 100));
+    const scoreColor = scorePercent >= 50 ? "var(--green)" : scorePercent >= 20 ? "var(--amber)" : "var(--cyan)";
+
+    // Component scores from backend
+    const skillPct = match.skill_score != null ? Math.round(match.skill_score * 100) : null;
+    const proxPct = match.proximity_score != null ? Math.round(match.proximity_score * 100) : null;
+    const availPct = match.availability_score != null ? Math.round(match.availability_score * 100) : null;
+
+    const componentBars = (skillPct != null) ? `
+      <div style="display:flex;gap:var(--space-xs);margin:var(--space-xs) 0 var(--space-sm);flex-wrap:wrap;">
+        <span style="font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(14,159,110,0.15);color:#0E9F6E;">Skill ${skillPct}%</span>
+        <span style="font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(26,86,219,0.15);color:#1A56DB;">Proximity ${proxPct}%</span>
+        <span style="font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(234,179,8,0.15);color:#E3A008;">Avail ${availPct}%</span>
       </div>` : "";
 
     return `
