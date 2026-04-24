@@ -556,9 +556,8 @@ async def get_volunteer(vol_id: str):
 @app.get("/api/volunteers/{vol_id}/assignments", tags=["volunteers"])
 async def get_volunteer_assignments(vol_id: str):
     """Get all assignments for a specific volunteer, enriched with need details."""
-    vol = store.get("volunteers", vol_id)
-    if not vol:
-        raise HTTPException(status_code=404, detail="Volunteer not found")
+    # We do not strictly require the volunteer profile to exist in order to fetch assignments.
+    # This prevents 404 errors for newly registered volunteers or demo users.
 
     all_assignments = store.query("assignments")
     vol_assignments = [a for a in all_assignments if a.get("volunteer_id") == vol_id]
