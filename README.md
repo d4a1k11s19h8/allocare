@@ -1,6 +1,6 @@
 # AlloCare — Smart Volunteer Deployment for Social Impact
 
-🌐 **[Live Demo →](https://allocare-prod.web.app)** | 📹 **[Demo Video →](https://youtu.be/XXXX)** | 📊 **[Pitch Deck →](./docs/pitch_deck.pdf)**
+🌐 **[Live Demo →](https://allocare-77.web.app)** | 📹 **[Demo Video →](https://youtu.be/XXXX)** | 📊 **[Pitch Deck →](./docs/pitch_deck.pdf)**
 
 > **From paper survey to matched volunteer in 60 seconds.** Powered by Gemini AI.
 
@@ -113,17 +113,16 @@ graph TB
 git clone https://github.com/d4a1k11s19h8/allocare.git
 cd allocare
 
-# Install Firebase CLI (if not installed)
-npm install -g firebase-tools
-
-# Deploy to Firebase
-firebase login
-firebase deploy
+# Install and run Frontend
+cd frontend
+npm install
+npm run dev
 ```
 
-For local development:
+For local development of the dashboard:
 ```bash
-# Start local server
+# Start local server for dashboard
+cd ..
 npx serve public -l 3000
 
 # Or use Firebase emulators
@@ -180,14 +179,7 @@ Returns **top-3 volunteers** with plain-English explanations:
 - **Privacy** — volunteer locations rounded to ±1km, no individual PII in field reports
 - **Free forever** for small NGOs — technology should not be a barrier to social impact
 
-## 👥 Team
 
-| Name | Role | Motivation |
-|------|------|-----------|
-| [Your Name] | Lead Developer | "I've seen my aunt's NGO struggle with paper surveys for years" |
-| [Team Member] | AI/ML | "AI should serve the underserved, not just the overserved" |
-| [Team Member] | UI/UX | "Good design makes complex data feel simple and actionable" |
-| [Team Member] | Data | "Every data point represents a family that needs help today" |
 
 ## 📄 License
 
