@@ -164,14 +164,69 @@ function selectNeed(needId) {
 function showNeedDetail(need) {
   const issueType = ISSUE_TYPES[need.issue_type] || ISSUE_TYPES.other;
   const urgency = URGENCY_LEVELS[need.urgency_label] || URGENCY_LEVELS.low;
+  const status = need.status || "open";
+  const isResolved = status === "resolved";
+  const isAssigned = status === "assigned" || status === "offered";
 
   document.getElementById("detail-title").innerHTML = `
     <span style="font-size:24px;">${issueType.icon}</span>
     ${need.zone || "Unknown"} — ${issueType.label}
-    <span class="urgency-badge ${need.urgency_label}" style="margin-left:8px;">${urgency.label}</span>`;
+    <span class="urgency-badge ${need.urgency_label}" style="margin-left:8px;">${urgency.label}</span>
+    <span style="margin-left:8px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;
+      background:${isResolved ? 'rgba(14,159,110,0.15)' : isAssigned ? 'rgba(26,86,219,0.15)' : 'rgba(234,179,8,0.15)'};
+      color:${isResolved ? 'var(--green)' : isAssigned ? 'var(--primary)' : 'var(--amber)'};">${status}</span>`;
 
   const body = document.getElementById("need-detail-body");
+
+  // Build status-specific banner
+  let statusBanner = "";
+  if (isResolved) {
+    statusBanner = `
+    <div class="detail-section" style="background:rgba(14,159,110,0.1);border:1px solid rgba(14,159,110,0.3);border-radius:var(--radius-md);padding:var(--space-md);display:flex;align-items:center;gap:var(--space-sm);">
+      <span class="material-icons-outlined" style="color:var(--green);font-size:28px;">check_circle</span>
+      <div>
+        <div style="color:var(--green);font-weight:700;">Need Resolved</div>
+        <div style="color:var(--text-secondary);font-size:var(--font-xs);">This need has been resolved by a volunteer.</div>
+      </div>
+    </div>`;
+  }
+
+  // Build assigned volunteer placeholder
+  let assignedSection = "";
+  if (isAssigned || isResolved) {
+    assignedSection = `
+    <div class="detail-section" id="assigned-vol-section">
+      <h3><span class="material-icons-outlined" style="vertical-align:middle;">person</span> Assigned Volunteer</h3>
+      <div id="assigned-vol-info" style="padding:var(--space-sm);">
+        <div class="loading-spinner" style="width:20px;height:20px;border-width:2px;margin:8px auto;"></div>
+      </div>
+    </div>`;
+  }
+
+  // Build action buttons (only for open/flagged needs)
+  let actionButtons = "";
+  if (!isResolved && !isAssigned) {
+    actionButtons = `
+    <div class="detail-section" style="display:flex;gap:var(--space-md);">
+      <button class="btn-primary" onclick="matchVolunteers('${need.id}'); closeNeedDetail();">
+        <span class="material-icons-outlined">person_search</span> Find Volunteers
+      </button>
+      <button class="btn-secondary" onclick="openFlagDialog('${need.id}')">
+        <span class="material-icons-outlined">flag</span> Flag Score
+      </button>
+    </div>`;
+  } else if (isAssigned) {
+    actionButtons = `
+    <div class="detail-section" style="display:flex;gap:var(--space-md);">
+      <button class="btn-primary" onclick="matchVolunteers('${need.id}'); closeNeedDetail();">
+        <span class="material-icons-outlined">person_search</span> Find More Volunteers
+      </button>
+    </div>`;
+  }
+
   body.innerHTML = `
+    ${statusBanner}
+
     <div class="detail-section">
       <h3>Summary</h3>
       <p style="font-size:var(--font-base);line-height:1.6;">${need.summary || "No summary available"}</p>
@@ -212,6 +267,8 @@ function showNeedDetail(need) {
       </div>
     </div>
 
+    ${assignedSection}
+
     <div class="detail-section">
       <h3>Required Skills</h3>
       <div style="display:flex;gap:6px;flex-wrap:wrap;">
@@ -219,16 +276,55 @@ function showNeedDetail(need) {
       </div>
     </div>
 
-    <div class="detail-section" style="display:flex;gap:var(--space-md);">
-      <button class="btn-primary" onclick="matchVolunteers('${need.id}'); closeNeedDetail();">
-        <span class="material-icons-outlined">person_search</span> Find Volunteers
-      </button>
-      <button class="btn-secondary" onclick="openFlagDialog('${need.id}')">
-        <span class="material-icons-outlined">flag</span> Flag Score
-      </button>
-    </div>`;
+    ${actionButtons}`;
 
   document.getElementById("need-detail-modal").style.display = "flex";
+
+  // Fetch assigned volunteer info asynchronously
+  if (isAssigned || isResolved) {
+    fetchAssignedVolunteer(need.id);
+  }
+}
+
+async function fetchAssignedVolunteer(needId) {
+  const infoEl = document.getElementById("assigned-vol-info");
+  if (!infoEl) return;
+
+  try {
+    const res = await fetch(`${FUNCTIONS_BASE}/api/needs/${needId}/assignments`);
+    if (!res.ok) throw new Error("Failed to fetch");
+    const data = await res.json();
+
+    if (data.total === 0) {
+      infoEl.innerHTML = `<p style="color:var(--text-muted);font-size:var(--font-sm);">No volunteer assigned yet.</p>`;
+      return;
+    }
+
+    infoEl.innerHTML = data.assignments.map(a => {
+      const vol = a.volunteer || {};
+      const color = getAvatarColor(vol.display_name || "V");
+      const initials = getInitials(vol.display_name || "V");
+      const statusColors = { offered: "var(--cyan)", accepted: "var(--primary)", completed: "var(--green)", declined: "var(--red)" };
+      const statusColor = statusColors[a.status] || "var(--amber)";
+      const skills = (vol.skills || []).slice(0, 3).join(", ");
+
+      return `
+        <div style="display:flex;align-items:center;gap:var(--space-md);padding:var(--space-sm) 0;border-bottom:1px solid var(--border);">
+          <div class="volunteer-avatar" style="background:${color};width:40px;height:40px;font-size:14px;flex-shrink:0;">${initials}</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-weight:600;color:var(--text-primary);">${vol.display_name || "Unknown"}</div>
+            <div style="font-size:var(--font-xs);color:var(--text-muted);">${skills || "General support"} · ${vol.zone || ""}</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
+            <span style="padding:3px 8px;border-radius:12px;font-size:10px;font-weight:700;text-transform:uppercase;
+              background:${statusColor}22;color:${statusColor};">${a.status}</span>
+            ${vol.impact_points ? `<span style="font-size:10px;color:var(--amber);">⭐ ${vol.impact_points} pts</span>` : ""}
+          </div>
+        </div>`;
+    }).join("");
+  } catch (e) {
+    infoEl.innerHTML = `<p style="color:var(--text-muted);font-size:var(--font-sm);">Could not load assignment info.</p>`;
+  }
 }
 
 function closeNeedDetail() {

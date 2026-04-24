@@ -245,6 +245,35 @@ async def get_need(need_id: str):
     return need
 
 
+@app.get("/api/needs/{need_id}/assignments", tags=["needs"])
+async def get_need_assignments(need_id: str):
+    """Get all assignments for a specific need, enriched with volunteer details."""
+    all_assignments = store.query("assignments")
+    need_assignments = [a for a in all_assignments if a.get("need_report_id") == need_id]
+
+    enriched = []
+    for a in need_assignments:
+        vol_id = a.get("volunteer_id")
+        vol = store.get("volunteers", vol_id) if vol_id else None
+        enriched.append({
+            "assignment_id": a.get("_id", ""),
+            "status": a.get("status", "pending"),
+            "match_score": a.get("match_score", 0),
+            "match_explanation": a.get("match_explanation", ""),
+            "created_at": a.get("created_at", ""),
+            "volunteer": {
+                "id": vol_id or "",
+                "display_name": (vol or {}).get("display_name", "Unknown"),
+                "skills": (vol or {}).get("skills", []),
+                "zone": (vol or {}).get("zone", ""),
+                "impact_points": (vol or {}).get("impact_points", 0),
+                "status": (vol or {}).get("status", ""),
+            } if vol else None,
+        })
+
+    return {"assignments": enriched, "total": len(enriched)}
+
+
 class CreateNeedRequest(BaseModel):
     raw_text: str
     source: str = "manual"
