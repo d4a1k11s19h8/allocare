@@ -139,6 +139,8 @@ function showDashboard() {
       #upload-btn { display: none !important; }
       /* Hide map and needs dashboard */
       #view-dashboard { display: none !important; }
+      /* Hide dashboard nav item */
+      #nav-dashboard { display: none !important; }
     `;
     document.head.appendChild(style);
     
