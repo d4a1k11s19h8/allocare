@@ -20,9 +20,16 @@
     <!-- Leaflet Control Geocoder — FREE Places API alternative (uses Nominatim) -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.css" />
     <script src="https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.js"></script>
+    <!-- Leaflet Routing Machine for route polylines (FREE) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.min.js"></script>
 
     <!-- Chart.js (FREE) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0f0f23">
 
     <!-- Styles -->
     <link rel="stylesheet" href="css/design-system.css?v=2">
@@ -77,6 +84,10 @@
                 <p class="auth-note" style="margin-top: 8px;">
                     <span class="material-icons-outlined" style="font-size:14px">lock</span>
                     Secure Demo (admin@allocare.org / admin123)
+                </p>
+                <p class="auth-note" style="margin-top: 4px;">
+                    <span class="material-icons-outlined" style="font-size:14px">volunteer_activism</span>
+                    Volunteer Demo (volunteer@allocare.org / vol123)
                 </p>
             </div>
 
@@ -137,9 +148,24 @@
                     <span class="material-icons-outlined">notifications</span>
                     <span class="notification-badge" id="notif-badge">3</span>
                 </button>
-                <div class="user-avatar" id="user-avatar" onclick="toggleUserMenu()">
-                    <img src="" alt="" id="user-photo">
-                    <span id="user-initial">D</span>
+                <!-- Offline indicator -->
+                <span id="offline-badge" class="offline-badge" style="display:none;">⚡ Offline</span>
+                <div class="user-menu-wrapper">
+                    <div class="user-avatar" id="user-avatar" onclick="toggleUserMenu()">
+                        <img src="" alt="" id="user-photo">
+                        <span id="user-initial">D</span>
+                    </div>
+                    <div class="user-dropdown" id="user-dropdown" style="display:none;">
+                        <div class="user-dropdown-header">
+                            <div class="user-dropdown-name" id="dropdown-name">User</div>
+                            <div class="user-dropdown-role" id="dropdown-role">Organization</div>
+                        </div>
+                        <div class="user-dropdown-divider"></div>
+                        <button class="user-dropdown-item" onclick="signOut()">
+                            <span class="material-icons-outlined">logout</span>
+                            Sign Out
+                        </button>
+                    </div>
                 </div>
             </div>
         </header>
@@ -153,21 +179,38 @@
                         <span class="material-icons-outlined">dashboard</span>
                         <span>Dashboard</span>
                     </a>
-                    <a href="#" class="nav-item" data-view="reports" onclick="switchView('reports')">
+                    <!-- Volunteer-only: My Tasks -->
+                    <a href="#" class="nav-item nav-volunteer-only" data-view="my-tasks" onclick="switchView('my-tasks')" style="display:none;">
+                        <span class="material-icons-outlined">assignment</span>
+                        <span>My Tasks</span>
+                    </a>
+                    <!-- Admin/Org-only nav items -->
+                    <a href="#" class="nav-item nav-admin-only" data-view="reports" onclick="switchView('reports')">
                         <span class="material-icons-outlined">description</span>
                         <span>Reports</span>
                     </a>
-                    <a href="#" class="nav-item" data-view="volunteers" onclick="switchView('volunteers')">
+                    <a href="#" class="nav-item nav-admin-only" data-view="volunteers" onclick="switchView('volunteers')">
                         <span class="material-icons-outlined">group</span>
                         <span>Volunteers</span>
                     </a>
-                    <a href="#" class="nav-item" data-view="analytics" onclick="switchView('analytics')">
+                    <a href="#" class="nav-item nav-admin-only" data-view="analytics" onclick="switchView('analytics')">
                         <span class="material-icons-outlined">insights</span>
                         <span>Analytics</span>
                     </a>
-                    <a href="#" class="nav-item" data-view="settings" onclick="switchView('settings')">
+                    <a href="#" class="nav-item nav-admin-only" data-view="settings" onclick="switchView('settings')">
                         <span class="material-icons-outlined">settings</span>
                         <span>Settings</span>
+                    </a>
+                    <!-- SuperAdmin-only nav items -->
+                    <a href="#" class="nav-item nav-superadmin-only" data-view="api-monitor" onclick="switchView('api-monitor')" style="display:none;">
+                        <span class="material-icons-outlined">memory</span>
+                        <span>API Monitor</span>
+                    </a>
+                </div>
+                <div class="sidebar-signout">
+                    <a href="#" class="nav-item signout-btn" onclick="event.preventDefault(); signOut()">
+                        <span class="material-icons-outlined">logout</span>
+                        <span>Sign Out</span>
                     </a>
                 </div>
                 <div class="sidebar-footer">
@@ -401,6 +444,113 @@
                     </button>
                 </div>
             </div>
+
+            <!-- ═══════════════════════════════════════════════════ -->
+            <!-- MY TASKS VIEW (Volunteer-only) -->
+            <!-- ═══════════════════════════════════════════════════ -->
+            <div id="view-my-tasks" class="view-section" style="display:none; width: 100%; flex-direction: column; padding: var(--space-xl); overflow-y: auto;">
+                <div class="needs-header" style="margin-bottom: var(--space-md);">
+                    <h2><span class="material-icons-outlined">assignment</span> My Assigned Tasks</h2>
+                    <span class="panel-count" id="my-tasks-count">0 tasks</span>
+                </div>
+
+                <!-- Volunteer Profile Summary -->
+                <div class="glass-card" style="padding: var(--space-lg); margin-bottom: var(--space-lg);">
+                    <div style="display: flex; align-items: center; gap: var(--space-lg); flex-wrap: wrap;">
+                        <div class="user-avatar" style="width:56px;height:56px;font-size:22px;" id="vol-profile-avatar">V</div>
+                        <div style="flex:1;">
+                            <h3 style="margin:0; color: var(--text-primary);" id="vol-profile-name">Volunteer</h3>
+                            <p style="margin:4px 0 0; color: var(--text-muted); font-size: var(--font-sm);" id="vol-profile-skills">-</p>
+                        </div>
+                        <div style="display: flex; gap: var(--space-md);">
+                            <div class="impact-card" style="min-width:80px;">
+                                <span class="impact-value" id="vol-impact-points">0</span>
+                                <span class="impact-label">Points</span>
+                            </div>
+                            <div class="impact-card" style="min-width:80px;">
+                                <span class="impact-value" id="vol-impact-tasks">0</span>
+                                <span class="impact-label">Completed</span>
+                            </div>
+                            <div class="impact-card" style="min-width:80px;">
+                                <span class="impact-value" id="vol-impact-people">0</span>
+                                <span class="impact-label">Helped</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Task Cards Grid -->
+                <div id="my-tasks-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: var(--space-md);">
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <p>Loading your assignments...</p>
+                    </div>
+                </div>
+
+                <!-- Empty state -->
+                <div id="my-tasks-empty" style="display:none; text-align:center; padding: var(--space-xxl);">
+                    <span class="material-icons-outlined" style="font-size:64px; color: var(--text-muted);">task_alt</span>
+                    <h3 style="color: var(--text-secondary); margin-top: var(--space-md);">No Tasks Assigned Yet</h3>
+                    <p style="color: var(--text-muted);">When a coordinator matches you to a need, your tasks will appear here.</p>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════ -->
+            <!-- SuperAdmin View: API Monitor -->
+            <!-- ═══════════════════════════════════════════════════════════ -->
+            <div id="view-api-monitor" class="view-section" style="display:none; width: 100%; flex-direction: column; padding: var(--space-xl); overflow-y: auto;">
+                <div style="max-width: 1200px; width: 100%; margin: 0 auto;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xl);">
+                        <div>
+                            <h2 style="font-size: 2rem; margin-bottom: 0.5rem;"><span class="material-icons-outlined">memory</span> API Key Monitor</h2>
+                            <p style="color: var(--text-secondary);">Real-time monitoring of Gemini Key Pool health and quota usage.</p>
+                        </div>
+                        <button class="btn-primary" onclick="renderAPIHealth()">
+                            <span class="material-icons-outlined">refresh</span>
+                            Refresh
+                        </button>
+                    </div>
+
+                    <!-- Health Stats -->
+                    <div class="stats-grid" id="api-stats-grid" style="margin-bottom: var(--space-xl); display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md);">
+                        <div class="stat-card glass-card" style="padding: var(--space-lg);">
+                            <h3 style="color: var(--text-secondary); margin: 0 0 0.5rem 0; font-size: 0.9rem;">Total Keys</h3>
+                            <div style="font-size: 2.5rem; font-weight: 700;" id="api-total-keys">0</div>
+                        </div>
+                        <div class="stat-card glass-card" style="padding: var(--space-lg); border-left: 4px solid var(--success-color);">
+                            <h3 style="color: var(--text-secondary); margin: 0 0 0.5rem 0; font-size: 0.9rem;">Healthy Keys</h3>
+                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--success-color);" id="api-healthy-keys">0</div>
+                        </div>
+                        <div class="stat-card glass-card" style="padding: var(--space-lg); border-left: 4px solid var(--warning-color);">
+                            <h3 style="color: var(--text-secondary); margin: 0 0 0.5rem 0; font-size: 0.9rem;">Rate Limited</h3>
+                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--warning-color);" id="api-rate-limited">0</div>
+                        </div>
+                        <div class="stat-card glass-card" style="padding: var(--space-lg); border-left: 4px solid var(--danger-color);">
+                            <h3 style="color: var(--text-secondary); margin: 0 0 0.5rem 0; font-size: 0.9rem;">Retired (Errors)</h3>
+                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--danger-color);" id="api-retired-keys">0</div>
+                        </div>
+                    </div>
+
+                    <!-- Keys Table -->
+                    <div class="glass-card" style="border-radius: var(--radius-lg); overflow: hidden;">
+                        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                            <thead style="background: rgba(0,0,0,0.2);">
+                                <tr>
+                                    <th style="padding: var(--space-md); border-bottom: 1px solid var(--border-color);">Key Suffix</th>
+                                    <th style="padding: var(--space-md); border-bottom: 1px solid var(--border-color);">Status</th>
+                                    <th style="padding: var(--space-md); border-bottom: 1px solid var(--border-color);">RPM (1m)</th>
+                                    <th style="padding: var(--space-md); border-bottom: 1px solid var(--border-color);">RPD (24h)</th>
+                                    <th style="padding: var(--space-md); border-bottom: 1px solid var(--border-color);">Failures</th>
+                                    <th style="padding: var(--space-md); border-bottom: 1px solid var(--border-color);">Cooldown Remaining</th>
+                                </tr>
+                            </thead>
+                            <tbody id="api-keys-table-body">
+                                <tr><td colspan="6" style="text-align:center; padding: 2rem;">Loading API health data...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -514,13 +664,25 @@
     <!-- ═══════════════════════════════════════════════════════════ -->
     <div id="toast-container" class="toast-container"></div>
 
-    <!-- Scripts (v3 = auth login rewrite) -->
-    <script src="js/config.js?v=3"></script>
-    <script src="js/auth.js?v=3"></script>
-    <script src="js/api-service.js?v=3"></script>
-    <script src="js/map.js?v=3"></script>
-    <script src="js/dashboard.js?v=3"></script>
-    <script src="js/upload.js?v=3"></script>
-    <script src="js/matching.js?v=3"></script>
+    <!-- Scripts (v4 = pan-India + offline + routing) -->
+    <script src="js/config.js?v=4"></script>
+    <script src="js/auth.js?v=4"></script>
+    <script src="js/api-service.js?v=4"></script>
+    <script src="js/offline.js?v=4"></script>
+    <script src="js/map.js?v=4"></script>
+    <script src="js/dashboard.js?v=4"></script>
+    <script src="js/upload.js?v=4"></script>
+    <script src="js/matching.js?v=4"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('[SW] Registered:', reg.scope))
+            .catch(err => console.log('[SW] Registration failed:', err));
+        });
+      }
+    </script>
 </body>
 </html>

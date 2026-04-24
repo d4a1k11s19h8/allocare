@@ -1,77 +1,62 @@
 """
-vision_client.py — OCR using Gemini Vision (multimodal), no extra API key needed.
-Replaces Google Cloud Vision API (paid) with Gemini 2.0 Flash vision capabilities.
-Uses the same free GEMINI_API_KEY from AI Studio.
-Gracefully degrades when API key is not set.
-
-Enhanced OCR with:
-- Two-pass extraction (raw text → structured humanitarian data)
-- Retry with exponential backoff
-- Multi-language support (Hindi, Marathi, Tamil, Bengali, etc.)
-- Confidence scoring
+vision_client.py — Gemini Vision API integration for AlloCare using google-genai
+Provides OCR and structured data extraction from images of field reports.
+Gracefully degrades when GEMINI_API_KEY is not set.
 """
 import os
-import base64
-import logging
-import time
 import json
+import logging
+import base64
 import re
+import time
+from typing import Dict, Any, Optional
+
+from google.genai import types
 
 logger = logging.getLogger(__name__)
 
-_vision_model = None
-_structured_model = None
-_init_attempted = False
+# ── Lazy initialisation ───────────────────────────────────────────────────────
+_vision_initialised = False
+_gemini_pool = None
 
 
-def _get_vision_model():
-    """Lazy init: only create model when first called."""
-    global _vision_model, _structured_model, _init_attempted
-    if _init_attempted:
-        return _vision_model
-    _init_attempted = True
+def _init_vision() -> bool:
+    """Lazy init: create the pool only when first needed."""
+    global _vision_initialised, _gemini_pool
+    if _vision_initialised:
+        return _gemini_pool is not None
 
-    api_key = os.environ.get("GEMINI_API_KEY", "")
-    if not api_key:
-        logger.warning("[Vision] No GEMINI_API_KEY — OCR will return empty text")
-        return None
+    _vision_initialised = True
 
     try:
-        import google.generativeai as genai
-        genai.configure(api_key=api_key)
+        from .gemini_key_pool import build_pool_from_env
+        
+        # Determine if any key is set
+        has_key = False
+        for k in os.environ:
+            if k.startswith("GEMINI_API_KEY") and os.environ.get(k, "").strip():
+                has_key = True
+                break
+                
+        if not has_key:
+            logger.warning("[vision_client] No GEMINI_API_KEY set — using fallback responses.")
+            return False
 
-        # Model for raw text extraction — low temperature for accuracy
-        _vision_model = genai.GenerativeModel(
-            model_name="gemini-2.0-flash",
-            generation_config=genai.GenerationConfig(
-                temperature=0.05,
-                max_output_tokens=4096,
-            ),
+        _gemini_pool = build_pool_from_env(
+            model_name="gemini-2.5-flash",
+            max_retries=3
         )
-
-        # Model for structured data extraction from OCR text
-        _structured_model = genai.GenerativeModel(
-            model_name="gemini-2.0-flash",
-            generation_config=genai.GenerationConfig(
-                temperature=0.1,
-                max_output_tokens=2048,
-                response_mime_type="application/json",
-            ),
-            system_instruction=(
-                "You are a humanitarian field data extractor. "
-                "Extract structured information from OCR text of field reports, surveys, and notes. "
-                "Always return valid JSON."
-            ),
-        )
-
-        logger.info("[Vision] Gemini Vision model initialized successfully.")
-        return _vision_model
+        logger.info("[vision_client] Gemini Key Pool initialized successfully.")
+        return True
+    except EnvironmentError:
+        logger.warning("[vision_client] No GEMINI_API_KEY found — using fallback responses.")
+        return False
     except Exception as e:
-        logger.error(f"[Vision] Failed to init Gemini Vision: {e}")
-        return None
+        logger.error(f"[vision_client] Failed to init Gemini Key Pool: {e}")
+        return False
 
 
-# ── Enhanced OCR Prompt ──────────────────────────────────────────────────────
+# ── Enhanced OCR Prompt ───────────────────────────────────────────────────────
 
 RAW_OCR_PROMPT = """You are an expert OCR system specialized in reading humanitarian field reports from India.
 
@@ -126,20 +111,20 @@ def extract_text_from_image_bytes(image_bytes: bytes, mime_type: str = "image/jp
     Returns:
         Extracted text string, or empty string on failure.
     """
-    model = _get_vision_model()
-    if not model:
+    if not _init_vision() or not _gemini_pool:
         logger.error("[Vision] Model not available — returning empty text")
         return ""
 
     for attempt in range(3):
         try:
-            response = model.generate_content([
-                RAW_OCR_PROMPT,
-                {
-                    "mime_type": mime_type,
-                    "data": base64.b64encode(image_bytes).decode("utf-8"),
-                },
-            ])
+            image_part = types.Part.from_bytes(
+                data=image_bytes,
+                mime_type=mime_type,
+            )
+            
+            response = _gemini_pool.generate(
+                contents=[RAW_OCR_PROMPT, image_part]
+            )
 
             text = response.text.strip()
 
@@ -179,16 +164,17 @@ def extract_structured_from_ocr(ocr_text: str) -> dict:
     Second pass: Extract structured humanitarian data from raw OCR text.
     Returns a dict with location, issue_type, affected_count, etc.
     """
-    global _structured_model
-    if not _structured_model:
-        _get_vision_model()
-    if not _structured_model:
+    if not _init_vision() or not _gemini_pool:
         return _fallback_structured_extract(ocr_text)
 
     prompt = STRUCTURED_EXTRACT_PROMPT.format(text=ocr_text[:2000])
+    
+    config = types.GenerateContentConfig(
+        response_mime_type="application/json",
+    )
 
     try:
-        response = _structured_model.generate_content(prompt)
+        response = _gemini_pool.generate(contents=prompt, config=config)
         cleaned = response.text.strip()
         # Strip markdown fences
         cleaned = re.sub(r'^```(?:json)?\s*', '', cleaned)

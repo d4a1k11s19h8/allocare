@@ -153,6 +153,7 @@ class DataStore:
         users = [
             {"email": "admin@allocare.org", "password_hash": self.hash_password("admin123"), "display_name": "Demo Organization", "role": "organization"},
             {"email": "volunteer@allocare.org", "password_hash": self.hash_password("vol123"), "display_name": "Demo Volunteer", "role": "volunteer"},
+            {"email": "superadmin@allocare.org", "password_hash": self.hash_password("super123"), "display_name": "Super Admin", "role": "superadmin"},
         ]
         for i, u in enumerate(users):
             self.add("users", u, doc_id=f"u{i+1}")

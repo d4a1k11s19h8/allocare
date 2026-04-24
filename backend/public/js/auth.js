@@ -74,7 +74,11 @@ function signOut() {
   // Reset role-based UI
   const volStyle = document.getElementById("volunteer-restrictions");
   if (volStyle) volStyle.remove();
+  const saStyle = document.getElementById("superadmin-restrictions");
+  if (saStyle) saStyle.remove();
+  
   document.querySelectorAll(".nav-volunteer-only").forEach(el => el.style.display = "none");
+  document.querySelectorAll(".nav-superadmin-only").forEach(el => el.style.display = "none");
   document.querySelectorAll(".nav-admin-only").forEach(el => el.style.display = "flex");
   document.querySelectorAll(".nav-item").forEach(el => el.classList.remove("active"));
   const dashNav = document.querySelector('[data-view="dashboard"]');
@@ -93,19 +97,25 @@ function showDashboard() {
   }
 
   const isVolunteer = AppState.user && AppState.user.role === "volunteer";
+  const isSuperAdmin = AppState.user && AppState.user.role === "superadmin";
 
   // ── Role-based sidebar visibility ──
   document.querySelectorAll(".nav-volunteer-only").forEach(el => {
     el.style.display = isVolunteer ? "flex" : "none";
   });
+  document.querySelectorAll(".nav-superadmin-only").forEach(el => {
+    el.style.display = isSuperAdmin ? "flex" : "none";
+  });
   document.querySelectorAll(".nav-admin-only").forEach(el => {
-    el.style.display = isVolunteer ? "none" : "flex";
+    el.style.display = (isVolunteer || isSuperAdmin) ? "none" : "flex";
   });
 
   // ── Role-based restrictions ──
   // Remove any previous restriction style
   const oldStyle = document.getElementById("volunteer-restrictions");
   if (oldStyle) oldStyle.remove();
+  const oldSaStyle = document.getElementById("superadmin-restrictions");
+  if (oldSaStyle) oldSaStyle.remove();
 
   if (isVolunteer) {
     const style = document.createElement("style");
@@ -121,6 +131,19 @@ function showDashboard() {
       .need-detail-body .btn-primary:has(.material-icons-outlined:contains('person_search')) { display: none !important; }
     `;
     document.head.appendChild(style);
+  } else if (isSuperAdmin) {
+    const style = document.createElement("style");
+    style.id = "superadmin-restrictions";
+    style.innerHTML = `
+      /* Hide upload button in topbar */
+      #upload-btn { display: none !important; }
+      /* Hide map and needs dashboard */
+      #view-dashboard { display: none !important; }
+    `;
+    document.head.appendChild(style);
+    
+    // Switch to API monitor immediately
+    switchView('api-monitor');
   }
 }
 

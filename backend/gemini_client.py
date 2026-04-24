@@ -1,5 +1,5 @@
 """
-gemini_client.py — Gemini 2.0 Flash integration for AlloCare
+gemini_client.py — Gemini 2.5 Flash integration for AlloCare using google-genai
 All three prompt templates from the masterplan implemented here.
 Gracefully degrades when GEMINI_API_KEY is not set.
 """
@@ -7,76 +7,49 @@ import os
 import json
 import logging
 import re
+from typing import Optional, Dict, Any, List
+
+from google.genai import types
 
 logger = logging.getLogger(__name__)
 
 # ── Lazy initialisation — avoids crash when key is absent ─────────────────────
-_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 _models_initialised = False
-_MODEL = None
-_EXPLAIN_MODEL = None
-_IMPACT_MODEL = None
+_gemini_pool = None
 
-
-def _init_models():
-    """Lazy init: create model objects only when first needed."""
-    global _models_initialised, _MODEL, _EXPLAIN_MODEL, _IMPACT_MODEL
+def _init_models() -> bool:
+    """Lazy init: create the pool only when first needed."""
+    global _models_initialised, _gemini_pool
     if _models_initialised:
-        return _API_KEY != ""
+        return _gemini_pool is not None
+
     _models_initialised = True
 
-    key = os.environ.get("GEMINI_API_KEY", "")
-    if not key:
-        logger.warning("[gemini_client] No GEMINI_API_KEY set — using fallback responses.")
-        return False
-
     try:
-        import google.generativeai as genai
-        genai.configure(api_key=key)
+        from .gemini_key_pool import build_pool_from_env
+        
+        # Determine if any key is set
+        has_key = False
+        for k in os.environ:
+            if k.startswith("GEMINI_API_KEY") and os.environ.get(k, "").strip():
+                has_key = True
+                break
+                
+        if not has_key:
+            logger.warning("[gemini_client] No GEMINI_API_KEY set — using fallback responses.")
+            return False
 
-        _MODEL = genai.GenerativeModel(
-            model_name="gemini-2.0-flash",
-            generation_config=genai.GenerationConfig(
-                temperature=0.2,
-                max_output_tokens=1024,
-                response_mime_type="application/json",
-            ),
-            system_instruction=(
-                "You are a humanitarian field analyst for Indian NGOs. "
-                "Extract structured data from community field reports. "
-                "Always return ONLY valid JSON with exactly the fields requested. "
-                "No markdown, no explanation, no preamble."
-            ),
+        _gemini_pool = build_pool_from_env(
+            model_name="gemini-2.5-flash",
+            max_retries=3
         )
-
-        _EXPLAIN_MODEL = genai.GenerativeModel(
-            model_name="gemini-2.0-flash",
-            generation_config=genai.GenerationConfig(
-                temperature=0.4,
-                max_output_tokens=300,
-            ),
-            system_instruction=(
-                "You are Dr. Priya Sharma, a compassionate humanitarian coordinator explaining "
-                "community needs to volunteer coordinators. Be direct, empathetic, and specific. "
-                "Maximum 120 words. No bullet points. One paragraph."
-            ),
-        )
-
-        _IMPACT_MODEL = genai.GenerativeModel(
-            model_name="gemini-2.0-flash",
-            generation_config=genai.GenerationConfig(
-                temperature=0.5,
-                max_output_tokens=80,
-            ),
-            system_instruction=(
-                "You write motivating impact statements for volunteers (max 25 words). "
-                "Focus on the human impact. Use present tense. Be specific not generic."
-            ),
-        )
-        logger.info("[gemini_client] Gemini models initialized successfully.")
+        logger.info("[gemini_client] Gemini Key Pool initialized successfully.")
         return True
+    except EnvironmentError:
+        logger.warning("[gemini_client] No GEMINI_API_KEY found — using fallback responses.")
+        return False
     except Exception as e:
-        logger.error(f"[gemini_client] Failed to init Gemini: {e}")
+        logger.error(f"[gemini_client] Failed to init Gemini Key Pool: {e}")
         return False
 
 
@@ -90,12 +63,12 @@ def _sanitize_json(raw: str) -> str:
 
 
 # ── Prompt 1: Urgency Extraction ─────────────────────────────────────────────
-def extract_urgency(raw_text: str) -> dict | None:
+def extract_urgency(raw_text: str) -> Optional[Dict[str, Any]]:
     """
     Takes raw field report text (English), returns structured urgency data.
     Returns None on failure, or uses rule-based fallback if Gemini unavailable.
     """
-    if not _init_models() or not _MODEL:
+    if not _init_models() or not _gemini_pool:
         return _fallback_extract(raw_text)
 
     prompt = f"""Extract urgency data from this field report:
@@ -114,41 +87,45 @@ Return JSON with exactly these fields:
   "language_detected": "ISO 639-1 code of original language before translation"
 }}"""
 
-    for attempt in range(3):
-        try:
-            response = _MODEL.generate_content(prompt)
-            cleaned = _sanitize_json(response.text)
-            result = json.loads(cleaned)
+    config = types.GenerateContentConfig(
+        temperature=0.2,
+        max_output_tokens=1024,
+        response_mime_type="application/json",
+        system_instruction=(
+            "You are a humanitarian field analyst for Indian NGOs. "
+            "Extract structured data from community field reports. "
+            "Always return ONLY valid JSON with exactly the fields requested. "
+            "No markdown, no explanation, no preamble."
+        ),
+    )
 
-            # Validate and clamp
-            valid_types = {"food", "water", "health", "housing", "education", "safety", "other"}
-            if result.get("issue_type") not in valid_types:
-                result["issue_type"] = "other"
-            result["severity_score"] = max(1, min(10, int(result.get("severity_score", 5))))
-            result["recommended_volunteer_count"] = max(1, min(10, int(result.get("recommended_volunteer_count", 2))))
-            if result.get("affected_count"):
-                result["affected_count"] = max(1, int(result["affected_count"]))
-            if not isinstance(result.get("required_skills"), list):
-                result["required_skills"] = ["general volunteering"]
+    try:
+        response = _gemini_pool.generate(
+            contents=prompt,
+            config=config
+        )
+        cleaned = _sanitize_json(response.text)
+        result = json.loads(cleaned)
 
-            return result
+        # Validate and clamp
+        valid_types = {"food", "water", "health", "housing", "education", "safety", "other"}
+        if result.get("issue_type") not in valid_types:
+            result["issue_type"] = "other"
+        result["severity_score"] = max(1, min(10, int(result.get("severity_score", 5))))
+        result["recommended_volunteer_count"] = max(1, min(10, int(result.get("recommended_volunteer_count", 2))))
+        if result.get("affected_count"):
+            result["affected_count"] = max(1, int(result["affected_count"]))
+        if not isinstance(result.get("required_skills"), list):
+            result["required_skills"] = ["general volunteering"]
 
-        except json.JSONDecodeError as e:
-            logger.warning(f"[extract_urgency] Attempt {attempt+1} JSON parse error: {e}")
-            if attempt == 2:
-                return _fallback_extract(raw_text)
-        except Exception as e:
-            if "429" in str(e) and attempt < 2:
-                import time
-                time.sleep(2 ** attempt)
-                continue
-            logger.error(f"[extract_urgency] Gemini error: {e}")
-            return _fallback_extract(raw_text)
+        return result
 
-    return _fallback_extract(raw_text)
+    except Exception as e:
+        logger.error(f"[extract_urgency] Gemini error: {e}")
+        return _fallback_extract(raw_text)
 
 
-def _fallback_extract(text: str) -> dict:
+def _fallback_extract(text: str) -> Dict[str, Any]:
     """Rule-based extraction when Gemini is unavailable."""
     text_lower = text.lower()
 
@@ -192,7 +169,6 @@ def _fallback_extract(text: str) -> dict:
     affected = int(numbers[0]) if numbers else None
 
     # Location extraction — comprehensive Indian city + zone matching
-    # First try major Indian cities (beyond Mumbai)
     location = None
     indian_cities = [
         "nagpur", "pune", "delhi", "new delhi", "bangalore", "bengaluru", "hyderabad",
@@ -214,7 +190,6 @@ def _fallback_extract(text: str) -> dict:
 
     # If no known city found, try to extract capitalized proper nouns from original text
     if not location:
-        # Look for "in <Place>" pattern
         in_pattern = re.findall(r'\bin\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)', text)
         if in_pattern:
             location = in_pattern[-1]  # take the last "in <Place>" match
@@ -254,13 +229,13 @@ def _fallback_extract(text: str) -> dict:
 def generate_coordinator_explanation(
     issue_type: str,
     severity: int,
-    affected_count: int | None,
+    affected_count: Optional[int],
     location: str,
     frequency: int,
     days: int,
 ) -> str:
     """Generates a plain-English explanation for NGO coordinators."""
-    if not _init_models() or not _EXPLAIN_MODEL:
+    if not _init_models() or not _gemini_pool:
         return _fallback_explanation(issue_type, severity, affected_count, location, frequency, days)
 
     prompt = f"""Explain this urgency analysis to the NGO coordinator:
@@ -271,15 +246,28 @@ Reports this week: {frequency} | Days since first report: {days}
 
 What is happening, who is affected, and why does this need attention today?"""
 
+    config = types.GenerateContentConfig(
+        temperature=0.4,
+        max_output_tokens=300,
+        system_instruction=(
+            "You are Dr. Priya Sharma, a compassionate humanitarian coordinator explaining "
+            "community needs to volunteer coordinators. Be direct, empathetic, and specific. "
+            "Maximum 120 words. No bullet points. One paragraph."
+        ),
+    )
+
     try:
-        response = _EXPLAIN_MODEL.generate_content(prompt)
+        response = _gemini_pool.generate(
+            contents=prompt,
+            config=config
+        )
         return response.text.strip()
     except Exception as e:
         logger.error(f"[generate_coordinator_explanation] {e}")
         return _fallback_explanation(issue_type, severity, affected_count, location, frequency, days)
 
 
-def _fallback_explanation(issue_type, severity, affected_count, location, frequency, days):
+def _fallback_explanation(issue_type: str, severity: int, affected_count: Optional[int], location: str, frequency: int, days: int) -> str:
     affected_str = f"approximately {affected_count}" if affected_count else "an unknown number of"
     return (
         f"A {issue_type} issue in {location} has been reported {frequency} times "
@@ -288,15 +276,15 @@ def _fallback_explanation(issue_type, severity, affected_count, location, freque
     )
 
 
-# ── Prompt 3: Volunteer Impact Framing ───────────────────────────────────────
+# ── Prompt 3: Volunteer Impact Framing ────────────────────────────────────────
 def generate_impact_framing(
     issue_type: str,
-    affected_count: int | None,
+    affected_count: Optional[int],
     location: str,
-    required_skills: list[str],
+    required_skills: List[str],
 ) -> str:
     """Generates a motivating impact statement for volunteer task cards."""
-    if not _init_models() or not _IMPACT_MODEL:
+    if not _init_models() or not _gemini_pool:
         return f"Your skills will help ~{affected_count or 'many'} people in {location} today."
 
     skills_str = ", ".join(required_skills) if required_skills else "general volunteering"
@@ -308,8 +296,20 @@ Your skills needed: {skills_str}
 Example: "Your food distribution skills will help ~47 families in Dharavi avoid hunger tonight."
 """
 
+    config = types.GenerateContentConfig(
+        temperature=0.5,
+        max_output_tokens=80,
+        system_instruction=(
+            "You write motivating impact statements for volunteers (max 25 words). "
+            "Focus on the human impact. Use present tense. Be specific not generic."
+        ),
+    )
+
     try:
-        response = _IMPACT_MODEL.generate_content(prompt)
+        response = _gemini_pool.generate(
+            contents=prompt,
+            config=config
+        )
         return response.text.strip()
     except Exception as e:
         logger.error(f"[generate_impact_framing] {e}")

@@ -66,35 +66,20 @@ function handlePhotoUpload(input) {
 
     try {
       const text = await extractOCR(currentImageData);
-      if (text) {
+      if (text && text.trim().length > 5) {
         document.getElementById("ocr-text").textContent = text;
         showToast("✅ OCR text extracted successfully", "success");
       } else {
-        // Fallback to simulated OCR
-        simulateOCR();
+        document.getElementById("ocr-text").textContent = "⚠️ Could not extract text from this image. Please try a clearer photo or use the Text Entry tab.";
+        showToast("OCR could not extract text — try a clearer image", "error");
       }
     } catch (e) {
-      console.log("OCR API unavailable, using simulated OCR:", e.message);
-      simulateOCR();
+      console.error("OCR error:", e.message);
+      document.getElementById("ocr-text").textContent = "⚠️ OCR service unavailable. Please use the Text Entry tab instead.";
+      showToast("OCR service unavailable", "error");
     }
   };
   reader.readAsDataURL(file);
-}
-
-function simulateOCR() {
-  document.getElementById("ocr-result").style.display = "block";
-  document.getElementById("ocr-text").textContent = "Processing image...";
-
-  setTimeout(() => {
-    const sampleTexts = [
-      "Survey Report - Dharavi Sector 5\nDate: April 2026\nIssue: Severe food shortage\nFamilies affected: approximately 47\nSeverity: CRITICAL\nNote: Children not eating for 2 days. Elderly unable to access ration shop. Need immediate food distribution volunteers.",
-      "Field Report - Kurla East\nClean water crisis\n200 households affected\nMunicipal water supply stopped 5 days ago\nPeople forced to buy expensive bottled water\nUrgent: Plumber volunteers needed for pipe repair",
-      "Community Health Survey\nLocation: Govandi, Mumbai\nDengue fever cases increasing\n12 cases this week, 3 children hospitalized\nStagnant water visible in multiple locations\nNeed: Medical volunteers for health camp",
-    ];
-    const chosen = sampleTexts[Math.floor(Math.random() * sampleTexts.length)];
-    document.getElementById("ocr-text").textContent = chosen;
-    showToast("✅ OCR text extracted (demo mode)", "success");
-  }, 1500);
 }
 
 // ── CSV Upload ──────────────────────────────────────────────
@@ -215,6 +200,13 @@ async function submitReport() {
 
       if (result.status === "success") {
         showToast(`✅ Report processed! Score: ${result.score}/100 (${result.label})`, "success");
+        // Auto-fly map to the new report location
+        if (result.lat && result.lng) {
+          flyToLocation(result.lat, result.lng, 13);
+        } else if (result.zone) {
+          const loc = detectLocationFromText(result.zone);
+          flyToLocation(loc.lat, loc.lng, 12);
+        }
       } else {
         showToast(`⚠️ Report saved but: ${result.message || "partial processing"}`, "info");
       }

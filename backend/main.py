@@ -135,6 +135,14 @@ async def login(credentials: UserLogin):
 # HEALTH & SYSTEM ENDPOINTS
 # ═══════════════════════════════════════════════════════════════════════════════
 
+@app.get("/api/system/keys/health", tags=["system"])
+async def api_keys_health():
+    """Super Admin endpoint: Returns the health of the Gemini Key Pool."""
+    import gemini_client
+    if gemini_client._init_models() and gemini_client._gemini_pool:
+        return {"status": "success", "keys": gemini_client._gemini_pool.health()}
+    return {"status": "error", "message": "Gemini pool not configured or failed to init."}
+
 @app.get("/api/health", tags=["system"])
 async def health_check():
     """Health check endpoint."""

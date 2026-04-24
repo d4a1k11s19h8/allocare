@@ -70,8 +70,19 @@ function signOut() {
   localStorage.removeItem("allocare_user");
   document.getElementById("dashboard").style.display = "none";
   document.getElementById("auth-screen").style.display = "flex";
-  // Reset UI
-  document.querySelectorAll(".nav-item").forEach(el => el.style.display = "flex");
+
+  // Reset role-based UI
+  const volStyle = document.getElementById("volunteer-restrictions");
+  if (volStyle) volStyle.remove();
+  const saStyle = document.getElementById("superadmin-restrictions");
+  if (saStyle) saStyle.remove();
+  
+  document.querySelectorAll(".nav-volunteer-only").forEach(el => el.style.display = "none");
+  document.querySelectorAll(".nav-superadmin-only").forEach(el => el.style.display = "none");
+  document.querySelectorAll(".nav-admin-only").forEach(el => el.style.display = "flex");
+  document.querySelectorAll(".nav-item").forEach(el => el.classList.remove("active"));
+  const dashNav = document.querySelector('[data-view="dashboard"]');
+  if (dashNav) dashNav.classList.add("active");
 }
 
 function showDashboard() {
@@ -85,28 +96,57 @@ function showDashboard() {
     document.getElementById("topbar-org").textContent = AppState.user.display_name || AppState.user.displayName || "User";
   }
 
-  // Role-based restrictions
-  if (AppState.user && AppState.user.role === "volunteer") {
-    // Hide coordinator-only tabs
-    document.querySelector('[data-view="reports"]').style.display = "none";
-    document.querySelector('[data-view="volunteers"]').style.display = "none";
-    document.querySelector('[data-view="analytics"]').style.display = "none";
-    document.querySelector('[data-view="settings"]').style.display = "none";
-    
-    // Hide matching and flag buttons on cards
+  const isVolunteer = AppState.user && AppState.user.role === "volunteer";
+  const isSuperAdmin = AppState.user && AppState.user.role === "superadmin";
+
+  // ── Role-based sidebar visibility ──
+  document.querySelectorAll(".nav-volunteer-only").forEach(el => {
+    el.style.display = isVolunteer ? "flex" : "none";
+  });
+  document.querySelectorAll(".nav-superadmin-only").forEach(el => {
+    el.style.display = isSuperAdmin ? "flex" : "none";
+  });
+  document.querySelectorAll(".nav-admin-only").forEach(el => {
+    el.style.display = (isVolunteer || isSuperAdmin) ? "none" : "flex";
+  });
+
+  // ── Role-based restrictions ──
+  // Remove any previous restriction style
+  const oldStyle = document.getElementById("volunteer-restrictions");
+  if (oldStyle) oldStyle.remove();
+  const oldSaStyle = document.getElementById("superadmin-restrictions");
+  if (oldSaStyle) oldSaStyle.remove();
+
+  if (isVolunteer) {
     const style = document.createElement("style");
     style.id = "volunteer-restrictions";
     style.innerHTML = `
-      .card-action-btn { display: none !important; }
-      .upload-btn-container { display: none !important; }
+      /* Hide admin-only action buttons on need cards */
+      .card-action-btn.flag { display: none !important; }
+      /* Hide upload button in topbar */
+      #upload-btn { display: none !important; }
+      /* Hide volunteer panel on dashboard (right side) */
       .volunteer-panel { display: none !important; }
+      /* Hide matching/assign buttons in need detail modal */
+      .need-detail-body .btn-primary:has(.material-icons-outlined:contains('person_search')) { display: none !important; }
     `;
     document.head.appendChild(style);
-  } else {
-    const style = document.getElementById("volunteer-restrictions");
-    if (style) style.remove();
+  } else if (isSuperAdmin) {
+    const style = document.createElement("style");
+    style.id = "superadmin-restrictions";
+    style.innerHTML = `
+      /* Hide upload button in topbar */
+      #upload-btn { display: none !important; }
+      /* Hide map and needs dashboard */
+      #view-dashboard { display: none !important; }
+    `;
+    document.head.appendChild(style);
+    
+    // Switch to API monitor immediately
+    switchView('api-monitor');
   }
 }
+
 
 // Auto-login check
 document.addEventListener("DOMContentLoaded", () => {
@@ -123,8 +163,29 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function toggleUserMenu() {
-  if (confirm("Sign out?")) {
-    signOut();
+  const dropdown = document.getElementById("user-dropdown");
+  if (!dropdown) return;
+  const isVisible = dropdown.style.display !== "none";
+  dropdown.style.display = isVisible ? "none" : "block";
+
+  // Update dropdown content
+  if (!isVisible && AppState.user) {
+    const nameEl = document.getElementById("dropdown-name");
+    const roleEl = document.getElementById("dropdown-role");
+    if (nameEl) nameEl.textContent = AppState.user.display_name || AppState.user.displayName || "User";
+    if (roleEl) roleEl.textContent = (AppState.user.role || "organization").charAt(0).toUpperCase() + (AppState.user.role || "organization").slice(1);
+  }
+
+  // Close on outside click
+  if (!isVisible) {
+    setTimeout(() => {
+      document.addEventListener("click", function closeDropdown(e) {
+        if (!e.target.closest(".user-menu-wrapper")) {
+          dropdown.style.display = "none";
+          document.removeEventListener("click", closeDropdown);
+        }
+      });
+    }, 10);
   }
 }
 

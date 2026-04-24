@@ -302,6 +302,8 @@ function switchView(view) {
     renderAnalytics();
   } else if (view === "my-tasks") {
     renderMyTasks();
+  } else if (view === "api-monitor") {
+    renderAPIHealth();
   }
 }
 
@@ -779,4 +781,76 @@ function computeLocalAnalytics() {
       total_tasks_completed: volunteers.reduce((s, v) => s + (v.impact_stats?.total_tasks_completed || 0), 0),
     },
   };
+}
+
+// -- API Key Monitor (SuperAdmin) ---------------------------------
+async function renderAPIHealth() {
+  const tbody = document.getElementById("api-keys-table-body");
+  if (!tbody) return;
+
+  try {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 2rem;">Loading API health data...</td></tr>';
+    
+    // Add token if using auth
+    const headers = { "Content-Type": "application/json" };
+    // Call the new health endpoint
+    const resp = await fetch(${FUNCTIONS_BASE}/api/system/keys/health, { headers });
+    
+    if (!resp.ok) {
+      throw new Error(HTTP error! status: );
+    }
+    
+    const data = await resp.json();
+    
+    if (data.status !== "success" || !data.keys) {
+      throw new Error(data.message || "Failed to load API health");
+    }
+
+    const { summary, keys } = data.keys;
+
+    // Update summary stats
+    document.getElementById("api-total-keys").textContent = summary.total_keys || 0;
+    document.getElementById("api-healthy-keys").textContent = summary.healthy_keys || 0;
+    document.getElementById("api-rate-limited").textContent = summary.rate_limited_keys || 0;
+    document.getElementById("api-retired-keys").textContent = summary.retired_keys || 0;
+
+    // Render table
+    tbody.innerHTML = "";
+    
+    const sortedKeys = Object.entries(keys || {}).sort((a, b) => {
+      const statusOrder = { active: 1, rate_limited: 2, retired: 3 };
+      return (statusOrder[a[1].status] || 9) - (statusOrder[b[1].status] || 9);
+    });
+
+    if (sortedKeys.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 2rem; color: var(--text-muted);">No Gemini API keys configured.</td></tr>';
+      return;
+    }
+
+    for (const [keyIndex, info] of sortedKeys) {
+      const tr = document.createElement("tr");
+      tr.style.borderBottom = "1px solid var(--border-color)";
+      
+      let statusHtml = "";
+      if (info.status === "active") statusHtml = '<span class="urgency-badge low">Active</span>';
+      else if (info.status === "rate_limited") statusHtml = '<span class="urgency-badge medium">Rate Limited</span>';
+      else statusHtml = '<span class="urgency-badge critical">Retired</span>';
+
+      const cooldown = info.cooldown_remaining_s > 0 ? info.cooldown_remaining_s.toFixed(1) + 's' : '-';
+      
+      tr.innerHTML = \
+        <td style="padding: var(--space-md); font-family: monospace;">...\</td>
+        <td style="padding: var(--space-md);">\</td>
+        <td style="padding: var(--space-md);">\</td>
+        <td style="padding: var(--space-md);">\</td>
+        <td style="padding: var(--space-md); color: \;">\</td>
+        <td style="padding: var(--space-md);">\</td>
+      \;
+      tbody.appendChild(tr);
+    }
+    
+  } catch (err) {
+    console.error("API Health error:", err);
+    tbody.innerHTML = \<tr><td colspan="6" style="text-align:center; padding: 2rem; color: var(--danger-color);"><span class="material-icons-outlined">error</span> \</td></tr>\;
+  }
 }

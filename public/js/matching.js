@@ -40,6 +40,11 @@ async function matchVolunteers(needId) {
   // Simulate processing delay for visual effect
   await new Promise(resolve => setTimeout(resolve, 800));
   renderMatchResults(matches, needId);
+
+  // Draw routes on map
+  if (need.lat && need.lng && matches.length > 0) {
+    drawVolunteerRoutes(matches, need.lat, need.lng);
+  }
 }
 
 function runLocalMatching(need, volunteers) {
@@ -72,17 +77,19 @@ function runLocalMatching(need, volunteers) {
       distKm = 1.0;
     }
 
-    // Hard cutoff
-    const maxDist = v.max_distance_km || 10;
-    if (distKm > maxDist) continue;
+    // Hard cutoff — relaxed for pan-India
+    const maxDist = v.max_distance_km || 30;
+    if (distKm > maxDist * 3) continue;  // only skip if 3x beyond range
 
-    const proximityScore = 1.0 / (1.0 + distKm);
+    const beyondRange = distKm > maxDist;
+    const proximityScore = 1.0 / (1.0 + distKm * 0.1);
 
     // Availability score
     const availScore = v.status === "available" ? 1.0 : 0.3;
 
-    // Composite score
-    const matchScore = skillScore * proximityScore * availScore;
+    // Composite score with range penalty
+    const rangeFactor = beyondRange ? 0.5 : 1.0;
+    const matchScore = skillScore * proximityScore * availScore * rangeFactor;
 
     // Build explanation
     const parts = [];
@@ -97,18 +104,22 @@ function runLocalMatching(need, volunteers) {
     candidates.push({
       volunteer_id: v.id,
       volunteer_name: v.display_name,
+      lat: v.lat || 0,
+      lng: v.lng || 0,
       skills: v.skills || [],
       skills_matched: matchedSkills,
       distance_km: Math.round(distKm * 10) / 10,
+      road_distance_km: Math.round(distKm * 1.4 * 10) / 10,
       match_score: Math.round(matchScore * 10000) / 10000,
       explanation: "Matched because: " + parts.join(" · "),
       impact_points: v.impact_points || 0,
+      beyond_range: beyondRange,
     });
   }
 
-  // Sort by match_score descending, return top 3
+  // Sort by match_score descending, return top 5
   candidates.sort((a, b) => b.match_score - a.match_score);
-  return candidates.slice(0, 3);
+  return candidates.slice(0, 5);
 }
 
 function renderMatchResults(matches, needId) {
@@ -143,11 +154,12 @@ function renderMatchResults(matches, needId) {
         <div class="match-card-explanation">${match.explanation}</div>
         <div style="display:flex;gap:var(--space-sm);margin-bottom:var(--space-sm);">
           <span class="skill-chip" style="background:var(--primary-light);color:var(--primary);">
-            📍 ${match.distance_km}km
+            📍 ${match.road_distance_km || match.distance_km}km road
           </span>
           <span class="skill-chip" style="background:var(--green-light);color:var(--green);">
             ⭐ ${match.impact_points} pts
           </span>
+          ${match.beyond_range ? '<span class="skill-chip" style="background:rgba(234,179,8,0.15);color:#E3A008;">⚠️ Far</span>' : ''}
         </div>
         <div class="match-card-actions">
           <button class="btn-assign" onclick="handleAssignVolunteer('${needId}', '${match.volunteer_id}', ${match.match_score}, '${match.explanation.replace(/'/g, "\\'")}')">

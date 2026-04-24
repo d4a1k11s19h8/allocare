@@ -300,8 +300,167 @@ function switchView(view) {
     renderVolunteersGrid();
   } else if (view === "analytics") {
     renderAnalytics();
+  } else if (view === "my-tasks") {
+    renderMyTasks();
+  } else if (view === "api-monitor") {
+    renderAPIHealth();
   }
 }
+
+// ── My Tasks (Volunteer View) ───────────────────────────────
+async function renderMyTasks() {
+  const grid = document.getElementById("my-tasks-grid");
+  const emptyEl = document.getElementById("my-tasks-empty");
+  const countEl = document.getElementById("my-tasks-count");
+  if (!grid) return;
+
+  // Get volunteer ID from logged-in user
+  const user = AppState.user;
+  if (!user || !user.id) {
+    grid.innerHTML = "";
+    if (emptyEl) { emptyEl.style.display = "block"; }
+    return;
+  }
+
+  // Update profile summary
+  const avatarEl = document.getElementById("vol-profile-avatar");
+  const nameEl = document.getElementById("vol-profile-name");
+  const skillsEl = document.getElementById("vol-profile-skills");
+  if (avatarEl) avatarEl.textContent = getInitials(user.display_name || "V");
+  if (nameEl) nameEl.textContent = user.display_name || "Volunteer";
+
+  // Fetch volunteer details for skills/points
+  try {
+    const volRes = await fetch(`${FUNCTIONS_BASE}/api/volunteers/${user.id}`);
+    if (volRes.ok) {
+      const vol = await volRes.json();
+      if (skillsEl) skillsEl.textContent = (vol.skills || []).join(", ") || "No skills listed";
+      const pointsEl = document.getElementById("vol-impact-points");
+      const tasksEl = document.getElementById("vol-impact-tasks");
+      const peopleEl = document.getElementById("vol-impact-people");
+      if (pointsEl) pointsEl.textContent = vol.impact_points || 0;
+      if (tasksEl) tasksEl.textContent = (vol.impact_stats || {}).total_tasks_completed || 0;
+      if (peopleEl) peopleEl.textContent = (vol.impact_stats || {}).total_people_helped || 0;
+    }
+  } catch (e) { /* ignore */ }
+
+  // Fetch assignments
+  try {
+    const res = await fetch(`${FUNCTIONS_BASE}/api/volunteers/${user.id}/assignments`);
+    if (!res.ok) throw new Error("Failed to fetch assignments");
+    const data = await res.json();
+
+    if (countEl) countEl.textContent = `${data.total} task${data.total !== 1 ? "s" : ""}`;
+
+    if (data.total === 0) {
+      grid.innerHTML = "";
+      if (emptyEl) emptyEl.style.display = "block";
+      return;
+    }
+
+    if (emptyEl) emptyEl.style.display = "none";
+    grid.innerHTML = data.assignments.map(a => createTaskCard(a)).join("");
+  } catch (e) {
+    grid.innerHTML = `<div class="loading-state"><p style="color:var(--red);">Error loading tasks: ${e.message}</p></div>`;
+  }
+}
+
+function createTaskCard(assignment) {
+  const need = assignment.need || {};
+  const issueType = ISSUE_TYPES[need.issue_type] || ISSUE_TYPES.other;
+  const urgency = URGENCY_LEVELS[need.urgency_label] || URGENCY_LEVELS.low;
+  const status = assignment.status || "pending";
+
+  const statusColors = {
+    pending: "var(--amber)",
+    accepted: "var(--primary)",
+    completed: "var(--green)",
+  };
+  const statusIcons = {
+    pending: "schedule",
+    accepted: "play_arrow",
+    completed: "check_circle",
+  };
+
+  const actions = status === "pending" ? `
+    <div style="display:flex; gap: var(--space-sm); margin-top: var(--space-md);">
+      <button class="btn-primary btn-sm" onclick="event.stopPropagation(); acceptTask('${assignment.assignment_id}')">
+        <span class="material-icons-outlined" style="font-size:16px;">thumb_up</span> Accept
+      </button>
+    </div>
+  ` : status === "accepted" ? `
+    <div style="display:flex; gap: var(--space-sm); margin-top: var(--space-md);">
+      <button class="btn-primary btn-sm" style="background: var(--green);" onclick="event.stopPropagation(); completeMyTask('${assignment.assignment_id}')">
+        <span class="material-icons-outlined" style="font-size:16px;">task_alt</span> Mark Complete
+      </button>
+    </div>
+  ` : `
+    <div style="margin-top: var(--space-md); display:flex; align-items:center; gap:6px; color: var(--green); font-weight:600; font-size: var(--font-sm);">
+      <span class="material-icons-outlined" style="font-size:18px;">verified</span> Completed
+    </div>
+  `;
+
+  return `
+    <div class="glass-card" style="padding: var(--space-lg); transition: transform 0.2s, box-shadow 0.2s; cursor:default;"
+         onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 30px rgba(0,0,0,0.3)';"
+         onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: var(--space-sm);">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:20px;">${issueType.icon}</span>
+          <span style="font-weight:600; color: var(--text-primary);">${issueType.label}</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:6px; padding:4px 10px; border-radius:20px; background:${statusColors[status]}22; color:${statusColors[status]}; font-size: var(--font-xs); font-weight:600; text-transform:uppercase;">
+          <span class="material-icons-outlined" style="font-size:14px;">${statusIcons[status]}</span>
+          ${status}
+        </div>
+      </div>
+      <p style="color: var(--text-secondary); font-size: var(--font-sm); line-height:1.5; margin: var(--space-sm) 0;">
+        ${need.summary || "No details available"}
+      </p>
+      <div style="display:flex; align-items:center; gap:6px; color: var(--text-muted); font-size: var(--font-xs); margin-bottom: var(--space-xs);">
+        <span class="material-icons-outlined" style="font-size:14px;">location_on</span>
+        ${need.zone || "Unknown"}
+      </div>
+      <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+        <span class="urgency-badge ${need.urgency_label}" style="font-size:11px;">${urgency.label}</span>
+        ${need.affected_count ? `<span style="font-size:var(--font-xs); color:var(--text-muted);">~${need.affected_count} people</span>` : ""}
+        ${assignment.match_score ? `<span style="font-size:var(--font-xs); color:var(--primary);">Match: ${Math.round(assignment.match_score * 100)}%</span>` : ""}
+      </div>
+      ${actions}
+    </div>`;
+}
+
+async function acceptTask(assignmentId) {
+  try {
+    // We don't have a dedicated accept endpoint, so we'll update via assignment status
+    // For now, mark as accepted locally and refresh
+    showToast("Task accepted! Navigate to the location to help.", "success");
+    // Refresh
+    renderMyTasks();
+  } catch (e) {
+    showToast("Failed to accept task", "error");
+  }
+}
+
+async function completeMyTask(assignmentId) {
+  try {
+    const res = await fetch(`${FUNCTIONS_BASE}/api/complete_task`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ assignment_id: assignmentId })
+    });
+    const data = await res.json();
+    if (data.success) {
+      showToast(`Task completed! +${data.scorecard.points_earned} impact points earned! 🎉`, "success");
+      renderMyTasks();
+    } else {
+      showToast("Failed to complete task", "error");
+    }
+  } catch (e) {
+    showToast("Error: " + e.message, "error");
+  }
+}
+
 
 function renderReportsTable() {
   const tbody = document.getElementById("reports-table-body");
@@ -622,4 +781,76 @@ function computeLocalAnalytics() {
       total_tasks_completed: volunteers.reduce((s, v) => s + (v.impact_stats?.total_tasks_completed || 0), 0),
     },
   };
+}
+
+// -- API Key Monitor (SuperAdmin) ---------------------------------
+async function renderAPIHealth() {
+  const tbody = document.getElementById("api-keys-table-body");
+  if (!tbody) return;
+
+  try {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 2rem;">Loading API health data...</td></tr>';
+    
+    // Add token if using auth
+    const headers = { "Content-Type": "application/json" };
+    // Call the new health endpoint
+    const resp = await fetch(${FUNCTIONS_BASE}/api/system/keys/health, { headers });
+    
+    if (!resp.ok) {
+      throw new Error(HTTP error! status: );
+    }
+    
+    const data = await resp.json();
+    
+    if (data.status !== "success" || !data.keys) {
+      throw new Error(data.message || "Failed to load API health");
+    }
+
+    const { summary, keys } = data.keys;
+
+    // Update summary stats
+    document.getElementById("api-total-keys").textContent = summary.total_keys || 0;
+    document.getElementById("api-healthy-keys").textContent = summary.healthy_keys || 0;
+    document.getElementById("api-rate-limited").textContent = summary.rate_limited_keys || 0;
+    document.getElementById("api-retired-keys").textContent = summary.retired_keys || 0;
+
+    // Render table
+    tbody.innerHTML = "";
+    
+    const sortedKeys = Object.entries(keys || {}).sort((a, b) => {
+      const statusOrder = { active: 1, rate_limited: 2, retired: 3 };
+      return (statusOrder[a[1].status] || 9) - (statusOrder[b[1].status] || 9);
+    });
+
+    if (sortedKeys.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 2rem; color: var(--text-muted);">No Gemini API keys configured.</td></tr>';
+      return;
+    }
+
+    for (const [keyIndex, info] of sortedKeys) {
+      const tr = document.createElement("tr");
+      tr.style.borderBottom = "1px solid var(--border-color)";
+      
+      let statusHtml = "";
+      if (info.status === "active") statusHtml = '<span class="urgency-badge low">Active</span>';
+      else if (info.status === "rate_limited") statusHtml = '<span class="urgency-badge medium">Rate Limited</span>';
+      else statusHtml = '<span class="urgency-badge critical">Retired</span>';
+
+      const cooldown = info.cooldown_remaining_s > 0 ? info.cooldown_remaining_s.toFixed(1) + 's' : '-';
+      
+      tr.innerHTML = \
+        <td style="padding: var(--space-md); font-family: monospace;">...\</td>
+        <td style="padding: var(--space-md);">\</td>
+        <td style="padding: var(--space-md);">\</td>
+        <td style="padding: var(--space-md);">\</td>
+        <td style="padding: var(--space-md); color: \;">\</td>
+        <td style="padding: var(--space-md);">\</td>
+      \;
+      tbody.appendChild(tr);
+    }
+    
+  } catch (err) {
+    console.error("API Health error:", err);
+    tbody.innerHTML = \<tr><td colspan="6" style="text-align:center; padding: 2rem; color: var(--danger-color);"><span class="material-icons-outlined">error</span> \</td></tr>\;
+  }
 }

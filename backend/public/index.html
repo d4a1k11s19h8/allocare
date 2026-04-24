@@ -201,6 +201,11 @@
                         <span class="material-icons-outlined">settings</span>
                         <span>Settings</span>
                     </a>
+                    <!-- SuperAdmin-only nav items -->
+                    <a href="#" class="nav-item nav-superadmin-only" data-view="api-monitor" onclick="switchView('api-monitor')" style="display:none;">
+                        <span class="material-icons-outlined">memory</span>
+                        <span>API Monitor</span>
+                    </a>
                 </div>
                 <div class="sidebar-signout">
                     <a href="#" class="nav-item signout-btn" onclick="event.preventDefault(); signOut()">
@@ -487,6 +492,63 @@
                     <span class="material-icons-outlined" style="font-size:64px; color: var(--text-muted);">task_alt</span>
                     <h3 style="color: var(--text-secondary); margin-top: var(--space-md);">No Tasks Assigned Yet</h3>
                     <p style="color: var(--text-muted);">When a coordinator matches you to a need, your tasks will appear here.</p>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════ -->
+            <!-- SuperAdmin View: API Monitor -->
+            <!-- ═══════════════════════════════════════════════════════════ -->
+            <div id="view-api-monitor" class="view-section" style="display:none; width: 100%; flex-direction: column; padding: var(--space-xl); overflow-y: auto;">
+                <div style="max-width: 1200px; width: 100%; margin: 0 auto;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xl);">
+                        <div>
+                            <h2 style="font-size: 2rem; margin-bottom: 0.5rem;"><span class="material-icons-outlined">memory</span> API Key Monitor</h2>
+                            <p style="color: var(--text-secondary);">Real-time monitoring of Gemini Key Pool health and quota usage.</p>
+                        </div>
+                        <button class="btn-primary" onclick="renderAPIHealth()">
+                            <span class="material-icons-outlined">refresh</span>
+                            Refresh
+                        </button>
+                    </div>
+
+                    <!-- Health Stats -->
+                    <div class="stats-grid" id="api-stats-grid" style="margin-bottom: var(--space-xl); display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md);">
+                        <div class="stat-card glass-card" style="padding: var(--space-lg);">
+                            <h3 style="color: var(--text-secondary); margin: 0 0 0.5rem 0; font-size: 0.9rem;">Total Keys</h3>
+                            <div style="font-size: 2.5rem; font-weight: 700;" id="api-total-keys">0</div>
+                        </div>
+                        <div class="stat-card glass-card" style="padding: var(--space-lg); border-left: 4px solid var(--success-color);">
+                            <h3 style="color: var(--text-secondary); margin: 0 0 0.5rem 0; font-size: 0.9rem;">Healthy Keys</h3>
+                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--success-color);" id="api-healthy-keys">0</div>
+                        </div>
+                        <div class="stat-card glass-card" style="padding: var(--space-lg); border-left: 4px solid var(--warning-color);">
+                            <h3 style="color: var(--text-secondary); margin: 0 0 0.5rem 0; font-size: 0.9rem;">Rate Limited</h3>
+                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--warning-color);" id="api-rate-limited">0</div>
+                        </div>
+                        <div class="stat-card glass-card" style="padding: var(--space-lg); border-left: 4px solid var(--danger-color);">
+                            <h3 style="color: var(--text-secondary); margin: 0 0 0.5rem 0; font-size: 0.9rem;">Retired (Errors)</h3>
+                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--danger-color);" id="api-retired-keys">0</div>
+                        </div>
+                    </div>
+
+                    <!-- Keys Table -->
+                    <div class="glass-card" style="border-radius: var(--radius-lg); overflow: hidden;">
+                        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                            <thead style="background: rgba(0,0,0,0.2);">
+                                <tr>
+                                    <th style="padding: var(--space-md); border-bottom: 1px solid var(--border-color);">Key Suffix</th>
+                                    <th style="padding: var(--space-md); border-bottom: 1px solid var(--border-color);">Status</th>
+                                    <th style="padding: var(--space-md); border-bottom: 1px solid var(--border-color);">RPM (1m)</th>
+                                    <th style="padding: var(--space-md); border-bottom: 1px solid var(--border-color);">RPD (24h)</th>
+                                    <th style="padding: var(--space-md); border-bottom: 1px solid var(--border-color);">Failures</th>
+                                    <th style="padding: var(--space-md); border-bottom: 1px solid var(--border-color);">Cooldown Remaining</th>
+                                </tr>
+                            </thead>
+                            <tbody id="api-keys-table-body">
+                                <tr><td colspan="6" style="text-align:center; padding: 2rem;">Loading API health data...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
