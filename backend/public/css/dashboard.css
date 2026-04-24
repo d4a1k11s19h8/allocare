@@ -356,7 +356,7 @@
 
 /* ── Map Section ─────────────────────────────────────────── */
 .map-section {
-  flex: 0 0 45%;
+  flex: 0 0 55%;
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid var(--border);
@@ -458,10 +458,10 @@
 .needs-feed {
   flex: 1;
   overflow-y: auto;
-  padding: var(--space-sm) var(--space-xl);
+  padding: var(--space-md) var(--space-xl);
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--space-md);
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
 }
