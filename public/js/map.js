@@ -12,6 +12,17 @@ let routePolylines = [];      // route lines
 let heatmapLayer = null;
 let geocoderControl = null;
 let showVolunteers = true;    // toggle state
+let mapLayerFilter = "both";  // 'both', 'heatmap', 'volunteers'
+
+function applyMapLayerFilter() {
+  const select = document.getElementById("filter-map-layers");
+  if (select) {
+    mapLayerFilter = select.value;
+    updateMapMarkers();
+    updateVolunteerMarkers();
+    fitMapToAllMarkers();
+  }
+}
 
 // ── Custom Volunteer Icon ───────────────────────────────────
 function createVolunteerIcon(status) {
@@ -146,6 +157,11 @@ function updateMapMarkers() {
     heatmapLayer = null;
   }
 
+  if (mapLayerFilter === "volunteers") {
+    // Only show volunteers, so skip rendering needs and heatmap
+    return;
+  }
+
   const filteredNeeds = getFilteredNeeds();
   const heatData = [];
 
@@ -222,7 +238,7 @@ function updateVolunteerMarkers() {
   volunteerMarkers.forEach(m => mapInstance.removeLayer(m));
   volunteerMarkers = [];
 
-  if (!showVolunteers) return;
+  if (!showVolunteers || mapLayerFilter === "heatmap") return;
 
   const volunteers = AppState.volunteers || [];
 

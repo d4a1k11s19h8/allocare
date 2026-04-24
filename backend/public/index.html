@@ -270,6 +270,11 @@
                                 <option value="medium">🟡 Medium (31-60)</option>
                                 <option value="low">🟢 Low (0-30)</option>
                             </select>
+                            <select id="filter-map-layers" onchange="applyMapLayerFilter()">
+                                <option value="both">🗺️ Both Layers</option>
+                                <option value="heatmap">🔴 Needs Heatmap Only</option>
+                                <option value="volunteers">👤 Volunteers Only</option>
+                            </select>
                         </div>
                     </div>
                     <div id="map-container" class="map-container">
