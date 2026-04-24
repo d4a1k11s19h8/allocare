@@ -32,10 +32,10 @@
     <meta name="theme-color" content="#0f0f23">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="css/design-system.css?v=2">
-    <link rel="stylesheet" href="css/dashboard.css?v=2">
-    <link rel="stylesheet" href="css/components.css?v=2">
-    <link rel="stylesheet" href="css/animations.css?v=2">
+    <link rel="stylesheet" href="css/design-system.css?v=7">
+    <link rel="stylesheet" href="css/dashboard.css?v=7">
+    <link rel="stylesheet" href="css/components.css?v=7">
+    <link rel="stylesheet" href="css/animations.css?v=7">
 </head>
 <body>
     <!-- ═══════════════════════════════════════════════════════════ -->
@@ -227,6 +227,28 @@
                         <span>Sign Out</span>
                     </a>
                 </div>
+                <!-- Community Impact (moved from right panel) -->
+                <div class="impact-summary" style="margin: 0; border-top: none; padding: var(--space-md) var(--space-lg);">
+                    <h3><span class="material-icons-outlined">emoji_events</span> Community Impact</h3>
+                    <div class="impact-grid">
+                        <div class="impact-card">
+                            <span class="impact-value" id="impact-resolved">0</span>
+                            <span class="impact-label">Needs Resolved</span>
+                        </div>
+                        <div class="impact-card">
+                            <span class="impact-value" id="impact-people">0</span>
+                            <span class="impact-label">People Helped</span>
+                        </div>
+                        <div class="impact-card">
+                            <span class="impact-value" id="impact-hours">0</span>
+                            <span class="impact-label">Hours Donated</span>
+                        </div>
+                        <div class="impact-card">
+                            <span class="impact-value" id="impact-volunteers">0</span>
+                            <span class="impact-label">Active Volunteers</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="sidebar-footer">
                 <div class="sidebar-stats">
                         <div class="mini-stat">
@@ -322,7 +344,12 @@
                 <div id="match-section" class="match-section" style="display:none;">
                     <div class="match-header">
                         <h3><span class="material-icons-outlined">auto_awesome</span> AI-Matched Volunteers</h3>
-                        <span class="ai-badge">Gemini 2.0</span>
+                        <div style="display:flex;align-items:center;gap:var(--space-sm);">
+                            <span class="ai-badge">Gemini 2.0</span>
+                            <button class="match-close-btn" onclick="closeMatchSection()" title="Close matches">
+                                <span class="material-icons-outlined">close</span>
+                            </button>
+                        </div>
                     </div>
                     <div id="match-results" class="match-results">
                         <!-- Populated by JS -->
@@ -334,28 +361,6 @@
                     <!-- Populated by JS -->
                 </div>
 
-                <!-- Impact Stats -->
-                <div class="impact-summary">
-                    <h3><span class="material-icons-outlined">emoji_events</span> Community Impact</h3>
-                    <div class="impact-grid">
-                        <div class="impact-card">
-                            <span class="impact-value" id="impact-resolved">0</span>
-                            <span class="impact-label">Needs Resolved</span>
-                        </div>
-                        <div class="impact-card">
-                            <span class="impact-value" id="impact-people">0</span>
-                            <span class="impact-label">People Helped</span>
-                        </div>
-                        <div class="impact-card">
-                            <span class="impact-value" id="impact-hours">0</span>
-                            <span class="impact-label">Hours Donated</span>
-                        </div>
-                        <div class="impact-card">
-                            <span class="impact-value" id="impact-volunteers">0</span>
-                            <span class="impact-label">Active Volunteers</span>
-                        </div>
-                    </div>
-                </div>
             </aside>
             </div> <!-- End view-dashboard -->
 
@@ -683,15 +688,15 @@
     <!-- ═══════════════════════════════════════════════════════════ -->
     <div id="toast-container" class="toast-container"></div>
 
-    <!-- Scripts (v4 = pan-India + offline + routing) -->
-    <script src="js/config.js?v=4"></script>
-    <script src="js/auth.js?v=4"></script>
-    <script src="js/api-service.js?v=4"></script>
-    <script src="js/offline.js?v=4"></script>
-    <script src="js/map.js?v=4"></script>
-    <script src="js/dashboard.js?v=4"></script>
-    <script src="js/upload.js?v=4"></script>
-    <script src="js/matching.js?v=4"></script>
+    <!-- Scripts (v6 = card layout fix) -->
+    <script src="js/config.js?v=6"></script>
+    <script src="js/auth.js?v=6"></script>
+    <script src="js/api-service.js?v=6"></script>
+    <script src="js/offline.js?v=6"></script>
+    <script src="js/map.js?v=6"></script>
+    <script src="js/dashboard.js?v=6"></script>
+    <script src="js/upload.js?v=6"></script>
+    <script src="js/matching.js?v=6"></script>
 
     <!-- Service Worker Registration -->
     <script>

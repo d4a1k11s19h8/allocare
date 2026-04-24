@@ -35,59 +35,37 @@ function createNeedCard(need, index) {
   const isResolved = status === "resolved";
   const isAssigned = status === "assigned" || status === "offered";
 
-  // Status badge for assigned/resolved
   let statusTag = "";
   if (isResolved) {
-    statusTag = `<span style="padding:2px 8px;border-radius:var(--radius-full);font-size:10px;font-weight:700;text-transform:uppercase;background:rgba(14,159,110,0.15);color:var(--green);margin-left:6px;">✓ Resolved</span>`;
+    statusTag = `<span style="padding:2px 8px;border-radius:var(--radius-full);font-size:10px;font-weight:700;text-transform:uppercase;background:rgba(14,159,110,0.15);color:var(--green);">✓ Resolved</span>`;
   } else if (isAssigned) {
-    statusTag = `<span style="padding:2px 8px;border-radius:var(--radius-full);font-size:10px;font-weight:700;text-transform:uppercase;background:rgba(26,86,219,0.15);color:var(--primary);margin-left:6px;">⏳ Assigned</span>`;
-  }
-
-  // Action buttons: hide for resolved, show "Find More" for assigned
-  let actionBtns = "";
-  if (!isResolved && !isAssigned) {
-    actionBtns = `
-      <div class="need-card-actions">
-        <button class="card-action-btn" onclick="event.stopPropagation(); matchVolunteers('${need.id}')" title="Find volunteers">
-          <span class="material-icons-outlined">person_search</span>
-        </button>
-        <button class="card-action-btn flag" onclick="event.stopPropagation(); openFlagDialog('${need.id}')" title="Flag score">
-          <span class="material-icons-outlined">flag</span>
-        </button>
-      </div>`;
-  } else if (isAssigned) {
-    actionBtns = `
-      <div class="need-card-actions">
-        <button class="card-action-btn" onclick="event.stopPropagation(); matchVolunteers('${need.id}')" title="Find more volunteers">
-          <span class="material-icons-outlined">person_search</span>
-        </button>
-      </div>`;
+    statusTag = `<span style="padding:2px 8px;border-radius:var(--radius-full);font-size:10px;font-weight:700;text-transform:uppercase;background:rgba(26,86,219,0.15);color:var(--primary);">⏳ Assigned</span>`;
   }
 
   return `
     <div class="need-card border-${urgency}" onclick="selectNeed('${need.id}')" style="animation-delay:${index * 50}ms;">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <div style="display:flex;align-items:center;gap:8px;flex:1;min-width:0;">
-          <span style="font-size:18px;flex-shrink:0;">${issueType.icon}</span>
-          <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-secondary);flex-shrink:0;">${issueType.label}</span>
-          <span class="source-badge ${sourceClass}" style="flex-shrink:0;">${sourceLabel} ${need.source || "manual"}</span>
+      <div class="need-card-row1">
+        <div class="need-card-left">
+          <span class="need-card-icon">${issueType.icon}</span>
+          <span class="need-card-type">${issueType.label}</span>
+          <span class="source-badge ${sourceClass}">${sourceLabel} ${need.source || "manual"}</span>
           ${statusTag}
-          <span style="color:var(--text-muted);font-size:11px;margin:0 2px;">—</span>
-          <span style="font-size:12px;color:var(--text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${(need.summary || "Need report").slice(0, 60)}</span>
+          <span class="need-card-dash">—</span>
+          <span class="need-card-summary">${need.summary || "Need report"}</span>
         </div>
-        <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;margin-left:12px;">
-          <span style="font-size:13px;font-weight:800;font-family:'Courier New',monospace;color:${urgencyConfig.color};">${need.urgency_score || 0}</span>
+        <div class="need-card-right">
+          <span class="need-card-score" style="color:${urgencyConfig.color};">${need.urgency_score || 0}</span>
           <span class="urgency-badge ${urgency}">${urgencyConfig.label}</span>
         </div>
       </div>
-      <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-muted);margin-top:4px;">
+      <div class="need-card-row2">
         <span class="material-icons-outlined" style="font-size:13px;">location_on</span>
         ${need.zone || "Unknown"}
-        <span style="margin:0 3px;">·</span>
+        <span class="need-card-dot">·</span>
         <span class="material-icons-outlined" style="font-size:12px;">schedule</span>
         ${created}
-        ${need.affected_count ? `<span style="margin:0 3px;">·</span><span style="color:var(--green);font-weight:600;">👥 ~${need.affected_count}</span>` : ""}
-        ${skills.length > 0 ? `<span style="margin:0 3px;">·</span>${skills.map(s => `<span style="padding:1px 6px;background:var(--bg-elevated);border-radius:10px;font-size:10px;color:var(--text-muted);">${s}</span>`).join(" ")}` : ""}
+        ${need.affected_count ? `<span class="need-card-dot">·</span><span style="color:var(--green);font-weight:600;">👥 ~${need.affected_count}</span>` : ""}
+        ${skills.length > 0 ? `<span class="need-card-dot">·</span>${skills.map(s => `<span class="need-card-skill">${s}</span>`).join(" ")}` : ""}
       </div>
     </div>`;
 }
@@ -352,6 +330,14 @@ async function fetchAssignedVolunteer(needId) {
 
 function closeNeedDetail() {
   document.getElementById("need-detail-modal").style.display = "none";
+}
+
+function closeMatchSection() {
+  const matchSection = document.getElementById("match-section");
+  if (matchSection) matchSection.style.display = "none";
+  // Clear the card highlight
+  document.querySelectorAll(".need-card").forEach(c => c.style.outline = "none");
+  AppState.selectedNeedId = null;
 }
 
 // ── Filter Functions ────────────────────────────────────────

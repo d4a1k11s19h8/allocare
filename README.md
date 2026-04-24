@@ -1,12 +1,12 @@
-# AlloCare: Smart Volunteer Deployment for Social Impact
+# AlloCare — Smart Volunteer Deployment for Social Impact
 
 🌐 **[Live Demo →](https://allocare-77.web.app)** | 📹 **[Demo Video →](https://youtu.be/XXXX)** | 📊 **[Pitch Deck →](./docs/pitch_deck.pdf)**
 
-> **From paper survey to matched volunteer in 60 seconds.** Powered by Gemini 3.1 Pro.
+> **From paper survey to matched volunteer in 60 seconds.** Powered by Gemini AI.
 
 ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=firebase&logoColor=black)
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=flat&logo=flutter&logoColor=white)
-![Gemini](https://img.shields.io/badge/Gemini_3.1_Pro-4285F4?style=flat&logo=google&logoColor=white)
+![Gemini](https://img.shields.io/badge/Gemini_2.0-4285F4?style=flat&logo=google&logoColor=white)
 ![Maps](https://img.shields.io/badge/Google_Maps-4285F4?style=flat&logo=googlemaps&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 
@@ -14,9 +14,9 @@
 
 ## 🎯 Problem Statement
 
-**Smart Resource Allocation**: Google Solution Challenge 2026
+**Smart Resource Allocation** — Google Solution Challenge 2026
 
-Local NGOs and community groups collect valuable need-data through paper surveys, WhatsApp messages, and field reports. This data sits siloed in physical files, disconnected spreadsheets, or a single coordinator's memory. **No system currently aggregates it to surface urgency patterns**: and no intelligent bridge exists to route available volunteers to where they are needed most, in real time.
+Local NGOs and community groups collect valuable need-data through paper surveys, WhatsApp messages, and field reports. This data sits siloed in physical files, disconnected spreadsheets, or a single coordinator's memory. **No system currently aggregates it to surface urgency patterns** — and no intelligent bridge exists to route available volunteers to where they are needed most, in real time.
 
 ## 💡 Solution: AlloCare
 
@@ -29,15 +29,15 @@ graph LR
     D[💬 WhatsApp/SMS] --> B
     E[✍️ Manual Entry] --> B
     B -->|Google Translate| F[🌐 English Text]
-    F -->|Gemini 3.1 Pro| G[🧠 Urgency Score]
+    F -->|Gemini 2.0 Flash| G[🧠 Urgency Score]
     G -->|Maps Geocoding| H[🗺️ Heatmap]
     H -->|Distance Matrix| I[👥 Top-3 Volunteers]
     I --> J[✅ Deployed & Tracked]
 ```
 
-1. **Multi-source data ingestion**: converts paper, CSV, WhatsApp, and text into structured need records
-2. **Gemini 3.1 Pro-powered urgency intelligence**: scores, clusters, and visualizes needs geographically
-3. **Algorithm-driven volunteer matching**: deploys the right person to the highest-priority task in real time
+1. **Multi-source data ingestion** — converts paper, CSV, WhatsApp, and text into structured need records
+2. **Gemini-powered urgency intelligence** — scores, clusters, and visualizes needs geographically
+3. **Algorithm-driven volunteer matching** — deploys the right person to the highest-priority task in real time
 
 ## 🖼️ Screenshots
 
@@ -50,11 +50,11 @@ graph LR
 |:---:|:---:|:---:|
 | Coming soon | Coming soon | Coming soon |
 
-## 🛠️ Tech Stack: Google Technologies
+## 🛠️ Tech Stack — Google Technologies
 
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
-| **AI Brain** | Gemini 3.1 Pro | Urgency extraction, coordinator explanations, impact framing |
+| **AI Brain** | Gemini 2.0 Flash | Urgency extraction, coordinator explanations, impact framing |
 | **OCR** | Cloud Vision API | Paper survey → digital text (printed + handwritten) |
 | **Database** | Cloud Firestore | Real-time NoSQL with live heatmap listeners |
 | **Auth** | Firebase Auth | Google Sign-In for coordinators and volunteers |
@@ -85,7 +85,7 @@ graph TB
     end
     
     subgraph "Intelligence Layer"
-        H[Gemini 3.1 Pro]
+        H[Gemini 2.0 Flash]
         I[Cloud Vision OCR]
         J[Google Translate]
         K[Maps Distance Matrix]
@@ -135,13 +135,13 @@ firebase emulators:start
 urgency_score = (severity × log(frequency + 1)) / max(1, days_since_first_report)
 normalized    = min(100, round(urgency_score × 10))
 
-0–30   → LOW      (green)  : Routine attention
-31–60  → MEDIUM   (amber)  : Plan this week
-61–85  → HIGH     (orange) : Address within 48 hours
-86–100 → CRITICAL (red)    : Immediate action + volunteer push notification
+0–30   → LOW      (green)   — Routine attention
+31–60  → MEDIUM   (amber)   — Plan this week
+61–85  → HIGH     (orange)  — Address within 48 hours
+86–100 → CRITICAL (red)     — Immediate action + volunteer push notification
 ```
 
-**Explainability:** The formula is displayed on every need card. Coordinators can override any AI-scored urgency with the "Flag" button: corrections are logged to improve the model over time. This implements the **participatory AI** framework (Nesta, 2021).
+**Explainability:** The formula is displayed on every need card. Coordinators can override any AI-scored urgency with the "Flag" button — corrections are logged to improve the model over time. This implements the **participatory AI** framework (Nesta, 2021).
 
 ## 🤖 Volunteer Matching Algorithm
 
@@ -149,7 +149,7 @@ normalized    = min(100, round(urgency_score × 10))
 match_score = skill_overlap_score × proximity_score × availability_score
 
 skill_overlap  = matched_skills / required_skills    ∈ [0, 1]
-proximity      = 1 / (1 + distance_km)              : decays with distance
+proximity      = 1 / (1 + distance_km)               — decays with distance
 availability   = 1.0 if available now, else 0.3
 ```
 
@@ -158,10 +158,10 @@ Returns **top-3 volunteers** with plain-English explanations:
 
 ## 🌍 SDG Alignment
 
-- **SDG 1: No Poverty:** Routes food security and basic needs resources to highest-urgency areas
-- **SDG 10: Reduced Inequalities:** Prioritizes underserved communities invisible to traditional volunteer platforms
-- **SDG 17: Partnerships for the Goals:** Creates technology bridge between data-rich NGOs and skill-rich volunteers
-- **SDG 11: Sustainable Cities:** Supports urban NGOs managing complex multi-zone community needs
+- **SDG 1 — No Poverty:** Routes food security and basic needs resources to highest-urgency areas
+- **SDG 10 — Reduced Inequalities:** Prioritizes underserved communities invisible to traditional volunteer platforms
+- **SDG 17 — Partnerships for the Goals:** Creates technology bridge between data-rich NGOs and skill-rich volunteers
+- **SDG 11 — Sustainable Cities:** Supports urban NGOs managing complex multi-zone community needs
 
 ## 📚 Research Citations
 
@@ -174,17 +174,17 @@ Returns **top-3 volunteers** with plain-English explanations:
 
 ## ♿ Accessibility & Ethics
 
-- **WCAG 2.1 AA** compliance: 4.5:1 contrast minimum, color + icon for urgency (never color alone)
-- **Transparent AI**: urgency formula displayed on screen, human override enabled
-- **Privacy**: volunteer locations rounded to ±1km, no individual PII in field reports
-- **Free forever** for small NGOs: technology should not be a barrier to social impact
+- **WCAG 2.1 AA** compliance — 4.5:1 contrast minimum, color + icon for urgency (never color alone)
+- **Transparent AI** — urgency formula displayed on screen, human override enabled
+- **Privacy** — volunteer locations rounded to ±1km, no individual PII in field reports
+- **Free forever** for small NGOs — technology should not be a barrier to social impact
 
 
 
 ## 📄 License
 
-MIT License: Free for NGOs, always.
+MIT License — Free for NGOs, always.
 
 ---
 
-*AlloCare: Google Solution Challenge 2026 · Hack2Skill × GDG on Campus × Google*
+*AlloCare — Google Solution Challenge 2026 · Hack2Skill × GDG on Campus × Google*
