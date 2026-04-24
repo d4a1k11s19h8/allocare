@@ -610,7 +610,7 @@ async def create_assignment(payload: AssignmentRequest):
             "need_report_id": payload.need_id,
             "volunteer_id": payload.volunteer_id,
             "org_id": payload.org_id,
-            "status": "pending",
+            "status": "offered",
             "match_score": payload.match_score,
             "match_explanation": payload.match_explanation,
         })
@@ -622,6 +622,76 @@ async def create_assignment(payload: AssignmentRequest):
     except Exception as e:
         logger.error(f"[createAssignment] {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+class DeclineTaskRequest(BaseModel):
+    reason: str
+
+@app.post("/api/assignments/{assignment_id}/accept", tags=["tasks"])
+async def accept_task(assignment_id: str):
+    """Volunteer accepts the offered task."""
+    assignment = store.get("assignments", assignment_id)
+    if not assignment:
+        raise HTTPException(status_code=404, detail="Assignment not found")
+    store.update("assignments", assignment_id, {"status": "accepted"})
+    return {"success": True}
+
+@app.post("/api/assignments/{assignment_id}/decline", tags=["tasks"])
+async def decline_task(assignment_id: str, payload: DeclineTaskRequest):
+    """Volunteer declines the offered task."""
+    assignment = store.get("assignments", assignment_id)
+    if not assignment:
+        raise HTTPException(status_code=404, detail="Assignment not found")
+    
+    store.update("assignments", assignment_id, {"status": "declined", "decline_reason": payload.reason})
+    
+    # Unassign the volunteer and need
+    volunteer_id = assignment.get("volunteer_id")
+    need_id = assignment.get("need_report_id")
+    if volunteer_id:
+        store.update("volunteers", volunteer_id, {"status": "available"})
+    if need_id:
+        store.update("need_reports", need_id, {"status": "open"})
+        
+    return {"success": True}
+
+@app.get("/api/users/{user_id}/notifications", tags=["users"])
+async def get_notifications(user_id: str):
+    """Fetch dynamic notifications for the user."""
+    user = store.get("users", user_id)
+    if not user:
+        return {"notifications": []}
+    
+    notifications = []
+    
+    if user.get("role") == "volunteer":
+        # Check for 'offered' assignments
+        all_assignments = store.query("assignments")
+        offered = [a for a in all_assignments if a.get("volunteer_id") == user_id and a.get("status") == "offered"]
+        for o in offered:
+            need_id = o.get("need_report_id")
+            need = store.get("need_reports", need_id) if need_id else {}
+            notifications.append({
+                "type": "task_offered",
+                "message": f"New task offered: {need.get('summary', 'Unknown task')}",
+                "timestamp": o.get("created_at", "Just now")
+            })
+    elif user.get("role") in ["organization", "superadmin"]:
+        # Check for 'declined' assignments
+        all_assignments = store.query("assignments")
+        declined = [a for a in all_assignments if a.get("status") == "declined"]
+        for d in declined:
+            vol_id = d.get("volunteer_id")
+            vol = store.get("volunteers", vol_id) if vol_id else {}
+            vol_name = vol.get("display_name", "A volunteer")
+            notifications.append({
+                "type": "task_declined",
+                "message": f"{vol_name} declined a task: '{d.get('decline_reason', 'No reason provided')}'",
+                "timestamp": d.get("created_at", "Just now")
+            })
+            
+    return {"notifications": notifications}
+
 
 
 class CompleteTaskRequest(BaseModel):

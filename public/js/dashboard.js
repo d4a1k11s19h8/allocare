@@ -372,27 +372,38 @@ function createTaskCard(assignment) {
   const status = assignment.status || "pending";
 
   const statusColors = {
+    offered: "var(--cyan)",
     pending: "var(--amber)",
     accepted: "var(--primary)",
     completed: "var(--green)",
+    declined: "var(--red)"
   };
   const statusIcons = {
+    offered: "new_releases",
     pending: "schedule",
     accepted: "play_arrow",
     completed: "check_circle",
+    declined: "cancel"
   };
 
-  const actions = status === "pending" ? `
+  const actions = status === "offered" ? `
     <div style="display:flex; gap: var(--space-sm); margin-top: var(--space-md);">
       <button class="btn-primary btn-sm" onclick="event.stopPropagation(); acceptTask('${assignment.assignment_id}')">
         <span class="material-icons-outlined" style="font-size:16px;">thumb_up</span> Accept
       </button>
+      <button class="btn-primary btn-sm" style="background: transparent; border: 1px solid var(--red); color: var(--red);" onclick="event.stopPropagation(); declineTask('${assignment.assignment_id}')">
+        <span class="material-icons-outlined" style="font-size:16px;">thumb_down</span> Decline
+      </button>
     </div>
-  ` : status === "accepted" ? `
+  ` : status === "accepted" || status === "pending" ? `
     <div style="display:flex; gap: var(--space-sm); margin-top: var(--space-md);">
       <button class="btn-primary btn-sm" style="background: var(--green);" onclick="event.stopPropagation(); completeMyTask('${assignment.assignment_id}')">
         <span class="material-icons-outlined" style="font-size:16px;">task_alt</span> Mark Complete
       </button>
+    </div>
+  ` : status === "declined" ? `
+    <div style="margin-top: var(--space-md); display:flex; align-items:center; gap:6px; color: var(--red); font-weight:600; font-size: var(--font-sm);">
+      <span class="material-icons-outlined" style="font-size:18px;">cancel</span> Declined
     </div>
   ` : `
     <div style="margin-top: var(--space-md); display:flex; align-items:center; gap:6px; color: var(--green); font-weight:600; font-size: var(--font-sm);">
@@ -409,8 +420,8 @@ function createTaskCard(assignment) {
           <span style="font-size:20px;">${issueType.icon}</span>
           <span style="font-weight:600; color: var(--text-primary);">${issueType.label}</span>
         </div>
-        <div style="display:flex; align-items:center; gap:6px; padding:4px 10px; border-radius:20px; background:${statusColors[status]}22; color:${statusColors[status]}; font-size: var(--font-xs); font-weight:600; text-transform:uppercase;">
-          <span class="material-icons-outlined" style="font-size:14px;">${statusIcons[status]}</span>
+        <div style="display:flex; align-items:center; gap:6px; padding:4px 10px; border-radius:20px; background:${statusColors[status] || statusColors.pending}22; color:${statusColors[status] || statusColors.pending}; font-size: var(--font-xs); font-weight:600; text-transform:uppercase;">
+          <span class="material-icons-outlined" style="font-size:14px;">${statusIcons[status] || statusIcons.pending}</span>
           ${status}
         </div>
       </div>
@@ -432,13 +443,39 @@ function createTaskCard(assignment) {
 
 async function acceptTask(assignmentId) {
   try {
-    // We don't have a dedicated accept endpoint, so we'll update via assignment status
-    // For now, mark as accepted locally and refresh
+    const res = await fetch(`${FUNCTIONS_BASE}/api/assignments/${assignmentId}/accept`, {
+      method: "POST"
+    });
+    if (!res.ok) throw new Error("Failed to accept task");
+    
     showToast("Task accepted! Navigate to the location to help.", "success");
-    // Refresh
+    fetchNotifications();
     renderMyTasks();
   } catch (e) {
     showToast("Failed to accept task", "error");
+  }
+}
+
+async function declineTask(assignmentId) {
+  const reason = prompt("Please state a reason for declining this task:");
+  if (!reason) {
+    showToast("Reason is required to decline a task.", "error");
+    return;
+  }
+  
+  try {
+    const res = await fetch(`${FUNCTIONS_BASE}/api/assignments/${assignmentId}/decline`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ reason: reason })
+    });
+    if (!res.ok) throw new Error("Failed to decline task");
+    
+    showToast("Task declined.", "info");
+    fetchNotifications();
+    renderMyTasks();
+  } catch (e) {
+    showToast("Failed to decline task", "error");
   }
 }
 
@@ -517,10 +554,53 @@ function viewVolunteerDetail(volId) {
 }
 
 // ── Notifications ───────────────────────────────────────────
-function toggleNotifications() {
-  const criticalCount = AppState.needs.filter(n => n.urgency_label === "critical").length;
-  showToast(`${criticalCount} critical needs require attention`, "info");
+async function fetchNotifications() {
+  if (!AppState.user) return;
+  try {
+    const res = await fetch(`${FUNCTIONS_BASE}/api/users/${AppState.user.id}/notifications`);
+    if (res.ok) {
+      const data = await res.json();
+      const badge = document.getElementById("notif-badge");
+      const list = document.getElementById("notification-list");
+      
+      const count = data.notifications.length;
+      if (badge) {
+        badge.textContent = count;
+        badge.style.display = count > 0 ? "flex" : "none";
+      }
+      
+      if (list) {
+        if (count === 0) {
+          list.innerHTML = `<div style="padding: 12px; text-align: center; color: var(--text-muted); font-size: 13px;">No new notifications</div>`;
+        } else {
+          list.innerHTML = data.notifications.map(n => `
+            <div style="padding: 10px; border-bottom: 1px solid var(--border); font-size: 13px;">
+              <div style="color: var(--text-primary); margin-bottom: 4px;">${n.message}</div>
+              <div style="color: var(--text-muted); font-size: 11px;">${timeAgo(n.timestamp)}</div>
+            </div>
+          `).join('');
+        }
+      }
+    }
+  } catch (e) {
+    console.error("Failed to fetch notifications", e);
+  }
 }
+
+function toggleNotifications() {
+  const dropdown = document.getElementById("notification-dropdown");
+  if (!dropdown) return;
+  
+  if (dropdown.style.display === "none" || dropdown.style.display === "") {
+    dropdown.style.display = "block";
+    fetchNotifications();
+  } else {
+    dropdown.style.display = "none";
+  }
+}
+
+// Call fetchNotifications periodically (e.g. every 30s)
+setInterval(fetchNotifications, 30000);
 
 // ── Toast System ────────────────────────────────────────────
 function showToast(message, type = "info") {

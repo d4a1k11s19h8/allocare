@@ -255,12 +255,24 @@ class DataStore:
 
         # ── Seed Users ───────────────────────────────────────
         users = [
-            {"email": "admin@allocare.org", "password_hash": self.hash_password("admin123"), "display_name": "Demo Organization", "role": "organization"},
-            {"email": "volunteer@allocare.org", "password_hash": self.hash_password("vol123"), "display_name": "Demo Volunteer", "role": "volunteer"},
-            {"email": "superadmin@allocare.org", "password_hash": self.hash_password("super123"), "display_name": "Super Admin", "role": "superadmin"},
+            {"email": "admin@allocare.org", "password_hash": self.hash_password("admin123"), "display_name": "Demo Organization", "role": "organization", "id": "u1"},
+            {"email": "volunteer@allocare.org", "password_hash": self.hash_password("vol123"), "display_name": "Demo Volunteer", "role": "volunteer", "id": "u2"},
+            {"email": "superadmin@allocare.org", "password_hash": self.hash_password("super123"), "display_name": "Super Admin", "role": "superadmin", "id": "u3"},
         ]
-        for i, u in enumerate(users):
-            self.add("users", u, doc_id=f"u{i+1}")
+        
+        # Add user accounts for all 54 volunteers
+        for i, v in enumerate(volunteers):
+            users.append({
+                "id": f"v{i+1}",
+                "email": v["email"],
+                "password_hash": self.hash_password("vol123"),
+                "display_name": v["display_name"],
+                "role": "volunteer"
+            })
+            
+        for u in users:
+            uid = u.pop("id")
+            self.add("users", u, doc_id=uid)
 
         logger.info(f"[DataStore-Local] Seeded {len(needs)} needs + {len(volunteers)} volunteers + {len(users)} users")
 
