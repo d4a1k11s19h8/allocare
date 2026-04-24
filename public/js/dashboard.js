@@ -66,33 +66,28 @@ function createNeedCard(need, index) {
 
   return `
     <div class="need-card border-${urgency}" onclick="selectNeed('${need.id}')" style="animation-delay:${index * 50}ms;">
-      <div class="need-card-header">
-        <div class="need-card-type">
-          <span class="need-card-type-icon">${issueType.icon}</span>
-          <span class="need-card-type-label">${issueType.label}</span>
-          <span class="source-badge ${sourceClass}">${sourceLabel} ${need.source || "manual"}</span>
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div style="display:flex;align-items:center;gap:8px;flex:1;min-width:0;">
+          <span style="font-size:18px;flex-shrink:0;">${issueType.icon}</span>
+          <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-secondary);flex-shrink:0;">${issueType.label}</span>
+          <span class="source-badge ${sourceClass}" style="flex-shrink:0;">${sourceLabel} ${need.source || "manual"}</span>
           ${statusTag}
+          <span style="color:var(--text-muted);font-size:11px;margin:0 2px;">—</span>
+          <span style="font-size:12px;color:var(--text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${(need.summary || "Need report").slice(0, 60)}</span>
         </div>
-        <div class="need-card-meta">
-          <span class="need-card-score" style="color:${urgencyConfig.color}">${need.urgency_score || 0}</span>
+        <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;margin-left:12px;">
+          <span style="font-size:13px;font-weight:800;font-family:'Courier New',monospace;color:${urgencyConfig.color};">${need.urgency_score || 0}</span>
           <span class="urgency-badge ${urgency}">${urgencyConfig.label}</span>
         </div>
       </div>
-      <div class="need-card-title">${need.summary || "Need report"}</div>
-      <div class="need-card-zone">
-        <span class="material-icons-outlined">location_on</span>
+      <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-muted);margin-top:4px;">
+        <span class="material-icons-outlined" style="font-size:13px;">location_on</span>
         ${need.zone || "Unknown"}
-        <span style="color:var(--text-muted);margin:0 4px;">·</span>
-        <span class="material-icons-outlined" style="font-size:13px;">schedule</span>
+        <span style="margin:0 3px;">·</span>
+        <span class="material-icons-outlined" style="font-size:12px;">schedule</span>
         ${created}
-        ${need.affected_count ? `<span style="color:var(--text-muted);margin:0 4px;">·</span><span style="color:var(--green);font-weight:600;">👥 ~${need.affected_count} people</span>` : ""}
-      </div>
-      <div class="need-card-footer">
-        <div class="need-card-skills">
-          ${skills.map(s => `<span class="skill-chip">${s}</span>`).join("")}
-          ${(need.required_skills || []).length > 3 ? `<span class="skill-chip">+${need.required_skills.length - 3}</span>` : ""}
-        </div>
-        ${actionBtns}
+        ${need.affected_count ? `<span style="margin:0 3px;">·</span><span style="color:var(--green);font-weight:600;">👥 ~${need.affected_count}</span>` : ""}
+        ${skills.length > 0 ? `<span style="margin:0 3px;">·</span>${skills.map(s => `<span style="padding:1px 6px;background:var(--bg-elevated);border-radius:10px;font-size:10px;color:var(--text-muted);">${s}</span>`).join(" ")}` : ""}
       </div>
     </div>`;
 }
