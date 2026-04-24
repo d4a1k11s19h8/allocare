@@ -356,7 +356,7 @@
 
 /* ── Map Section ─────────────────────────────────────────── */
 .map-section {
-  flex: 0 0 55%;
+  flex: 0 0 42%;
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid var(--border);
@@ -395,6 +395,8 @@
   flex: 1;
   position: relative;
   background: var(--bg-card);
+  z-index: 1;
+  isolation: isolate;
 }
 .map-legend {
   position: absolute;
@@ -458,10 +460,10 @@
 .needs-feed {
   flex: 1;
   overflow-y: auto;
-  padding: var(--space-md) var(--space-xl);
+  padding: var(--space-lg) var(--space-xl);
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: 12px;
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
 }
@@ -513,6 +515,7 @@
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
+  position: relative;
 }
 .match-section::-webkit-scrollbar { width: 6px; }
 .match-section::-webkit-scrollbar-track { background: transparent; }
@@ -534,6 +537,22 @@
   align-items: center;
   gap: var(--space-xs);
   font-size: var(--font-sm);
+}
+.match-close-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.match-close-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-card);
 }
 .ai-badge {
   padding: 2px 8px;
@@ -775,6 +794,7 @@
 /* ── User Dropdown Menu ─────────────────────────────────── */
 .user-menu-wrapper {
   position: relative;
+  z-index: 500;
 }
 .user-dropdown {
   position: absolute;
@@ -786,7 +806,7 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
-  z-index: 200;
+  z-index: 500;
   animation: modalSlideIn 0.2s ease;
   overflow: hidden;
 }
