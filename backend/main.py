@@ -140,7 +140,37 @@ async def api_keys_health():
     """Super Admin endpoint: Returns the health of the Gemini Key Pool."""
     import gemini_client
     if gemini_client._init_models() and gemini_client._gemini_pool:
-        return {"status": "success", "keys": gemini_client._gemini_pool.health()}
+        health_list = gemini_client._gemini_pool.health()
+        
+        healthy_keys = sum(1 for k in health_list if k["status"] == "HEALTHY")
+        rate_limited = sum(1 for k in health_list if k["status"] in ("RATE_LIMITED", "QUOTA_EXHAUSTED", "SERVER_ERROR"))
+        retired = sum(1 for k in health_list if k["status"] == "RETIRED")
+        
+        keys_dict = {}
+        for i, k in enumerate(health_list):
+            st = k["status"]
+            frontend_status = "active" if st == "HEALTHY" else "retired" if st == "RETIRED" else "rate_limited"
+            keys_dict[f"key{i}"] = {
+                "status": frontend_status,
+                "key_suffix": k["key_suffix"],
+                "rpm_used": k["rpm_used_last_min"],
+                "rpd_used": k["rpd_used_today"],
+                "failure_count": k["failures"],
+                "cooldown_remaining_s": k["cooldown_remaining_s"]
+            }
+            
+        return {
+            "status": "success", 
+            "keys": {
+                "summary": {
+                    "total_keys": len(health_list),
+                    "healthy_keys": healthy_keys,
+                    "rate_limited_keys": rate_limited,
+                    "retired_keys": retired
+                },
+                "keys": keys_dict
+            }
+        }
     return {"status": "error", "message": "Gemini pool not configured or failed to init."}
 
 @app.get("/api/health", tags=["system"])
