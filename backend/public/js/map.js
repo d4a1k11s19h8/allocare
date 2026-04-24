@@ -171,40 +171,60 @@ function updateMapMarkers() {
     const urgency = URGENCY_LEVELS[need.urgency_label] || URGENCY_LEVELS.low;
     const issueType = ISSUE_TYPES[need.issue_type] || ISSUE_TYPES.other;
     const markerSize = getMarkerSize(need.urgency_score);
+    const isHeatmapOnly = mapLayerFilter === "heatmap";
 
-    // Only create individual circle markers if we're not just showing the heatmap
-    if (mapLayerFilter !== "heatmap") {
-      const marker = L.circleMarker([need.lat, need.lng], {
-        radius: markerSize,
-        fillColor: urgency.color,
-        fillOpacity: 0.85,
-        color: urgency.color,
-        weight: 2,
-        opacity: 0.4,
-      }).addTo(mapInstance);
+    // Always create clickable circle markers (transparent in heatmap-only mode)
+    const marker = L.circleMarker([need.lat, need.lng], {
+      radius: isHeatmapOnly ? 18 : markerSize,
+      fillColor: urgency.color,
+      fillOpacity: isHeatmapOnly ? 0 : 0.85,
+      color: urgency.color,
+      weight: isHeatmapOnly ? 0 : 2,
+      opacity: isHeatmapOnly ? 0 : 0.4,
+    }).addTo(mapInstance);
 
-      // Popup on hover
-      const popupContent = `
-        <div style="font-family:Inter,sans-serif;max-width:280px;padding:4px;">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
-            <span style="font-size:18px;">${issueType.icon}</span>
-            <strong style="font-size:13px;">${need.zone || "Unknown"}</strong>
-            <span style="padding:2px 6px;border-radius:20px;font-size:10px;font-weight:700;
-              background:${urgency.color}20;color:${urgency.color};">${urgency.label}</span>
-          </div>
-          <p style="font-size:12px;color:#666;margin:0 0 4px;line-height:1.3;">${(need.summary || "").slice(0, 120)}</p>
-          <div style="font-size:11px;color:#999;">
-            Score: ${need.urgency_score}/100 · ~${need.affected_count || "?"} people affected
-          </div>
-        </div>`;
+    // Rich popup with action button
+    const statusBadge = need.status === "resolved"
+      ? `<span style="padding:2px 6px;border-radius:20px;font-size:10px;font-weight:700;background:rgba(14,159,110,0.2);color:#0E9F6E;">RESOLVED</span>`
+      : need.status === "assigned"
+      ? `<span style="padding:2px 6px;border-radius:20px;font-size:10px;font-weight:700;background:rgba(26,86,219,0.2);color:#1A56DB;">ASSIGNED</span>`
+      : `<span style="padding:2px 6px;border-radius:20px;font-size:10px;font-weight:700;background:${urgency.color}20;color:${urgency.color};">${urgency.label}</span>`;
 
-      marker.bindPopup(popupContent, { closeButton: false, className: "custom-popup" });
-      marker.on("mouseover", function() { this.openPopup(); });
-      marker.on("mouseout", function() { this.closePopup(); });
-      marker.on("click", function() { selectNeed(need.id); });
+    const actionBtn = need.status !== "resolved"
+      ? `<button onclick="selectNeed('${need.id}')" style="
+          display:block;width:100%;margin-top:8px;padding:6px 0;
+          background:linear-gradient(135deg,#1A56DB,#3B82F6);color:#fff;
+          border:none;border-radius:6px;font-size:11px;font-weight:600;
+          cursor:pointer;font-family:Inter,sans-serif;">
+          ✨ View & Assign Volunteers
+        </button>`
+      : `<button onclick="selectNeed('${need.id}')" style="
+          display:block;width:100%;margin-top:8px;padding:6px 0;
+          background:rgba(14,159,110,0.15);color:#0E9F6E;
+          border:1px solid rgba(14,159,110,0.3);border-radius:6px;font-size:11px;font-weight:600;
+          cursor:pointer;font-family:Inter,sans-serif;">
+          View Details
+        </button>`;
 
-      mapMarkers.push(marker);
-    }
+    const popupContent = `
+      <div style="font-family:Inter,sans-serif;max-width:280px;padding:4px;">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+          <span style="font-size:18px;">${issueType.icon}</span>
+          <strong style="font-size:13px;">${need.zone || "Unknown"}</strong>
+          ${statusBadge}
+        </div>
+        <p style="font-size:12px;color:#999;margin:0 0 4px;line-height:1.3;">${(need.summary || "").slice(0, 120)}</p>
+        <div style="font-size:11px;color:#999;">
+          Score: ${need.urgency_score}/100 · ~${need.affected_count || "?"} people affected
+        </div>
+        ${actionBtn}
+      </div>`;
+
+    marker.bindPopup(popupContent, { closeButton: false, className: "custom-popup", maxWidth: 300 });
+    marker.on("mouseover", function() { this.openPopup(); });
+    marker.on("click", function() { this.openPopup(); });
+
+    mapMarkers.push(marker);
 
     heatData.push([need.lat, need.lng, (need.urgency_score || 10) / 100]);
   });
