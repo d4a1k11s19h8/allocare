@@ -186,7 +186,7 @@ async def api_keys_health():
 @app.get("/api/health", tags=["system"])
 async def health_check():
     """Health check endpoint."""
-    gemini_key = bool(os.environ.get("GEMINI_API_KEY"))
+    gemini_key = any(k.startswith("GEMINI_API_KEY") for k in os.environ)
     need_count = store.count("need_reports")
     vol_count = store.count("volunteers")
     return {
