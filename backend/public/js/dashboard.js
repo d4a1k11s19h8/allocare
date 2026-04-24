@@ -794,10 +794,10 @@ async function renderAPIHealth() {
     // Add token if using auth
     const headers = { "Content-Type": "application/json" };
     // Call the new health endpoint
-    const resp = await fetch(${FUNCTIONS_BASE}/api/system/keys/health, { headers });
+    const resp = await fetch(`${FUNCTIONS_BASE}/api/system/keys/health`, { headers });
     
     if (!resp.ok) {
-      throw new Error(HTTP error! status: );
+      throw new Error(`HTTP error! status: ${resp.status}`);
     }
     
     const data = await resp.json();
@@ -838,19 +838,19 @@ async function renderAPIHealth() {
 
       const cooldown = info.cooldown_remaining_s > 0 ? info.cooldown_remaining_s.toFixed(1) + 's' : '-';
       
-      tr.innerHTML = \
-        <td style="padding: var(--space-md); font-family: monospace;">...\</td>
-        <td style="padding: var(--space-md);">\</td>
-        <td style="padding: var(--space-md);">\</td>
-        <td style="padding: var(--space-md);">\</td>
-        <td style="padding: var(--space-md); color: \;">\</td>
-        <td style="padding: var(--space-md);">\</td>
-      \;
+      tr.innerHTML = `
+        <td style="padding: var(--space-md); font-family: monospace;">...${info.key_suffix || ''}</td>
+        <td style="padding: var(--space-md);">${statusHtml}</td>
+        <td style="padding: var(--space-md);">${info.rpm_used || 0}</td>
+        <td style="padding: var(--space-md);">${info.rpd_used || 0}</td>
+        <td style="padding: var(--space-md); color: ${info.failure_count > 0 ? 'var(--danger-color)' : 'inherit'};">${info.failure_count || 0}</td>
+        <td style="padding: var(--space-md);">${cooldown}</td>
+      `;
       tbody.appendChild(tr);
     }
     
   } catch (err) {
     console.error("API Health error:", err);
-    tbody.innerHTML = \<tr><td colspan="6" style="text-align:center; padding: 2rem; color: var(--danger-color);"><span class="material-icons-outlined">error</span> \</td></tr>\;
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding: 2rem; color: var(--danger-color);"><span class="material-icons-outlined">error</span> ${err.message}</td></tr>`;
   }
 }
