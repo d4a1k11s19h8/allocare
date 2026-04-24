@@ -1,0 +1,10 @@
+project_id = "gxhslgfqjgfxzomwfcgr"
+
+[functions.score-need]
+verify_jwt = false
+
+[functions.match-volunteers]
+verify_jwt = false
+
+[functions.ingest-need]
+verify_jwt = false
