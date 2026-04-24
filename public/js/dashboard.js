@@ -27,11 +27,42 @@ function createNeedCard(need, index) {
   const urgency = need.urgency_label || "low";
   const urgencyConfig = URGENCY_LEVELS[urgency] || URGENCY_LEVELS.low;
   const skills = (need.required_skills || []).slice(0, 3);
-  const trendIcon = need.trend_direction === "rising" ? "⬆" : need.trend_direction === "falling" ? "⬇" : "→";
   const created = timeAgo(need.created_at);
   const sourceIcons = { photo: "📸", csv: "📄", manual: "✍️", whatsapp: "💬", sms: "💬" };
   const sourceLabel = sourceIcons[need.source] || "📋";
   const sourceClass = need.source || "manual";
+  const status = need.status || "open";
+  const isResolved = status === "resolved";
+  const isAssigned = status === "assigned" || status === "offered";
+
+  // Status badge for assigned/resolved
+  let statusTag = "";
+  if (isResolved) {
+    statusTag = `<span style="padding:2px 8px;border-radius:var(--radius-full);font-size:10px;font-weight:700;text-transform:uppercase;background:rgba(14,159,110,0.15);color:var(--green);margin-left:6px;">✓ Resolved</span>`;
+  } else if (isAssigned) {
+    statusTag = `<span style="padding:2px 8px;border-radius:var(--radius-full);font-size:10px;font-weight:700;text-transform:uppercase;background:rgba(26,86,219,0.15);color:var(--primary);margin-left:6px;">⏳ Assigned</span>`;
+  }
+
+  // Action buttons: hide for resolved, show "Find More" for assigned
+  let actionBtns = "";
+  if (!isResolved && !isAssigned) {
+    actionBtns = `
+      <div class="need-card-actions">
+        <button class="card-action-btn" onclick="event.stopPropagation(); matchVolunteers('${need.id}')" title="Find volunteers">
+          <span class="material-icons-outlined">person_search</span>
+        </button>
+        <button class="card-action-btn flag" onclick="event.stopPropagation(); openFlagDialog('${need.id}')" title="Flag score">
+          <span class="material-icons-outlined">flag</span>
+        </button>
+      </div>`;
+  } else if (isAssigned) {
+    actionBtns = `
+      <div class="need-card-actions">
+        <button class="card-action-btn" onclick="event.stopPropagation(); matchVolunteers('${need.id}')" title="Find more volunteers">
+          <span class="material-icons-outlined">person_search</span>
+        </button>
+      </div>`;
+  }
 
   return `
     <div class="need-card border-${urgency}" onclick="selectNeed('${need.id}')" style="animation-delay:${index * 50}ms;">
@@ -40,6 +71,7 @@ function createNeedCard(need, index) {
           <span class="need-card-type-icon">${issueType.icon}</span>
           <span class="need-card-type-label">${issueType.label}</span>
           <span class="source-badge ${sourceClass}">${sourceLabel} ${need.source || "manual"}</span>
+          ${statusTag}
         </div>
         <div class="need-card-meta">
           <span class="need-card-score" style="color:${urgencyConfig.color}">${need.urgency_score || 0}</span>
@@ -49,22 +81,18 @@ function createNeedCard(need, index) {
       <div class="need-card-title">${need.summary || "Need report"}</div>
       <div class="need-card-zone">
         <span class="material-icons-outlined">location_on</span>
-        ${need.zone || "Unknown"} · ${created} · ${trendIcon}
+        ${need.zone || "Unknown"}
+        <span style="color:var(--text-muted);margin:0 4px;">·</span>
+        <span class="material-icons-outlined" style="font-size:13px;">schedule</span>
+        ${created}
+        ${need.affected_count ? `<span style="color:var(--text-muted);margin:0 4px;">·</span><span style="color:var(--green);font-weight:600;">👥 ~${need.affected_count} people</span>` : ""}
       </div>
-      ${need.affected_count ? `<div class="need-card-impact">~${need.affected_count} people affected</div>` : ""}
       <div class="need-card-footer">
         <div class="need-card-skills">
           ${skills.map(s => `<span class="skill-chip">${s}</span>`).join("")}
           ${(need.required_skills || []).length > 3 ? `<span class="skill-chip">+${need.required_skills.length - 3}</span>` : ""}
         </div>
-        <div class="need-card-actions">
-          <button class="card-action-btn" onclick="event.stopPropagation(); matchVolunteers('${need.id}')" title="Find volunteers">
-            <span class="material-icons-outlined">person_search</span>
-          </button>
-          <button class="card-action-btn flag" onclick="event.stopPropagation(); openFlagDialog('${need.id}')" title="Flag score">
-            <span class="material-icons-outlined">flag</span>
-          </button>
-        </div>
+        ${actionBtns}
       </div>
     </div>`;
 }
