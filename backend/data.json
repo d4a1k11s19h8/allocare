@@ -1,0 +1,1427 @@
+{
+  "volunteers": {
+    "v1": {
+      "display_name": "Priya Sharma",
+      "email": "priya@example.com",
+      "lat": 19.045,
+      "lng": 72.857,
+      "zone": "Dharavi",
+      "skills": [
+        "food distribution",
+        "medical first aid",
+        "hindi speaking"
+      ],
+      "status": "available",
+      "impact_points": 580,
+      "impact_stats": {
+        "total_tasks_completed": 23,
+        "total_people_helped": 456
+      },
+      "max_distance_km": 15,
+      "_id": "v1",
+      "created_at": "2026-04-24T07:59:48.596649+00:00"
+    },
+    "v2": {
+      "display_name": "Rahul Deshmukh",
+      "email": "rahul@example.com",
+      "lat": 19.073,
+      "lng": 72.879,
+      "zone": "Kurla",
+      "skills": [
+        "construction",
+        "plumbing",
+        "electrical"
+      ],
+      "status": "available",
+      "impact_points": 320,
+      "impact_stats": {
+        "total_tasks_completed": 12,
+        "total_people_helped": 180
+      },
+      "max_distance_km": 15,
+      "_id": "v2",
+      "created_at": "2026-04-24T07:59:48.598239+00:00"
+    },
+    "v3": {
+      "display_name": "Anita Patel",
+      "email": "anita@example.com",
+      "lat": 19.054,
+      "lng": 72.915,
+      "zone": "Govandi",
+      "skills": [
+        "teaching",
+        "counseling"
+      ],
+      "status": "available",
+      "impact_points": 680,
+      "impact_stats": {
+        "total_tasks_completed": 18,
+        "total_people_helped": 540
+      },
+      "max_distance_km": 20,
+      "_id": "v3",
+      "created_at": "2026-04-24T07:59:48.599867+00:00"
+    },
+    "v4": {
+      "display_name": "Mohammed Shaikh",
+      "email": "mohammed@example.com",
+      "lat": 19.044,
+      "lng": 72.855,
+      "zone": "Dharavi",
+      "skills": [
+        "cooking",
+        "food distribution",
+        "driving"
+      ],
+      "status": "available",
+      "impact_points": 1450,
+      "impact_stats": {
+        "total_tasks_completed": 45,
+        "total_people_helped": 1200
+      },
+      "max_distance_km": 15,
+      "_id": "v4",
+      "created_at": "2026-04-24T07:59:48.600419+00:00"
+    },
+    "v5": {
+      "display_name": "Sneha Nair",
+      "email": "sneha@example.com",
+      "lat": 19.12,
+      "lng": 72.847,
+      "zone": "Andheri East",
+      "skills": [
+        "nursing",
+        "medical first aid",
+        "patient care"
+      ],
+      "status": "available",
+      "impact_points": 890,
+      "impact_stats": {
+        "total_tasks_completed": 31,
+        "total_people_helped": 620
+      },
+      "max_distance_km": 20,
+      "_id": "v5",
+      "created_at": "2026-04-24T07:59:48.601551+00:00"
+    },
+    "v6": {
+      "display_name": "Vikram Singh",
+      "email": "vikram@example.com",
+      "lat": 19.187,
+      "lng": 72.849,
+      "zone": "Malad East",
+      "skills": [
+        "construction",
+        "carpentry",
+        "heavy lifting"
+      ],
+      "status": "assigned",
+      "impact_points": 210,
+      "impact_stats": {
+        "total_tasks_completed": 8,
+        "total_people_helped": 85
+      },
+      "max_distance_km": 15,
+      "_id": "v6",
+      "created_at": "2026-04-24T07:59:48.603195+00:00"
+    },
+    "v7": {
+      "display_name": "Fatima Khan",
+      "email": "fatima@example.com",
+      "lat": 19.059,
+      "lng": 72.841,
+      "zone": "Bandra East",
+      "skills": [
+        "social work",
+        "counseling",
+        "legal aid"
+      ],
+      "status": "available",
+      "impact_points": 420,
+      "impact_stats": {
+        "total_tasks_completed": 15,
+        "total_people_helped": 275
+      },
+      "max_distance_km": 15,
+      "_id": "v7",
+      "created_at": "2026-04-24T07:59:48.604297+00:00"
+    },
+    "v8": {
+      "display_name": "Arjun Mehta",
+      "email": "arjun@example.com",
+      "lat": 19.062,
+      "lng": 72.898,
+      "zone": "Chembur",
+      "skills": [
+        "pharmacy",
+        "medical first aid",
+        "data entry"
+      ],
+      "status": "available",
+      "impact_points": 250,
+      "impact_stats": {
+        "total_tasks_completed": 10,
+        "total_people_helped": 150
+      },
+      "max_distance_km": 15,
+      "_id": "v8",
+      "created_at": "2026-04-24T07:59:48.606635+00:00"
+    },
+    "v9": {
+      "display_name": "Ravi Kumar",
+      "email": "ravi@example.com",
+      "lat": 19.04,
+      "lng": 72.862,
+      "zone": "Sion",
+      "skills": [
+        "driving",
+        "food distribution",
+        "logistics"
+      ],
+      "status": "available",
+      "impact_points": 1100,
+      "impact_stats": {
+        "total_tasks_completed": 35,
+        "total_people_helped": 900
+      },
+      "max_distance_km": 25,
+      "_id": "v9",
+      "created_at": "2026-04-24T07:59:48.609088+00:00"
+    },
+    "v10": {
+      "display_name": "Kavitha Reddy",
+      "email": "kavitha@example.com",
+      "lat": 19.019,
+      "lng": 72.844,
+      "zone": "Dadar",
+      "skills": [
+        "medical doctor",
+        "patient care"
+      ],
+      "status": "available",
+      "impact_points": 340,
+      "impact_stats": {
+        "total_tasks_completed": 8,
+        "total_people_helped": 160
+      },
+      "max_distance_km": 20,
+      "_id": "v10",
+      "created_at": "2026-04-24T07:59:48.609088+00:00"
+    },
+    "v11": {
+      "display_name": "Tushar Patil",
+      "email": "tushar@example.com",
+      "lat": 19.008,
+      "lng": 72.817,
+      "zone": "Worli",
+      "skills": [
+        "civil engineering",
+        "structural assessment"
+      ],
+      "status": "available",
+      "impact_points": 190,
+      "impact_stats": {
+        "total_tasks_completed": 6,
+        "total_people_helped": 120
+      },
+      "max_distance_km": 15,
+      "_id": "v11",
+      "created_at": "2026-04-24T07:59:48.612143+00:00"
+    },
+    "v12": {
+      "display_name": "Hassan Ali",
+      "email": "hassan@example.com",
+      "lat": 19.204,
+      "lng": 72.84,
+      "zone": "Kandivali",
+      "skills": [
+        "cooking",
+        "food distribution",
+        "event coordination"
+      ],
+      "status": "available",
+      "impact_points": 820,
+      "impact_stats": {
+        "total_tasks_completed": 28,
+        "total_people_helped": 700
+      },
+      "max_distance_km": 20,
+      "_id": "v12",
+      "created_at": "2026-04-24T07:59:48.612143+00:00"
+    },
+    "v13": {
+      "display_name": "Sanjay Kulkarni",
+      "email": "sanjay.k@example.com",
+      "lat": 18.52,
+      "lng": 73.856,
+      "zone": "Pune",
+      "skills": [
+        "civil engineering",
+        "disaster relief",
+        "logistics"
+      ],
+      "status": "available",
+      "impact_points": 550,
+      "impact_stats": {
+        "total_tasks_completed": 20,
+        "total_people_helped": 400
+      },
+      "max_distance_km": 30,
+      "_id": "v13",
+      "created_at": "2026-04-24T07:59:48.615214+00:00"
+    },
+    "v14": {
+      "display_name": "Deepa Joshi",
+      "email": "deepa.j@example.com",
+      "lat": 18.53,
+      "lng": 73.85,
+      "zone": "Pune",
+      "skills": [
+        "nursing",
+        "patient care",
+        "counseling"
+      ],
+      "status": "available",
+      "impact_points": 390,
+      "impact_stats": {
+        "total_tasks_completed": 14,
+        "total_people_helped": 280
+      },
+      "max_distance_km": 25,
+      "_id": "v14",
+      "created_at": "2026-04-24T07:59:48.616843+00:00"
+    },
+    "v15": {
+      "display_name": "Kiran Patel",
+      "email": "kiran.p@example.com",
+      "lat": 23.022,
+      "lng": 72.571,
+      "zone": "Ahmedabad",
+      "skills": [
+        "food distribution",
+        "logistics",
+        "driving"
+      ],
+      "status": "available",
+      "impact_points": 470,
+      "impact_stats": {
+        "total_tasks_completed": 18,
+        "total_people_helped": 350
+      },
+      "max_distance_km": 30,
+      "_id": "v15",
+      "created_at": "2026-04-24T07:59:48.618377+00:00"
+    },
+    "v16": {
+      "display_name": "Hetal Shah",
+      "email": "hetal.s@example.com",
+      "lat": 21.17,
+      "lng": 72.831,
+      "zone": "Surat",
+      "skills": [
+        "teaching",
+        "social work",
+        "event coordination"
+      ],
+      "status": "available",
+      "impact_points": 310,
+      "impact_stats": {
+        "total_tasks_completed": 11,
+        "total_people_helped": 200
+      },
+      "max_distance_km": 25,
+      "_id": "v16",
+      "created_at": "2026-04-24T07:59:48.620143+00:00"
+    },
+    "v17": {
+      "display_name": "Amit Deshmukh",
+      "email": "amit.d@example.com",
+      "lat": 21.145,
+      "lng": 79.088,
+      "zone": "Nagpur",
+      "skills": [
+        "construction",
+        "heavy lifting",
+        "disaster relief"
+      ],
+      "status": "available",
+      "impact_points": 720,
+      "impact_stats": {
+        "total_tasks_completed": 30,
+        "total_people_helped": 500
+      },
+      "max_distance_km": 30,
+      "_id": "v17",
+      "created_at": "2026-04-24T07:59:48.620768+00:00"
+    },
+    "v18": {
+      "display_name": "Sunita Wankhede",
+      "email": "sunita.w@example.com",
+      "lat": 21.152,
+      "lng": 79.075,
+      "zone": "Nagpur",
+      "skills": [
+        "nursing",
+        "medical first aid",
+        "patient care"
+      ],
+      "status": "available",
+      "impact_points": 560,
+      "impact_stats": {
+        "total_tasks_completed": 22,
+        "total_people_helped": 380
+      },
+      "max_distance_km": 25,
+      "_id": "v18",
+      "created_at": "2026-04-24T07:59:48.624052+00:00"
+    },
+    "v19": {
+      "display_name": "Rajesh Thakur",
+      "email": "rajesh.t@example.com",
+      "lat": 21.14,
+      "lng": 79.1,
+      "zone": "Nagpur",
+      "skills": [
+        "driving",
+        "logistics",
+        "food distribution"
+      ],
+      "status": "available",
+      "impact_points": 340,
+      "impact_stats": {
+        "total_tasks_completed": 14,
+        "total_people_helped": 220
+      },
+      "max_distance_km": 30,
+      "_id": "v19",
+      "created_at": "2026-04-24T07:59:48.626578+00:00"
+    },
+    "v20": {
+      "display_name": "Meena Bhonsle",
+      "email": "meena.b@example.com",
+      "lat": 21.16,
+      "lng": 79.095,
+      "zone": "Nagpur",
+      "skills": [
+        "social work",
+        "counseling",
+        "event coordination"
+      ],
+      "status": "available",
+      "impact_points": 480,
+      "impact_stats": {
+        "total_tasks_completed": 19,
+        "total_people_helped": 310
+      },
+      "max_distance_km": 25,
+      "_id": "v20",
+      "created_at": "2026-04-24T07:59:48.628774+00:00"
+    },
+    "v21": {
+      "display_name": "Pooja Mishra",
+      "email": "pooja.m@example.com",
+      "lat": 23.259,
+      "lng": 77.412,
+      "zone": "Bhopal",
+      "skills": [
+        "medical doctor",
+        "patient care",
+        "hindi speaking"
+      ],
+      "status": "available",
+      "impact_points": 600,
+      "impact_stats": {
+        "total_tasks_completed": 24,
+        "total_people_helped": 410
+      },
+      "max_distance_km": 30,
+      "_id": "v21",
+      "created_at": "2026-04-24T07:59:48.631294+00:00"
+    },
+    "v22": {
+      "display_name": "Rahul Jain",
+      "email": "rahul.j@example.com",
+      "lat": 22.719,
+      "lng": 75.857,
+      "zone": "Indore",
+      "skills": [
+        "construction",
+        "plumbing",
+        "electrical"
+      ],
+      "status": "available",
+      "impact_points": 280,
+      "impact_stats": {
+        "total_tasks_completed": 10,
+        "total_people_helped": 160
+      },
+      "max_distance_km": 25,
+      "_id": "v22",
+      "created_at": "2026-04-24T07:59:48.632813+00:00"
+    },
+    "v23": {
+      "display_name": "Lakshmi Sahu",
+      "email": "lakshmi.s@example.com",
+      "lat": 21.251,
+      "lng": 81.629,
+      "zone": "Raipur",
+      "skills": [
+        "food distribution",
+        "cooking",
+        "logistics"
+      ],
+      "status": "available",
+      "impact_points": 350,
+      "impact_stats": {
+        "total_tasks_completed": 13,
+        "total_people_helped": 230
+      },
+      "max_distance_km": 30,
+      "_id": "v23",
+      "created_at": "2026-04-24T07:59:48.635434+00:00"
+    },
+    "v24": {
+      "display_name": "Arun Gupta",
+      "email": "arun.g@example.com",
+      "lat": 28.628,
+      "lng": 77.217,
+      "zone": "Delhi",
+      "skills": [
+        "construction",
+        "civil engineering",
+        "disaster relief"
+      ],
+      "status": "available",
+      "impact_points": 410,
+      "impact_stats": {
+        "total_tasks_completed": 16,
+        "total_people_helped": 290
+      },
+      "max_distance_km": 25,
+      "_id": "v24",
+      "created_at": "2026-04-24T07:59:48.637582+00:00"
+    },
+    "v25": {
+      "display_name": "Neha Saxena",
+      "email": "neha.s@example.com",
+      "lat": 28.61,
+      "lng": 77.23,
+      "zone": "Delhi",
+      "skills": [
+        "medical doctor",
+        "patient care",
+        "hindi speaking"
+      ],
+      "status": "available",
+      "impact_points": 630,
+      "impact_stats": {
+        "total_tasks_completed": 25,
+        "total_people_helped": 420
+      },
+      "max_distance_km": 25,
+      "_id": "v25",
+      "created_at": "2026-04-24T07:59:48.639469+00:00"
+    },
+    "v26": {
+      "display_name": "Manish Tiwari",
+      "email": "manish.t@example.com",
+      "lat": 28.535,
+      "lng": 77.391,
+      "zone": "Noida",
+      "skills": [
+        "driving",
+        "logistics",
+        "food distribution"
+      ],
+      "status": "available",
+      "impact_points": 290,
+      "impact_stats": {
+        "total_tasks_completed": 11,
+        "total_people_helped": 190
+      },
+      "max_distance_km": 30,
+      "_id": "v26",
+      "created_at": "2026-04-24T07:59:48.642831+00:00"
+    },
+    "v27": {
+      "display_name": "Simran Kaur",
+      "email": "simran.k@example.com",
+      "lat": 28.459,
+      "lng": 77.026,
+      "zone": "Gurgaon",
+      "skills": [
+        "social work",
+        "legal aid",
+        "counseling"
+      ],
+      "status": "available",
+      "impact_points": 440,
+      "impact_stats": {
+        "total_tasks_completed": 17,
+        "total_people_helped": 300
+      },
+      "max_distance_km": 25,
+      "_id": "v27",
+      "created_at": "2026-04-24T07:59:48.643847+00:00"
+    },
+    "v28": {
+      "display_name": "Akhil Verma",
+      "email": "akhil.v@example.com",
+      "lat": 26.846,
+      "lng": 80.946,
+      "zone": "Lucknow",
+      "skills": [
+        "food distribution",
+        "driving",
+        "hindi speaking"
+      ],
+      "status": "available",
+      "impact_points": 370,
+      "impact_stats": {
+        "total_tasks_completed": 14,
+        "total_people_helped": 250
+      },
+      "max_distance_km": 30,
+      "_id": "v28",
+      "created_at": "2026-04-24T07:59:48.646907+00:00"
+    },
+    "v29": {
+      "display_name": "Sunaina Rajput",
+      "email": "sunaina.r@example.com",
+      "lat": 26.912,
+      "lng": 75.787,
+      "zone": "Jaipur",
+      "skills": [
+        "teaching",
+        "counseling",
+        "event coordination"
+      ],
+      "status": "available",
+      "impact_points": 510,
+      "impact_stats": {
+        "total_tasks_completed": 19,
+        "total_people_helped": 360
+      },
+      "max_distance_km": 30,
+      "_id": "v29",
+      "created_at": "2026-04-24T07:59:48.649704+00:00"
+    },
+    "v30": {
+      "display_name": "Harpreet Singh",
+      "email": "harpreet.s@example.com",
+      "lat": 30.733,
+      "lng": 76.779,
+      "zone": "Chandigarh",
+      "skills": [
+        "construction",
+        "plumbing",
+        "disaster relief"
+      ],
+      "status": "available",
+      "impact_points": 430,
+      "impact_stats": {
+        "total_tasks_completed": 16,
+        "total_people_helped": 310
+      },
+      "max_distance_km": 30,
+      "_id": "v30",
+      "created_at": "2026-04-24T07:59:48.651719+00:00"
+    },
+    "v31": {
+      "display_name": "Deepak Sharma",
+      "email": "deepak.s@example.com",
+      "lat": 30.316,
+      "lng": 78.032,
+      "zone": "Dehradun",
+      "skills": [
+        "nursing",
+        "medical first aid",
+        "patient care"
+      ],
+      "status": "available",
+      "impact_points": 320,
+      "impact_stats": {
+        "total_tasks_completed": 12,
+        "total_people_helped": 200
+      },
+      "max_distance_km": 30,
+      "_id": "v31",
+      "created_at": "2026-04-24T07:59:48.653720+00:00"
+    },
+    "v32": {
+      "display_name": "Gurdeep Kaur",
+      "email": "gurdeep.k@example.com",
+      "lat": 31.634,
+      "lng": 74.872,
+      "zone": "Amritsar",
+      "skills": [
+        "cooking",
+        "food distribution",
+        "logistics"
+      ],
+      "status": "available",
+      "impact_points": 280,
+      "impact_stats": {
+        "total_tasks_completed": 10,
+        "total_people_helped": 180
+      },
+      "max_distance_km": 30,
+      "_id": "v32",
+      "created_at": "2026-04-24T07:59:48.656986+00:00"
+    },
+    "v33": {
+      "display_name": "Ramesh Gowda",
+      "email": "ramesh.g@example.com",
+      "lat": 12.971,
+      "lng": 77.594,
+      "zone": "Bangalore",
+      "skills": [
+        "civil engineering",
+        "construction",
+        "disaster relief"
+      ],
+      "status": "available",
+      "impact_points": 520,
+      "impact_stats": {
+        "total_tasks_completed": 20,
+        "total_people_helped": 380
+      },
+      "max_distance_km": 30,
+      "_id": "v33",
+      "created_at": "2026-04-24T07:59:48.660049+00:00"
+    },
+    "v34": {
+      "display_name": "Lakshmi Iyer",
+      "email": "lakshmi.i@example.com",
+      "lat": 12.96,
+      "lng": 77.6,
+      "zone": "Bangalore",
+      "skills": [
+        "medical doctor",
+        "nursing",
+        "patient care"
+      ],
+      "status": "available",
+      "impact_points": 680,
+      "impact_stats": {
+        "total_tasks_completed": 26,
+        "total_people_helped": 480
+      },
+      "max_distance_km": 25,
+      "_id": "v34",
+      "created_at": "2026-04-24T07:59:48.662086+00:00"
+    },
+    "v35": {
+      "display_name": "Naveen Kumar",
+      "email": "naveen.k@example.com",
+      "lat": 12.98,
+      "lng": 77.58,
+      "zone": "Bangalore",
+      "skills": [
+        "driving",
+        "logistics",
+        "food distribution"
+      ],
+      "status": "available",
+      "impact_points": 340,
+      "impact_stats": {
+        "total_tasks_completed": 13,
+        "total_people_helped": 240
+      },
+      "max_distance_km": 30,
+      "_id": "v35",
+      "created_at": "2026-04-24T07:59:48.665488+00:00"
+    },
+    "v36": {
+      "display_name": "Murugan S",
+      "email": "murugan.s@example.com",
+      "lat": 13.082,
+      "lng": 80.27,
+      "zone": "Chennai",
+      "skills": [
+        "construction",
+        "plumbing",
+        "electrical"
+      ],
+      "status": "available",
+      "impact_points": 450,
+      "impact_stats": {
+        "total_tasks_completed": 17,
+        "total_people_helped": 330
+      },
+      "max_distance_km": 30,
+      "_id": "v36",
+      "created_at": "2026-04-24T07:59:48.669128+00:00"
+    },
+    "v37": {
+      "display_name": "Priya Venkat",
+      "email": "priya.v@example.com",
+      "lat": 13.07,
+      "lng": 80.25,
+      "zone": "Chennai",
+      "skills": [
+        "teaching",
+        "counseling",
+        "social work"
+      ],
+      "status": "available",
+      "impact_points": 380,
+      "impact_stats": {
+        "total_tasks_completed": 14,
+        "total_people_helped": 270
+      },
+      "max_distance_km": 25,
+      "_id": "v37",
+      "created_at": "2026-04-24T07:59:48.671759+00:00"
+    },
+    "v38": {
+      "display_name": "Srinivas Reddy",
+      "email": "srinivas.r@example.com",
+      "lat": 17.385,
+      "lng": 78.486,
+      "zone": "Hyderabad",
+      "skills": [
+        "food distribution",
+        "cooking",
+        "logistics"
+      ],
+      "status": "available",
+      "impact_points": 490,
+      "impact_stats": {
+        "total_tasks_completed": 18,
+        "total_people_helped": 360
+      },
+      "max_distance_km": 30,
+      "_id": "v38",
+      "created_at": "2026-04-24T07:59:48.675513+00:00"
+    },
+    "v39": {
+      "display_name": "Ayesha Begum",
+      "email": "ayesha.b@example.com",
+      "lat": 17.39,
+      "lng": 78.49,
+      "zone": "Hyderabad",
+      "skills": [
+        "nursing",
+        "medical first aid",
+        "patient care"
+      ],
+      "status": "available",
+      "impact_points": 560,
+      "impact_stats": {
+        "total_tasks_completed": 21,
+        "total_people_helped": 400
+      },
+      "max_distance_km": 25,
+      "_id": "v39",
+      "created_at": "2026-04-24T07:59:48.677568+00:00"
+    },
+    "v40": {
+      "display_name": "Thomas Mathew",
+      "email": "thomas.m@example.com",
+      "lat": 9.931,
+      "lng": 76.267,
+      "zone": "Kochi",
+      "skills": [
+        "construction",
+        "disaster relief",
+        "logistics"
+      ],
+      "status": "available",
+      "impact_points": 410,
+      "impact_stats": {
+        "total_tasks_completed": 15,
+        "total_people_helped": 290
+      },
+      "max_distance_km": 30,
+      "_id": "v40",
+      "created_at": "2026-04-24T07:59:48.680599+00:00"
+    },
+    "v41": {
+      "display_name": "Meera Nair",
+      "email": "meera.n@example.com",
+      "lat": 11.016,
+      "lng": 76.955,
+      "zone": "Coimbatore",
+      "skills": [
+        "medical doctor",
+        "patient care"
+      ],
+      "status": "available",
+      "impact_points": 330,
+      "impact_stats": {
+        "total_tasks_completed": 12,
+        "total_people_helped": 220
+      },
+      "max_distance_km": 25,
+      "_id": "v41",
+      "created_at": "2026-04-24T07:59:48.682605+00:00"
+    },
+    "v42": {
+      "display_name": "Anoop Kumar",
+      "email": "anoop.k@example.com",
+      "lat": 8.524,
+      "lng": 76.936,
+      "zone": "Thiruvananthapuram",
+      "skills": [
+        "social work",
+        "legal aid",
+        "counseling"
+      ],
+      "status": "available",
+      "impact_points": 270,
+      "impact_stats": {
+        "total_tasks_completed": 9,
+        "total_people_helped": 160
+      },
+      "max_distance_km": 30,
+      "_id": "v42",
+      "created_at": "2026-04-24T07:59:48.685830+00:00"
+    },
+    "v43": {
+      "display_name": "Sourav Das",
+      "email": "sourav.d@example.com",
+      "lat": 22.572,
+      "lng": 88.363,
+      "zone": "Kolkata",
+      "skills": [
+        "food distribution",
+        "driving",
+        "logistics"
+      ],
+      "status": "available",
+      "impact_points": 540,
+      "impact_stats": {
+        "total_tasks_completed": 20,
+        "total_people_helped": 390
+      },
+      "max_distance_km": 30,
+      "_id": "v43",
+      "created_at": "2026-04-24T07:59:48.689639+00:00"
+    },
+    "v44": {
+      "display_name": "Ritika Sen",
+      "email": "ritika.s@example.com",
+      "lat": 22.58,
+      "lng": 88.37,
+      "zone": "Kolkata",
+      "skills": [
+        "teaching",
+        "counseling",
+        "social work"
+      ],
+      "status": "available",
+      "impact_points": 420,
+      "impact_stats": {
+        "total_tasks_completed": 16,
+        "total_people_helped": 300
+      },
+      "max_distance_km": 25,
+      "_id": "v44",
+      "created_at": "2026-04-24T07:59:48.693858+00:00"
+    },
+    "v45": {
+      "display_name": "Arijit Banerjee",
+      "email": "arijit.b@example.com",
+      "lat": 22.56,
+      "lng": 88.35,
+      "zone": "Kolkata",
+      "skills": [
+        "medical first aid",
+        "pharmacy",
+        "patient care"
+      ],
+      "status": "available",
+      "impact_points": 360,
+      "impact_stats": {
+        "total_tasks_completed": 13,
+        "total_people_helped": 250
+      },
+      "max_distance_km": 25,
+      "_id": "v45",
+      "created_at": "2026-04-24T07:59:48.696380+00:00"
+    },
+    "v46": {
+      "display_name": "Rajiv Prasad",
+      "email": "rajiv.p@example.com",
+      "lat": 25.609,
+      "lng": 85.137,
+      "zone": "Patna",
+      "skills": [
+        "construction",
+        "plumbing",
+        "disaster relief"
+      ],
+      "status": "available",
+      "impact_points": 300,
+      "impact_stats": {
+        "total_tasks_completed": 11,
+        "total_people_helped": 210
+      },
+      "max_distance_km": 30,
+      "_id": "v46",
+      "created_at": "2026-04-24T07:59:48.699017+00:00"
+    },
+    "v47": {
+      "display_name": "Anjali Kumari",
+      "email": "anjali.k@example.com",
+      "lat": 23.344,
+      "lng": 85.309,
+      "zone": "Ranchi",
+      "skills": [
+        "nursing",
+        "medical first aid",
+        "patient care"
+      ],
+      "status": "available",
+      "impact_points": 350,
+      "impact_stats": {
+        "total_tasks_completed": 13,
+        "total_people_helped": 240
+      },
+      "max_distance_km": 30,
+      "_id": "v47",
+      "created_at": "2026-04-24T07:59:48.702680+00:00"
+    },
+    "v48": {
+      "display_name": "Subhash Mohanty",
+      "email": "subhash.m@example.com",
+      "lat": 20.296,
+      "lng": 85.824,
+      "zone": "Bhubaneswar",
+      "skills": [
+        "food distribution",
+        "logistics",
+        "driving"
+      ],
+      "status": "available",
+      "impact_points": 410,
+      "impact_stats": {
+        "total_tasks_completed": 15,
+        "total_people_helped": 290
+      },
+      "max_distance_km": 30,
+      "_id": "v48",
+      "created_at": "2026-04-24T07:59:48.710428+00:00"
+    },
+    "v49": {
+      "display_name": "Bhaskar Deka",
+      "email": "bhaskar.d@example.com",
+      "lat": 26.144,
+      "lng": 91.736,
+      "zone": "Guwahati",
+      "skills": [
+        "construction",
+        "disaster relief",
+        "logistics"
+      ],
+      "status": "available",
+      "impact_points": 380,
+      "impact_stats": {
+        "total_tasks_completed": 14,
+        "total_people_helped": 260
+      },
+      "max_distance_km": 35,
+      "_id": "v49",
+      "created_at": "2026-04-24T07:59:48.714951+00:00"
+    },
+    "v50": {
+      "display_name": "Priyanka Bora",
+      "email": "priyanka.b@example.com",
+      "lat": 26.15,
+      "lng": 91.74,
+      "zone": "Guwahati",
+      "skills": [
+        "nursing",
+        "medical first aid",
+        "social work"
+      ],
+      "status": "available",
+      "impact_points": 290,
+      "impact_stats": {
+        "total_tasks_completed": 10,
+        "total_people_helped": 190
+      },
+      "max_distance_km": 30,
+      "_id": "v50",
+      "created_at": "2026-04-24T07:59:48.720033+00:00"
+    },
+    "v51": {
+      "display_name": "Om Prakash",
+      "email": "om.p@example.com",
+      "lat": 25.317,
+      "lng": 82.973,
+      "zone": "Varanasi",
+      "skills": [
+        "food distribution",
+        "cooking",
+        "hindi speaking"
+      ],
+      "status": "available",
+      "impact_points": 460,
+      "impact_stats": {
+        "total_tasks_completed": 17,
+        "total_people_helped": 340
+      },
+      "max_distance_km": 30,
+      "_id": "v51",
+      "created_at": "2026-04-24T07:59:48.736374+00:00"
+    },
+    "v52": {
+      "display_name": "Alok Mishra",
+      "email": "alok.m@example.com",
+      "lat": 26.449,
+      "lng": 80.331,
+      "zone": "Kanpur",
+      "skills": [
+        "civil engineering",
+        "construction",
+        "disaster relief"
+      ],
+      "status": "available",
+      "impact_points": 310,
+      "impact_stats": {
+        "total_tasks_completed": 11,
+        "total_people_helped": 210
+      },
+      "max_distance_km": 30,
+      "_id": "v52",
+      "created_at": "2026-04-24T07:59:48.767697+00:00"
+    },
+    "v53": {
+      "display_name": "Mahendra Rathore",
+      "email": "mahendra.r@example.com",
+      "lat": 26.238,
+      "lng": 73.024,
+      "zone": "Jodhpur",
+      "skills": [
+        "driving",
+        "logistics",
+        "food distribution"
+      ],
+      "status": "available",
+      "impact_points": 250,
+      "impact_stats": {
+        "total_tasks_completed": 9,
+        "total_people_helped": 170
+      },
+      "max_distance_km": 35,
+      "_id": "v53",
+      "created_at": "2026-04-24T07:59:48.790581+00:00"
+    },
+    "v54": {
+      "display_name": "Girish Hegde",
+      "email": "girish.h@example.com",
+      "lat": 12.295,
+      "lng": 76.639,
+      "zone": "Mysuru",
+      "skills": [
+        "teaching",
+        "social work",
+        "event coordination"
+      ],
+      "status": "available",
+      "impact_points": 370,
+      "impact_stats": {
+        "total_tasks_completed": 14,
+        "total_people_helped": 260
+      },
+      "max_distance_km": 25,
+      "_id": "v54",
+      "created_at": "2026-04-24T07:59:48.810146+00:00"
+    }
+  },
+  "need_reports": {
+    "n1": {
+      "zone": "Dharavi",
+      "lat": 19.0441,
+      "lng": 72.8557,
+      "issue_type": "food",
+      "severity_score": 9,
+      "urgency_score": 95,
+      "urgency_label": "critical",
+      "affected_count": 200,
+      "summary": "Severe food shortage affecting over 200 families.",
+      "required_skills": [
+        "food distribution",
+        "hindi speaking"
+      ],
+      "recommended_volunteer_count": 5,
+      "status": "open",
+      "source": "photo",
+      "report_frequency_30d": 8,
+      "trend_direction": "rising",
+      "coordinator_explanation": "Severe food crisis in sector 5.",
+      "_id": "n1",
+      "created_at": "2026-04-24T07:59:48.820455+00:00"
+    },
+    "n2": {
+      "zone": "Dharavi",
+      "lat": 19.0438,
+      "lng": 72.856,
+      "issue_type": "water",
+      "severity_score": 8,
+      "urgency_score": 88,
+      "urgency_label": "critical",
+      "affected_count": 150,
+      "summary": "Water supply contaminated in sector 5. Residents with stomach illness.",
+      "required_skills": [
+        "water purification",
+        "plumbing"
+      ],
+      "recommended_volunteer_count": 3,
+      "status": "open",
+      "source": "manual",
+      "report_frequency_30d": 5,
+      "trend_direction": "rising",
+      "coordinator_explanation": "The main water pipeline serving sector 5 has been compromised.",
+      "_id": "n2",
+      "created_at": "2026-04-24T07:59:48.832653+00:00"
+    },
+    "n3": {
+      "zone": "Dharavi",
+      "lat": 19.043,
+      "lng": 72.855,
+      "issue_type": "health",
+      "severity_score": 9,
+      "urgency_score": 92,
+      "urgency_label": "critical",
+      "affected_count": 175,
+      "summary": "Medical camp urgently needed \u2014 increasing dengue cases.",
+      "required_skills": [
+        "medical first aid",
+        "nursing"
+      ],
+      "recommended_volunteer_count": 4,
+      "status": "open",
+      "source": "whatsapp",
+      "report_frequency_30d": 6,
+      "trend_direction": "rising",
+      "_id": "n3",
+      "created_at": "2026-04-24T07:59:48.845588+00:00"
+    },
+    "n4": {
+      "zone": "Kurla",
+      "lat": 19.0724,
+      "lng": 72.8787,
+      "issue_type": "health",
+      "severity_score": 7,
+      "urgency_score": 72,
+      "urgency_label": "high",
+      "affected_count": 80,
+      "summary": "Healthcare facility severely understaffed.",
+      "required_skills": [
+        "medical doctor",
+        "patient care"
+      ],
+      "recommended_volunteer_count": 2,
+      "status": "open",
+      "source": "csv",
+      "report_frequency_30d": 3,
+      "trend_direction": "stable",
+      "_id": "n4",
+      "created_at": "2026-04-24T07:59:48.858769+00:00"
+    },
+    "n5": {
+      "zone": "Govandi",
+      "lat": 19.0565,
+      "lng": 72.923,
+      "issue_type": "housing",
+      "severity_score": 8,
+      "urgency_score": 82,
+      "urgency_label": "high",
+      "affected_count": 120,
+      "summary": "Flooding has damaged 120 homes, families displaced.",
+      "required_skills": [
+        "construction",
+        "disaster relief"
+      ],
+      "recommended_volunteer_count": 6,
+      "status": "open",
+      "source": "manual",
+      "report_frequency_30d": 4,
+      "trend_direction": "rising",
+      "_id": "n5",
+      "created_at": "2026-04-24T07:59:48.870010+00:00"
+    },
+    "n6": {
+      "zone": "Bandra East",
+      "lat": 19.0596,
+      "lng": 72.8403,
+      "issue_type": "education",
+      "severity_score": 5,
+      "urgency_score": 48,
+      "urgency_label": "medium",
+      "affected_count": 60,
+      "summary": "Community school needs tutors for exam preparation.",
+      "required_skills": [
+        "teaching",
+        "counseling"
+      ],
+      "recommended_volunteer_count": 3,
+      "status": "open",
+      "source": "manual",
+      "report_frequency_30d": 2,
+      "trend_direction": "stable",
+      "_id": "n6",
+      "created_at": "2026-04-24T07:59:48.878300+00:00"
+    },
+    "n7": {
+      "zone": "Andheri East",
+      "lat": 19.1197,
+      "lng": 72.8755,
+      "issue_type": "food",
+      "severity_score": 6,
+      "urgency_score": 65,
+      "urgency_label": "high",
+      "affected_count": 90,
+      "summary": "Ration shop closed for 2 weeks, families running low on supplies.",
+      "required_skills": [
+        "food distribution",
+        "logistics"
+      ],
+      "recommended_volunteer_count": 3,
+      "status": "open",
+      "source": "whatsapp",
+      "report_frequency_30d": 3,
+      "trend_direction": "stable",
+      "_id": "n7",
+      "created_at": "2026-04-24T07:59:49.005095+00:00"
+    },
+    "n8": {
+      "zone": "Worli",
+      "lat": 19.0144,
+      "lng": 72.8133,
+      "issue_type": "safety",
+      "severity_score": 7,
+      "urgency_score": 70,
+      "urgency_label": "high",
+      "affected_count": 45,
+      "summary": "Building structural damage \u2014 residents need safety assessment.",
+      "required_skills": [
+        "civil engineering",
+        "structural assessment"
+      ],
+      "recommended_volunteer_count": 2,
+      "status": "open",
+      "source": "manual",
+      "report_frequency_30d": 2,
+      "trend_direction": "stable",
+      "_id": "n8",
+      "created_at": "2026-04-24T07:59:49.034284+00:00"
+    },
+    "n9": {
+      "zone": "Malad East",
+      "lat": 19.1864,
+      "lng": 72.8356,
+      "issue_type": "water",
+      "severity_score": 6,
+      "urgency_score": 55,
+      "urgency_label": "medium",
+      "affected_count": 70,
+      "summary": "Water tanker delivery delayed by 3 days.",
+      "required_skills": [
+        "logistics",
+        "driving"
+      ],
+      "recommended_volunteer_count": 2,
+      "status": "open",
+      "source": "csv",
+      "report_frequency_30d": 2,
+      "trend_direction": "stable",
+      "_id": "n9",
+      "created_at": "2026-04-24T07:59:49.041710+00:00"
+    },
+    "n10": {
+      "zone": "Chembur",
+      "lat": 19.0625,
+      "lng": 72.8956,
+      "issue_type": "health",
+      "severity_score": 6,
+      "urgency_score": 58,
+      "urgency_label": "medium",
+      "affected_count": 55,
+      "summary": "Need for basic health check-up camp in slum area.",
+      "required_skills": [
+        "medical first aid",
+        "pharmacy"
+      ],
+      "recommended_volunteer_count": 3,
+      "status": "open",
+      "source": "manual",
+      "report_frequency_30d": 1,
+      "trend_direction": "stable",
+      "_id": "n10",
+      "created_at": "2026-04-24T07:59:49.048835+00:00"
+    },
+    "n11": {
+      "zone": "Dharavi",
+      "lat": 19.0435,
+      "lng": 72.8545,
+      "issue_type": "food",
+      "severity_score": 7,
+      "urgency_score": 78,
+      "urgency_label": "high",
+      "affected_count": 100,
+      "summary": "Community kitchen shut down, 100+ families without meals.",
+      "required_skills": [
+        "cooking",
+        "food distribution"
+      ],
+      "recommended_volunteer_count": 4,
+      "status": "assigned",
+      "source": "photo",
+      "report_frequency_30d": 5,
+      "trend_direction": "rising",
+      "_id": "n11",
+      "created_at": "2026-04-24T07:59:49.054898+00:00"
+    },
+    "n12": {
+      "zone": "Kurla",
+      "lat": 19.071,
+      "lng": 72.88,
+      "issue_type": "water",
+      "severity_score": 5,
+      "urgency_score": 42,
+      "urgency_label": "medium",
+      "affected_count": 35,
+      "summary": "Broken water pipe needs repair in residential block.",
+      "required_skills": [
+        "plumbing"
+      ],
+      "recommended_volunteer_count": 1,
+      "status": "resolved",
+      "source": "manual",
+      "report_frequency_30d": 1,
+      "trend_direction": "stable",
+      "_id": "n12",
+      "created_at": "2026-04-24T07:59:49.062514+00:00"
+    }
+  },
+  "users": {
+    "u1": {
+      "email": "admin@allocare.org",
+      "password_hash": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+      "display_name": "Demo Organization",
+      "role": "organization",
+      "_id": "u1",
+      "created_at": "2026-04-24T07:59:49.078264+00:00"
+    },
+    "u2": {
+      "email": "volunteer@allocare.org",
+      "password_hash": "b6a1283385dd04a8a5724dfd3fc1779ef1c08d752c65db1bdd634a3034a3ca00",
+      "display_name": "Demo Volunteer",
+      "role": "volunteer",
+      "_id": "u2",
+      "created_at": "2026-04-24T07:59:49.087298+00:00"
+    },
+    "u3": {
+      "email": "superadmin@allocare.org",
+      "password_hash": "4e4c56e4a15f89f05c2f4c72613da2a18c9665d4f0d6acce16415eb06f9be776",
+      "display_name": "Super Admin",
+      "role": "superadmin",
+      "_id": "u3",
+      "created_at": "2026-04-24T07:59:49.094156+00:00"
+    }
+  }
+}
