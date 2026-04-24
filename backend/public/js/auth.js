@@ -71,6 +71,10 @@ function signOut() {
   document.getElementById("dashboard").style.display = "none";
   document.getElementById("auth-screen").style.display = "flex";
 
+  // Reset search bar
+  const searchInput = document.getElementById("search-input");
+  if (searchInput) searchInput.value = "";
+
   // Reset role-based UI
   const volStyle = document.getElementById("volunteer-restrictions");
   if (volStyle) volStyle.remove();
@@ -83,6 +87,10 @@ function signOut() {
   document.querySelectorAll(".nav-item").forEach(el => el.classList.remove("active"));
   const dashNav = document.querySelector('[data-view="dashboard"]');
   if (dashNav) dashNav.classList.add("active");
+  
+  // Also explicitly hide the superadmin view
+  const apiMonitor = document.getElementById("view-api-monitor");
+  if (apiMonitor) apiMonitor.classList.remove("active");
 }
 
 function showDashboard() {
@@ -109,6 +117,11 @@ function showDashboard() {
   document.querySelectorAll(".nav-admin-only").forEach(el => {
     el.style.display = (isVolunteer || isSuperAdmin) ? "none" : "flex";
   });
+  
+  const navDashboard = document.getElementById("nav-dashboard");
+  if (navDashboard) {
+    navDashboard.style.display = isSuperAdmin ? "none" : "flex";
+  }
 
   // ── Role-based restrictions ──
   // Remove any previous restriction style
@@ -131,6 +144,10 @@ function showDashboard() {
       .need-detail-body .btn-primary:has(.material-icons-outlined:contains('person_search')) { display: none !important; }
     `;
     document.head.appendChild(style);
+    
+    // Explicitly switch to dashboard view
+    if (typeof switchView === 'function') switchView('dashboard');
+    
   } else if (isSuperAdmin) {
     const style = document.createElement("style");
     style.id = "superadmin-restrictions";
@@ -145,7 +162,10 @@ function showDashboard() {
     document.head.appendChild(style);
     
     // Switch to API monitor immediately
-    switchView('api-monitor');
+    if (typeof switchView === 'function') switchView('api-monitor');
+  } else {
+    // Default to Dashboard for Admin / Organization
+    if (typeof switchView === 'function') switchView('dashboard');
   }
 }
 
