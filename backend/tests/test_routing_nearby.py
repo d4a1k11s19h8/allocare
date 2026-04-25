@@ -1,5 +1,5 @@
 """
-test_routing_nearby.py — OSRM routing, nearby volunteers, and edge cases.
+test_routing_nearby.py: OSRM routing, nearby volunteers, and edge cases.
 """
 import pytest
 import math
@@ -114,10 +114,10 @@ class TestNearbyVolunteers:
         assert resp.json()["total"] >= 1
 
     def test_nearby_churu_rajasthan(self, client):
-        """Small town — Churu, Rajasthan. Likely no volunteers within 50km."""
+        """Small town: Churu, Rajasthan. Likely no volunteers within 50km."""
         resp = client.get("/api/nearby_volunteers?lat=28.305&lng=74.964&radius_km=50")
         assert resp.status_code == 200
-        # It's okay if there are 0 — tests that the API works for remote areas
+        # It's okay if there are 0: tests that the API works for remote areas
 
     def test_nearby_churu_large_radius(self, client):
         """Churu with 300km radius should find at least Jaipur/Delhi volunteers."""

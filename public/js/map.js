@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   AlloCare — Map Module
+   AlloCare: Map Module
    • Leaflet.js + OpenStreetMap (FREE, no API key)
    • Leaflet Control Geocoder (FREE Places API alternative)
    • Shows both Need markers + Volunteer markers
@@ -64,7 +64,7 @@ function initMap() {
     attributionControl: false,
   });
 
-  // Zoom control — top-left
+  // Zoom control: top-left
   L.control.zoom({ position: "topleft" }).addTo(mapInstance);
 
   // ── Tile Layer: CartoDB Dark Matter (free, no API key) ────
@@ -283,7 +283,7 @@ function updateVolunteerMarkers() {
         <div class="vol-skills">${skills || "General support"}</div>
         <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
           <span class="vol-status ${statusClass}">${statusLabel}</span>
-          <span style="font-size:10px;color:#888;">📍 ${vol.zone || "—"}</span>
+          <span style="font-size:10px;color:#888;">📍 ${vol.zone || ":"}</span>
         </div>
         ${vol.impact_points ? `<div style="font-size:10px;color:#F59E0B;margin-top:3px;">⭐ ${vol.impact_points} pts</div>` : ""}
       </div>`;

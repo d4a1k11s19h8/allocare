@@ -1,5 +1,5 @@
 """
-maps_client.py — Free geocoding using OpenStreetMap/Nominatim via geopy.
+maps_client.py: Free geocoding using OpenStreetMap/Nominatim via geopy.
 Replaces Google Maps Geocoding API (paid) and Distance Matrix API (paid).
 No API key required.
 """

@@ -1,12 +1,12 @@
-# AlloCare — BLE Mesh & Offline Communication Architecture
+# AlloCare: BLE Mesh & Offline Communication Architecture
 
 ## Overview
 
 AlloCare supports three offline communication channels for areas with no internet:
 
-1. **Service Worker + PWA** (implemented) — Offline dashboard access and queued submissions
-2. **SMS Gateway** (implemented) — Text-based report submission via `POST /api/sms/receive`
-3. **BLE Mesh Network** (architecture spec below) — Device-to-device data sync
+1. **Service Worker + PWA** (implemented): Offline dashboard access and queued submissions
+2. **SMS Gateway** (implemented): Text-based report submission via `POST /api/sms/receive`
+3. **BLE Mesh Network** (architecture spec below): Device-to-device data sync
 
 ---
 
@@ -29,9 +29,9 @@ Body: { "sender": "+91XXXXXXXXXX", "message": "NEED Delhi food ..." }
 ```
 
 For production, integrate with:
-- **Twilio** (trial available) — Webhook forwards SMS to this endpoint
-- **Exotel** (India-focused) — Indian number support
-- **TextLocal** — Bulk SMS for volunteer notifications
+- **Twilio** (trial available): Webhook forwards SMS to this endpoint
+- **Exotel** (India-focused): Indian number support
+- **TextLocal**: Bulk SMS for volunteer notifications
 
 ---
 
@@ -104,9 +104,9 @@ navigator.bluetooth.requestDevice({
 ### Data Sync Protocol (GATT Service)
 ```
 Service UUID: 0000AC00-0000-1000-8000-00805F9B34FB
-  Characteristic: NeedReports  (0000AC01-...) — READ/NOTIFY
-  Characteristic: VolunteerStatus (0000AC02-...) — READ/NOTIFY  
-  Characteristic: SyncControl (0000AC03-...) — WRITE
+  Characteristic: NeedReports  (0000AC01-...): READ/NOTIFY
+  Characteristic: VolunteerStatus (0000AC02-...): READ/NOTIFY  
+  Characteristic: SyncControl (0000AC03-...): WRITE
 ```
 
 ---

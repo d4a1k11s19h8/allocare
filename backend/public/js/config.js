@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   AlloCare — Configuration
+   AlloCare: Configuration
    No Firebase, no paid APIs. Pure local backend.
    ═════════════════════════════════════════════════════════ */
 

@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   AlloCare — Upload & Report Ingestion
+   AlloCare: Upload & Report Ingestion
    Photo OCR (via Gemini Vision), Manual Text, CSV Import
    Connected to real backend APIs
    ═════════════════════════════════════════════════════════ */
@@ -71,7 +71,7 @@ function handlePhotoUpload(input) {
         showToast("✅ OCR text extracted successfully", "success");
       } else {
         document.getElementById("ocr-text").textContent = "⚠️ Could not extract text from this image. Please try a clearer photo or use the Text Entry tab.";
-        showToast("OCR could not extract text — try a clearer image", "error");
+        showToast("OCR could not extract text: try a clearer image", "error");
       }
     } catch (e) {
       console.error("OCR error:", e.message);

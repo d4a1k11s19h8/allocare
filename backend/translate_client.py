@@ -1,5 +1,5 @@
 """
-translate_client.py — Free translation using deep-translator (no API key needed).
+translate_client.py: Free translation using deep-translator (no API key needed).
 Auto-detects language and translates to English before NLP processing.
 Supports Hindi, Marathi, Tamil, Bengali, Telugu, Kannada, Malayalam + more.
 """
@@ -14,7 +14,7 @@ try:
     from deep_translator import GoogleTranslator
     _translator_available = True
 except ImportError:
-    logger.warning("[Translate] deep-translator not installed — translation disabled")
+    logger.warning("[Translate] deep-translator not installed: translation disabled")
 
 
 def detect_and_translate(text: str) -> tuple:
@@ -40,7 +40,7 @@ def detect_and_translate(text: str) -> tuple:
         non_ascii_ratio = sum(1 for c in text if ord(c) > 127) / max(len(text), 1)
 
         if non_ascii_ratio < 0.1:
-            # Likely English — skip translation
+            # Likely English: skip translation
             return text, "en"
 
         # Translate to English using auto-detection

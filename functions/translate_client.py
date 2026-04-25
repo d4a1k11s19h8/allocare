@@ -1,5 +1,5 @@
 """
-translate_client.py — Google Cloud Translation API for multilingual field reports
+translate_client.py: Google Cloud Translation API for multilingual field reports
 Auto-detects language and translates to English before NLP processing.
 Supports Hindi, Marathi, Tamil, Bengali, Telugu, Kannada, Malayalam + more.
 """

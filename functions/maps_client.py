@@ -1,5 +1,5 @@
 """
-maps_client.py — Google Maps API integration for AlloCare
+maps_client.py: Google Maps API integration for AlloCare
 Geocoding API: convert location text to lat/lng
 Distance Matrix API: real-world driving distances for volunteer matching
 """

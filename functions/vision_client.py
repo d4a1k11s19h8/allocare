@@ -1,5 +1,5 @@
 """
-vision_client.py — Google Cloud Vision API for paper survey OCR
+vision_client.py: Google Cloud Vision API for paper survey OCR
 """
 import os
 import logging
@@ -49,7 +49,7 @@ def extract_text_from_image(image_url: str) -> str:
             ) / max(1, sum(len(page.blocks) for page in response.full_text_annotation.pages))
 
             if avg_confidence < 0.6:
-                logger.warning(f"[Vision API] Low confidence ({avg_confidence:.2f}) — flagging for review")
+                logger.warning(f"[Vision API] Low confidence ({avg_confidence:.2f}): flagging for review")
                 # Still return text but caller will check this
 
         logger.info(f"[Vision API] Extracted {len(full_text)} characters")

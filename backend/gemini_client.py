@@ -1,5 +1,5 @@
 """
-gemini_client.py — Gemini 2.5 Flash integration for AlloCare using google-genai
+gemini_client.py: Gemini 2.5 Flash integration for AlloCare using google-genai
 All three prompt templates from the masterplan implemented here.
 Gracefully degrades when GEMINI_API_KEY is not set.
 """
@@ -13,7 +13,7 @@ from google.genai import types
 
 logger = logging.getLogger(__name__)
 
-# ── Lazy initialisation — avoids crash when key is absent ─────────────────────
+# ── Lazy initialisation: avoids crash when key is absent ─────────────────────
 _models_initialised = False
 _gemini_pool = None
 
@@ -36,7 +36,7 @@ def _init_models() -> bool:
                 break
                 
         if not has_key:
-            logger.warning("[gemini_client] No GEMINI_API_KEY set — using fallback responses.")
+            logger.warning("[gemini_client] No GEMINI_API_KEY set: using fallback responses.")
             return False
 
         _gemini_pool = build_pool_from_env(
@@ -46,7 +46,7 @@ def _init_models() -> bool:
         logger.info("[gemini_client] Gemini Key Pool initialized successfully.")
         return True
     except EnvironmentError:
-        logger.warning("[gemini_client] No GEMINI_API_KEY found — using fallback responses.")
+        logger.warning("[gemini_client] No GEMINI_API_KEY found: using fallback responses.")
         return False
     except Exception as e:
         logger.error(f"[gemini_client] Failed to init Gemini Key Pool: {e}")
@@ -129,7 +129,7 @@ def _fallback_extract(text: str) -> Dict[str, Any]:
     """Rule-based extraction when Gemini is unavailable."""
     text_lower = text.lower()
 
-    # Issue type detection — earthquake/flood/cyclone map to safety or housing
+    # Issue type detection: earthquake/flood/cyclone map to safety or housing
     issue_map = {
         "food": ["food", "hunger", "meal", "ration", "starv", "eat"],
         "water": ["water", "drinking", "pipeline", "tanker", "thirst", "tap", "flood", "flooding"],
@@ -168,7 +168,7 @@ def _fallback_extract(text: str) -> Dict[str, Any]:
 
     affected = int(numbers[0]) if numbers else None
 
-    # Location extraction — comprehensive Indian city + zone matching
+    # Location extraction: comprehensive Indian city + zone matching
     location = None
     indian_cities = [
         "nagpur", "pune", "delhi", "new delhi", "bangalore", "bengaluru", "hyderabad",

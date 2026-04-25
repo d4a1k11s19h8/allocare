@@ -1,5 +1,5 @@
 """
-AlloCare Test Suite — conftest.py
+AlloCare Test Suite: conftest.py
 Shared fixtures for all test modules.
 """
 import os
@@ -20,7 +20,7 @@ from main import app
 
 @pytest.fixture(scope="session")
 def client():
-    """FastAPI test client — shared across all tests in a session."""
+    """FastAPI test client: shared across all tests in a session."""
     with TestClient(app) as c:
         yield c
 
@@ -37,7 +37,7 @@ def first_need_id(client):
     """Return the ID of the first open need report."""
     resp = client.get("/api/needs?status=open&limit=1")
     needs = resp.json()["needs"]
-    assert len(needs) > 0, "No open needs found — seed data may have failed"
+    assert len(needs) > 0, "No open needs found: seed data may have failed"
     return needs[0]["id"]
 
 
@@ -46,5 +46,5 @@ def first_volunteer_id(client):
     """Return the ID of the first available volunteer."""
     resp = client.get("/api/volunteers?limit=1")
     vols = resp.json()["volunteers"]
-    assert len(vols) > 0, "No volunteers found — seed data may have failed"
+    assert len(vols) > 0, "No volunteers found: seed data may have failed"
     return vols[0]["id"]

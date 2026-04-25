@@ -1,5 +1,5 @@
 """
-test_volunteers.py — Volunteer CRUD, pan-India coverage, and edge cases.
+test_volunteers.py: Volunteer CRUD, pan-India coverage, and edge cases.
 """
 import pytest
 
@@ -85,7 +85,7 @@ class TestPanIndiaCoverage:
         assert len(vols) >= 1, f"Expected 1+ Hyderabad volunteer"
 
     def test_coverage_northeast(self, all_volunteers):
-        """Northeast India — Guwahati area (26.0-26.3°N, 91.5-91.9°E)."""
+        """Northeast India: Guwahati area (26.0-26.3°N, 91.5-91.9°E)."""
         vols = self._volunteers_in_bbox(all_volunteers, 26.0, 26.3, 91.5, 91.9)
         assert len(vols) >= 1, f"Expected 1+ NE volunteer"
 

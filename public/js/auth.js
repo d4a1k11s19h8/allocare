@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   AlloCare — Authentication (No Firebase)
+   AlloCare: Authentication (No Firebase)
    Direct demo mode access
    ═════════════════════════════════════════════════════════ */
 
@@ -228,7 +228,7 @@ async function checkApiHealth() {
       statusEl.textContent = "❌ Offline";
       statusEl.style.color = "var(--red)";
     }
-    showToast("API is offline — using demo data", "error");
+    showToast("API is offline: using demo data", "error");
   }
 }
 

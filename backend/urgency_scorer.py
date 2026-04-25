@@ -1,5 +1,5 @@
 """
-urgency_scorer.py — AlloCare Urgency Scoring Algorithm
+urgency_scorer.py: AlloCare Urgency Scoring Algorithm
 Formula: score = (severity × log(frequency + 1)) / max(1, days_since_first_report)
 Normalized to 0-100. Transparent formula shown on dashboard.
 """

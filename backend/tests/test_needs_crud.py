@@ -1,5 +1,5 @@
 """
-test_needs_crud.py — Need reports CRUD, filtering, and edge cases.
+test_needs_crud.py: Need reports CRUD, filtering, and edge cases.
 """
 import pytest
 
@@ -114,7 +114,7 @@ class TestCreateNeed:
         assert resp.status_code == 200
 
     def test_create_need_small_location_barmer(self, client):
-        """Edge case: remote location — Barmer, Rajasthan."""
+        """Edge case: remote location: Barmer, Rajasthan."""
         resp = client.post("/api/needs", json={
             "raw_text": "Extreme heatwave, 45+ degrees. Elderly need shelter.",
             "zone": "Barmer, Rajasthan",
@@ -124,7 +124,7 @@ class TestCreateNeed:
         assert resp.status_code == 200
 
     def test_create_need_northeast_location(self, client):
-        """Edge case: Northeast India — Tawang, Arunachal Pradesh."""
+        """Edge case: Northeast India: Tawang, Arunachal Pradesh."""
         resp = client.post("/api/needs", json={
             "raw_text": "Landslide blocked road to Tawang. 200 people stranded.",
             "zone": "Tawang, Arunachal Pradesh",

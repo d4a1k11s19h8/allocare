@@ -7,7 +7,7 @@ const FAILURES = [
   {
     icon: "📄",
     title: "Data is Undigitized",
-    body: "Paper surveys and handwritten field reports cannot be analyzed at scale. Critical patterns — seasonal hunger spikes, recurring flood areas — stay invisible to any digital tool.",
+    body: "Paper surveys and handwritten field reports cannot be analyzed at scale. Critical patterns: seasonal hunger spikes, recurring flood areas: stay invisible to any digital tool.",
     accent: "#E02424",
   },
   {
@@ -28,7 +28,7 @@ const PIPELINE = [
   {
     step: "01",
     title: "Multi-source ingestion",
-    body: "Photo of paper survey, CSV/XLSX bulk import, manual entry, or WhatsApp/SMS — all roads converge into one structured stream.",
+    body: "Photo of paper survey, CSV/XLSX bulk import, manual entry, or WhatsApp/SMS: all roads converge into one structured stream.",
   },
   {
     step: "02",
@@ -65,7 +65,7 @@ export function HomePage() {
               Resources aren't lacking. <span className="text-[#E02424]">Visibility is.</span>
             </h2>
             <p className="mt-4 text-lg text-slate-600">
-              Local NGOs collect valuable need-data through paper, WhatsApp, and field visits. It sits siloed —
+              Local NGOs collect valuable need-data through paper, WhatsApp, and field visits. It sits siloed :
               no system aggregates urgency, no bridge routes volunteers to where they're needed most.
             </p>
           </div>
@@ -173,7 +173,7 @@ export function HomePage() {
             Ready to deploy the right person, faster?
           </h2>
           <p className="mt-4 text-lg text-slate-600">
-            Sign in as a coordinator to ingest reports and match volunteers — or join as a volunteer to see needs near you.
+            Sign in as a coordinator to ingest reports and match volunteers: or join as a volunteer to see needs near you.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a

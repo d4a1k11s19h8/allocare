@@ -23,13 +23,13 @@ export default function FeaturesPage() {
     <PageLayout>
       <PageHeader
         eyebrow="Features"
-        title="Everything needed to close the loop — from paper to deployed volunteer."
+        title="Everything needed to close the loop: from paper to deployed volunteer."
         intro="Seven P0 features ship in Phase 1. Five P1 features extend the platform for scale, multilingual coverage, and predictive ops."
       />
 
       <section className="mx-auto max-w-7xl px-6 py-16">
         <div className="flex items-end justify-between">
-          <h2 className="text-2xl font-bold text-slate-900">Phase 1 — Core Platform</h2>
+          <h2 className="text-2xl font-bold text-slate-900">Phase 1: Core Platform</h2>
           <span className="rounded-full bg-[#0E9F6E]/10 px-3 py-1 text-xs font-semibold text-[#0E9F6E]">P0 · Must Ship</span>
         </div>
         <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -47,7 +47,7 @@ export default function FeaturesPage() {
         </div>
 
         <div className="mt-20 flex items-end justify-between">
-          <h2 className="text-2xl font-bold text-slate-900">Phase 2 — Enhancements</h2>
+          <h2 className="text-2xl font-bold text-slate-900">Phase 2: Enhancements</h2>
           <span className="rounded-full bg-[#E3A008]/10 px-3 py-1 text-xs font-semibold text-[#E3A008]">P1</span>
         </div>
         <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">

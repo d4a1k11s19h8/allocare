@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   AlloCare — Offline Support (IndexedDB + Sync Queue)
+   AlloCare: Offline Support (IndexedDB + Sync Queue)
    ═════════════════════════════════════════════════════════ */
 
 const OfflineStore = {
@@ -72,9 +72,9 @@ function updateOnlineStatus() {
 
   if (isOnline) {
     syncPendingReports();
-    showToast("✅ Back online — syncing data...", "success");
+    showToast("✅ Back online: syncing data...", "success");
   } else {
-    showToast("⚡ You're offline — reports will be queued", "info");
+    showToast("⚡ You're offline: reports will be queued", "info");
   }
 }
 

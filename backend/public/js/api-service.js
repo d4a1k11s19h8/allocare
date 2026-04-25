@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   AlloCare — API Service (replaces Firestore)
+   AlloCare: API Service (replaces Firestore)
    REST API calls to our FastAPI backend
    ═════════════════════════════════════════════════════════ */
 
@@ -84,7 +84,7 @@ async function processReport(rawText, source = "manual") {
     // Queue for offline sync if network is down
     if (!navigator.onLine && typeof OfflineStore !== "undefined") {
       await OfflineStore.queueReport({ raw_text: rawText, source: source });
-      return { status: "queued", message: "Saved offline — will sync when connected" };
+      return { status: "queued", message: "Saved offline: will sync when connected" };
     }
     throw error;
   }
@@ -193,7 +193,7 @@ function generateDemoNeeds() {
   return [
     { id: "n1", zone: "Dharavi", lat: 19.0441, lng: 72.8557, issue_type: "food", severity_score: 9, urgency_score: 95, urgency_label: "critical", affected_count: 200, summary: "Severe food shortage affecting over 200 families. Children and elderly most affected.", required_skills: ["food distribution", "hindi speaking"], recommended_volunteer_count: 5, status: "open", source: "photo", created_at: new Date(Date.now() - 2*3600000).toISOString(), report_frequency_30d: 8, trend_direction: "rising", coordinator_explanation: "In Dharavi's sector 5, a severe food crisis is unfolding. Over 200 families need immediate assistance." },
     { id: "n2", zone: "Dharavi", lat: 19.0438, lng: 72.8560, issue_type: "water", severity_score: 8, urgency_score: 88, urgency_label: "critical", affected_count: 150, summary: "Water supply contaminated in sector 5. Residents with stomach illness.", required_skills: ["water purification", "plumbing"], recommended_volunteer_count: 3, status: "open", source: "manual", created_at: new Date(Date.now() - 4*3600000).toISOString(), report_frequency_30d: 5, trend_direction: "rising" },
-    { id: "n3", zone: "Dharavi", lat: 19.0430, lng: 72.8550, issue_type: "health", severity_score: 9, urgency_score: 92, urgency_label: "critical", affected_count: 175, summary: "Medical camp urgently needed — increasing dengue cases. 3 children hospitalized.", required_skills: ["medical first aid", "nursing"], recommended_volunteer_count: 4, status: "open", source: "whatsapp", created_at: new Date(Date.now() - 1*3600000).toISOString(), report_frequency_30d: 6, trend_direction: "rising" },
+    { id: "n3", zone: "Dharavi", lat: 19.0430, lng: 72.8550, issue_type: "health", severity_score: 9, urgency_score: 92, urgency_label: "critical", affected_count: 175, summary: "Medical camp urgently needed: increasing dengue cases. 3 children hospitalized.", required_skills: ["medical first aid", "nursing"], recommended_volunteer_count: 4, status: "open", source: "whatsapp", created_at: new Date(Date.now() - 1*3600000).toISOString(), report_frequency_30d: 6, trend_direction: "rising" },
     { id: "n4", zone: "Kurla", lat: 19.0724, lng: 72.8787, issue_type: "health", severity_score: 7, urgency_score: 72, urgency_label: "high", affected_count: 80, summary: "Healthcare facility severely understaffed. Patients waiting 6+ hours.", required_skills: ["medical doctor", "patient care"], recommended_volunteer_count: 2, status: "open", source: "csv", created_at: new Date(Date.now() - 12*3600000).toISOString(), report_frequency_30d: 3, trend_direction: "stable" },
     { id: "n5", zone: "Govandi", lat: 19.0537, lng: 72.9148, issue_type: "housing", severity_score: 8, urgency_score: 85, urgency_label: "high", affected_count: 60, summary: "Multiple families in structurally damaged housing. Monsoon risk.", required_skills: ["construction", "civil engineering"], recommended_volunteer_count: 3, status: "open", source: "manual", created_at: new Date(Date.now() - 6*3600000).toISOString(), report_frequency_30d: 4, trend_direction: "rising" },
     { id: "n6", zone: "Malad", lat: 19.1860, lng: 72.8485, issue_type: "education", severity_score: 6, urgency_score: 62, urgency_label: "high", affected_count: 120, summary: "School closed due to structural issues. 120 students need temporary facility.", required_skills: ["teaching", "event coordination"], recommended_volunteer_count: 3, status: "open", source: "csv", created_at: new Date(Date.now() - 24*3600000).toISOString(), report_frequency_30d: 2, trend_direction: "stable" },

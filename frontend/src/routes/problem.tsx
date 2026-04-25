@@ -37,7 +37,7 @@ export default function ProblemPage() {
           <h3 className="text-sm font-bold uppercase tracking-wider text-[#E02424]">Critical distinction</h3>
           <p className="mt-3 text-lg text-slate-800">
             Most teams will build a generic volunteer listing platform. That fails the brief. The solution must create
-            <span className="font-semibold"> visibility, intelligence, and automated routing</span> — not a bulletin board.
+            <span className="font-semibold"> visibility, intelligence, and automated routing</span>: not a bulletin board.
           </p>
         </div>
 

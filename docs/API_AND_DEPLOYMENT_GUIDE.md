@@ -34,7 +34,7 @@ AlloCare relies on an ecosystem of Google technologies. You will need to obtain 
     *   Copy this key. In our backend `.env` file, it will be `MAPS_API_KEY`.
     *   In the Maps console, click your new key and apply **API restrictions** to limit it strictly to the three APIs enabled above. 
 
-### C. Google AI Studio (Gemini 2.0 Brain)
+### C. Google AI Studio (Gemini 3.1 Brain)
 1. Navigate to [Google AI Studio](https://aistudio.google.com/).
 2. Click **Get API Key** in the left sidebar.
 3. Click **Create API Key**. You can optionally attach it to your existing `allocare-prod` Google Cloud project.

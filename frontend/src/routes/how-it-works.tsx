@@ -10,12 +10,12 @@ const FLOW_A = [
   "New red/amber marker appears on the heatmap",
   "System auto-recommends top-3 matched volunteers",
   "Coordinator confirms assignment with one click",
-  "'Flag incorrect score' available — human-in-the-loop always on",
+  "'Flag incorrect score' available: human-in-the-loop always on",
 ];
 
 const FLOW_B = [
-  "Volunteer opens AlloCare app — sees personalized task feed",
-  "Top card: 'CRITICAL — Food shortage in Dharavi · 47 families'",
+  "Volunteer opens AlloCare app: sees personalized task feed",
+  "Top card: 'CRITICAL: Food shortage in Dharavi · 47 families'",
   "Taps card → distance (2.3km) + required skills + impact",
   "Taps 'Accept Task' → receives Google Maps directions",
   "Arrives → taps 'Check In' (GPS-verified)",

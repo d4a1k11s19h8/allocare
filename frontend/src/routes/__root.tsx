@@ -29,10 +29,10 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "AlloCare — From Paper Survey to Matched Volunteer in 60 Seconds" },
-      { name: "description", content: "AlloCare turns scattered NGO field reports into ranked urgency signals and instantly deploys the right volunteers — AI-powered volunteer coordination." },
+      { title: "AlloCare: From Paper Survey to Matched Volunteer in 60 Seconds" },
+      { name: "description", content: "AlloCare turns scattered NGO field reports into ranked urgency signals and instantly deploys the right volunteers: AI-powered volunteer coordination." },
       { name: "author", content: "AlloCare" },
-      { property: "og:title", content: "AlloCare — AI-Powered Volunteer Coordination" },
+      { property: "og:title", content: "AlloCare: AI-Powered Volunteer Coordination" },
       { property: "og:description", content: "From paper survey to matched volunteer in 60 seconds. Built for Google Solution Challenge 2026." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

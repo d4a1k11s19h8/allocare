@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   AlloCare — Volunteer Matching (Client-Side)
+   AlloCare: Volunteer Matching (Client-Side)
    Calls backend API or runs local matching for demo mode.
    Shows top-3 matched volunteers with explainability.
    ═════════════════════════════════════════════════════════ */
@@ -69,7 +69,7 @@ function runLocalMatching(need, volunteers) {
       skillScore = 0.5;
     }
 
-    // Proximity score — Haversine distance
+    // Proximity score: Haversine distance
     let distKm = 5.0; // default
     if (v.lat && v.lng && need.lat && need.lng) {
       distKm = haversine(v.lat, v.lng, need.lat, need.lng);
@@ -77,7 +77,7 @@ function runLocalMatching(need, volunteers) {
       distKm = 1.0;
     }
 
-    // Hard cutoff — relaxed for pan-India
+    // Hard cutoff: relaxed for pan-India
     const maxDist = v.max_distance_km || 30;
     if (distKm > maxDist * 3) continue;  // only skip if 3x beyond range
 

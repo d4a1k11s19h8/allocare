@@ -1,5 +1,5 @@
 """
-AlloCare API — FastAPI Backend
+AlloCare API: FastAPI Backend
 Fully functional with free APIs only. No cloud billing required.
 Only needs: GEMINI_API_KEY (free from AI Studio)
 
@@ -209,7 +209,7 @@ async def seed_demo_data():
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# NEED REPORTS — CRUD
+# NEED REPORTS: CRUD
 # ═══════════════════════════════════════════════════════════════════════════════
 
 @app.get("/api/needs", tags=["needs"])
@@ -344,11 +344,11 @@ async def process_report(payload: ProcessReportRequest):
     logger.info(f"[processReport] Processing report {report_id}")
 
     try:
-        # Step 1 — Language detection + translation (FREE)
+        # Step 1: Language detection + translation (FREE)
         from translate_client import detect_and_translate
         english_text, detected_lang = detect_and_translate(raw_text)
 
-        # Step 2 — Gemini extraction (FREE via AI Studio)
+        # Step 2: Gemini extraction (FREE via AI Studio)
         from gemini_client import extract_urgency, generate_coordinator_explanation
         extracted = extract_urgency(english_text)
 
@@ -359,26 +359,26 @@ async def process_report(payload: ProcessReportRequest):
             })
             return {"status": "error", "message": "Gemini extraction failed", "report_id": report_id}
 
-        # Step 3 — Geocoding (FREE via Nominatim)
+        # Step 3: Geocoding (FREE via Nominatim)
         from maps_client import geocode_location
         location_text = extracted.get("location_text", "Mumbai")
         geo = geocode_location(location_text)
 
-        # Step 4 — Frequency count
+        # Step 4: Frequency count
         frequency = store.count("need_reports", filters={
             "zone": extracted.get("location_text", ""),
             "issue_type": extracted.get("issue_type", "other"),
         })
         frequency = max(1, frequency)
 
-        # Step 5 — Urgency scoring (LOCAL algorithm)
+        # Step 5: Urgency scoring (LOCAL algorithm)
         score_data = calculate_urgency_score(
             severity=extracted.get("severity_score", 5),
             frequency=frequency,
             days_since_first_report=1,
         )
 
-        # Step 6 — Coordinator explanation (FREE via Gemini)
+        # Step 6: Coordinator explanation (FREE via Gemini)
         explanation = generate_coordinator_explanation(
             issue_type=extracted.get("issue_type", "other"),
             severity=extracted.get("severity_score", 5),
@@ -388,7 +388,7 @@ async def process_report(payload: ProcessReportRequest):
             days=1,
         )
 
-        # Step 7 — Update report in store
+        # Step 7: Update report in store
         update_payload = {
             "raw_text": raw_text,
             "language_detected": detected_lang,
@@ -561,7 +561,7 @@ async def get_matched_volunteers(need_id: str):
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# VOLUNTEERS — CRUD
+# VOLUNTEERS: CRUD
 # ═══════════════════════════════════════════════════════════════════════════════
 
 @app.get("/api/volunteers", tags=["volunteers"])

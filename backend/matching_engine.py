@@ -1,5 +1,5 @@
 """
-matching_engine.py — AlloCare Volunteer Matching Algorithm
+matching_engine.py: AlloCare Volunteer Matching Algorithm
 match_score = skill_overlap_score × proximity_score × availability_score
 Returns top-3 ranked matches with explainability strings.
 Uses Haversine distance (free, no API key needed).
@@ -60,7 +60,7 @@ def match_volunteers(need: dict, volunteers: list[dict]) -> list[dict]:
             matched_skills = []
             skill_score = 0.5
 
-        # 2. Proximity score [0, 1] — decays with distance
+        # 2. Proximity score [0, 1]: decays with distance
         proximity_score = 1.0 / (1.0 + dist_km * 0.1)
 
         # 3. Availability score [0, 1]
@@ -112,7 +112,7 @@ def _calculate_availability_score(volunteer: dict, now: datetime) -> float:
 
     availability = volunteer.get("availability", {})
     if not availability:
-        return 0.7  # Unknown availability — partial credit
+        return 0.7  # Unknown availability: partial credit
 
     day_names = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
     day_key = day_names[now.weekday()]

@@ -1,5 +1,5 @@
 """
-gemini_client.py — Gemini 2.0 Flash integration for AlloCare
+gemini_client.py: Gemini 3.1 Pro integration for AlloCare
 All three prompt templates from the masterplan implemented here.
 """
 import os

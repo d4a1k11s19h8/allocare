@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   AlloCare — Dashboard Controller
+   AlloCare: Dashboard Controller
    Rendering, filtering, navigation, card interactions,
    Analytics charts (Chart.js)
    ═════════════════════════════════════════════════════════ */
@@ -50,7 +50,7 @@ function createNeedCard(need, index) {
           <span class="need-card-type">${issueType.label}</span>
           <span class="source-badge ${sourceClass}">${sourceLabel} ${need.source || "manual"}</span>
           ${statusTag}
-          <span class="need-card-dash">—</span>
+          <span class="need-card-dash">:</span>
           <span class="need-card-summary">${need.summary || "Need report"}</span>
         </div>
         <div class="need-card-right">
@@ -171,7 +171,7 @@ function showNeedDetail(need) {
 
   document.getElementById("detail-title").innerHTML = `
     <span style="font-size:24px;">${issueType.icon}</span>
-    ${need.zone || "Unknown"} — ${issueType.label}
+    ${need.zone || "Unknown"}: ${issueType.label}
     <span class="urgency-badge ${need.urgency_label}" style="margin-left:8px;">${urgency.label}</span>
     <span style="margin-left:8px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;
       background:${isResolved ? 'rgba(14,159,110,0.15)' : isAssigned ? 'rgba(26,86,219,0.15)' : 'rgba(234,179,8,0.15)'};
@@ -655,7 +655,7 @@ function renderVolunteersGrid() {
 function viewVolunteerDetail(volId) {
   const vol = AppState.volunteers.find(v => v.id === volId);
   if (!vol) return;
-  showToast(`${vol.display_name} — ${vol.impact_points} impact points, ${vol.impact_stats?.total_tasks_completed || 0} tasks completed`, "info");
+  showToast(`${vol.display_name}: ${vol.impact_points} impact points, ${vol.impact_stats?.total_tasks_completed || 0} tasks completed`, "info");
 }
 
 // ── Notifications ───────────────────────────────────────────
@@ -732,7 +732,7 @@ function showToast(message, type = "info") {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// ANALYTICS — Chart.js Integration
+// ANALYTICS: Chart.js Integration
 // ═══════════════════════════════════════════════════════════════
 
 let analyticsCharts = {};

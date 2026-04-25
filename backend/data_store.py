@@ -1,5 +1,5 @@
 """
-data_store.py — Firestore Data Store for Firebase Deployment
+data_store.py: Firestore Data Store for Firebase Deployment
 """
 import os
 import uuid
@@ -142,7 +142,7 @@ class DataStore:
         needs = [
             {"zone": "Dharavi", "lat": 19.0441, "lng": 72.8557, "issue_type": "food", "severity_score": 9, "urgency_score": 95, "urgency_label": "critical", "affected_count": 200, "summary": "Severe food shortage affecting over 200 families.", "required_skills": ["food distribution", "hindi speaking"], "recommended_volunteer_count": 5, "status": "open", "source": "photo", "report_frequency_30d": 8, "trend_direction": "rising", "coordinator_explanation": "Severe food crisis in sector 5."},
             {"zone": "Dharavi", "lat": 19.0438, "lng": 72.8560, "issue_type": "water", "severity_score": 8, "urgency_score": 88, "urgency_label": "critical", "affected_count": 150, "summary": "Water supply contaminated in sector 5. Residents with stomach illness.", "required_skills": ["water purification", "plumbing"], "recommended_volunteer_count": 3, "status": "open", "source": "manual", "report_frequency_30d": 5, "trend_direction": "rising", "coordinator_explanation": "The main water pipeline serving sector 5 has been compromised."},
-            {"zone": "Dharavi", "lat": 19.0430, "lng": 72.8550, "issue_type": "health", "severity_score": 9, "urgency_score": 92, "urgency_label": "critical", "affected_count": 175, "summary": "Medical camp urgently needed — increasing dengue cases.", "required_skills": ["medical first aid", "nursing"], "recommended_volunteer_count": 4, "status": "open", "source": "whatsapp", "report_frequency_30d": 6, "trend_direction": "rising"},
+            {"zone": "Dharavi", "lat": 19.0430, "lng": 72.8550, "issue_type": "health", "severity_score": 9, "urgency_score": 92, "urgency_label": "critical", "affected_count": 175, "summary": "Medical camp urgently needed: increasing dengue cases.", "required_skills": ["medical first aid", "nursing"], "recommended_volunteer_count": 4, "status": "open", "source": "whatsapp", "report_frequency_30d": 6, "trend_direction": "rising"},
             {"zone": "Kurla", "lat": 19.0724, "lng": 72.8787, "issue_type": "health", "severity_score": 7, "urgency_score": 72, "urgency_label": "high", "affected_count": 80, "summary": "Healthcare facility severely understaffed.", "required_skills": ["medical doctor", "patient care"], "recommended_volunteer_count": 2, "status": "open", "source": "csv", "report_frequency_30d": 3, "trend_direction": "stable"},
         ]
 

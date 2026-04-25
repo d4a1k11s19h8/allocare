@@ -1,19 +1,19 @@
 import { PageLayout, PageHeader } from "@/components/PageLayout";
 
 const STACK = [
-  { name: "Gemini 1.5 Pro", use: "Urgency extraction + plain-English explanations + impact framing + chat Q&A", critical: "Core AI brain — every record passes through Gemini." },
-  { name: "Cloud Vision API", use: "OCR on paper survey photographs — printed and handwritten field forms", critical: "Enables paper-to-digital — the #1 differentiator." },
+  { name: "Gemini 3.1 Pro", use: "Urgency extraction + plain-English explanations + impact framing + chat Q&A", critical: "Core AI brain: every record passes through Gemini." },
+  { name: "Cloud Vision API", use: "OCR on paper survey photographs: printed and handwritten field forms", critical: "Enables paper-to-digital: the #1 differentiator." },
   { name: "Google Maps Platform", use: "Heatmap layer, Distance Matrix, Geocoding, Directions for navigation", critical: "Powers all geographic intelligence." },
   { name: "Google Translate API", use: "Auto-translate Hindi, Marathi, Tamil, Bengali, Telugu reports to English", critical: "India-specific differentiator." },
-  { name: "Firebase Auth", use: "Google Sign-In for NGO coordinators", critical: "Zero-friction auth — judges log in instantly." },
+  { name: "Firebase Auth", use: "Google Sign-In for NGO coordinators", critical: "Zero-friction auth: judges log in instantly." },
   { name: "Firestore", use: "Real-time NoSQL for need_reports, volunteers, assignments, organizations", critical: "Real-time sync makes the heatmap live." },
-  { name: "Cloud Functions", use: "Triggered by Firestore writes (scoring), Storage uploads (OCR), HTTP (CSV import)", critical: "Serverless — no backend to manage." },
+  { name: "Cloud Functions", use: "Triggered by Firestore writes (scoring), Storage uploads (OCR), HTTP (CSV import)", critical: "Serverless: no backend to manage." },
   { name: "Firebase Storage", use: "Survey photos, completion proof photos, CSV files", critical: "Required for upload flows." },
   { name: "Firebase Hosting", use: "Flutter Web build deployed for live demo URL", critical: "Free, instant deploy for judges." },
   { name: "FCM", use: "Push notifications for critical needs near volunteer", critical: "Real-time alerting." },
-  { name: "Document AI", use: "Phase 2 — structured extraction from NGO form templates", critical: "Upgrade from Vision OCR." },
-  { name: "Vertex AI AutoML", use: "Phase 2 — predict next-week high-urgency zones", critical: "Pre-positioning narrative." },
-  { name: "BigQuery", use: "Phase 2 — cross-NGO district-level trend analytics", critical: "Shows enterprise scale planning." },
+  { name: "Document AI", use: "Phase 2: structured extraction from NGO form templates", critical: "Upgrade from Vision OCR." },
+  { name: "Vertex AI AutoML", use: "Phase 2: predict next-week high-urgency zones", critical: "Pre-positioning narrative." },
+  { name: "BigQuery", use: "Phase 2: cross-NGO district-level trend analytics", critical: "Shows enterprise scale planning." },
   { name: "Flutter (Google SDK)", use: "Single codebase for NGO web dashboard + volunteer mobile", critical: "Google judges reward Flutter usage." },
 ];
 

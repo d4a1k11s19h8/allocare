@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   AlloCare — Service Worker (PWA Offline Support)
+   AlloCare: Service Worker (PWA Offline Support)
    Caches HTML, CSS, JS, and API responses for offline use
    ═════════════════════════════════════════════════════════ */
 

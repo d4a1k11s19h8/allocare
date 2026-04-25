@@ -172,7 +172,7 @@ export function Hero() {
             style={{ fontSize: "clamp(1rem, 1.4vw, 1.25rem)", lineHeight: 1.6 }}
           >
             AlloCare transforms scattered NGO field reports into ranked urgency signals and
-            instantly deploys the right volunteers — closing the loop from problem to action.
+            instantly deploys the right volunteers: closing the loop from problem to action.
           </motion.p>
 
           <motion.div

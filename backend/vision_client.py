@@ -1,5 +1,5 @@
 """
-vision_client.py — Gemini Vision API integration for AlloCare using google-genai
+vision_client.py: Gemini Vision API integration for AlloCare using google-genai
 Provides OCR and structured data extraction from images of field reports.
 Gracefully degrades when GEMINI_API_KEY is not set.
 """
@@ -39,7 +39,7 @@ def _init_vision() -> bool:
                 break
                 
         if not has_key:
-            logger.warning("[vision_client] No GEMINI_API_KEY set — using fallback responses.")
+            logger.warning("[vision_client] No GEMINI_API_KEY set: using fallback responses.")
             return False
 
         _gemini_pool = build_pool_from_env(
@@ -49,7 +49,7 @@ def _init_vision() -> bool:
         logger.info("[vision_client] Gemini Key Pool initialized successfully.")
         return True
     except EnvironmentError:
-        logger.warning("[vision_client] No GEMINI_API_KEY found — using fallback responses.")
+        logger.warning("[vision_client] No GEMINI_API_KEY found: using fallback responses.")
         return False
     except Exception as e:
         logger.error(f"[vision_client] Failed to init Gemini Key Pool: {e}")
@@ -69,7 +69,7 @@ RULES:
 4. For Indian languages (Hindi, Marathi, Tamil, Bengali, Telugu, Kannada, Malayalam, Gujarati, Urdu):
    - Transcribe the text in its original script
    - Also provide an English translation in [brackets] after each non-English line
-5. Extract ALL numbers — especially: affected counts, dates, phone numbers, severity ratings
+5. Extract ALL numbers: especially: affected counts, dates, phone numbers, severity ratings
 6. For survey forms: extract field labels AND their filled values
 7. For tables: preserve row/column structure using | separators
 8. If any text is unclear, write [unclear] but still attempt your best guess in parentheses
@@ -95,7 +95,7 @@ Return JSON with these fields:
   "contact_info": "any phone numbers or names mentioned",
   "date_mentioned": "any dates found",
   "summary": "one-sentence summary of the situation",
-  "confidence": "high, medium, or low — how confident you are in the extraction"
+  "confidence": "high, medium, or low: how confident you are in the extraction"
 }}"""
 
 
@@ -112,7 +112,7 @@ def extract_text_from_image_bytes(image_bytes: bytes, mime_type: str = "image/jp
         Extracted text string, or empty string on failure.
     """
     if not _init_vision() or not _gemini_pool:
-        logger.error("[Vision] Model not available — returning empty text")
+        logger.error("[Vision] Model not available: returning empty text")
         return ""
 
     for attempt in range(3):
@@ -248,7 +248,7 @@ def extract_text_from_base64(base64_data: str, mime_type: str = "image/jpeg") ->
 
 # Keep backward compatibility
 def extract_text_from_image(image_url: str) -> str:
-    """Legacy: accepts URL — downloads and processes."""
+    """Legacy: accepts URL: downloads and processes."""
     try:
         import requests
         resp = requests.get(image_url, timeout=10)

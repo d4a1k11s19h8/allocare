@@ -19,7 +19,7 @@ from matching_engine import match_volunteers
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# TRIGGER 1 — onReportCreated
+# TRIGGER 1: onReportCreated
 # Fires every time a new document lands in need_reports collection.
 # Pipeline: OCR → Translate → Gemini extraction → Geocode → Score → Notify
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -34,7 +34,7 @@ def on_report_created(event: firestore_fn.Event[firestore_fn.DocumentSnapshot]) 
         image_url = data.get("image_url")
         org_id = data.get("org_id", "")
 
-        # Step 1 — OCR (if image uploaded)
+        # Step 1: OCR (if image uploaded)
         if image_url and not raw_text:
             from vision_client import extract_text_from_image
             raw_text = extract_text_from_image(image_url)
@@ -46,22 +46,22 @@ def on_report_created(event: firestore_fn.Event[firestore_fn.DocumentSnapshot]) 
             _flag_report(report_id, "No text or image provided")
             return
 
-        # Step 2 — Language detection + translation
+        # Step 2: Language detection + translation
         from translate_client import detect_and_translate
         english_text, detected_lang = detect_and_translate(raw_text)
 
-        # Step 3 — Gemini extraction
+        # Step 3: Gemini extraction
         extracted = extract_urgency(english_text)
         if not extracted:
             _flag_report(report_id, "Gemini extraction failed")
             return
 
-        # Step 4 — Geocoding
+        # Step 4: Geocoding
         from maps_client import geocode_location
         location_text = extracted.get("location_text", "") + ", India"
         geo = geocode_location(location_text)
 
-        # Step 5 — Frequency count (same zone + issue_type in last 30 days)
+        # Step 5: Frequency count (same zone + issue_type in last 30 days)
         from datetime import timedelta
         thirty_days_ago = datetime.now(timezone.utc) - timedelta(days=30)
         freq_query = (
@@ -74,7 +74,7 @@ def on_report_created(event: firestore_fn.Event[firestore_fn.DocumentSnapshot]) 
         freq_result = freq_query.get()
         frequency = freq_result[0][0].value if freq_result else 1
 
-        # Step 6 — Urgency scoring
+        # Step 6: Urgency scoring
         days_since = (datetime.now(timezone.utc) - data.get("created_at", datetime.now(timezone.utc))).days
         score_data = calculate_urgency_score(
             severity=extracted.get("severity_score", 5),
@@ -82,7 +82,7 @@ def on_report_created(event: firestore_fn.Event[firestore_fn.DocumentSnapshot]) 
             days_since_first_report=max(1, days_since)
         )
 
-        # Step 7 — Coordinator explanation (Gemini Prompt 2)
+        # Step 7: Coordinator explanation (Gemini Prompt 2)
         explanation = generate_coordinator_explanation(
             issue_type=extracted.get("issue_type", "other"),
             severity=extracted.get("severity_score", 5),
@@ -92,7 +92,7 @@ def on_report_created(event: firestore_fn.Event[firestore_fn.DocumentSnapshot]) 
             days=max(1, days_since)
         )
 
-        # Step 8 — Write all processed fields back to Firestore
+        # Step 8: Write all processed fields back to Firestore
         update_payload = {
             "raw_text": raw_text,
             "language_detected": detected_lang,
@@ -119,7 +119,7 @@ def on_report_created(event: firestore_fn.Event[firestore_fn.DocumentSnapshot]) 
         db.collection("need_reports").document(report_id).update(update_payload)
         logger.info(f"[onReportCreated] Report {report_id} processed. Score={score_data['score']} ({score_data['label']})")
 
-        # Step 9 — Push notifications if urgency >= 70
+        # Step 9: Push notifications if urgency >= 70
         if score_data["score"] >= 70:
             _notify_nearby_volunteers(
                 zone=extracted.get("location_text", ""),
@@ -137,7 +137,7 @@ def on_report_created(event: firestore_fn.Event[firestore_fn.DocumentSnapshot]) 
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# ENDPOINT 2 — processCSVUpload
+# ENDPOINT 2: processCSVUpload
 # HTTP POST: multipart form with CSV file
 # Returns: { imported: N, errors: [{row, reason}] }
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -216,7 +216,7 @@ def process_csv_upload(req: https_fn.Request) -> https_fn.Response:
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# ENDPOINT 3 — getMatchedVolunteers
+# ENDPOINT 3: getMatchedVolunteers
 # HTTP GET ?need_id=<id>
 # Returns top-3 matched volunteers with explanation strings
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -264,7 +264,7 @@ def get_matched_volunteers(req: https_fn.Request) -> https_fn.Response:
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# ENDPOINT 4 — flagUrgencyScore
+# ENDPOINT 4: flagUrgencyScore
 # HTTP POST: { need_id, correct_score, reason }
 # ═══════════════════════════════════════════════════════════════════════════════
 @https_fn.on_request(region="asia-south1", cors=options.CorsOptions(cors_origins="*", cors_methods=["POST"]))
@@ -320,7 +320,7 @@ def flag_urgency_score(req: https_fn.Request) -> https_fn.Response:
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# ENDPOINT 5 — completeTask
+# ENDPOINT 5: completeTask
 # HTTP POST: { assignment_id, proof_photo_url }
 # ═══════════════════════════════════════════════════════════════════════════════
 @https_fn.on_request(region="asia-south1", cors=options.CorsOptions(cors_origins="*", cors_methods=["POST"]))
@@ -402,7 +402,7 @@ def complete_task(req: https_fn.Request) -> https_fn.Response:
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# ENDPOINT 6 — whatsappWebhook
+# ENDPOINT 6: whatsappWebhook
 # HTTP POST: Twilio webhook body
 # ═══════════════════════════════════════════════════════════════════════════════
 @https_fn.on_request(region="asia-south1", cors=options.CorsOptions(cors_origins="*", cors_methods=["POST"]))
@@ -423,7 +423,7 @@ def whatsapp_webhook(req: https_fn.Request) -> https_fn.Response:
         orgs = list(org_query.stream())
         org_id = orgs[0].id if orgs else "unknown_org"
 
-        # Create need_report doc — onReportCreated will process it
+        # Create need_report doc: onReportCreated will process it
         db.collection("need_reports").add({
             "org_id": org_id,
             "raw_text": body_text,
@@ -446,7 +446,7 @@ def whatsapp_webhook(req: https_fn.Request) -> https_fn.Response:
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# ENDPOINT 7 — createAssignment (coordinator assigns volunteer to need)
+# ENDPOINT 7: createAssignment (coordinator assigns volunteer to need)
 # HTTP POST: { need_id, volunteer_id, org_id }
 # ═══════════════════════════════════════════════════════════════════════════════
 @https_fn.on_request(region="asia-south1", cors=options.CorsOptions(cors_origins="*", cors_methods=["POST"]))
@@ -490,7 +490,7 @@ def create_assignment(req: https_fn.Request) -> https_fn.Response:
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
-# SCHEDULED — scheduledTrendUpdate (runs daily)
+# SCHEDULED: scheduledTrendUpdate (runs daily)
 # ═══════════════════════════════════════════════════════════════════════════════
 @scheduler_fn.on_schedule(schedule="every 24 hours", region="asia-south1")
 def scheduled_trend_update(event: scheduler_fn.ScheduledEvent) -> None:
@@ -534,7 +534,7 @@ def _notify_nearby_volunteers(zone, skills, need_id, summary, urgency_score, lat
             message = messaging.Message(
                 notification=messaging.Notification(
                     title=f"🚨 CRITICAL Need Near You",
-                    body=f"{summary[:100]} — {zone}",
+                    body=f"{summary[:100]}: {zone}",
                 ),
                 data={
                     "need_id": need_id,

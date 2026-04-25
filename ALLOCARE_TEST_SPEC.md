@@ -1,6 +1,6 @@
-# AlloCare — Autonomous Test Specification
+# AlloCare: Autonomous Test Specification
 ## Master Test Plan for Antigravity Agent Execution
-**Version:** 1.0 | **Project:** AlloCare — Smart Resource Allocation | **Google Solution Challenge 2026**
+**Version:** 1.0 | **Project:** AlloCare: Smart Resource Allocation | **Google Solution Challenge 2026**
 
 ---
 
@@ -34,7 +34,7 @@ AUTO-FIX RULES:
 
 ---
 
-## SYSTEM MANIFEST — What Should Exist
+## SYSTEM MANIFEST: What Should Exist
 
 Before running any test, verify the following files and directories exist. Log any missing item as CRITICAL.
 
@@ -80,7 +80,7 @@ MISSING FILE ACTION: Create stub file with correct structure, log as HIGH, flag 
 
 ---
 
-## SECTION 1 — ENVIRONMENT & CONFIGURATION TESTS
+## SECTION 1: ENVIRONMENT & CONFIGURATION TESTS
 
 ### 1.1 Firebase Project Configuration
 
@@ -89,12 +89,12 @@ TEST_ID: ENV-001
 COMPONENT: Firebase / Environment
 DESCRIPTION: Verify Firebase project is correctly initialized and all services are enabled
 ACTION:
-  1. Read firebase.json — confirm projectId is set and not placeholder
-  2. Check .firebaserc — confirm default project alias exists
+  1. Read firebase.json: confirm projectId is set and not placeholder
+  2. Check .firebaserc: confirm default project alias exists
   3. Verify firebase-admin SDK is initialized in functions/main.py
   4. Confirm Firestore, Auth, Storage, Functions, Hosting are all enabled
   5. Check that environment variables (GEMINI_API_KEY, MAPS_API_KEY) are set in
-     Firebase Functions config — NOT hardcoded in source files
+     Firebase Functions config: NOT hardcoded in source files
 EXPECTED: All services initialized, no API keys in source code
 SEVERITY_IF_FAIL: CRITICAL
 AUTO_FIX: Initialize missing services, move hardcoded keys to environment config
@@ -120,7 +120,7 @@ TEST_ID: ENV-003
 COMPONENT: Dependencies
 DESCRIPTION: Verify all required dependencies are declared and installable
 ACTION:
-  FLUTTER — verify pubspec.yaml contains:
+  FLUTTER: verify pubspec.yaml contains:
   - firebase_core, firebase_auth, cloud_firestore, firebase_storage
   - google_maps_flutter OR flutter_map
   - http, provider or riverpod
@@ -129,7 +129,7 @@ ACTION:
   Run: flutter pub get (must complete with zero errors)
   Run: flutter analyze (capture all warnings and errors)
 
-  PYTHON FUNCTIONS — verify requirements.txt contains:
+  PYTHON FUNCTIONS: verify requirements.txt contains:
   - firebase-admin, google-cloud-firestore
   - google-cloud-vision, google-cloud-translate
   - google-generativeai
@@ -144,7 +144,7 @@ AUTO_FIX: Add missing packages, resolve version conflicts
 ```
 TEST_ID: ENV-004
 COMPONENT: Firestore Security Rules
-DESCRIPTION: Validate security rules — not open to public
+DESCRIPTION: Validate security rules: not open to public
 ACTION:
   1. Read firestore.rules
   2. Verify rules DENY unauthenticated reads/writes on all collections
@@ -177,14 +177,14 @@ AUTO_FIX: Add missing index definitions to firestore.indexes.json
 
 ---
 
-## SECTION 2 — AUTHENTICATION TESTS
+## SECTION 2: AUTHENTICATION TESTS
 
 ```
 TEST_ID: AUTH-001
 COMPONENT: Firebase Auth / Google Sign-In
 DESCRIPTION: Verify Google Sign-In is implemented and functional
 ACTION:
-  1. Check main.dart — confirm Firebase.initializeApp() called before runApp()
+  1. Check main.dart: confirm Firebase.initializeApp() called before runApp()
   2. Verify GoogleAuthProvider is used
   3. After sign-in, verify user UID is stored and accessible
   4. Verify sign-in cancellation handled gracefully
@@ -215,7 +215,7 @@ COMPONENT: Session Persistence
 DESCRIPTION: Verify user stays logged in after app restart
 ACTION:
   1. Verify Firebase Auth persistence set to LOCAL
-  2. Simulate app restart — verify no re-login required
+  2. Simulate app restart: verify no re-login required
   3. Verify authStateChanges() stream used in main.dart
   4. Verify loading state shown while auth resolves
 EXPECTED: Session persists, no unnecessary re-login
@@ -240,7 +240,7 @@ AUTO_FIX: Implement complete sign-out with state disposal and route clearing
 
 ---
 
-## SECTION 3 — F1: MULTI-SOURCE DATA INGESTION TESTS
+## SECTION 3: F1: MULTI-SOURCE DATA INGESTION TESTS
 
 ```
 TEST_ID: F1-OCR-001
@@ -262,24 +262,24 @@ AUTO_FIX: Debug each pipeline stage, fix broken API calls, ensure async/await ch
 
 ```
 TEST_ID: F1-OCR-002
-COMPONENT: Cloud Vision OCR — Edge Cases
+COMPONENT: Cloud Vision OCR: Edge Cases
 DESCRIPTION: Test OCR with problematic images
 ACTION:
-  TEST CASE A — Blurry image:
+  TEST CASE A: Blurry image:
     Upload low-resolution blurry image
     Verify confidence < 0.6 → UI shows "Image unclear, please retake"
     Verify no phantom Firestore document created
 
-  TEST CASE B — Handwritten survey:
+  TEST CASE B: Handwritten survey:
     Upload handwritten text on lined paper
     Verify DOCUMENT_TEXT_DETECTION used (not TEXT_DETECTION)
     Verify partial extraction surfaced for manual correction
 
-  TEST CASE C — Empty/blank image:
+  TEST CASE C: Empty/blank image:
     Upload blank white image
     Verify graceful error: "No text detected in image"
 
-  TEST CASE D — Non-image file disguised as .jpg:
+  TEST CASE D: Non-image file disguised as .jpg:
     Upload .pdf renamed as survey.jpg
     Verify file type validation rejects before upload
 EXPECTED: Each edge case handled with correct UI message, no silent failures
@@ -323,7 +323,7 @@ AUTO_FIX: Fix pandas column normalization, add type coercion, implement batch wr
 
 ```
 TEST_ID: F1-CSV-002
-COMPONENT: CSV Import — Error Handling
+COMPONENT: CSV Import: Error Handling
 DESCRIPTION: Test CSV import with malformed data
 ACTION:
   TEST CASE A: CSV missing "zone" column → 400 error with clear message
@@ -375,7 +375,7 @@ AUTO_FIX: Implement sender lookup, Unicode decode, TwiML response
 
 ---
 
-## SECTION 4 — F2: GEMINI URGENCY SCORING ENGINE TESTS
+## SECTION 4: F2: GEMINI URGENCY SCORING ENGINE TESTS
 
 ```
 TEST_ID: F2-GEMINI-001
@@ -399,7 +399,7 @@ AUTO_FIX: Fix Gemini prompt, add JSON parsing error handling, add field validati
 
 ```
 TEST_ID: F2-GEMINI-002
-COMPONENT: Gemini API — Response Robustness
+COMPONENT: Gemini API: Response Robustness
 DESCRIPTION: Test Gemini response handling for edge cases
 ACTION:
   A: Gemini returns markdown-wrapped JSON (```json...```) → verify strip before parse
@@ -449,7 +449,7 @@ ACTION:
   score=45 → label="MEDIUM",   color="#E3A008"
   score=70 → label="HIGH",     color="#F97316"
   score=90 → label="CRITICAL", color="#E02424"
-  score=30 → label="LOW"       (boundary — inclusive)
+  score=30 → label="LOW"       (boundary: inclusive)
   score=31 → label="MEDIUM"    (boundary)
   score=86 → label="CRITICAL"  (boundary)
   Verify colors match in Flutter urgency_card.dart
@@ -496,7 +496,7 @@ AUTO_FIX: Add validation, implement Firestore transaction for atomic update
 
 ---
 
-## SECTION 5 — F3: GOOGLE MAPS URGENCY HEATMAP TESTS
+## SECTION 5: F3: GOOGLE MAPS URGENCY HEATMAP TESTS
 
 ```
 TEST_ID: F3-MAP-001
@@ -522,11 +522,11 @@ COMPONENT: Heatmap Data Rendering
 DESCRIPTION: Verify urgency points render as correctly colored heatmap
 ACTION:
   Pre-seed Firestore with 10 test need_reports:
-  - 3 records: urgency_score=90 — Dharavi coordinates (must appear RED)
-  - 4 records: urgency_score=50 — Kurla coordinates (must appear AMBER)
-  - 3 records: urgency_score=15 — Bandra coordinates (must appear GREEN)
+  - 3 records: urgency_score=90: Dharavi coordinates (must appear RED)
+  - 4 records: urgency_score=50: Kurla coordinates (must appear AMBER)
+  - 3 records: urgency_score=15: Bandra coordinates (must appear GREEN)
 
-  1. Load heatmap — verify all 10 points plotted
+  1. Load heatmap: verify all 10 points plotted
   2. Verify Dharavi cluster appears RED
   3. Verify Kurla cluster appears AMBER
   4. Verify Bandra cluster appears GREEN
@@ -588,11 +588,11 @@ AUTO_FIX: Implement choropleth layer with GeoJSON district boundaries
 
 ---
 
-## SECTION 6 — F4: VOLUNTEER MATCHING ALGORITHM TESTS
+## SECTION 6: F4: VOLUNTEER MATCHING ALGORITHM TESTS
 
 ```
 TEST_ID: F4-MATCH-001
-COMPONENT: Volunteer Matching Algorithm — Core Logic
+COMPONENT: Volunteer Matching Algorithm: Core Logic
 DESCRIPTION: Verify match_volunteers() returns correct top-3
 ACTION:
   Setup test need: issue_type="health", required_skills=["medical_first_aid","translation_hindi"]
@@ -640,7 +640,7 @@ AUTO_FIX: Implement batch Distance Matrix call, add Haversine fallback
 
 ```
 TEST_ID: F4-MATCH-003
-COMPONENT: Matching — Edge Cases
+COMPONENT: Matching: Edge Cases
 DESCRIPTION: Test algorithm with unusual inputs
 ACTION:
   A: All volunteers offline → {matches:[], message:"No volunteers available"}, no crash
@@ -654,7 +654,7 @@ AUTO_FIX: Add guards for empty arrays, handle 0/1-match cases
 
 ---
 
-## SECTION 7 — F5: NGO COORDINATOR DASHBOARD TESTS
+## SECTION 7: F5: NGO COORDINATOR DASHBOARD TESTS
 
 ```
 TEST_ID: F5-DASH-001
@@ -738,7 +738,7 @@ AUTO_FIX: Implement intake mode selector, add proper Navigator.pop() on cancel
 
 ---
 
-## SECTION 8 — F6: VOLUNTEER MOBILE APP TESTS
+## SECTION 8: F6: VOLUNTEER MOBILE APP TESTS
 
 ```
 TEST_ID: F6-VOL-001
@@ -769,7 +769,7 @@ ACTION:
   2. Each card: urgency badge, issue icon, summary, impact framing in green,
      distance chip, time estimate, Accept button
   3. Health task ranks higher than food task for medical volunteer
-  4. Empty state: "You're all caught up — check back soon"
+  4. Empty state: "You're all caught up: check back soon"
   5. Pull-to-refresh loads fresh data
 EXPECTED: Feed personalized, all card elements present, empty state works
 SEVERITY_IF_FAIL: CRITICAL
@@ -810,7 +810,7 @@ ACTION:
   2. Create CRITICAL need in volunteer's zone
   3. Verify notification arrives within 30 seconds:
      title: "CRITICAL Need Near You"
-     body: "{summary} — {distance}km away"
+     body: "{summary}: {distance}km away"
   4. Tap notification → app opens to specific task detail
   5. Permission denied → graceful fallback (in-app alert)
 EXPECTED: Notifications sent, tap opens correct screen
@@ -820,7 +820,7 @@ AUTO_FIX: Fix FCM token refresh, fix notification payload
 
 ---
 
-## SECTION 9 — F7: GAMIFICATION TESTS
+## SECTION 9: F7: GAMIFICATION TESTS
 
 ```
 TEST_ID: F7-GAME-001
@@ -893,7 +893,7 @@ AUTO_FIX: Add opt-out field, fix sort query
 
 ---
 
-## SECTION 10 — BACKEND API TESTS
+## SECTION 10: BACKEND API TESTS
 
 ```
 TEST_ID: API-001
@@ -955,7 +955,7 @@ AUTO_FIX: Fix linear regression, fix FCM topic targeting
 
 ---
 
-## SECTION 11 — DATABASE INTEGRITY TESTS
+## SECTION 11: DATABASE INTEGRITY TESTS
 
 ```
 TEST_ID: DB-001
@@ -1033,7 +1033,7 @@ AUTO_FIX: Enable Firestore offline persistence, add sync status indicator
 
 ---
 
-## SECTION 12 — FRONTEND UI/UX TESTS
+## SECTION 12: FRONTEND UI/UX TESTS
 
 ```
 TEST_ID: UI-001
@@ -1084,7 +1084,7 @@ ACTION:
   - Heatmap initial load
   - Matching: "Finding best volunteers..."
   - CSV import (progress bar with record count)
-  - Task acceptance (button loading state — prevents double-tap)
+  - Task acceptance (button loading state: prevents double-tap)
 EXPECTED: Every async operation has loading state, no blank screens
 SEVERITY_IF_FAIL: HIGH
 AUTO_FIX: Add loading state management to all async widget builders
@@ -1126,7 +1126,7 @@ AUTO_FIX: Implement named routes, fix PopScope/WillPopScope
 
 ---
 
-## SECTION 13 — PERFORMANCE TESTS
+## SECTION 13: PERFORMANCE TESTS
 
 ```
 TEST_ID: PERF-001
@@ -1190,11 +1190,11 @@ AUTO_FIX: Implement chunked Firestore batch writes
 
 ---
 
-## SECTION 14 — SECURITY TESTS
+## SECTION 14: SECURITY TESTS
 
 ```
 TEST_ID: SEC-001
-COMPONENT: Firestore Security Rules — Penetration Test
+COMPONENT: Firestore Security Rules: Penetration Test
 DESCRIPTION: Simulate unauthorized access attempts
 ACTION:
   1. Unauthenticated → read need_reports → MUST DENY
@@ -1260,7 +1260,7 @@ AUTO_FIX: Add rate limiting middleware, enable Firebase App Check
 
 ---
 
-## SECTION 15 — ACCESSIBILITY TESTS
+## SECTION 15: ACCESSIBILITY TESTS
 
 ```
 TEST_ID: A11Y-001
@@ -1280,7 +1280,7 @@ AUTO_FIX: Adjust colors to meet contrast requirements
 
 ```
 TEST_ID: A11Y-002
-COMPONENT: Critical Alerts — Not Color-Only
+COMPONENT: Critical Alerts: Not Color-Only
 DESCRIPTION: Urgency communicated through more than color
 ACTION:
   - CRITICAL card: has RED color AND "CRITICAL" text label
@@ -1312,11 +1312,11 @@ AUTO_FIX: Add Semantics wrapper to all custom widgets
 
 ---
 
-## SECTION 16 — INTEGRATION & END-TO-END TESTS
+## SECTION 16: INTEGRATION & END-TO-END TESTS
 
 ```
 TEST_ID: E2E-001
-COMPONENT: Full Pipeline — The Demo Money Shot
+COMPONENT: Full Pipeline: The Demo Money Shot
 DESCRIPTION: THE most critical test. Validates the exact hackathon demo flow.
 ACTION:
   This test MUST pass perfectly. It is the judge demo.
@@ -1341,7 +1341,7 @@ ACTION:
   PASS: All 7 checkpoints pass within time budgets
   DEMO REQUIREMENT: Total < 30 seconds (target 20-25 seconds)
 EXPECTED: All checkpoints pass, total < 30s
-SEVERITY_IF_FAIL: CRITICAL — Fix this before anything else
+SEVERITY_IF_FAIL: CRITICAL: Fix this before anything else
 AUTO_FIX: Profile each stage, optimize slowest bottleneck first
 ```
 
@@ -1400,7 +1400,7 @@ AUTO_FIX: Ensure all writes use onSnapshot listeners on both clients
 
 ---
 
-## SECTION 17 — CONTENT & COPY TESTS
+## SECTION 17: CONTENT & COPY TESTS
 
 ```
 TEST_ID: COPY-001
@@ -1439,7 +1439,7 @@ AUTO_FIX: Replace all raw error codes with friendly messages
 
 ---
 
-## SECTION 18 — DEMO READINESS TESTS
+## SECTION 18: DEMO READINESS TESTS
 
 ```
 TEST_ID: DEMO-001
@@ -1502,7 +1502,7 @@ AUTO_FIX: Add missing sections to README.md
 
 ---
 
-## SECTION 19 — REGRESSION & SMOKE TESTS
+## SECTION 19: REGRESSION & SMOKE TESTS
 
 ```
 TEST_ID: SMOKE-001
@@ -1523,7 +1523,7 @@ AUTO_FIX: Fix null safety issues, fix auth check timing
 
 ```
 TEST_ID: SMOKE-002
-COMPONENT: Core User Journeys — Rapid Smoke
+COMPONENT: Core User Journeys: Rapid Smoke
 DESCRIPTION: Rapid validation of 3 critical flows
 ACTION:
   Flow 1 (< 2 min): Coordinator logs in → sees dashboard → uploads photo →
@@ -1544,7 +1544,7 @@ AUTO_FIX: Fix immediately before running remaining tests
 
 ---
 
-## SECTION 20 — FINAL VALIDATION CHECKLIST
+## SECTION 20: FINAL VALIDATION CHECKLIST
 
 ```
 TEST_ID: FINAL-001
@@ -1552,13 +1552,13 @@ COMPONENT: Masterplan P0 Feature Coverage
 DESCRIPTION: Verify all 7 P0 features from masterplan are implemented
 ACTION:
   Check each P0 feature:
-  ✓/✗ F1 — Multi-Source Data Ingestion (photo, CSV, manual, WhatsApp)
-  ✓/✗ F2 — Gemini Urgency Scoring Engine
-  ✓/✗ F3 — Google Maps Urgency Heatmap (deck.gl, color gradient, clickable)
-  ✓/✗ F4 — Smart Volunteer Matching (skill × proximity × availability, top-3)
-  ✓/✗ F5 — NGO Coordinator Dashboard (real-time feed, heatmap, analytics)
-  ✓/✗ F6 — Volunteer App (task feed, accept, check-in, complete)
-  ✓/✗ F7 — Impact Scorecard & Gamification (points, badges, leaderboard)
+  ✓/✗ F1: Multi-Source Data Ingestion (photo, CSV, manual, WhatsApp)
+  ✓/✗ F2: Gemini Urgency Scoring Engine
+  ✓/✗ F3: Google Maps Urgency Heatmap (deck.gl, color gradient, clickable)
+  ✓/✗ F4: Smart Volunteer Matching (skill × proximity × availability, top-3)
+  ✓/✗ F5: NGO Coordinator Dashboard (real-time feed, heatmap, analytics)
+  ✓/✗ F6: Volunteer App (task feed, accept, check-in, complete)
+  ✓/✗ F7: Impact Scorecard & Gamification (points, badges, leaderboard)
 
   For each ✗: log CRITICAL, create stub implementation
   For each ✓: confirm it passed tests in sections above
@@ -1573,7 +1573,7 @@ COMPONENT: Google Technology Coverage
 DESCRIPTION: Verify all required Google technologies actively used in code
 ACTION:
   Verify code ACTUALLY CALLS these APIs (not just mentioned in docs):
-  ✓/✗ Gemini 1.5 Pro API
+  ✓/✗ Gemini 3.1 Pro API
   ✓/✗ Cloud Vision API
   ✓/✗ Google Maps Platform (heatmap + distance matrix + geocoding)
   ✓/✗ Google Translate API
@@ -1658,7 +1658,7 @@ F7 Gamification: {COMPLETE/PARTIAL/MISSING}
 
 ## SECURITY POSTURE
 Hardcoded API keys found: {YES/NO}
-Firestore public access: {YES/NO — must be NO}
+Firestore public access: {YES/NO: must be NO}
 Input sanitization: {PASS/FAIL}
 PII protection: {PASS/FAIL}
 Rate limiting active: {YES/NO}
@@ -1667,7 +1667,7 @@ Rate limiting active: {YES/NO}
 
 ## ACCESSIBILITY SCORE
 Color contrast WCAG 2.1 AA: {PASS/FAIL}
-Color-only alerts: {NONE — PASS / FOUND — FAIL}
+Color-only alerts: {NONE: PASS / FOUND: FAIL}
 Screen reader support: {PASS/FAIL}
 
 ---
@@ -1684,17 +1684,17 @@ Screen reader support: {PASS/FAIL}
 ---
 
 ## FINAL VERDICT
-{DEMO READY | NEEDS WORK — {count} critical issues remain | NOT READY}
+{DEMO READY | NEEDS WORK: {count} critical issues remain | NOT READY}
 
-## PRIORITY FIX LIST (in order — fix top to bottom)
-1. {BUG-ID}: {fix description} — estimated time: {time}
-2. {BUG-ID}: {fix description} — estimated time: {time}
-3. {BUG-ID}: {fix description} — estimated time: {time}
+## PRIORITY FIX LIST (in order: fix top to bottom)
+1. {BUG-ID}: {fix description}: estimated time: {time}
+2. {BUG-ID}: {fix description}: estimated time: {time}
+3. {BUG-ID}: {fix description}: estimated time: {time}
 ```
 
 ---
 
-## APPENDIX — TEST DATA SPECIFICATIONS
+## APPENDIX: TEST DATA SPECIFICATIONS
 
 ### TEST_CSV_50_RECORDS.csv Schema
 ```
@@ -1721,11 +1721,11 @@ Seed 20 volunteers with:
 
 ### TEST IMAGE FILES NEEDED
 ```
-TEST_IMAGE_1.jpg         — Clear printed English survey (text readable)
-TEST_IMAGE_HINDI.jpg     — Printed Hindi survey text
-TEST_IMAGE_HANDWRITTEN.jpg — Handwritten mixed-language survey
-TEST_IMAGE_BLURRY.jpg    — Out-of-focus survey (for OCR failure test)
-TEST_IMAGE_BLANK.jpg     — White/blank image (for empty detection test)
+TEST_IMAGE_1.jpg        : Clear printed English survey (text readable)
+TEST_IMAGE_HINDI.jpg    : Printed Hindi survey text
+TEST_IMAGE_HANDWRITTEN.jpg: Handwritten mixed-language survey
+TEST_IMAGE_BLURRY.jpg   : Out-of-focus survey (for OCR failure test)
+TEST_IMAGE_BLANK.jpg    : White/blank image (for empty detection test)
 ```
 
 ---

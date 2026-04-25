@@ -1,5 +1,5 @@
 """
-test_matching_assignments.py — Volunteer matching, assignment, and edge cases.
+test_matching_assignments.py: Volunteer matching, assignment, and edge cases.
 """
 import pytest
 
@@ -60,10 +60,10 @@ class TestVolunteerMatching:
         for m in matches:
             all_skills.extend(m.get("skills_matched", []))
         food_skills = [s for s in all_skills if "food" in s.lower() or "cooking" in s.lower()]
-        # It's okay if no food skill matched — other factors also matter
+        # It's okay if no food skill matched: other factors also matter
 
     def test_match_remote_location(self, client):
-        """Create need in remote Churu — matching should still work (soft cutoff)."""
+        """Create need in remote Churu: matching should still work (soft cutoff)."""
         create = client.post("/api/needs", json={
             "raw_text": "Water crisis in Churu, 500 people affected",
             "zone": "Churu, Rajasthan",

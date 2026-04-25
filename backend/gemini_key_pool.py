@@ -83,7 +83,7 @@ class PoolConfig:
     max_backoff_s: float = 60.0
     jitter_fraction: float = 0.25
     rate_limit_cooldown_s: float = 65.0      # slightly > 60 s to clear the 1-min window
-    quota_cooldown_s: float = 3_600.0        # 1 h — retry after daily quota refresh
+    quota_cooldown_s: float = 3_600.0        # 1 h: retry after daily quota refresh
     server_error_cooldown_s: float = 30.0
     generation_config: types.GenerateContentConfig | None = None
 
@@ -96,7 +96,7 @@ class KeyStatus(Enum):
     RATE_LIMITED = auto()
     QUOTA_EXHAUSTED = auto()
     SERVER_ERROR = auto()
-    RETIRED = auto()          # permanent — auth failure or repeated hard errors
+    RETIRED = auto()          # permanent: auth failure or repeated hard errors
 
 
 @dataclass
@@ -111,7 +111,7 @@ class _KeyState:
     _day_window: list[float] = field(default_factory=list)
 
     def __post_init__(self) -> None:
-        # Each key owns its own Client instance — no global configure() calls
+        # Each key owns its own Client instance: no global configure() calls
         self.client = genai.Client(api_key=self.key)
 
     # ------------------------------------------------------------------ #
@@ -122,7 +122,7 @@ class _KeyState:
             return False
         if self.cooldown_until > time.monotonic():
             return False
-        # cooldown has expired — restore health
+        # cooldown has expired: restore health
         if self.status != KeyStatus.HEALTHY:
             self.status = KeyStatus.HEALTHY
             self.failures = 0
@@ -180,7 +180,7 @@ class _KeyState:
         self.status = KeyStatus.RETIRED
         self.cooldown_until = float("inf")
         logger.error(
-            "Key …%s is invalid/unauthorised — retired permanently.", self.key[-6:]
+            "Key …%s is invalid/unauthorised: retired permanently.", self.key[-6:]
         )
 
     def mark_success(self) -> None:
@@ -221,7 +221,7 @@ class GeminiKeyPool:
         self._keys: list[_KeyState] = [_KeyState(key=k) for k in api_keys]
         self._lock = threading.RLock()
         logger.info(
-            "Pool initialised — %d key(s), model=%s",
+            "Pool initialised: %d key(s), model=%s",
             len(self._keys), self._config.model_name,
         )
 
@@ -332,7 +332,7 @@ class GeminiKeyPool:
         contents : str or list
             Passed directly to client.models.generate_content().
             Accepts plain strings, list[types.Content], list[types.Part],
-            or list of dicts — whatever the new SDK supports.
+            or list of dicts: whatever the new SDK supports.
         config   : types.GenerateContentConfig
             Per-call override; falls back to pool-level generation_config.
         stream   : bool
@@ -353,7 +353,7 @@ class GeminiKeyPool:
         for attempt in range(cfg.max_retries):
             key_state = self._next_key()
 
-            # All keys parked — wait for the soonest cooldown to expire
+            # All keys parked: wait for the soonest cooldown to expire
             if key_state is None:
                 with self._lock:
                     active = [
@@ -367,7 +367,7 @@ class GeminiKeyPool:
                     )
                 wait = max(0.0, min(active) - time.monotonic()) + 1.0
                 logger.warning(
-                    "All keys parked — waiting %.1f s (attempt %d/%d).",
+                    "All keys parked: waiting %.1f s (attempt %d/%d).",
                     wait, attempt + 1, cfg.max_retries,
                 )
                 time.sleep(wait)
@@ -378,7 +378,7 @@ class GeminiKeyPool:
             masked = f"…{key_state.key[-6:]}"
 
             try:
-                logger.debug("Attempt %d — key %s", attempt + 1, masked)
+                logger.debug("Attempt %d: key %s", attempt + 1, masked)
 
                 call_kwargs: dict[str, Any] = {
                     "model": cfg.model_name,
@@ -398,7 +398,7 @@ class GeminiKeyPool:
 
                 with self._lock:
                     key_state.mark_success()
-                logger.debug("Success — attempt %d, key %s", attempt + 1, masked)
+                logger.debug("Success: attempt %d, key %s", attempt + 1, masked)
                 return response
 
             # ---- 4xx client errors (rate-limit, quota, auth) -------------
@@ -505,7 +505,7 @@ class GeminiKeyPool:
         with self._lock:
             for k in self._keys:
                 k.close()
-        logger.info("GeminiKeyPool closed — all clients released.")
+        logger.info("GeminiKeyPool closed: all clients released.")
 
     # ------------------------------------------------------------------ #
     # Context manager
@@ -528,7 +528,7 @@ def build_pool_from_env(
     generation_config: types.GenerateContentConfig | None = None,
 ) -> GeminiKeyPool:
     """
-    Convenience factory — reads GEMINI_API_KEY_1, _2, … from the environment.
+    Convenience factory: reads GEMINI_API_KEY_1, _2, … from the environment.
 
     Example:
         pool = build_pool_from_env()

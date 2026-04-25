@@ -1,5 +1,5 @@
 """
-test_health_auth.py — Health check, authentication, and registration tests.
+test_health_auth.py: Health check, authentication, and registration tests.
 """
 import pytest
 
@@ -31,7 +31,7 @@ class TestHealthCheck:
 
 
 # ═══════════════════════════════════════════════════════════════════
-# 2. AUTHENTICATION — LOGIN
+# 2. AUTHENTICATION: LOGIN
 # ═══════════════════════════════════════════════════════════════════
 
 class TestLogin:
@@ -88,7 +88,7 @@ class TestLogin:
 
 
 # ═══════════════════════════════════════════════════════════════════
-# 3. AUTHENTICATION — REGISTRATION
+# 3. AUTHENTICATION: REGISTRATION
 # ═══════════════════════════════════════════════════════════════════
 
 class TestRegistration:

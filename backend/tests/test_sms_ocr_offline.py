@@ -1,5 +1,5 @@
 """
-test_sms_ocr_offline.py — SMS gateway, OCR endpoints, and offline/edge cases.
+test_sms_ocr_offline.py: SMS gateway, OCR endpoints, and offline/edge cases.
 """
 import pytest
 import base64
@@ -52,7 +52,7 @@ class TestSMSGateway:
         assert resp.status_code == 200
 
     def test_sms_need_with_location_only(self, client):
-        """Edge case: 'NEED Mumbai' — no type or description."""
+        """Edge case: 'NEED Mumbai': no type or description."""
         resp = client.post("/api/sms/receive", json={
             "sender": "+919876543210",
             "message": "NEED Mumbai"
