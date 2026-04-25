@@ -1,24 +1,24 @@
 # AlloCare: Smart Volunteer Deployment for Social Impact
 
-🌐 **[Live Demo →](https://allocare-77.web.app)** | 📹 **[Demo Video →](https://youtu.be/XXXX)** | 📊 **[Pitch Deck →](./docs/pitch_deck.pdf)**
+ **[Live Demo ](https://allocare-77.web.app)** | **[Demo Video ](https://www.youtube.com/watch?v=GtXnyqzjMrU)** |
 
 > **From paper survey to matched volunteer in 60 seconds.** Powered by Gemini AI.
 
 ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=firebase&logoColor=black)
 ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=flat&logo=flutter&logoColor=white)
-![Gemini](https://img.shields.io/badge/Gemini_2.0-4285F4?style=flat&logo=google&logoColor=white)
+![Gemini](https://img.shields.io/badge/Gemini_3.0-4285F4?style=flat&logo=google&logoColor=white)
 ![Maps](https://img.shields.io/badge/Google_Maps-4285F4?style=flat&logo=googlemaps&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 
 ---
 
-## 🎯 Problem Statement
+## Problem Statement
 
 **Smart Resource Allocation**: Google Solution Challenge 2026
 
 Local NGOs and community groups collect valuable need-data through paper surveys, WhatsApp messages, and field reports. This data sits siloed in physical files, disconnected spreadsheets, or a single coordinator's memory. **No system currently aggregates it to surface urgency patterns**: and no intelligent bridge exists to route available volunteers to where they are needed most, in real time.
 
-## 💡 Solution: AlloCare
+## Solution: AlloCare
 
 AlloCare (Allocation + Care) is a three-layer intelligent pipeline:
 
@@ -39,18 +39,8 @@ graph LR
 2. **Gemini-powered urgency intelligence**: scores, clusters, and visualizes needs geographically
 3. **Algorithm-driven volunteer matching**: deploys the right person to the highest-priority task in real time
 
-## 🖼️ Screenshots
 
-<!-- Add 5+ screenshots here -->
-| Dashboard with Heatmap | Need Detail + Urgency Formula | Volunteer Matching |
-|:---:|:---:|:---:|
-| Coming soon | Coming soon | Coming soon |
-
-| Upload Report (OCR) | Processing Pipeline | Impact Scorecard |
-|:---:|:---:|:---:|
-| Coming soon | Coming soon | Coming soon |
-
-## 🛠️ Tech Stack: Google Technologies
+## Tech Stack: Google Technologies
 
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
@@ -67,7 +57,7 @@ graph LR
 | **Notifications** | Firebase Cloud Messaging | Push alerts for critical needs |
 | **Frontend** | Web (HTML/CSS/JS) | NGO coordinator dashboard |
 
-## 🏗️ Architecture
+## Architecture
 
 ```mermaid
 graph TB
@@ -106,7 +96,7 @@ graph TB
     M -.->|Photo Upload| C
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # Clone the repo
@@ -129,7 +119,7 @@ npx serve public -l 3000
 firebase emulators:start
 ```
 
-## 📐 Urgency Scoring Algorithm (Transparent AI)
+## Urgency Scoring Algorithm (Transparent AI)
 
 ```
 urgency_score = (severity × log(frequency + 1)) / max(1, days_since_first_report)
@@ -143,7 +133,7 @@ normalized    = min(100, round(urgency_score × 10))
 
 **Explainability:** The formula is displayed on every need card. Coordinators can override any AI-scored urgency with the "Flag" button: corrections are logged to improve the model over time. This implements the **participatory AI** framework (Nesta, 2021).
 
-## 🤖 Volunteer Matching Algorithm
+## Volunteer Matching Algorithm
 
 ```
 match_score = skill_overlap_score × proximity_score × availability_score
@@ -156,14 +146,14 @@ availability   = 1.0 if available now, else 0.3
 Returns **top-3 volunteers** with plain-English explanations:
 > "Matched because: Medical First Aid ✓ · 2.3km away ✓ · Available now ✓"
 
-## 🌍 SDG Alignment
+## SDG Alignment
 
 - **SDG 1: No Poverty:** Routes food security and basic needs resources to highest-urgency areas
 - **SDG 10: Reduced Inequalities:** Prioritizes underserved communities invisible to traditional volunteer platforms
 - **SDG 17: Partnerships for the Goals:** Creates technology bridge between data-rich NGOs and skill-rich volunteers
 - **SDG 11: Sustainable Cities:** Supports urban NGOs managing complex multi-zone community needs
 
-## 📚 Research Citations
+## Research Citations
 
 | Paper | Key Finding | Used In |
 |-------|------------|---------|
@@ -172,19 +162,10 @@ Returns **top-3 volunteers** with plain-English explanations:
 | Participatory AI (Nesta, 2021) | Human-in-loop is gold standard for NGO AI tools | Flag/override system |
 | NLP for Humanitarian Action (Frontiers, 2023) | Build ingestion from existing tools, not new collection | KoBoToolbox integration |
 
-## ♿ Accessibility & Ethics
+## Accessibility & Ethics
 
 - **WCAG 2.1 AA** compliance: 4.5:1 contrast minimum, color + icon for urgency (never color alone)
 - **Transparent AI**: urgency formula displayed on screen, human override enabled
 - **Privacy**: volunteer locations rounded to ±1km, no individual PII in field reports
-- **Free forever** for small NGOs: technology should not be a barrier to social impact
+- **Free** for small NGOs: technology should not be a barrier to social impact
 
-
-
-## 📄 License
-
-MIT License: Free for NGOs, always.
-
----
-
-*AlloCare: Google Solution Challenge 2026 · Hack2Skill × GDG on Campus × Google*
