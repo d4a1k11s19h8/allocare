@@ -105,34 +105,85 @@ class DataStore:
         """Load seed data if collections are empty."""
         needs = self.list_all("need_reports")
         if len(needs) > 0:
-            logger.info("[DataStore] Data already exists in Firestore, skipping seed.")
+            logger.info("[DataStore] Data already exists, skipping seed.")
             return
 
-        logger.info("[DataStore] Seeding demo data to Firestore...")
+        logger.info("[DataStore] Seeding demo data...")
 
-        # ── Seed Volunteers ──────────────────────────────────
+        # ── Seed Volunteers (Pan-India: 54 volunteers) ──────
+        V = lambda n,e,la,ln,z,sk,s,ip,tc,ph,md: {"display_name":n,"email":e,"lat":la,"lng":ln,"zone":z,"skills":sk,"status":s,"impact_points":ip,"impact_stats":{"total_tasks_completed":tc,"total_people_helped":ph},"max_distance_km":md}
         volunteers = [
-            # Mumbai volunteers
-            {"display_name": "Priya Sharma", "email": "priya@example.com", "lat": 19.0450, "lng": 72.8570, "zone": "Dharavi", "skills": ["food distribution", "medical first aid", "hindi speaking"], "status": "available", "impact_points": 580, "impact_stats": {"total_tasks_completed": 23, "total_people_helped": 456}, "max_distance_km": 10},
-            {"display_name": "Rahul Deshmukh", "email": "rahul@example.com", "lat": 19.0730, "lng": 72.8790, "zone": "Kurla", "skills": ["construction", "plumbing", "electrical"], "status": "available", "impact_points": 320, "impact_stats": {"total_tasks_completed": 12, "total_people_helped": 180}, "max_distance_km": 10},
-            {"display_name": "Anita Patel", "email": "anita@example.com", "lat": 19.0540, "lng": 72.9150, "zone": "Govandi", "skills": ["teaching", "counseling"], "status": "available", "impact_points": 680, "impact_stats": {"total_tasks_completed": 18, "total_people_helped": 540}, "max_distance_km": 15},
-            {"display_name": "Mohammed Shaikh", "email": "mohammed@example.com", "lat": 19.0440, "lng": 72.8555, "zone": "Dharavi", "skills": ["cooking", "food distribution", "driving"], "status": "available", "impact_points": 1450, "impact_stats": {"total_tasks_completed": 45, "total_people_helped": 1200}, "max_distance_km": 12},
-            {"display_name": "Sneha Nair", "email": "sneha@example.com", "lat": 19.1200, "lng": 72.8470, "zone": "Andheri East", "skills": ["nursing", "medical first aid", "patient care"], "status": "available", "impact_points": 890, "impact_stats": {"total_tasks_completed": 31, "total_people_helped": 620}, "max_distance_km": 15},
-            {"display_name": "Vikram Singh", "email": "vikram@example.com", "lat": 19.1870, "lng": 72.8490, "zone": "Malad East", "skills": ["construction", "carpentry", "heavy lifting"], "status": "assigned", "impact_points": 210, "impact_stats": {"total_tasks_completed": 8, "total_people_helped": 85}, "max_distance_km": 10},
-            {"display_name": "Fatima Khan", "email": "fatima@example.com", "lat": 19.0596, "lng": 72.8413, "zone": "Bandra East", "skills": ["social work", "counseling", "legal aid"], "status": "available", "impact_points": 420, "impact_stats": {"total_tasks_completed": 15, "total_people_helped": 275}, "max_distance_km": 12},
-            {"display_name": "Arjun Mehta", "email": "arjun@example.com", "lat": 19.0620, "lng": 72.8980, "zone": "Chembur", "skills": ["pharmacy", "medical first aid", "data entry"], "status": "available", "impact_points": 250, "impact_stats": {"total_tasks_completed": 10, "total_people_helped": 150}, "max_distance_km": 10},
-            {"display_name": "Ravi Kumar", "email": "ravi@example.com", "lat": 19.0404, "lng": 72.8625, "zone": "Sion", "skills": ["driving", "food distribution", "logistics"], "status": "available", "impact_points": 1100, "impact_stats": {"total_tasks_completed": 35, "total_people_helped": 900}, "max_distance_km": 20},
-            {"display_name": "Kavitha Reddy", "email": "kavitha@example.com", "lat": 19.0197, "lng": 72.8440, "zone": "Dadar", "skills": ["medical doctor", "patient care"], "status": "available", "impact_points": 340, "impact_stats": {"total_tasks_completed": 8, "total_people_helped": 160}, "max_distance_km": 15},
-            {"display_name": "Tushar Patil", "email": "tushar@example.com", "lat": 19.0088, "lng": 72.8175, "zone": "Worli", "skills": ["civil engineering", "structural assessment"], "status": "available", "impact_points": 190, "impact_stats": {"total_tasks_completed": 6, "total_people_helped": 120}, "max_distance_km": 10},
-            {"display_name": "Hassan Ali", "email": "hassan@example.com", "lat": 19.2045, "lng": 72.8400, "zone": "Kandivali", "skills": ["cooking", "food distribution", "event coordination"], "status": "available", "impact_points": 820, "impact_stats": {"total_tasks_completed": 28, "total_people_helped": 700}, "max_distance_km": 15},
-            # Nagpur volunteers
-            {"display_name": "Amit Deshmukh", "email": "amit.d@example.com", "lat": 21.1458, "lng": 79.0882, "zone": "Nagpur", "skills": ["construction", "heavy lifting", "disaster relief"], "status": "available", "impact_points": 720, "impact_stats": {"total_tasks_completed": 30, "total_people_helped": 500}, "max_distance_km": 20},
-            {"display_name": "Sunita Wankhede", "email": "sunita.w@example.com", "lat": 21.1520, "lng": 79.0750, "zone": "Nagpur", "skills": ["nursing", "medical first aid", "patient care"], "status": "available", "impact_points": 560, "impact_stats": {"total_tasks_completed": 22, "total_people_helped": 380}, "max_distance_km": 15},
-            {"display_name": "Rajesh Thakur", "email": "rajesh.t@example.com", "lat": 21.1400, "lng": 79.1000, "zone": "Nagpur", "skills": ["driving", "logistics", "food distribution"], "status": "available", "impact_points": 340, "impact_stats": {"total_tasks_completed": 14, "total_people_helped": 220}, "max_distance_km": 25},
-            {"display_name": "Meena Bhonsle", "email": "meena.b@example.com", "lat": 21.1600, "lng": 79.0950, "zone": "Nagpur", "skills": ["social work", "counseling", "event coordination"], "status": "available", "impact_points": 480, "impact_stats": {"total_tasks_completed": 19, "total_people_helped": 310}, "max_distance_km": 15},
-            # Delhi volunteers
-            {"display_name": "Arun Gupta", "email": "arun.g@example.com", "lat": 28.6280, "lng": 77.2170, "zone": "Delhi", "skills": ["construction", "civil engineering", "disaster relief"], "status": "available", "impact_points": 410, "impact_stats": {"total_tasks_completed": 16, "total_people_helped": 290}, "max_distance_km": 20},
-            {"display_name": "Neha Saxena", "email": "neha.s@example.com", "lat": 28.6100, "lng": 77.2300, "zone": "Delhi", "skills": ["medical doctor", "patient care", "hindi speaking"], "status": "available", "impact_points": 630, "impact_stats": {"total_tasks_completed": 25, "total_people_helped": 420}, "max_distance_km": 15},
+            # ── WEST: Mumbai ──
+            V("Priya Sharma","priya@example.com",19.045,72.857,"Dharavi",["food distribution","medical first aid","hindi speaking"],"available",580,23,456,15),
+            V("Rahul Deshmukh","rahul@example.com",19.073,72.879,"Kurla",["construction","plumbing","electrical"],"available",320,12,180,15),
+            V("Anita Patel","anita@example.com",19.054,72.915,"Govandi",["teaching","counseling"],"available",680,18,540,20),
+            V("Mohammed Shaikh","mohammed@example.com",19.044,72.855,"Dharavi",["cooking","food distribution","driving"],"available",1450,45,1200,15),
+            V("Sneha Nair","sneha@example.com",19.120,72.847,"Andheri East",["nursing","medical first aid","patient care"],"available",890,31,620,20),
+            V("Vikram Singh","vikram@example.com",19.187,72.849,"Malad East",["construction","carpentry","heavy lifting"],"assigned",210,8,85,15),
+            V("Fatima Khan","fatima@example.com",19.059,72.841,"Bandra East",["social work","counseling","legal aid"],"available",420,15,275,15),
+            V("Arjun Mehta","arjun@example.com",19.062,72.898,"Chembur",["pharmacy","medical first aid","data entry"],"available",250,10,150,15),
+            V("Ravi Kumar","ravi@example.com",19.040,72.862,"Sion",["driving","food distribution","logistics"],"available",1100,35,900,25),
+            V("Kavitha Reddy","kavitha@example.com",19.019,72.844,"Dadar",["medical doctor","patient care"],"available",340,8,160,20),
+            V("Tushar Patil","tushar@example.com",19.008,72.817,"Worli",["civil engineering","structural assessment"],"available",190,6,120,15),
+            V("Hassan Ali","hassan@example.com",19.204,72.840,"Kandivali",["cooking","food distribution","event coordination"],"available",820,28,700,20),
+            # ── WEST: Pune ──
+            V("Sanjay Kulkarni","sanjay.k@example.com",18.520,73.856,"Pune",["civil engineering","disaster relief","logistics"],"available",550,20,400,30),
+            V("Deepa Joshi","deepa.j@example.com",18.530,73.850,"Pune",["nursing","patient care","counseling"],"available",390,14,280,25),
+            # ── WEST: Ahmedabad / Surat ──
+            V("Kiran Patel","kiran.p@example.com",23.022,72.571,"Ahmedabad",["food distribution","logistics","driving"],"available",470,18,350,30),
+            V("Hetal Shah","hetal.s@example.com",21.170,72.831,"Surat",["teaching","social work","event coordination"],"available",310,11,200,25),
+            # ── CENTRAL: Nagpur ──
+            V("Amit Deshmukh","amit.d@example.com",21.145,79.088,"Nagpur",["construction","heavy lifting","disaster relief"],"available",720,30,500,30),
+            V("Sunita Wankhede","sunita.w@example.com",21.152,79.075,"Nagpur",["nursing","medical first aid","patient care"],"available",560,22,380,25),
+            V("Rajesh Thakur","rajesh.t@example.com",21.140,79.100,"Nagpur",["driving","logistics","food distribution"],"available",340,14,220,30),
+            V("Meena Bhonsle","meena.b@example.com",21.160,79.095,"Nagpur",["social work","counseling","event coordination"],"available",480,19,310,25),
+            # ── CENTRAL: Bhopal / Indore / Raipur ──
+            V("Pooja Mishra","pooja.m@example.com",23.259,77.412,"Bhopal",["medical doctor","patient care","hindi speaking"],"available",600,24,410,30),
+            V("Rahul Jain","rahul.j@example.com",22.719,75.857,"Indore",["construction","plumbing","electrical"],"available",280,10,160,25),
+            V("Lakshmi Sahu","lakshmi.s@example.com",21.251,81.629,"Raipur",["food distribution","cooking","logistics"],"available",350,13,230,30),
+            # ── NORTH: Delhi / NCR ──
+            V("Arun Gupta","arun.g@example.com",28.628,77.217,"Delhi",["construction","civil engineering","disaster relief"],"available",410,16,290,25),
+            V("Neha Saxena","neha.s@example.com",28.610,77.230,"Delhi",["medical doctor","patient care","hindi speaking"],"available",630,25,420,25),
+            V("Manish Tiwari","manish.t@example.com",28.535,77.391,"Noida",["driving","logistics","food distribution"],"available",290,11,190,30),
+            V("Simran Kaur","simran.k@example.com",28.459,77.026,"Gurgaon",["social work","legal aid","counseling"],"available",440,17,300,25),
+            # ── NORTH: Lucknow / Jaipur / Chandigarh ──
+            V("Akhil Verma","akhil.v@example.com",26.846,80.946,"Lucknow",["food distribution","driving","hindi speaking"],"available",370,14,250,30),
+            V("Sunaina Rajput","sunaina.r@example.com",26.912,75.787,"Jaipur",["teaching","counseling","event coordination"],"available",510,19,360,30),
+            V("Harpreet Singh","harpreet.s@example.com",30.733,76.779,"Chandigarh",["construction","plumbing","disaster relief"],"available",430,16,310,30),
+            V("Deepak Sharma","deepak.s@example.com",30.316,78.032,"Dehradun",["nursing","medical first aid","patient care"],"available",320,12,200,30),
+            V("Gurdeep Kaur","gurdeep.k@example.com",31.634,74.872,"Amritsar",["cooking","food distribution","logistics"],"available",280,10,180,30),
+            # ── SOUTH: Bangalore ──
+            V("Ramesh Gowda","ramesh.g@example.com",12.971,77.594,"Bangalore",["civil engineering","construction","disaster relief"],"available",520,20,380,30),
+            V("Lakshmi Iyer","lakshmi.i@example.com",12.960,77.600,"Bangalore",["medical doctor","nursing","patient care"],"available",680,26,480,25),
+            V("Naveen Kumar","naveen.k@example.com",12.980,77.580,"Bangalore",["driving","logistics","food distribution"],"available",340,13,240,30),
+            # ── SOUTH: Chennai ──
+            V("Murugan S","murugan.s@example.com",13.082,80.270,"Chennai",["construction","plumbing","electrical"],"available",450,17,330,30),
+            V("Priya Venkat","priya.v@example.com",13.070,80.250,"Chennai",["teaching","counseling","social work"],"available",380,14,270,25),
+            # ── SOUTH: Hyderabad ──
+            V("Srinivas Reddy","srinivas.r@example.com",17.385,78.486,"Hyderabad",["food distribution","cooking","logistics"],"available",490,18,360,30),
+            V("Ayesha Begum","ayesha.b@example.com",17.390,78.490,"Hyderabad",["nursing","medical first aid","patient care"],"available",560,21,400,25),
+            # ── SOUTH: Kochi / Coimbatore / Trivandrum ──
+            V("Thomas Mathew","thomas.m@example.com",9.931,76.267,"Kochi",["construction","disaster relief","logistics"],"available",410,15,290,30),
+            V("Meera Nair","meera.n@example.com",11.016,76.955,"Coimbatore",["medical doctor","patient care"],"available",330,12,220,25),
+            V("Anoop Kumar","anoop.k@example.com",8.524,76.936,"Thiruvananthapuram",["social work","legal aid","counseling"],"available",270,9,160,30),
+            # ── EAST: Kolkata ──
+            V("Sourav Das","sourav.d@example.com",22.572,88.363,"Kolkata",["food distribution","driving","logistics"],"available",540,20,390,30),
+            V("Ritika Sen","ritika.s@example.com",22.580,88.370,"Kolkata",["teaching","counseling","social work"],"available",420,16,300,25),
+            V("Arijit Banerjee","arijit.b@example.com",22.560,88.350,"Kolkata",["medical first aid","pharmacy","patient care"],"available",360,13,250,25),
+            # ── EAST: Patna / Ranchi / Bhubaneswar ──
+            V("Rajiv Prasad","rajiv.p@example.com",25.609,85.137,"Patna",["construction","plumbing","disaster relief"],"available",300,11,210,30),
+            V("Anjali Kumari","anjali.k@example.com",23.344,85.309,"Ranchi",["nursing","medical first aid","patient care"],"available",350,13,240,30),
+            V("Subhash Mohanty","subhash.m@example.com",20.296,85.824,"Bhubaneswar",["food distribution","logistics","driving"],"available",410,15,290,30),
+            # ── NORTHEAST: Guwahati ──
+            V("Bhaskar Deka","bhaskar.d@example.com",26.144,91.736,"Guwahati",["construction","disaster relief","logistics"],"available",380,14,260,35),
+            V("Priyanka Bora","priyanka.b@example.com",26.150,91.740,"Guwahati",["nursing","medical first aid","social work"],"available",290,10,190,30),
+            # ── NORTH: Varanasi / Kanpur ──
+            V("Om Prakash","om.p@example.com",25.317,82.973,"Varanasi",["food distribution","cooking","hindi speaking"],"available",460,17,340,30),
+            V("Alok Mishra","alok.m@example.com",26.449,80.331,"Kanpur",["civil engineering","construction","disaster relief"],"available",310,11,210,30),
+            # ── WEST: Jodhpur ──
+            V("Mahendra Rathore","mahendra.r@example.com",26.238,73.024,"Jodhpur",["driving","logistics","food distribution"],"available",250,9,170,35),
+            # ── SOUTH: Mysore ──
+            V("Girish Hegde","girish.h@example.com",12.295,76.639,"Mysuru",["teaching","social work","event coordination"],"available",370,14,260,25),
         ]
 
         for i, v in enumerate(volunteers):
@@ -144,6 +195,14 @@ class DataStore:
             {"zone": "Dharavi", "lat": 19.0438, "lng": 72.8560, "issue_type": "water", "severity_score": 8, "urgency_score": 88, "urgency_label": "critical", "affected_count": 150, "summary": "Water supply contaminated in sector 5. Residents with stomach illness.", "required_skills": ["water purification", "plumbing"], "recommended_volunteer_count": 3, "status": "open", "source": "manual", "report_frequency_30d": 5, "trend_direction": "rising", "coordinator_explanation": "The main water pipeline serving sector 5 has been compromised."},
             {"zone": "Dharavi", "lat": 19.0430, "lng": 72.8550, "issue_type": "health", "severity_score": 9, "urgency_score": 92, "urgency_label": "critical", "affected_count": 175, "summary": "Medical camp urgently needed: increasing dengue cases.", "required_skills": ["medical first aid", "nursing"], "recommended_volunteer_count": 4, "status": "open", "source": "whatsapp", "report_frequency_30d": 6, "trend_direction": "rising"},
             {"zone": "Kurla", "lat": 19.0724, "lng": 72.8787, "issue_type": "health", "severity_score": 7, "urgency_score": 72, "urgency_label": "high", "affected_count": 80, "summary": "Healthcare facility severely understaffed.", "required_skills": ["medical doctor", "patient care"], "recommended_volunteer_count": 2, "status": "open", "source": "csv", "report_frequency_30d": 3, "trend_direction": "stable"},
+            {"zone": "Govandi", "lat": 19.0565, "lng": 72.9230, "issue_type": "housing", "severity_score": 8, "urgency_score": 82, "urgency_label": "high", "affected_count": 120, "summary": "Flooding has damaged 120 homes, families displaced.", "required_skills": ["construction", "disaster relief"], "recommended_volunteer_count": 6, "status": "open", "source": "manual", "report_frequency_30d": 4, "trend_direction": "rising"},
+            {"zone": "Bandra East", "lat": 19.0596, "lng": 72.8403, "issue_type": "education", "severity_score": 5, "urgency_score": 48, "urgency_label": "medium", "affected_count": 60, "summary": "Community school needs tutors for exam preparation.", "required_skills": ["teaching", "counseling"], "recommended_volunteer_count": 3, "status": "open", "source": "manual", "report_frequency_30d": 2, "trend_direction": "stable"},
+            {"zone": "Andheri East", "lat": 19.1197, "lng": 72.8755, "issue_type": "food", "severity_score": 6, "urgency_score": 65, "urgency_label": "high", "affected_count": 90, "summary": "Ration shop closed for 2 weeks, families running low on supplies.", "required_skills": ["food distribution", "logistics"], "recommended_volunteer_count": 3, "status": "open", "source": "whatsapp", "report_frequency_30d": 3, "trend_direction": "stable"},
+            {"zone": "Worli", "lat": 19.0144, "lng": 72.8133, "issue_type": "safety", "severity_score": 7, "urgency_score": 70, "urgency_label": "high", "affected_count": 45, "summary": "Building structural damage: residents need safety assessment.", "required_skills": ["civil engineering", "structural assessment"], "recommended_volunteer_count": 2, "status": "open", "source": "manual", "report_frequency_30d": 2, "trend_direction": "stable"},
+            {"zone": "Malad East", "lat": 19.1864, "lng": 72.8356, "issue_type": "water", "severity_score": 6, "urgency_score": 55, "urgency_label": "medium", "affected_count": 70, "summary": "Water tanker delivery delayed by 3 days.", "required_skills": ["logistics", "driving"], "recommended_volunteer_count": 2, "status": "open", "source": "csv", "report_frequency_30d": 2, "trend_direction": "stable"},
+            {"zone": "Chembur", "lat": 19.0625, "lng": 72.8956, "issue_type": "health", "severity_score": 6, "urgency_score": 58, "urgency_label": "medium", "affected_count": 55, "summary": "Need for basic health check-up camp in slum area.", "required_skills": ["medical first aid", "pharmacy"], "recommended_volunteer_count": 3, "status": "open", "source": "manual", "report_frequency_30d": 1, "trend_direction": "stable"},
+            {"zone": "Dharavi", "lat": 19.0435, "lng": 72.8545, "issue_type": "food", "severity_score": 7, "urgency_score": 78, "urgency_label": "high", "affected_count": 100, "summary": "Community kitchen shut down, 100+ families without meals.", "required_skills": ["cooking", "food distribution"], "recommended_volunteer_count": 4, "status": "assigned", "source": "photo", "report_frequency_30d": 5, "trend_direction": "rising"},
+            {"zone": "Kurla", "lat": 19.0710, "lng": 72.8800, "issue_type": "water", "severity_score": 5, "urgency_score": 42, "urgency_label": "medium", "affected_count": 35, "summary": "Broken water pipe needs repair in residential block.", "required_skills": ["plumbing"], "recommended_volunteer_count": 1, "status": "resolved", "source": "manual", "report_frequency_30d": 1, "trend_direction": "stable"},
         ]
 
         for i, n in enumerate(needs):
@@ -151,14 +210,26 @@ class DataStore:
 
         # ── Seed Users ───────────────────────────────────────
         users = [
-            {"email": "admin@allocare.org", "password_hash": self.hash_password("admin123"), "display_name": "Demo Organization", "role": "organization"},
-            {"email": "volunteer@allocare.org", "password_hash": self.hash_password("vol123"), "display_name": "Demo Volunteer", "role": "volunteer"},
-            {"email": "superadmin@allocare.org", "password_hash": self.hash_password("super123"), "display_name": "Super Admin", "role": "superadmin"},
+            {"email": "admin@allocare.org", "password_hash": self.hash_password("admin123"), "display_name": "Demo Organization", "role": "organization", "id": "u1"},
+            {"email": "volunteer@allocare.org", "password_hash": self.hash_password("vol123"), "display_name": "Demo Volunteer", "role": "volunteer", "id": "u2"},
+            {"email": "superadmin@allocare.org", "password_hash": self.hash_password("super123"), "display_name": "Super Admin", "role": "superadmin", "id": "u3"},
         ]
-        for i, u in enumerate(users):
-            self.add("users", u, doc_id=f"u{i+1}")
+        
+        # Add user accounts for all 54 volunteers
+        for i, v in enumerate(volunteers):
+            users.append({
+                "id": f"v{i+1}",
+                "email": v["email"],
+                "password_hash": self.hash_password("vol123"),
+                "display_name": v["display_name"],
+                "role": "volunteer"
+            })
+            
+        for u in users:
+            uid = u.pop("id")
+            self.add("users", u, doc_id=uid)
 
-        logger.info(f"[DataStore] Seeded needs + volunteers + users into Firestore")
+        logger.info(f"[DataStore] Seeded {len(needs)} needs + {len(volunteers)} volunteers + {len(users)} users")
 
 
 # ── Global singleton ─────────────────────────────────────────
