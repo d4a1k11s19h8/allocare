@@ -33,13 +33,22 @@ if DEPLOYMENT == "firebase":
     from firebase_admin import initialize_app
     from a2wsgi import ASGIMiddleware
     initialize_app()
+elif os.environ.get("FIREBASE_CREDENTIALS"):
+    import json
+    from firebase_admin import initialize_app, credentials
+    try:
+        creds_dict = json.loads(os.environ.get("FIREBASE_CREDENTIALS"))
+        cred = credentials.Certificate(creds_dict)
+        initialize_app(cred)
+    except Exception as e:
+        print(f"Failed to initialize Firebase from credentials: {e}")
 
 # ── initialise ─────────────────────────────────────────────────────────────────
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Choose data store based on deployment mode
-if DEPLOYMENT == "firebase":
+if DEPLOYMENT == "firebase" or os.environ.get("FIREBASE_CREDENTIALS"):
     from data_store import store
 else:
     from data_store_local import store
