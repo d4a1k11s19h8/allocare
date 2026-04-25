@@ -6,7 +6,7 @@
 // Backend API URL
 const FUNCTIONS_BASE = window.location.hostname === "localhost" 
   ? "http://localhost:8000" 
-  : "https://allocare-backend-production.onrender.com"; // Use actual production URL if applicable, or window.location.origin if it's hosted together.
+  : window.location.origin;
 
 // App State
 const AppState = {
