@@ -180,7 +180,10 @@ export function Hero() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="mt-8 flex flex-wrap items-center gap-3"
           >
-            <motion.button
+            <motion.a
+              href="https://allocare-backend.onrender.com/"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ y: -2, boxShadow: "0 18px 38px -12px rgba(26,86,219,0.55)" }}
               whileTap={{ y: 0 }}
               transition={{ type: "spring", stiffness: 280, damping: 20 }}
@@ -193,9 +196,10 @@ export function Hero() {
                 <path d="M8 5v14l11-7z" />
               </svg>
               Watch Live Demo
-            </motion.button>
+            </motion.a>
 
-            <motion.button
+            <motion.a
+              href="/research"
               whileHover={{ y: -2, backgroundColor: "rgba(26,86,219,0.06)" }}
               whileTap={{ y: 0 }}
               transition={{ type: "spring", stiffness: 280, damping: 20 }}
@@ -205,7 +209,7 @@ export function Hero() {
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M7 17 17 7M7 7h10v10" />
               </svg>
-            </motion.button>
+            </motion.a>
           </motion.div>
 
           <motion.div
